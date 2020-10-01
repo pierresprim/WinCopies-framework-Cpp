@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{ce304143-bd6f-4d55-a3dc-001cb662be20}</ItemsProjectGuid>
+    <ItemsRootNamespace>WinCopies.Collections</ItemsRootNamespace>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)defines.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnumeratorBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)framework.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IStack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IUIntCountable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Stack.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnumeratorBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)IEnumerable.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)IEnumerator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)IStack.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)IUIntCountable.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedList.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Stack.cpp" />
+  </ItemGroup>
+</Project>
