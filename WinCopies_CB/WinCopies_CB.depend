@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1601596350 source:/media/pierre/TOSHIBA/repositories/WinCopies-framework-Cpp/WinCopies_CB/main.cpp
+
+1601598094 source:/media/pierre/TOSHIBA/repositories/WinCopies-framework-Cpp/WinCopies_CB/src/TestWCB.cpp
+	"../include/TestWCB.h"
+
+1601598047 /media/pierre/TOSHIBA/repositories/WinCopies-framework-Cpp/WinCopies_CB/include/TestWCB.h
+

@@ -1,0 +1,12 @@
+#ifndef WINCOPIES_QT_GLOBAL_H
+#define WINCOPIES_QT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(WINCOPIES_QT_LIBRARY)
+#  define WINCOPIES_QTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define WINCOPIES_QTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // WINCOPIES_QT_GLOBAL_H
