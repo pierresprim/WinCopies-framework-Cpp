@@ -2,52 +2,37 @@
 #ifndef SIMPLELINKEDLISTNODE_H
 #define SIMPLELINKEDLISTNODE_H
 #include "ISimpleLinkedListNode.h"
+#include "EnumerableStack.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		_T
+    TEMPLATE
+    class StackEnumerator;
+
+        TEMPLATE
 			class DLLEXPORT SimpleLinkedListNode :
 			public virtual ISimpleLinkedListNode<T>
 		{
 		private:
 			T _value;
 			const	SimpleLinkedListNode<T>* _next = nullptr;
+            friend class StackEnumerator<T>;
 		public:
-			~SimpleLinkedListNode() {			}
+            virtual ~SimpleLinkedListNode() override = default;
 
-			SimpleLinkedListNode(T value)
-			{
-				_value = value;
-			}
+            SimpleLinkedListNode(T value) { _value = value; }
 
 			// Gets the value of the current node.
-			T GetValue() const
-			{
-				return _value;
-			}
-
-			void SetValue(T value)
-			{
-				return _next;
-			}
+            T GetValue() const { return _value; }
 
 			// Gets the next node in the parent linked list.
-			const	SimpleLinkedListNode<T>* GetNextNode() const
-			{
-				return _next;
-			}
+            const	SimpleLinkedListNode<T>* GetNextNode() const { return _next; }
 
-			const			ISimpleLinkedListNode<T>* GetNext() const
-			{
-				return GetNextNode();
-			}
+            const ISimpleLinkedListNode<T>* GetNext() const { return GetNextNode(); }
 
-			void SetNext(const SimpleLinkedListNode<T>* node)
-			{
-				_next = node;
-			}
+            void SetNext(const SimpleLinkedListNode<T>* node) { _next = node; }
 		};
 	}
 }

@@ -7,10 +7,10 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		class DLLEXPORT IUIntCountable abstract
+        class DLLEXPORT IUIntCountable ABSTRACT
 		{
-		public:
-			~IUIntCountable() {}
+        public:
+            virtual ~IUIntCountable() {}
 
 			virtual unsigned int GetCount() const = 0;
 		};

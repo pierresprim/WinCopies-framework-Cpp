@@ -7,11 +7,11 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		_T
-		class DLLEXPORT IEnumerator abstract
+        TEMPLATE
+        class DLLEXPORT IEnumerator ABSTRACT
 		{
 		public:
-			~IEnumerator() {}
+            virtual ~IEnumerator() {}
 
 			virtual bool GetIsStarted() const = 0;
 			virtual bool GetIsCompleted() const = 0;

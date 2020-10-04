@@ -3,6 +3,10 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define DLLEXPORT __declspec(dllexport)
-#define _T template<class T>
+#ifdef QT
+#include "../WinCopies_Qt/WinCopies.Collections/WinCopies_Collections/main.h"
+#include "../../../WinCopies.Util.Base.Shared/wincopies_defines.h"
+#else
+#include "../WinCopies.Util.Base.Shared/wincopies_defines.h"
+#endif
 #endif

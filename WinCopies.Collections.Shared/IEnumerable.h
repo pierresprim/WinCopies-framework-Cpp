@@ -8,13 +8,13 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		_T
-		class DLLEXPORT IEnumerable abstract
+        TEMPLATE
+        class DLLEXPORT IEnumerable ABSTRACT
 		{
 		public:
-			~IEnumerable() {}
+            virtual ~IEnumerable() {}
 
-			virtual IEnumerator<T>* GetEnumerator() const = 0;
+            virtual IEnumerator<T>* GetEnumerator() = 0;
 		};
 	}
 }

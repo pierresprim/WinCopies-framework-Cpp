@@ -3,21 +3,29 @@
 #define SIMPLELINKEDLIST_H
 #include "ISimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
+#include "EnumerableStack.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		_T
+    TEMPLATE
+    class SimpleLinkedListNode;
+
+    TEMPLATE
+    class StackEnumerator;
+
+        TEMPLATE
 			class DLLEXPORT SimpleLinkedList :
 			public virtual ISimpleLinkedList<T>
 		{
 		private:
 		const	SimpleLinkedListNode<T>* _first = nullptr;
 			unsigned int _count = 0;
+            friend class StackEnumerator<T>;
 		protected:
-		const	SimpleLinkedListNode<T>* GetFirst() const
+            const SimpleLinkedListNode<T>* GetFirst() const
 			{
 				return _first;
 			}
@@ -55,7 +63,7 @@ namespace WinCopies
 				_count = 0;
 			}
 		public:
-			~SimpleLinkedList()
+            virtual ~SimpleLinkedList() override
 			{
 				if (_first != nullptr)
 
@@ -85,11 +93,9 @@ namespace WinCopies
 			{
 				if (GetCount() == 0)
 
-					return false;
+                    return false;
 
-				T _result = GetFirst()->GetValue();
-
-				result = &_result;
+                *result = GetFirst()->GetValue();
 
 				return true;
 			}

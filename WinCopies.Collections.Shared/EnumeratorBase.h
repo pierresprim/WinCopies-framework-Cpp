@@ -2,69 +2,70 @@
 #ifndef ENUMERATORBASE_H
 #define ENUMERATORBASE_H
 #include "defines.h"
+#include "IEnumerator.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		_T
-			class DLLEXPORT EnumeratorBase abstract:
-		public virtual IEnumerator<T>
+        TEMPLATE
+            class DLLEXPORT EnumeratorBase ABSTRACT:
+        public virtual IEnumerator<T>
 		{
 		private:
 			bool _isStarted = false;
 			bool _isCompleted = false;
-		public:
-			~EnumeratorBase()
-			{
-				delete _isStarted;
-				delete _isCompleted;
-			}
+        public:
+            virtual ~EnumeratorBase() override = default;
 
-			bool GetIsStarted()
+            virtual bool GetIsStarted() const final
 			{
 				return _isStarted;
 			}
 
-			bool GetIsCompleted()
+            virtual bool GetIsCompleted() const final
 			{
 				return _isCompleted;
-			}
+            }
 
-			virtual bool GetIsResetSupported() const = 0;
-
-			T GetCurrent()
+            virtual T GetCurrent() const final
 			{
 				if (_isStarted && !_isCompleted)
 
 					return GetCurrentOverride();
 
-				throw new InvalidOperationException("The enumeration is not started or is completed.");
+                throw new InvalidOperationException(L"The enumeration is not started or is completed.");
 			}
 
-			int MoveNext(bool* result)
-			{
+            virtual int MoveNext(bool* result) final
+            {
 				if (_isCompleted)
 				{
-					&result = false;
+                    *result = false;
 
 					return EXIT_SUCCESS;
-				}
+                }
 
-				if (MoveNextOverride(result) < 0 || !&result)
+                _isStarted = true;
+
+                int errorCode = MoveNextOverride(result);
+
+                if (errorCode < 0 || !*result)
 				{
 					_isCompleted = true;
 
 					_isStarted = false;
 				}
+
+                return errorCode;
 			}
 
-			int Reset()
+            virtual int Reset() final
 			{
 				if (!_isStarted)
 
-					return;
+                    return 0;
 
 				int result = ResetOverride();
 
@@ -78,7 +79,8 @@ namespace WinCopies
 				return result;
 			}
 
-			virtual T GetCurrentOverride() = 0;
+            virtual bool GetIsResetSupported() const = 0;
+            virtual T GetCurrentOverride() const = 0;
 			virtual int MoveNextOverride(bool* result) = 0;
 			virtual int ResetOverride() = 0;
 		};

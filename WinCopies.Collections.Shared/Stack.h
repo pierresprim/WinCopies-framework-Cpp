@@ -3,12 +3,24 @@
 #define STACK_H
 #include "defines.h"
 #include "IStack.h"
+#include "SimpleLinkedList.h"
+#include "SimpleLinkedListNode.h"
+#include "../WinCopies.Util.Base.Shared/Exception.h"
 
 namespace WinCopies
 {
 	namespace Collections
-	{
-		_T
+    {
+    TEMPLATE
+    class SimpleLinkedList;
+
+    TEMPLATE
+    class SimpleLinkedListNode;
+
+    TEMPLATE
+    class IStack;
+
+        TEMPLATE
 			class DLLEXPORT Stack :
 			virtual public SimpleLinkedList<T>,
 			virtual public IStack<T>
@@ -46,13 +58,13 @@ namespace WinCopies
 
 					delete node;
 
-				this->DecrementCount();
+                    this->DecrementCount();
 				}
 
 				return result;
 			}
 		public:
-			~Stack() {}
+            virtual ~Stack() override = default;
 
 			void Push(const T value) final
 			{
@@ -70,20 +82,18 @@ namespace WinCopies
 			{
 				if (this->GetCount() == 0)
 
-					throw new EmptyObjectException();
+                    throw new EmptyObjectException();
 
 				return OnPop();
 			}
 
 			bool TryPop( T*  result) final
 			{
-				if (this->GetCount() == 0)
+                if (this->GetCount() == 0)
 
-					return false;
+                    return false;
 
-				T _result = OnPop();
-
-				result = &_result;
+                *result = OnPop();
 
 				return true;
 			}

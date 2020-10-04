@@ -2,11 +2,11 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 #include <string>
-#include "defines.h"
+#include "wincopies_defines.h"
 
 namespace WinCopies
 {
-	class DLLEXPORT Exception
+    class DLLEXPORT Exception
 	{
 	private:
 		int _errorCode;
@@ -62,7 +62,7 @@ namespace WinCopies
 			delete _argumentName;
 		}
 
-		const wchar_t* const GetArgumentName()
+        const wchar_t* GetArgumentName()
 		{
 			return _argumentName;
 		}
