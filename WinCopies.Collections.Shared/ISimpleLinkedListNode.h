@@ -7,11 +7,12 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		_T
-		class DLLEXPORT ISimpleLinkedListNode abstract
+        TEMPLATE
+        class DLLEXPORT ISimpleLinkedListNode ABSTRACT
 		{
 		public:
-			~ISimpleLinkedListNode() {}
+            virtual ~ISimpleLinkedListNode() {}
+
 			// Gets the value of the current node.
 			virtual T GetValue() const = 0;
 			// Gets the next node in the parent linked list.

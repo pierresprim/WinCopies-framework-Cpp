@@ -3,7 +3,6 @@
 #define ISIMPLELINKEDLIST_H
 #include "defines.h"
 #include "IUIntCountable.h"
-#include "IEnumerable.h"
 #include "ISimpleLinkedListNode.h"
 
 namespace WinCopies
@@ -17,11 +16,12 @@ namespace WinCopies
 			LIFO = 2
 		};
 
-		_T
-		class DLLEXPORT ISimpleLinkedList abstract : public virtual IUIntCountable
+        TEMPLATE
+        class DLLEXPORT ISimpleLinkedList ABSTRACT : public virtual IUIntCountable
 		{
 		public:
-			~ISimpleLinkedList() {}
+            virtual ~ISimpleLinkedList() override = default;
+
 			// Gets the enumeration direction of the current linked list.
 			virtual LinkedListDirection GetDirection() const = 0;
 			virtual bool GetIsReadOnly() const = 0;

@@ -3,17 +3,17 @@
 #define ISTACK_H
 #include "defines.h"
 #include "ISimpleLinkedListNode.h"
-#include "SimpleLinkedList.h"
+#include "ISimpleLinkedList.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		_T
-			class DLLEXPORT IStack abstract : public virtual ISimpleLinkedList<T>
+        TEMPLATE
+            class DLLEXPORT IStack ABSTRACT : public virtual ISimpleLinkedList<T>
 		{
 		public:
-			~IStack() {}
+            virtual ~IStack() override = default;
 
 			virtual LinkedListDirection GetDirection() const final
 			{
