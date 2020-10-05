@@ -3,7 +3,7 @@
 #define ISTACK_H
 #include "defines.h"
 #include "ISimpleLinkedListNode.h"
-#include "SimpleLinkedList.h"
+#include "ISimpleLinkedList.h"
 
 namespace WinCopies
 {

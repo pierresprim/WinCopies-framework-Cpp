@@ -58,6 +58,8 @@ namespace WinCopies
 
 					delete node;
 
+                    node = nullptr;
+
                     this->DecrementCount();
 				}
 
@@ -66,19 +68,19 @@ namespace WinCopies
 		public:
             virtual ~Stack() override = default;
 
-			void Push(const T value) final
+            virtual void Push(const T value) final
 			{
 				OnPush(new SimpleLinkedListNode<T>(value));
 			}
 
-			bool TryPush(const T value) final
+            virtual bool TryPush(const T value) final
 			{
 				Push(value);
 
 				return true;
 			}
 
-			T Pop() final
+            virtual T Pop() final
 			{
 				if (this->GetCount() == 0)
 
@@ -87,7 +89,7 @@ namespace WinCopies
 				return OnPop();
 			}
 
-			bool TryPop( T*  result) final
+            virtual bool TryPop( T*  result) final
 			{
                 if (this->GetCount() == 0)
 
@@ -96,29 +98,7 @@ namespace WinCopies
                 *result = OnPop();
 
 				return true;
-			}
-
-			void Clear() final
-			{
-				if (this->GetCount() == 0)
-
-					return;
-
-				const	SimpleLinkedListNode<T>* node = this->GetFirst();
-				const	SimpleLinkedListNode<T>* nextNode;
-
-				do
-				{
-					nextNode = node->GetNextNode();
-
-					delete node;
-
-					node = nextNode;
-
-				} while (node->GetNext() != nullptr);
-
-				this->OnCleared();
-			}
+            }
 		};
 	}
 }

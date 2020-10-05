@@ -1,128 +1,131 @@
 #pragma once
-#ifndef ENUMERABLESTACK_H
-#define ENUMERABLESTACK_H
-#include "Stack.h"
+#ifndef ENUMERABLEQUEUE_H
+#define ENUMERABLEQUEUE_H
+#include "Queue.h"
 #include "SimpleLinkedListNode.h"
 #include "IEnumerable.h"
 #include "EnumeratorBase.h"
-#include "StackEnumerator.h"
+#include "QueueEnumerator.h"
 
 namespace WinCopies
 {
     namespace Collections
     {
         TEMPLATE
-        class IStack;
+        class IQueue;
 
         TEMPLATE
-        class Stack;
+        class Queue;
 
         TEMPLATE
-        class EnumerableStack;
+        class EnumerableQueue;
 
         TEMPLATE
         class SimpleLinkedListNode;
 
         TEMPLATE
-        class DLLEXPORT IEnumerableStack ABSTRACT:
-                public virtual IStack<T>,
+        class QueueEnumerator;
+
+        TEMPLATE
+        class DLLEXPORT IEnumerableQueue ABSTRACT:
+                public virtual IQueue<T>,
                 public virtual IEnumerable<T>
         {
         public:
-            virtual ~IEnumerableStack() override = default;
+            virtual ~IEnumerableQueue() override = default;
         };
 
         TEMPLATE
-        class DLLEXPORT EnumerableStack:
-                public virtual IEnumerableStack<T>
+        class DLLEXPORT EnumerableQueue:
+                public virtual IEnumerableQueue<T>
         {
         private:
-            Stack<T>* _stack;
+            Queue<T>* _queue;
             uint _version = 0;
             uint _enumeratorsCount = 0;
             void incrementEnumeratorsCount()
             {
                 _enumeratorsCount++;
             }
-            friend class StackEnumerator<T>;
+            friend class QueueEnumerator<T>;
         public:
-            explicit EnumerableStack()
+            explicit EnumerableQueue()
             {
-                _stack = new Stack<T>();
+                _queue = new Queue<T>();
             }
 
-            ~EnumerableStack()
+            ~EnumerableQueue()
             {
-                _stack->~Stack<T>();
+                _queue->~Queue<T>();
 
-                delete _stack;
+                delete _queue;
 
-                _stack = nullptr;
+                _queue = nullptr;
             }
 
             virtual IEnumerator<T>* GetEnumerator() final
             {
                 incrementEnumeratorsCount();
 
-                return new StackEnumerator<T>(this);
+                return new QueueEnumerator<T>(this);
             }
 
             virtual uint GetCount() const final
             {
-                return _stack->GetCount();
+                return _queue->GetCount();
             }
 
             virtual bool GetIsReadOnly() const final
             {
-                return _stack->GetIsReadOnly();
+                return _queue->GetIsReadOnly();
             }
 
             virtual void Clear() final
             {
                 _version++;
 
-                return _stack->Clear();
+                return _queue->Clear();
             }
 
             virtual T Peek() const final
             {
-                return _stack->Peek();
+                return _queue->Peek();
             }
 
             virtual bool TryPeek(T* result) const final
             {
-                return _stack->TryPeek(result);
+                return _queue->TryPeek(result);
             }
 
-            virtual void Push(const T value) final
+            virtual void Enqueue(const T value) final
             {
                 _version++;
 
-                _stack->Push(value);
+                _queue->Enqueue(value);
             }
 
-            virtual bool TryPush(const T value) final
+            virtual bool TryEnqueue(const T value) final
             {
                 _version++;
 
-                return _stack->TryPush(value);
+                return _queue->TryEnqueue(value);
             }
 
-            virtual T Pop() final
+            virtual T Dequeue() final
             {
                 _version++;
 
-                return _stack->Pop();
+                return _queue->Dequeue();
             }
 
-            virtual bool TryPop(T* result) final
+            virtual bool TryDequeue(T* result) final
             {
                 _version++;
 
-                return _stack->TryPop(result);
+                return _queue->TryDequeue(result);
             }
         };
     }
 }
 
-#endif // ENUMERABLESTACK_H
+#endif // ENUMERABLEQUEUE_H

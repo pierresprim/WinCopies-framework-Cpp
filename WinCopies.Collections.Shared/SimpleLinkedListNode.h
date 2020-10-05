@@ -3,6 +3,7 @@
 #define SIMPLELINKEDLISTNODE_H
 #include "ISimpleLinkedListNode.h"
 #include "EnumerableStack.h"
+#include "../WinCopies.Util.Base.Shared/IDisposable.h"
 
 namespace WinCopies
 {
@@ -13,14 +14,17 @@ namespace WinCopies
 
         TEMPLATE
 			class DLLEXPORT SimpleLinkedListNode :
-			public virtual ISimpleLinkedListNode<T>
+                public virtual ISimpleLinkedListNode<T>
 		{
 		private:
 			T _value;
 			const	SimpleLinkedListNode<T>* _next = nullptr;
             friend class StackEnumerator<T>;
 		public:
-            virtual ~SimpleLinkedListNode() override = default;
+            virtual ~SimpleLinkedListNode() override
+            {
+                _next = nullptr;
+            }
 
             SimpleLinkedListNode(T value) { _value = value; }
 

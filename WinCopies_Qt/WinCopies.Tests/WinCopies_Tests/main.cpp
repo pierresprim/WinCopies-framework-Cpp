@@ -4,6 +4,10 @@
 #include "../../../WinCopies.Util.Base.Shared/Exception.h"
 #include "../../../WinCopies.Collections.Shared/Stack.h"
 #include "../../../WinCopies.Collections.Shared/EnumerableStack.h"
+#include "../../../WinCopies.Collections.Shared/ReadOnlyStack.h"
+#include "../../../WinCopies.Collections.Shared/Queue.h"
+#include "../../../WinCopies.Collections.Shared/EnumerableQueue.h"
+#include "../../../WinCopies.Collections.Shared/ReadOnlyQueue.h"
 
 using namespace std;
 
@@ -90,6 +94,20 @@ int main(int argc, char *argv[])
 
     cout << stack->Pop() << endl;
 
+
+
+    cout << "Clear" << endl;
+
+    stack->Push(10);
+
+    stack->Push(1000);
+
+    cout << stack->GetCount() << endl;
+
+    stack->Clear();
+
+    cout << stack->GetCount() << endl;
+
     delete stack;
 
     stack = nullptr;
@@ -138,7 +156,7 @@ int main(int argc, char *argv[])
 
     cout << "EnumerableStack" << endl;
 
-    EnumerableStack<int>* enumerableStack = new EnumerableStack<int>();
+    IEnumerableStack<int>* enumerableStack = new EnumerableStack<int>();
 
     enumerableStack->Push(10);
 
@@ -169,7 +187,175 @@ int main(int argc, char *argv[])
 
     delete enumerator;
 
+    enumerableStack = new ReadOnlyStack<int>(enumerableStack, true);
+
     enumerator = enumerableStack->GetEnumerator();
+
+    cout << enumerator->MoveNext(&moveNextSucceeded) << endl;
+
+    cout << moveNextSucceeded << endl;
+
+    while (moveNextSucceeded)
+    {
+        cout << enumerator->GetCurrent() << endl;
+
+        cout << enumerator->MoveNext(&moveNextSucceeded) << endl;
+
+        cout << moveNextSucceeded << endl;
+    }
+
+    delete enumerator;
+
+    enumerator = nullptr;
+
+
+
+    cout << "Queue" << endl;
+
+    Queue<int>* queue = new Queue<int>();
+
+    queue->Enqueue(10);
+
+    cout << queue->Peek() << endl;
+
+    queue->Enqueue(1000);
+
+    cout << queue->Peek() << endl;
+
+    cout << queue->Dequeue() << endl;
+
+    cout << queue->Peek() << endl;
+
+    cout << queue->Dequeue() << endl;
+
+    cout << "TryDequeue" << endl;
+
+    queue->Enqueue(10);
+
+    queue->Enqueue(1000);
+
+    cout << queue->TryDequeue(&i) << endl;
+
+    cout << i << endl;
+
+    cout << queue->TryDequeue(&i) << endl;
+
+    cout << i << endl;
+
+    cout << queue->TryDequeue(&i) << endl;
+
+
+
+    queue->Enqueue(1000);
+
+    cout << queue->Peek() << endl;
+
+    queue->Enqueue(10);
+
+    cout << queue->Peek() << endl;
+
+    cout << queue->Dequeue() << endl;
+
+    cout << queue->Peek() << endl;
+
+    cout << queue->Dequeue() << endl;
+
+
+
+    cout << "Clear" << endl;
+
+    queue->Enqueue(10);
+
+    queue->Enqueue(1000);
+
+    cout << queue->GetCount() << endl;
+
+    queue->Clear();
+
+    cout << queue->GetCount() << endl;
+
+    delete queue;
+
+    queue = nullptr;
+
+
+
+    cout << "Something" << endl;
+
+    Queue<Something*>* _queue = new Queue<Something*>();
+
+    _queue->Enqueue(new Something(10));
+
+    wcout << _queue->Peek()->ToString() << endl;
+
+    _queue->Enqueue(new Something(1000));
+
+    wcout << _queue->Peek()->ToString() << endl;
+
+    wcout << _queue->Dequeue()->ToString() << endl;
+
+    wcout << _queue->Peek()->ToString() << endl;
+
+    wcout << _queue->Dequeue()->ToString() << endl;
+
+
+
+    _queue->Enqueue(new Something(1000));
+
+    wcout << _queue->Peek()->ToString() << endl;
+
+    _queue->Enqueue(new Something(10));
+
+    wcout << _queue->Peek()->ToString() << endl;
+
+    wcout << _queue->Dequeue()->ToString() << endl;
+
+    wcout << _queue->Peek()->ToString() << endl;
+
+    wcout << _queue->Dequeue()->ToString() << endl;
+
+    delete _queue;
+
+    _queue = nullptr;
+
+
+
+    cout << "EnumerableQueue" << endl;
+
+    IEnumerableQueue<int>* enumerableQueue = new EnumerableQueue<int>();
+
+    enumerableQueue->Enqueue(10);
+
+    enumerator = enumerableQueue->GetEnumerator();
+
+    moveNextSucceeded = false;
+
+    cout << enumerator->MoveNext(&moveNextSucceeded) << endl;
+
+    cout << moveNextSucceeded << endl;
+
+    while (moveNextSucceeded)
+    {
+        cout << enumerator->GetCurrent() << endl;
+
+        cout << enumerator->MoveNext(&moveNextSucceeded) << endl;
+
+        cout << moveNextSucceeded << endl;
+    }
+
+    enumerableQueue->Enqueue(1000);
+
+    cout << enumerator->MoveNext(&moveNextSucceeded) << endl;
+
+    cout << moveNextSucceeded << endl;
+
+    // enumerator->~IEnumerator();
+
+    delete enumerator;
+
+    enumerableQueue = new ReadOnlyQueue<int>(enumerableQueue, true);
+
+    enumerator = enumerableQueue->GetEnumerator();
 
     cout << enumerator->MoveNext(&moveNextSucceeded) << endl;
 

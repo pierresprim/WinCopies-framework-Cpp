@@ -16,6 +16,9 @@ namespace WinCopies
     TEMPLATE
     class StackEnumerator;
 
+    TEMPLATE
+    class QueueEnumerator;
+
         TEMPLATE
 			class DLLEXPORT SimpleLinkedList :
 			public virtual ISimpleLinkedList<T>
@@ -24,6 +27,7 @@ namespace WinCopies
 		const	SimpleLinkedListNode<T>* _first = nullptr;
 			unsigned int _count = 0;
             friend class StackEnumerator<T>;
+            friend class QueueEnumerator<T>;
 		protected:
             const SimpleLinkedListNode<T>* GetFirst() const
 			{
@@ -66,11 +70,14 @@ namespace WinCopies
             virtual ~SimpleLinkedList() override
 			{
 				if (_first != nullptr)
+                {
+                    Clear();
 
-					delete _first;
+                    _first = nullptr; // Because all of the items are deleted in the Clear method, we do not need to delete _first here.
+                }
 			}
 
-			unsigned int GetCount() const override final
+            virtual unsigned int GetCount() const final
 			{
 				return _count;
 			}
@@ -99,6 +106,32 @@ namespace WinCopies
 
 				return true;
 			}
+
+            virtual void Clear() final
+            {
+                if (this->GetCount() == 0)
+
+                    return;
+
+                const	SimpleLinkedListNode<T>* node = this->GetFirst();
+                const	SimpleLinkedListNode<T>* nextNode;
+
+                do
+                {
+                    nextNode = node->GetNextNode();
+
+                    delete node;
+
+                    node = nextNode;
+
+                } while (node->GetNext() != nullptr);
+
+                node = nullptr;
+
+                nextNode = nullptr;
+
+                this->OnCleared();
+            }
 		};
 	}
 }

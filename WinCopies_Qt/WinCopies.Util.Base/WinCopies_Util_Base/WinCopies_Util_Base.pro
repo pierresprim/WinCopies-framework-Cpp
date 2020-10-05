@@ -26,10 +26,13 @@ DEFINES += QT
 
 SOURCES += \
         ../../../WinCopies.Util.Base.Shared/Exception.cpp \
+        ../../../WinCopies.Util.Base.Shared/IDisposable.cpp \
         main.cpp
 
 HEADERS += \
+        ../../../WinCopies.Collections.Shared/IDisposable.h \
         ../../../WinCopies.Util.Base.Shared/Exception.h \
+        ../../../WinCopies.Util.Base.Shared/IDisposable.h \
         ../../../WinCopies.Util.Base.Shared/pch.h \
         ../../../WinCopies.Util.Base.Shared/wincopies_defines.h \
         main.h \
