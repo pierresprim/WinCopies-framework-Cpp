@@ -12,24 +12,6 @@ using namespace WinCopies;
 using namespace WinCopies::Collections;
 using namespace WinCopies::IO;
 
-class Something
-{
-private:
-	int _num = 0;
-public:
-	explicit Something(const int num)
-	{
-		_num = num;
-	}
-
-	const wchar_t* ToString()
-	{
-		cout << _num << endl;
-
-		return L"Qwerty.";
-	}
-};
-
 int main()
 {
 	cout << "Hello World!" << endl;
@@ -39,74 +21,6 @@ int main()
 	cout << ex->GetErrorCode() << '\n' << ex->GetErrorMessage() << endl;
 
 	wcout << ex->GetErrorCode() << '\n' << ex->GetErrorMessage() << endl;
-
-	Stack<int>* stack = new Stack<int>();
-
-	stack->Push(10);
-
-	cout << stack->Peek() << endl;
-
-	stack->Push(1000);
-
-	cout << stack->Peek() << endl;
-
-	cout << stack->Pop() << endl;
-
-	cout << stack->Peek() << endl;
-
-	cout << stack->Pop() << endl;
-
-
-
-	stack->Push(1000);
-
-	cout << stack->Peek() << endl;
-
-	stack->Push(10);
-
-	cout << stack->Peek() << endl;
-
-	cout << stack->Pop() << endl;
-
-	cout << stack->Peek() << endl;
-
-	cout << stack->Pop() << endl;
-
-
-
-	wcout << L"Something" << endl;
-
-	Stack<Something*>* _stack = new Stack<Something*>();
-
-	_stack->Push(new Something(10));
-
-	wcout << _stack->Peek()->ToString() << endl;
-
-	_stack->Push(new Something(1000));
-
-	wcout << _stack->Peek()->ToString() << endl;
-
-	wcout << _stack->Pop()->ToString() << endl;
-
-	wcout << _stack->Peek()->ToString() << endl;
-
-	wcout << _stack->Pop()->ToString() << endl;
-
-
-
-	_stack->Push(new Something(1000));
-
-	wcout << _stack->Peek()->ToString() << endl;
-
-	_stack->Push(new Something(10));
-
-	wcout << _stack->Peek()->ToString() << endl;
-
-	wcout << _stack->Pop()->ToString() << endl;
-
-	wcout << _stack->Peek()->ToString() << endl;
-
-	wcout << _stack->Pop()->ToString() << endl;
 
 	//BrowsableObjectInfo* so = new ShellObjectInfo(L"C:\\");
 

@@ -23,7 +23,7 @@ namespace WinCopies
 			virtual void Push(const T value) = 0;
 			virtual bool TryPush(const T value) = 0;
 			virtual T Pop() = 0;
-			virtual bool TryPop( T*  result) = 0;
+			virtual bool TryPop(T* result) = 0;
 		};
 	}
 }
