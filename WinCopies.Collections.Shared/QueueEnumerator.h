@@ -22,7 +22,7 @@ namespace WinCopies
         {
         private:
             EnumerableQueue<T>* _queue;
-            uint _version;
+            unsigned int _version;
             const SimpleLinkedListNode<T>* _currentNode;
         public:
             explicit QueueEnumerator(EnumerableQueue<T>* queue)

@@ -3,7 +3,8 @@
 #define SIMPLELINKEDLIST_H
 #include "ISimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
-#include "EnumerableStack.h"
+#include "StackEnumerator.h"
+#include "QueueEnumerator.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
 
 namespace WinCopies
@@ -24,7 +25,7 @@ namespace WinCopies
 			public virtual ISimpleLinkedList<T>
 		{
 		private:
-		const	SimpleLinkedListNode<T>* _first = nullptr;
+			const SimpleLinkedListNode<T>* _first = nullptr;
 			unsigned int _count = 0;
             friend class StackEnumerator<T>;
             friend class QueueEnumerator<T>;

@@ -1,10 +1,12 @@
 #pragma once
 #ifndef ENUMERABLESTACK_H
 #define ENUMERABLESTACK_H
+#include "IStack.h"
 #include "Stack.h"
+#include "EnumerableStack.h"
 #include "SimpleLinkedListNode.h"
+#include "IEnumerator.h"
 #include "IEnumerable.h"
-#include "EnumeratorBase.h"
 #include "StackEnumerator.h"
 
 namespace WinCopies
@@ -38,8 +40,8 @@ namespace WinCopies
         {
         private:
             Stack<T>* _stack;
-            uint _version = 0;
-            uint _enumeratorsCount = 0;
+            unsigned int _version = 0;
+            unsigned int _enumeratorsCount = 0;
             void incrementEnumeratorsCount()
             {
                 _enumeratorsCount++;
@@ -67,7 +69,7 @@ namespace WinCopies
                 return new StackEnumerator<T>(this);
             }
 
-            virtual uint GetCount() const final
+            virtual unsigned int GetCount() const final
             {
                 return _stack->GetCount();
             }

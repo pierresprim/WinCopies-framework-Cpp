@@ -1,10 +1,12 @@
 #pragma once
 #ifndef ENUMERABLEQUEUE_H
 #define ENUMERABLEQUEUE_H
+#include "IQueue.h"
 #include "Queue.h"
+#include "EnumerableQueue.h"
 #include "SimpleLinkedListNode.h"
+#include "IEnumerator.h"
 #include "IEnumerable.h"
-#include "EnumeratorBase.h"
 #include "QueueEnumerator.h"
 
 namespace WinCopies
@@ -41,8 +43,8 @@ namespace WinCopies
         {
         private:
             Queue<T>* _queue;
-            uint _version = 0;
-            uint _enumeratorsCount = 0;
+            unsigned int _version = 0;
+            unsigned int _enumeratorsCount = 0;
             void incrementEnumeratorsCount()
             {
                 _enumeratorsCount++;
@@ -70,7 +72,7 @@ namespace WinCopies
                 return new QueueEnumerator<T>(this);
             }
 
-            virtual uint GetCount() const final
+            virtual unsigned int GetCount() const final
             {
                 return _queue->GetCount();
             }

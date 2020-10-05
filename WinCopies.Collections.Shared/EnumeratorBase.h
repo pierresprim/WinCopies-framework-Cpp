@@ -87,6 +87,4 @@ namespace WinCopies
 	}
 }
 
-#include "EnumeratorBase.cpp"
-
 #endif

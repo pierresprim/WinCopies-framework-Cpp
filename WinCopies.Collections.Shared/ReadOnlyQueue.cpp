@@ -1,6 +1,2 @@
+#include "pch.h"
 #include "ReadOnlyQueue.h"
-
-ReadOnlyQueue::ReadOnlyQueue()
-{
-
-}

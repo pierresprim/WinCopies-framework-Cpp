@@ -9,7 +9,7 @@ namespace WinCopies
     class DLLEXPORT IDisposable ABSTRACT
     {
     public:
-        virtual ~IDisposable();
+        virtual ~IDisposable() { }
 
         virtual void Dispose() = 0;
     };

@@ -79,7 +79,7 @@ namespace WinCopies
                 return _stack->TryPeek(result);
             }
 
-            virtual uint GetCount() const final
+            virtual unsigned int GetCount() const final
             {
                 return _stack->GetCount();
             }
