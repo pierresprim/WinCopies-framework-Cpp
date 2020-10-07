@@ -12,34 +12,21 @@ namespace WinCopies
 		int _errorCode;
 		const wchar_t* _message;
 	public:
-		explicit Exception(const int errorCode, const wchar_t* const message)
-		{
-			_errorCode = errorCode;
-			_message = message;
-		}
+        explicit Exception(const int errorCode, const wchar_t* const message);
 
-		~Exception()
-		{
-			delete _message;
-		}
+        ~Exception();
 
-		int GetErrorCode() const
-		{
-			return _errorCode;
-		}
+        int GetErrorCode() const;
 
-		wchar_t const* GetErrorMessage() const
-		{
-			return _message;
-		}
+        wchar_t const* GetErrorMessage() const;
 	};
 
-	/// <summary>
-	/// This exception should have an error code defined in the WinCopies.Util.Base.Shared's defines header file.
-	/// </summary>
 	class DLLEXPORT WinCopiesException : public Exception
 	{
+    public:
 		using Exception::Exception;
+
+        virtual ~WinCopiesException();
 	};
 
 	class DLLEXPORT ArgumentException : public WinCopiesException
@@ -47,66 +34,47 @@ namespace WinCopies
 	private:
 		const wchar_t* _argumentName;
 	public:
-		explicit ArgumentException(const wchar_t* const message, const wchar_t* const argumentName) : ArgumentException(ARGUMENT_EXCEPTION, message, argumentName)
-		{
-			// Left empty.
-		}
+        explicit ArgumentException(const wchar_t* const message, const wchar_t* const argumentName);
 
-		explicit ArgumentException(const int errorCode, const wchar_t* const message, const wchar_t* const argumentName) : WinCopiesException(errorCode, message)
-		{
-			_argumentName = argumentName;
-		}
+        explicit ArgumentException(const int errorCode, const wchar_t* const message, const wchar_t* const argumentName);
 
-		~ArgumentException()
-		{
-			delete _argumentName;
-		}
+        virtual ~ArgumentException();
 
-        const wchar_t* GetArgumentName()
-		{
-			return _argumentName;
-		}
+        const wchar_t* GetArgumentName();
 	};
 
 	class DLLEXPORT ArgumentOutOfRangeException : public ArgumentException
 	{
 	public:
-		explicit ArgumentOutOfRangeException(const wchar_t* const argumentName) : ArgumentException(ARGUMENT_OUT_OF_RANGE_EXCEPTION, std::wstring(argumentName, L" is out of range.").c_str(), argumentName)
-		{
-			// Left empty.
-		}
+        explicit ArgumentOutOfRangeException(const wchar_t* const argumentName);
+
+        virtual ~ArgumentOutOfRangeException();
 	};
 
 	class DLLEXPORT InvalidOperationException : public WinCopiesException
 	{
 	public:
-		explicit InvalidOperationException(const wchar_t* const message) : InvalidOperationException(INVALID_OPERATION_EXCEPTION, message)
-		{
-			// Left empty.
-		}
+        explicit InvalidOperationException(const wchar_t* const message);
 
-		explicit InvalidOperationException(const int errorCode, const wchar_t* const message) : WinCopiesException(errorCode, message)
-		{
-			// Left empty.
-		}
+        explicit InvalidOperationException(const int errorCode, const wchar_t* const message);
+
+        virtual ~InvalidOperationException();
 	};
 
 	class DLLEXPORT ReadOnlyException : public WinCopiesException
 	{
 	public:
-		ReadOnlyException() : WinCopiesException(READ_ONLY_EXCEPTION, L"The current object is read-only.")
-		{
-			// Left empty.
-		}
+        ReadOnlyException();
+
+        virtual ~ReadOnlyException();
 	};
 
 	class DLLEXPORT EmptyObjectException : public InvalidOperationException
 	{
 	public:
-		EmptyObjectException() : InvalidOperationException(READ_ONLY_EXCEPTION, L"The current object is empty.")
-		{
-			// Left empty.
-		}
+        EmptyObjectException();
+
+        virtual ~EmptyObjectException();
 	};
 }
 

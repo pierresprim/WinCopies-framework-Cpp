@@ -30,6 +30,7 @@ SOURCES += \
         ../../../WinCopies.Collections.Shared/EnumeratorBase.cpp \
         ../../../WinCopies.Collections.Shared/IEnumerable.cpp \
         ../../../WinCopies.Collections.Shared/IEnumerator.cpp \
+        ../../../WinCopies.Collections.Shared/ILinkedList.cpp \
         ../../../WinCopies.Collections.Shared/IQueue.cpp \
         ../../../WinCopies.Collections.Shared/ISimpleLinkedList.cpp \
         ../../../WinCopies.Collections.Shared/ISimpleLinkedListNode.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
         ../../../WinCopies.Collections.Shared/QueueEnumerator.cpp \
         ../../../WinCopies.Collections.Shared/ReadOnlyQueue.cpp \
         ../../../WinCopies.Collections.Shared/ReadOnlyStack.cpp \
+        ../../../WinCopies.Collections.Shared/SafeArray.cpp \
         ../../../WinCopies.Collections.Shared/SimpleLinkedList.cpp \
         ../../../WinCopies.Collections.Shared/SimpleLinkedListNode.cpp \
         ../../../WinCopies.Collections.Shared/Stack.cpp \
@@ -51,6 +53,7 @@ HEADERS += \
         ../../../WinCopies.Collections.Shared/EnumeratorBase.h \
         ../../../WinCopies.Collections.Shared/IEnumerable.h \
         ../../../WinCopies.Collections.Shared/IEnumerator.h \
+        ../../../WinCopies.Collections.Shared/ILinkedList.h \
         ../../../WinCopies.Collections.Shared/IQueue.h \
         ../../../WinCopies.Collections.Shared/ISimpleLinkedList.h \
         ../../../WinCopies.Collections.Shared/ISimpleLinkedListNode.h \
@@ -60,6 +63,7 @@ HEADERS += \
         ../../../WinCopies.Collections.Shared/QueueEnumerator.h \
         ../../../WinCopies.Collections.Shared/ReadOnlyQueue.h \
         ../../../WinCopies.Collections.Shared/ReadOnlyStack.h \
+        ../../../WinCopies.Collections.Shared/SafeArray.h \
         ../../../WinCopies.Collections.Shared/SimpleLinkedList.h \
         ../../../WinCopies.Collections.Shared/SimpleLinkedListNode.h \
         ../../../WinCopies.Collections.Shared/Stack.h \

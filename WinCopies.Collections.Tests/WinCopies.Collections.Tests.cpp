@@ -233,11 +233,13 @@ namespace WinCopies
 					delete enumerator;
 
 					enumerator = nullptr;
+				}
+			};
 
-
-
-					// Queue
-
+			TEST_CLASS(QueueTests)
+			{
+				TEST_METHOD(PeekAndPop)
+				{
 					Queue<int>* queue = new Queue<int>();
 
 					queue->Enqueue(10);
@@ -254,7 +256,30 @@ namespace WinCopies
 
 					Assert::AreEqual(queue->Dequeue(), 1000);
 
-					// TryDequeue
+
+
+					queue->Enqueue(1000);
+
+					Assert::AreEqual(queue->Peek(), 1000);
+
+					queue->Enqueue(10);
+
+					Assert::AreEqual(queue->Peek(), 1000);
+
+					Assert::AreEqual(queue->Dequeue(), 1000);
+
+					Assert::AreEqual(queue->Peek(), 10);
+
+					Assert::AreEqual(queue->Dequeue(), 10);
+
+					delete queue;
+
+					queue = nullptr;
+				}
+
+				TEST_METHOD(TryPop)
+				{
+					Queue<int>* queue = new Queue<int>();
 
 					queue->Enqueue(10);
 
@@ -272,25 +297,14 @@ namespace WinCopies
 
 					Assert::IsFalse(queue->TryDequeue(&i));
 
+					delete queue;
 
+					queue = nullptr;
+				}
 
-					queue->Enqueue(1000);
-
-					Assert::AreEqual(queue->Peek(), 1000);
-
-					queue->Enqueue(10);
-
-					Assert::AreEqual(queue->Peek(), 1000);
-
-					Assert::AreEqual(queue->Dequeue(), 1000);
-
-					Assert::AreEqual(queue->Peek(), 10);
-
-					Assert::AreEqual(queue->Dequeue(), 10);
-
-
-
-					// Clear
+				TEST_METHOD(Clear)
+				{
+					Queue<int> queue = new Queue<int>();
 
 					queue->Enqueue(10);
 
@@ -305,61 +319,62 @@ namespace WinCopies
 					delete queue;
 
 					queue = nullptr;
+				}
+				
+				TEST_METHOD(PeekAndPopObject)
+				{
+					Queue<Something*>* queue = new Queue<Something*>();
 
+					queue->Enqueue(new Something(10));
 
+					Assert::AreEqual(queue->Peek()->GetId(), 10);
 
-					// Something
+					queue->Enqueue(new Something(1000));
 
-					Queue<Something*>* _queue = new Queue<Something*>();
-
-					_queue->Enqueue(new Something(10));
-
-					Assert::AreEqual(_queue->Peek()->GetId(), 10);
-
-					_queue->Enqueue(new Something(1000));
-
-					Assert::AreEqual(_queue->Peek()->GetId(), 10);
+					Assert::AreEqual(queue->Peek()->GetId(), 10);
 
 					Something* result;
 
-					Assert::AreEqual((result = _queue->Dequeue())->GetId(), 10);
+					Assert::AreEqual((result = queue->Dequeue())->GetId(), 10);
 
 					delete result;
 
-					Assert::AreEqual(_queue->Peek()->GetId(), 1000);
+					Assert::AreEqual(queue->Peek()->GetId(), 1000);
 
-					Assert::AreEqual((result = _queue->Dequeue())->GetId(), 1000);
-
-					delete result;
-
-
-
-					_queue->Enqueue(new Something(1000));
-
-					Assert::AreEqual(_queue->Peek()->GetId(), 1000);
-
-					_queue->Enqueue(new Something(10));
-
-					Assert::AreEqual(_queue->Peek()->GetId(), 1000);
-
-					Assert::AreEqual((result = _queue->Dequeue())->GetId(), 1000);
+					Assert::AreEqual((result = queue->Dequeue())->GetId(), 1000);
 
 					delete result;
 
-					Assert::AreEqual(_queue->Peek()->GetId(), 10);
 
-					Assert::AreEqual((result = _queue->Dequeue())->GetId(), 10);
+
+					queue->Enqueue(new Something(1000));
+
+					Assert::AreEqual(queue->Peek()->GetId(), 1000);
+
+					queue->Enqueue(new Something(10));
+
+					Assert::AreEqual(queue->Peek()->GetId(), 1000);
+
+					Assert::AreEqual((result = queue->Dequeue())->GetId(), 1000);
 
 					delete result;
 
-					delete _queue;
+					Assert::AreEqual(queue->Peek()->GetId(), 10);
 
-					_queue = nullptr;
+					Assert::AreEqual((result = queue->Dequeue())->GetId(), 10);
 
+					delete result;
 
+					delete queue;
 
-					// EnumerableQueue
+					queue = nullptr;
+				}
+			};
 
+			TEST_CLASS(EnumerableQueueTests)
+			{
+				TEST_METHOD(QueueChangingDuringEnumeration)
+				{
 					IEnumerableQueue<int>* enumerableQueue = new EnumerableQueue<int>();
 
 					enumerableQueue->Enqueue(10);
@@ -384,10 +399,11 @@ namespace WinCopies
 
 					Assert::IsFalse(moveNextSucceeded); // Should be false because the queue has changed during enumeration.
 
-					// enumerator->~IEnumerator();
-
 					delete enumerator;
+				}
 
+				TEST_METHOD(CommonEnumeration)
+				{
 					enumerableQueue = new ReadOnlyQueue<int>(enumerableQueue, true);
 
 					enumerator = enumerableQueue->GetEnumerator();

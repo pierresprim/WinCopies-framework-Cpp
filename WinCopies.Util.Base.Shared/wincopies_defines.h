@@ -22,4 +22,6 @@ constexpr auto INVALID_OPERATION_EXCEPTION = -3;
 constexpr auto READ_ONLY_EXCEPTION = -4;
 constexpr auto EMPTY_OBJECT_EXCEPTION = -5;
 constexpr auto OBJECT_HAS_CHANGED_DURING_ENUMERATION = -6;
+constexpr auto OBJECT_HAS_NO_VALUE = -7;
+constexpr auto INVALID_CAST = -8;
 #endif

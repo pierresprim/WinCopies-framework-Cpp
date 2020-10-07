@@ -78,8 +78,12 @@ namespace WinCopies
 			}
 
 			virtual int ResetOverride() final
-			{
-				_currentNode = _stack->_stack->GetFirst();
+            {
+                if (_stack->_version != _version)
+
+                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION;
+
+                _currentNode = _stack->_stack->GetFirst();
 
 				return EXIT_SUCCESS;
 			}

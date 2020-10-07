@@ -4,6 +4,7 @@
 #include "defines.h"
 #include "IEnumerator.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
+#include "IEnumerable.h"
 
 namespace WinCopies
 {
@@ -79,11 +80,10 @@ namespace WinCopies
 				return result;
 			}
 
-            virtual bool GetIsResetSupported() const = 0;
             virtual T GetCurrentOverride() const = 0;
 			virtual int MoveNextOverride(bool* result) = 0;
 			virtual int ResetOverride() = 0;
-		};
+        };
 	}
 }
 

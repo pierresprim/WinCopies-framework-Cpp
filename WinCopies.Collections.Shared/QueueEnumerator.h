@@ -79,6 +79,10 @@ namespace WinCopies
 
             virtual int ResetOverride() final
             {
+                if (_queue->_version != _version)
+
+                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION;
+
                 _currentNode = _queue->_queue->GetFirst();
 
                 return EXIT_SUCCESS;
