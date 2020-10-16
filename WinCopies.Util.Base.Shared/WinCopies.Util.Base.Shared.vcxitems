@@ -18,10 +18,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)framework.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IDisposable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)wincopies_defines.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)IDisposable.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHelper.cpp" />
   </ItemGroup>
 </Project>

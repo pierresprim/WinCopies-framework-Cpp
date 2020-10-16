@@ -192,7 +192,7 @@ namespace WinCopies
 
 					enumerableStack->Push(1000);
 
-					Assert::AreEqual(OBJECT_HAS_CHANGED_DURING_ENUMERATION, enumerator->MoveNext(&moveNextSucceeded));
+					Assert::AreEqual(OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION, enumerator->MoveNext(&moveNextSucceeded));
 
 					Assert::IsFalse(moveNextSucceeded); // Should be false because the stack has changed during enumeration.
 
@@ -304,7 +304,7 @@ namespace WinCopies
 
 				TEST_METHOD(Clear)
 				{
-					Queue<int> queue = new Queue<int>();
+					Queue<int>* queue = new Queue<int>();
 
 					queue->Enqueue(10);
 
@@ -379,9 +379,9 @@ namespace WinCopies
 
 					enumerableQueue->Enqueue(10);
 
-					enumerator = enumerableQueue->GetEnumerator();
+					IEnumerator<int>* enumerator = enumerableQueue->GetEnumerator();
 
-					moveNextSucceeded = false;
+					bool moveNextSucceeded = false;
 
 					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
 
@@ -404,17 +404,25 @@ namespace WinCopies
 
 				TEST_METHOD(CommonEnumeration)
 				{
+					IEnumerableQueue<int>* enumerableQueue = new EnumerableQueue<int>();
+
+					enumerableQueue->Enqueue(10);
+
+					enumerableQueue->Enqueue(1000);
+
 					enumerableQueue = new ReadOnlyQueue<int>(enumerableQueue, true);
 
-					enumerator = enumerableQueue->GetEnumerator();
+					IEnumerator<int>* enumerator = enumerableQueue->GetEnumerator();
+
+					bool moveNextSucceeded = false;
 
 					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
 
 					Assert::IsTrue(moveNextSucceeded);
 
-					int _values[2] = { 10, 1000 };
+					int values[2] = { 10, 1000 };
 
-					bool _moveNextValues[2] = { true, false };
+					bool moveNextValues[2] = { true, false };
 
 					for (int i = 0; i < 2; i++)
 					{
@@ -428,6 +436,24 @@ namespace WinCopies
 					delete enumerator;
 
 					enumerator = nullptr;
+
+					enumerableQueue->ForEach(EnumerateInt);
+
+					enumerableQueue->ForEach(EnumerateFloat);
+
+					delete enumerableQueue;
+
+					enumerableQueue = nullptr;
+				}
+
+				void EnumerateInt(int i)
+				{
+
+				}
+
+				void EnumerateFloat(float f)
+				{
+
 				}
 			};
 		}

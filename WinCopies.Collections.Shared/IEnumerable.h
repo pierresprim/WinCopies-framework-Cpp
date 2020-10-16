@@ -8,40 +8,45 @@
 namespace WinCopies
 {
 	namespace Collections
-    {
-        TEMPLATE
-        class DLLEXPORT IEnumerable ABSTRACT
+	{
+		TEMPLATE
+			class DLLEXPORT IEnumerable ABSTRACT
 		{
 		public:
-            virtual ~IEnumerable() {}
+			virtual ~IEnumerable()
+			{
+				// Left empty.
+			}
 
-            virtual IEnumerator<T>* GetEnumerator() = 0;
+			virtual IEnumerator<T>* GetEnumerator() = 0;
 
-            template <class F>
-            int ForEach(F func)
-            {
-IEnumerator<T>* enumerator = GetEnumerator();
+			METHOD_TEMPLATE
+				virtual int ForEach(F* func)
+			{
+				IEnumerator<T>* enumerator = GetEnumerator();
 
-int errorCode;
-bool moveNextSucceeded = false;
+				int errorCode;
+				bool moveNextSucceeded = false;
 
-while ((errorCode = enumerator->MoveNext(&moveNextSucceeded)) > 0 && moveNextSucceeded)
-{
-    func(enumerator->Current);
-}
+				while ((errorCode = enumerator->MoveNext(&moveNextSucceeded)) >= 0 && moveNextSucceeded)
 
-return errorCode;
-            }
+					(*func)(enumerator->GetCurrent());
+
+				delete enumerator;
+				enumerator = nullptr;
+
+				return errorCode;
+			}
 		};
 
-        TEMPLATE
-        class DLLEXPORT IUIntCountableEnumerable ABSTRACT :
-                public virtual IUIntCountable,
-                public virtual IEnumerable<T>
-        {
+		TEMPLATE
+			class DLLEXPORT IUIntCountableEnumerable ABSTRACT :
+		public virtual IUIntCountable,
+			public virtual IEnumerable<T>
+		{
 public:
-            virtual ~IUIntCountableEnumerable() override = default;
-        };
+			virtual ~IUIntCountableEnumerable() override = default;
+		};
 	}
 }
 

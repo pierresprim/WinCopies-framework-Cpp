@@ -13,6 +13,7 @@
 #endif
 
 #define TEMPLATE template<class T>
+#define METHOD_TEMPLATE template <class F>
 
 /// WinCopies Framework Error codes
 
@@ -21,7 +22,8 @@ constexpr auto ARGUMENT_OUT_OF_RANGE_EXCEPTION = -2;
 constexpr auto INVALID_OPERATION_EXCEPTION = -3;
 constexpr auto READ_ONLY_EXCEPTION = -4;
 constexpr auto EMPTY_OBJECT_EXCEPTION = -5;
-constexpr auto OBJECT_HAS_CHANGED_DURING_ENUMERATION = -6;
-constexpr auto OBJECT_HAS_NO_VALUE = -7;
-constexpr auto INVALID_CAST = -8;
+constexpr auto OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION = -6;
+constexpr auto OBJECT_HAS_NO_VALUE_EXCEPTION = -7;
+constexpr auto INVALID_CAST_EXCEPTION = -8;
+constexpr auto NULLPTR_VALUE_EXCEPTION = -9;
 #endif

@@ -6,27 +6,27 @@
 
 namespace WinCopies
 {
-    class DLLEXPORT Exception
+	class DLLEXPORT Exception
 	{
 	private:
 		int _errorCode;
 		const wchar_t* _message;
 	public:
-        explicit Exception(const int errorCode, const wchar_t* const message);
+		explicit Exception(const int errorCode, const wchar_t* const message);
 
-        ~Exception();
+		~Exception();
 
-        int GetErrorCode() const;
+		int GetErrorCode() const;
 
-        wchar_t const* GetErrorMessage() const;
+		wchar_t const* GetErrorMessage() const;
 	};
 
 	class DLLEXPORT WinCopiesException : public Exception
 	{
-    public:
+	public:
 		using Exception::Exception;
 
-        virtual ~WinCopiesException();
+		virtual ~WinCopiesException();
 	};
 
 	class DLLEXPORT ArgumentException : public WinCopiesException
@@ -34,47 +34,55 @@ namespace WinCopies
 	private:
 		const wchar_t* _argumentName;
 	public:
-        explicit ArgumentException(const wchar_t* const message, const wchar_t* const argumentName);
+		explicit ArgumentException(const wchar_t* const message, const wchar_t* const argumentName);
 
-        explicit ArgumentException(const int errorCode, const wchar_t* const message, const wchar_t* const argumentName);
+		explicit ArgumentException(const int errorCode, const wchar_t* const message, const wchar_t* const argumentName);
 
-        virtual ~ArgumentException();
+		virtual ~ArgumentException();
 
-        const wchar_t* GetArgumentName();
+		const wchar_t* GetArgumentName();
 	};
 
 	class DLLEXPORT ArgumentOutOfRangeException : public ArgumentException
 	{
 	public:
-        explicit ArgumentOutOfRangeException(const wchar_t* const argumentName);
+		explicit ArgumentOutOfRangeException(const wchar_t* const argumentName);
 
-        virtual ~ArgumentOutOfRangeException();
+		virtual ~ArgumentOutOfRangeException();
 	};
 
 	class DLLEXPORT InvalidOperationException : public WinCopiesException
 	{
 	public:
-        explicit InvalidOperationException(const wchar_t* const message);
+		explicit InvalidOperationException(const wchar_t* const message);
 
-        explicit InvalidOperationException(const int errorCode, const wchar_t* const message);
+		explicit InvalidOperationException(const int errorCode, const wchar_t* const message);
 
-        virtual ~InvalidOperationException();
+		virtual ~InvalidOperationException();
 	};
 
 	class DLLEXPORT ReadOnlyException : public WinCopiesException
 	{
 	public:
-        ReadOnlyException();
+		ReadOnlyException();
 
-        virtual ~ReadOnlyException();
+		virtual ~ReadOnlyException();
 	};
 
 	class DLLEXPORT EmptyObjectException : public InvalidOperationException
 	{
 	public:
-        EmptyObjectException();
+		EmptyObjectException();
 
-        virtual ~EmptyObjectException();
+		virtual ~EmptyObjectException();
+	};
+
+	class DLLEXPORT NullPtrValueException : public ArgumentException
+	{
+	public:
+		NullPtrValueException(const wchar_t* const argumentName);
+
+		virtual ~NullPtrValueException();
 	};
 }
 
