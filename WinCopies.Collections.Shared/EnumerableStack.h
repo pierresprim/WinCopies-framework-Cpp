@@ -28,7 +28,7 @@ namespace WinCopies
         TEMPLATE
         class DLLEXPORT IEnumerableStack ABSTRACT:
                 public virtual IStack<T>,
-                public virtual IEnumerable<T>
+                public virtual ISimpleEnumerableLinkedList<T>
         {
         public:
             virtual ~IEnumerableStack() override = default;

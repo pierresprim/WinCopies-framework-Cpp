@@ -14,7 +14,7 @@ namespace WinCopies
 			public virtual IUIntCountableEnumerable<T>
 		{
 		private:
-			T* _array;
+			T[] _array;
 
 			unsigned int _length;
 		public:
@@ -30,9 +30,31 @@ namespace WinCopies
 				return _length;
 			}
 
+			T GetAt(const int index) const
+			{
+				return _array[index];
+			}
+
 			virtual IEnumerator<T>* GetEnumerator() final
 			{
 				return new ArrayEnumerator(this);
+			}
+
+			virtual bool GetSupportsReversedEnumeration() const final
+			{
+				return true;
+			}
+
+			virtual IEnumerator<T>* GetReversedEnumerator() final
+			{
+
+			}
+
+			~SafeArray()
+			{
+				delete[] _array;
+
+				_array = nullptr;
 			}
 
 			class DLLEXPORT ArrayEnumerator :
@@ -40,8 +62,11 @@ namespace WinCopies
 			{
 			private:
 				SafeArray<T>* _array;
+				int _currentIndex;
+				EnumerationDirection _enumerationDirection;
+				typedef bool(*_moveNext)();
+				_moveNext _moveNextPtr;
 
-				Nullable<uint> _currentIndex = Nullable<uint>();
 			public:
 				~ArrayEnumerator()
 				{
@@ -50,9 +75,49 @@ namespace WinCopies
 					ResetOverride();
 				}
 
-				explicit ArrayEnumerator(SafeArray<T>* array)
+				explicit ArrayEnumerator(const SafeArray<T>* const array , const EnumerationDirection enumerationDirection)
 				{
 					_array = array;
+
+					_enumerationDirection = enumerationDirection;
+
+					switch (enumerationDirection)
+					{
+					case EnumerationDirection::FIFO:
+
+						_currentIndex = -1;
+
+						*_moveNextPtr = () ->
+						{
+							++_currentIndex;
+
+							return _currentIndex == _array->_length;
+						};
+
+						break;
+
+					case EnumerationDirection::LIFO:
+
+						_currentIndex = _array->_length;
+
+						*_moveNextPtr = () ->
+						{
+							--currentIndex;
+
+							return _currentIndex == -1;
+						};
+
+						break;
+
+					default:
+
+						throw new ArgumentException(ARGUMENT_EXCEPTION, L"Invalid enumeration direction.", L"enumerationDirection");
+					}
+				}
+
+				virtual EnumerationDirection GetEnumerationDirection() const final
+				{
+					return _enumerationDirection;
 				}
 
 			protected:
@@ -63,58 +128,29 @@ namespace WinCopies
 
 				virtual T GetCurrentOverride() const final
 				{
-					return *(_array + _currentIndex);
+					return *(_array->GetAt(_currentIndex));
 				}
 
-				virtual int MoveNextOverride(bool* result)
+				virtual int MoveNextOverride(const bool* result) override
 				{
-					if (_array->_length == 0)
-					{
-						*result = false;
-
-						return 0;
-					}
-
-					if (_currentIndex.HasValue())
-					{
-						uint currentIndex;
-
-						_currentIndex.GetValue(&currentIndex);
-
-						if (currentIndex == _array->_length)
-
-							*result = false;
-
-						else
-						{
-							_currentIndex.Update(++currentIndex);
-
-							*result = true;
-						}
-
-						return 0;
-					}
-
-					_currentIndex.Update(0); // We have already checked that there is at leat one value in the array, so we do not have to re-check it here.
-
-					*result = true;
+					*result = _moveNextPtr();
 
 					return 0;
 				}
 
-				virtual int ResetOverride()
+				virtual int ResetOverride() override
 				{
-					if (_currentIndex != nullptr)
-					{
-						delete _currentIndex;
+					if (_enumerationDirection == EnumerationDirection::FIFO)
 
-						_currentIndex = nullptr;
-					}
+						_currentIndex = -1;
+
+					else
+
+						_currentIndex = _array->_length;
 				}
-			};
+			}
 		};
-	}
+	};
 }
-
 
 #endif // SAFEARRAY_H

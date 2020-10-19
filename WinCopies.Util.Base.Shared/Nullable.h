@@ -4,55 +4,58 @@
 
 #include "wincopies_defines.h"
 
-TEMPLATE
-struct DLLEXPORT Nullable
+namespace WinCopies
 {
-private:
-    T _value;
-    bool _hasValue;
-public:
-    Nullable()
-    {
-        _hasValue = false;
-    }
+	TEMPLATE
+		struct DLLEXPORT Nullable
+	{
+	private:
+		T _value;
+		bool _hasValue;
+	public:
+		Nullable()
+		{
+			_hasValue = false;
+		}
 
-    Nullable(T value)
-    {
-        Update(value);
-    }
+		Nullable(T value)
+		{
+			Update(value);
+		}
 
-    bool HasValue()
-    {
-        return _hasValue;
-    }
+		bool HasValue()
+		{
+			return _hasValue;
+		}
 
-    void Update(T value)
-    {
-        _value = value;
+		void Update(T value)
+		{
+			_value = value;
 
-        _hasValue = true;
-    }
+			_hasValue = true;
+		}
 
-    void Clear()
-    {
-        _value = 0;
+		void Clear()
+		{
+			_value = 0;
 
-        _hasValue = false;
-    }
+			_hasValue = false;
+		}
 
-    int GetValue(T* result)
-    {
-if (_hasValue)
-{
-    *result = _value;
+		int GetValue(T* result)
+		{
+			if (_hasValue)
+			{
+				*result = _value;
 
-    return EXIT_SUCCESS;
+				return EXIT_SUCCESS;
+			}
+
+			*result = 0;
+
+			return OBJECT_HAS_NO_VALUE;
+		}
+	};
 }
-
-*result = 0;
-
-return OBJECT_HAS_NO_VALUE;
-    }
-};
 
 #endif // NULLABLE_H

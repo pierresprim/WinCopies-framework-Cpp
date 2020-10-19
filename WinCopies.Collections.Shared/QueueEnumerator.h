@@ -32,6 +32,11 @@ namespace WinCopies
                 _version = queue->_version;
             }
 
+            virtual EnumerationDirection GetEnumerationDirection() const final
+            {
+                return EnumerationDirection::FIFO;
+            }
+
             virtual ~QueueEnumerator() override
             {
                 _queue->_enumeratorsCount--;

@@ -4,6 +4,7 @@
 #include "../WinCopies.Collections.Shared/ReadOnlyStack.h"
 #include "../WinCopies.Collections.Shared/Queue.h"
 #include "../WinCopies.Collections.Shared/ReadOnlyQueue.h"
+#include "../WinCopies.Collections.Shared/SafeArray.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace WinCopies::Collections;
@@ -34,7 +35,6 @@ namespace WinCopies
 			TEST_CLASS(StackTests)
 			{
 			public:
-
 				TEST_METHOD(PeekAndPop)
 				{
 					Stack<int>* stack = new Stack<int>();
@@ -172,6 +172,7 @@ namespace WinCopies
 
 			TEST_CLASS(EnumerableStackTests)
 			{
+			public:
 				TEST_METHOD(StackChangingDuringEnumeration)
 				{
 					IEnumerableStack<int>* enumerableStack = new EnumerableStack<int>();
@@ -199,6 +200,16 @@ namespace WinCopies
 					delete enumerator;
 				}
 
+				static void EnumerateInt(const int i)
+				{
+					Assert::IsTrue(i == 10 || i == 1000);
+				}
+
+				static void EnumerateFloat(const float f)
+				{
+					Assert::IsTrue(f == 10 || f == 1000);
+				}
+
 				TEST_METHOD(CommonEnumeration)
 				{
 					IEnumerableStack<int>* enumerableStack = new EnumerableStack<int>();
@@ -206,7 +217,7 @@ namespace WinCopies
 					enumerableStack->Push(10);
 
 					enumerableStack->Push(1000);
-					
+
 					enumerableStack = new ReadOnlyStack<int>(enumerableStack, true);
 
 					IEnumerator<int>* enumerator = enumerableStack->GetEnumerator();
@@ -233,11 +244,20 @@ namespace WinCopies
 					delete enumerator;
 
 					enumerator = nullptr;
+
+					enumerableStack->ForEach(EnumerateInt);
+
+					enumerableStack->ForEach(EnumerateFloat);
+
+					delete enumerableStack;
+
+					enumerableStack = nullptr;
 				}
 			};
 
 			TEST_CLASS(QueueTests)
 			{
+			public:
 				TEST_METHOD(PeekAndPop)
 				{
 					Queue<int>* queue = new Queue<int>();
@@ -320,7 +340,7 @@ namespace WinCopies
 
 					queue = nullptr;
 				}
-				
+
 				TEST_METHOD(PeekAndPopObject)
 				{
 					Queue<Something*>* queue = new Queue<Something*>();
@@ -373,6 +393,7 @@ namespace WinCopies
 
 			TEST_CLASS(EnumerableQueueTests)
 			{
+			public:
 				TEST_METHOD(QueueChangingDuringEnumeration)
 				{
 					IEnumerableQueue<int>* enumerableQueue = new EnumerableQueue<int>();
@@ -400,6 +421,16 @@ namespace WinCopies
 					Assert::IsFalse(moveNextSucceeded); // Should be false because the queue has changed during enumeration.
 
 					delete enumerator;
+				}
+
+				static void EnumerateInt(int i)
+				{
+					Assert::IsTrue(i == 10 || i == 1000);
+				}
+
+				static void EnumerateFloat(float f)
+				{
+					Assert::IsTrue(f == 10 || f == 1000);
 				}
 
 				TEST_METHOD(CommonEnumeration)
@@ -445,15 +476,69 @@ namespace WinCopies
 
 					enumerableQueue = nullptr;
 				}
+			};
 
-				void EnumerateInt(int i)
+			TEST_CLASS(SafeArrayTests)
+			{
+			private:
+				int _value = -1;
+
+			public:
+				void EnumerateArray(const int value)
 				{
+					Assert::IsTrue(value < 10);
 
+					Assert::AreEqual(++_value, value);
 				}
 
-				void EnumerateFloat(float f)
+				void ReverseEnumerateArray(const int value)
 				{
+					Assert::IsTrue(value >= 0);
 
+					Assert::AreEqual(--_value, value);
+				}
+
+				TEST_METHOD(Tests)
+				{
+					int _array[10];
+
+					for (int i = 0; i < 10; i++)
+
+						_array[i] = i;
+
+					SafeArray<int>* safeArray = new SafeArray<int>(_array, 10);
+
+					Assert::AreEqual(10u, safeArray->GetCount());
+
+					for (int i = 0; i < 10; i++)
+
+						Assert::AreEqual(i, safeArray->GetAt(i));
+
+					int _result;
+
+					int _retVal = safeArray->First(&_result);
+
+					Assert::AreEqual(0, _retVal); // The size of an array must be greater than zero, so we do not need to test the return value for this method when called on an empty array.
+
+					Assert::AreEqual(0, _result);
+
+					typedef void(SafeArrayTests::* _enumerateArray)(int);
+
+					_enumerateArray enumerateArray = EnumerateArray;
+
+					safeArray->ForEach(&enumerateArray);
+
+					Assert::IsTrue(safeArray->GetSupportsReversedEnumeration());
+
+					_value = 10;
+
+					enumerateArray = ReverseEnumerateArray;
+
+					safeArray->ReversedForEach(&enumerateArray);
+
+					delete safeArray;
+
+					safeArray = nullptr;
 				}
 			};
 		}

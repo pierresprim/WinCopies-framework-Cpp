@@ -85,13 +85,19 @@ namespace WinCopies
 
 			void Weld(const LinkedListNode* previous, const LinkedListNode* newNode, const LinkedListNode* next)
 			{
-				previous.Next = newNode;
+				if (previous != nullptr)
+				{
+					previous.Next = newNode;
 
-				newNode.Previous = previous;
+					newNode.Previous = previous;
+				}
 
-				newNode.Next = next;
+				if (next != null)
+				{
+					newNode.Next = next;
 
-				newNode.Previous = newNode;
+					next.Previous = newNode;
+				}
 
 				OnNewItemAdded(newNode);
 			}
@@ -149,14 +155,23 @@ namespace WinCopies
 			}
 
 		protected:
-			void ThrowIfNodeAlreadyHasList(const LinkedListNode* node)
+			void ThrowIfNodeAlreadyHasList(const LinkedListNode* node, const wchar_t* const argumentName)
 			{
+				ThrowHelper::ThrowIfNullPtrValue(node, argumentName);
+
 				if (node->GetList() != nullptr)
 
 					throw new ArgumentException("The given node is already contained in another list.");
 			}
 
-			void ThrowIfNotContainedNode(const ILinkedListNode<T>* node)
+			void ThrowIfNotContainedNode(const LinkedListNode* node, const wchar_t* const argumentName)
+			{
+				ThrowHelper::ThrowIfNullPtrValue(node, argumentName);
+
+				_ThrowIfNotContainedNode(node);
+			}
+
+			void _ThrowIfNotContainedNode(const LinkedListNode* node)
 			{
 				if (node->GetList() != this)
 
@@ -409,11 +424,15 @@ namespace WinCopies
 				}
 			}*/
 
-			LinkedListNode* AddAfter(const LinkedListNode* node, const T value)
+			virtual ILinkedListNode<T>* AddAfter(const ILinkedListNode<T>* node, const T value) final
 			{
-				ThrowHelper::ThrowIfNullPtrValue(node, L"node");
+				LinkedListNode* _node = dynamic_cast<LinkedListNode*>(node);
 
-				ThrowIfNotContainedNode(node);
+				if (_node == 0)
+
+					throw new ArgumentException(L"node must be a LinkedListNode item.", L"node");
+
+				_ThrowIfNotContainedNode(node, L"node");
 
 				LinkedListNode* newNode = new LinkedListNode(value);
 
@@ -422,26 +441,21 @@ namespace WinCopies
 				return newNode;
 			}
 
-			virtual ILinkedListNode<T>* AddAfter(const ILinkedListNode<T>* node, const T value) final
+			LinkedListNode* AddAfter(const LinkedListNode* node, const T value)
 			{
-				LinkedListNode* _node = dynamic_cast<LinkedListNode*>(node);
+				ThrowIfNotContainedNode(node, L"node");
 
-				if (_node)
+				LinkedListNode* newNode = new LinkedListNode(value);
 
-					AddAfter(_node, value);
+				_AddAfter(node, newNode);
 
-				else
-
-					throw new ArgumentException(L"node must be an instance of LinkedListNode.", L"node");
+				return newNode;
 			}
 
 			void AddAfter(const LinkedListNode* addAfter, const LinkedListNode* node)
 			{
-				ThrowHelper::ThrowIfNullPtrValue(addAfter, L"addAfter");
-				ThrowHelper::ThrowIfNullPtrValue(node, L"node");
-
-				ThrowIfNotContainedNode(addAfter);
-				ThrowIfNodeAlreadyHasList(node);
+				ThrowIfNotContainedNode(addAfter, L"addAfter");
+				ThrowIfNodeAlreadyHasList(node, L"node");
 
 				_AddAfter(addAfter, node);
 			}
@@ -457,7 +471,7 @@ namespace WinCopies
 
 			LinkedListNode* AddBefore(const LinkedListNode* node, const T value)
 			{
-				var newNode = new LinkedListNode(value);
+				LinkedListNode* newNode = new LinkedListNode(value);
 
 				_AddBefore(node, newNode);
 
@@ -523,14 +537,14 @@ namespace WinCopies
 
 
 
-			IEnumerator<T>* GetEnumerator()
+			virtual IEnumerator<T>* GetEnumerator() final
 			{
 				return GetEnumerator(LinkedListEnumerationDirection::FIFO);
 			}
 
 			IEnumerator<T>* GetEnumerator(const LinkedListEnumerationDirection enumerationDirection)
 			{
-				return GetNodeEnumerator(enumerationDirection)=>Select(node = > node.Value);
+				return GetNodeEnumerator(enumerationDirection) = > Select(node = > node.Value);
 			}
 
 			IEnumerator<LinkedListNode>* GetNodeEnumerator(const LinkedListEnumerationDirection enumerationDirection)
@@ -627,6 +641,117 @@ namespace WinCopies
 			void CopyTo(Array array, int index) = > Extensions.CopyTo(this, array, index, Count);
 
 			System.Collections.IEnumerator IEnumerable.GetEnumerator() = > GetEnumerator();
+		};
+
+		TEMPLATE
+			class ReadOnlyLinkedList :
+			public virtual IReadOnlyLinkedList<T>,
+			public virtual ILinkedList2<T>
+		{
+		public:
+			bool GetIsReadOnly()
+			{
+				return true;
+			}
+
+			// protected ILinkedList<T> InnerList{ get; } // Already was ILinkedList<T> in WinCopies 2.
+
+			ILinkedListNode<T> GetLast = > InnerList.Last;
+
+			ILinkedListNode<T> First = > InnerList.First;
+
+			unsigned int GetCount()
+			{
+				return InnerList.Count;
+			}
+
+			// object ICollection.SyncRoot = > InnerList.SyncRoot;
+
+			// bool ICollection.IsSynchronized = > InnerList.IsSynchronized;
+
+			bool Contains(const T value) const
+			{
+				return InnerList->Contains(value);
+			}
+
+			void CopyTo(const T[] array, const int index)
+			{
+				InnerList->CopyTo(array, index);
+			}
+
+			ILinkedListNode<T> Find(T value) = > InnerList.Find(value);
+
+#if WinCopies2
+			System.Collections.Generic.LinkedListNode
+#else
+			ILinkedListNode
+#endif
+				<T> FindLast(T value) = > InnerList.FindLast(value);
+
+			System.Collections.Generic.IEnumerator<T>
+#if WinCopies2
+				IEnumerable<T>.
+#endif
+				GetEnumerator() = > InnerList.GetEnumerator();
+
+			System.Collections.IEnumerator IEnumerable.GetEnumerator() = >
+#if WinCopies2
+				InnerList
+#else
+				((IEnumerable)InnerList)
+#endif
+				.GetEnumerator();
+
+			System.Collections.Generic.IEnumerator<T> GetEnumerator(LinkedListEnumerationDirection enumerationDirection) = > InnerList.GetEnumerator(enumerationDirection);
+
+			System.Collections.Generic.IEnumerator<ILinkedListNode<T>> GetNodeEnumerator(LinkedListEnumerationDirection enumerationDirection) = > InnerList.GetNodeEnumerator(enumerationDirection);
+
+#if WinCopies2
+			System.Collections.Generic.LinkedListNode
+#else
+			ILinkedListNode
+#endif
+				<T> AddAfter(
+#if WinCopies2
+					System.Collections.Generic.LinkedListNode
+#else
+					ILinkedListNode
+#endif
+					<T> node, T value) = > throw GetReadOnlyListOrCollectionException();
+
+#if WinCopies2
+			System.Collections.Generic.LinkedListNode
+#else
+			ILinkedListNode
+#endif
+				<T> AddBefore(
+#if WinCopies2
+					System.Collections.Generic.LinkedListNode
+#else
+					ILinkedListNode
+#endif
+					<T> node, T value) = > throw GetReadOnlyListOrCollectionException();
+
+			ILinkedListNode<T> AddFirst(T value) = > throw GetReadOnlyListOrCollectionException();
+
+#if WinCopies2
+			System.Collections.Generic.LinkedListNode
+#else
+			ILinkedListNode
+#endif
+				<T> AddLast(T value) = > throw GetReadOnlyListOrCollectionException();
+
+			public void Remove(
+#if WinCopies2
+				System.Collections.Generic.LinkedListNode
+#else
+				ILinkedListNode
+#endif
+				<T> node) = > throw GetReadOnlyListOrCollectionException();
+
+			void RemoveFirst() = > throw GetReadOnlyListOrCollectionException();
+
+			void RemoveLast() = > throw GetReadOnlyListOrCollectionException();
 		};
 	}
 }

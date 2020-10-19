@@ -32,6 +32,11 @@ namespace WinCopies
 				_version = stack->_version;
 			}
 
+			virtual EnumerationDirection GetEnumerationDirection() const final
+			{
+				return EnumerationDirection::LIFO;
+			}
+
 			virtual ~StackEnumerator() override
 			{
 				_stack->_enumeratorsCount--;

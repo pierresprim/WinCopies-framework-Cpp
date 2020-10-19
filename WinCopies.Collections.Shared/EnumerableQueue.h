@@ -31,7 +31,7 @@ namespace WinCopies
         TEMPLATE
         class DLLEXPORT IEnumerableQueue ABSTRACT:
                 public virtual IQueue<T>,
-                public virtual IEnumerable<T>
+                public virtual ISimpleEnumerableLinkedList<T>
         {
         public:
             virtual ~IEnumerableQueue() override = default;

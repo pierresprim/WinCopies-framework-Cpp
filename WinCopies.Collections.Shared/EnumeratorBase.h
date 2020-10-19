@@ -81,7 +81,7 @@ namespace WinCopies
 			}
 
             virtual T GetCurrentOverride() const = 0;
-			virtual int MoveNextOverride(bool* result) = 0;
+			virtual int MoveNextOverride(const bool* result) = 0;
 			virtual int ResetOverride() = 0;
         };
 	}

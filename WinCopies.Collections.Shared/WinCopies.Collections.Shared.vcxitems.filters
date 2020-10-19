@@ -84,7 +84,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)WhereEnumerable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SelectEnumerable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectEnumerable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)cpp.hint" />
@@ -156,6 +158,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WhereEnumerable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SelectEnumerable.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectEnumerable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
