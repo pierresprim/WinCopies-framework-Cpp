@@ -1,7 +1,6 @@
 #pragma once
 #ifndef IUINTCOUNTABLE_H
 #define IUINTCOUNTABLE_H
-
 #include "defines.h"
 
 namespace WinCopies

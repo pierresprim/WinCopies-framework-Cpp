@@ -1,123 +1,117 @@
 #pragma once
 #ifndef QUEUE_H
 #define QUEUE_H
-
 #include "defines.h"
 #include "IQueue.h"
 #include "SimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
-#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
-	namespace Collections
-	{
-		TEMPLATE
-			class SimpleLinkedList;
+    namespace Collections
+    {
+    TEMPLATE
+    class SimpleLinkedList;
 
-		TEMPLATE
-			class SimpleLinkedListNode;
+    TEMPLATE
+    class SimpleLinkedListNode;
 
-		TEMPLATE
-			class IQueue;
+    TEMPLATE
+    class IQueue;
 
-		TEMPLATE
-			class DLLEXPORT Queue :
-			virtual public SimpleLinkedList<T>,
-			virtual public IQueue<T>
-		{
-		private:
-			SimpleLinkedListNode<T>* _lastNode = nullptr;
-		protected:
-			void OnEnqueue(SimpleLinkedListNode<T>* const node)
-			{
-				if (this->GetCount() == 0)
+        TEMPLATE
+            class DLLEXPORT Queue :
+            virtual public SimpleLinkedList<T>,
+            virtual public IQueue<T>
+        {
+            private:
+                SimpleLinkedListNode<T>* _lastNode = nullptr;
+        protected:
+            void OnEnqueue(SimpleLinkedListNode<T>* const node)
+            {
+                if (this->GetCount() == 0)
 
-					this->AddFirstItem(node);
+                    this->AddFirstItem(node);
 
-				else
+                else {
+                    _lastNode->SetNext(node);
+                }
 
-					_lastNode->SetNext(node);
+                _lastNode = node;
 
-				_lastNode = node;
+                this->IncrementCount();
+            }
 
-				this->IncrementCount();
-			}
+            T OnDequeue()
+            {
+                T result;
 
-			T OnDequeue()
-			{
-				T result;
+                if (this->GetCount() == 1)
+                {
+                    result = this->GetFirst()->GetValue();
 
-				if (this->GetCount() == 1)
-				{
-					result = this->GetFirst()->GetValue();
+                    this->RemoveFirstItem();
+                }
 
-					this->RemoveFirstItem();
-				}
+                else
+                {
+                    const	SimpleLinkedListNode<T>* node = this->GetFirst();
 
-				else
-				{
-					const	SimpleLinkedListNode<T>* node = this->GetFirst();
+                    result = node->GetValue();
 
-					result = node->GetValue();
+                    this->AddFirstItem(node->GetNextNode());
 
-					this->AddFirstItem(node->GetNextNode());
+                    delete node;
 
-					delete node;
+                    node = nullptr;
 
-					node = nullptr;
+                    this->DecrementCount();
+                }
 
-					this->DecrementCount();
-				}
+                return result;
+            }
+        public:
+            virtual ~Queue() override
+            {
+                if (_lastNode != nullptr)
 
-				return result;
-			}
+                    _lastNode = nullptr; // This is a pointer to the last item of the Queue. Because all of the items are deleted in the SimpleLinkedList deconstructor, we do not have to delete _lastNode here.
+            }
 
-		public:
-			virtual ~Queue() override
-			{
-				if (_lastNode != nullptr)
+            virtual void Enqueue(const T value) final
+            {
+                OnEnqueue(new SimpleLinkedListNode<T>(value));
+            }
 
-					_lastNode = nullptr; // This is a pointer to the last item of the Queue. Because all of the items are deleted in the SimpleLinkedList deconstructor, we do not have to delete _lastNode here.
-			}
+            virtual bool TryEnqueue(const T value) final
+            {
+                Enqueue(value);
 
-			virtual void Enqueue(const T value) final
-			{
-				OnEnqueue(new SimpleLinkedListNode<T>(value));
-			}
+                return true;
+            }
 
-			virtual bool TryEnqueue(const T value) final
-			{
-				Enqueue(value);
+            virtual T Dequeue() final
+            {
+                if (this->GetCount() == 0)
 
-				return true;
-			}
+                    throw new EmptyObjectException();
 
-			virtual T Dequeue() final
-			{
-				if (this->GetCount() == 0)
+                return OnDequeue();
+            }
 
-					throw new EmptyObjectException();
+            virtual bool TryDequeue( T*  result) final
+            {
+                if (this->GetCount() == 0)
 
-				return OnDequeue();
-			}
+                    return false;
 
-			virtual bool TryDequeue(OUTPOINTER result) final
-			{
-				if (this->GetCount() == 0)
-				{
-					*result = new OutPointer<T>();
+                *result = OnDequeue();
 
-					return false;
-				}
-
-				*result = new OutPointer<T>(OnDequeue());
-
-				return true;
-			}
-		};
-	}
+                return true;
+            }
+        };
+    }
 }
 
 #endif

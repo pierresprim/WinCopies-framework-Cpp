@@ -27,13 +27,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Nullable.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)OutPointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SafePointer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)OutPointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,16 +44,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)wincopies_defines.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Nullable.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)OutPointer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SafePointer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)OutPointer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,7 +1,6 @@
 #pragma once
 #ifndef ISIMPLELINKEDLISTNODE_H
 #define ISIMPLELINKEDLISTNODE_H
-
 #include "defines.h"
 
 namespace WinCopies

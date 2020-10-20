@@ -2,38 +2,36 @@
 #ifndef SIMPLELINKEDLIST_H
 #define SIMPLELINKEDLIST_H
 
-#include "defines.h"
 #include "ISimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
 #include "StackEnumerator.h"
 #include "QueueEnumerator.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
-#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		TEMPLATE
-			class SimpleLinkedListNode;
+    TEMPLATE
+    class SimpleLinkedListNode;
 
-		TEMPLATE
-			class StackEnumerator;
+    TEMPLATE
+    class StackEnumerator;
 
-		TEMPLATE
-			class QueueEnumerator;
+    TEMPLATE
+    class QueueEnumerator;
 
-		TEMPLATE
+        TEMPLATE
 			class DLLEXPORT SimpleLinkedList :
 			public virtual ISimpleLinkedList<T>
 		{
 		private:
 			const SimpleLinkedListNode<T>* _first = nullptr;
 			unsigned int _count = 0;
-			friend class StackEnumerator<T>;
-			friend class QueueEnumerator<T>;
+            friend class StackEnumerator<T>;
+            friend class QueueEnumerator<T>;
 		protected:
-			const SimpleLinkedListNode<T>* GetFirst() const
+            const SimpleLinkedListNode<T>* GetFirst() const
 			{
 				return _first;
 			}
@@ -71,17 +69,17 @@ namespace WinCopies
 				_count = 0;
 			}
 		public:
-			virtual ~SimpleLinkedList() override
+            virtual ~SimpleLinkedList() override
 			{
 				if (_first != nullptr)
-				{
-					Clear();
+                {
+                    Clear();
 
-					_first = nullptr; // Because all of the items are deleted in the Clear method, we do not need to delete _first here.
-				}
+                    _first = nullptr; // Because all of the items are deleted in the Clear method, we do not need to delete _first here.
+                }
 			}
 
-			virtual unsigned int GetCount() const final
+            virtual unsigned int GetCount() const final
 			{
 				return _count;
 			}
@@ -100,45 +98,42 @@ namespace WinCopies
 				return GetFirst()->GetValue();
 			}
 
-			virtual bool TryPeek(OUTPOINTER result) const final
+			virtual bool TryPeek( T*  result) const final
 			{
 				if (GetCount() == 0)
-				{
-					*result = new OutPointer<T>();
 
-					return false;
-				}
+                    return false;
 
-				*result = new OutPointer<T>(GetFirst()->GetValue());
+                *result = GetFirst()->GetValue();
 
 				return true;
 			}
 
-			virtual void Clear() final
-			{
-				if (this->GetCount() == 0)
+            virtual void Clear() final
+            {
+                if (this->GetCount() == 0)
 
-					return;
+                    return;
 
-				const	SimpleLinkedListNode<T>* node = this->GetFirst();
-				const	SimpleLinkedListNode<T>* nextNode;
+                const	SimpleLinkedListNode<T>* node = this->GetFirst();
+                const	SimpleLinkedListNode<T>* nextNode;
 
-				do
-				{
-					nextNode = node->GetNextNode();
+                do
+                {
+                    nextNode = node->GetNextNode();
 
-					delete node;
+                    delete node;
 
-					node = nextNode;
+                    node = nextNode;
 
-				} while (node->GetNext() != nullptr);
+                } while (node->GetNext() != nullptr);
 
-				node = nullptr;
+                node = nullptr;
 
-				nextNode = nullptr;
+                nextNode = nullptr;
 
-				this->OnCleared();
-			}
+                this->OnCleared();
+            }
 		};
 	}
 }

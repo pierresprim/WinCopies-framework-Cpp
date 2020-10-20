@@ -2,7 +2,6 @@
 //#ifndef NULLABLE_H
 //#define NULLABLE_H
 //
-//#include <stdlib.h>
 //#include "wincopies_defines.h"
 //
 //namespace WinCopies

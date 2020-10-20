@@ -1,11 +1,9 @@
 #pragma once
 #ifndef ISTACK_H
 #define ISTACK_H
-
 #include "defines.h"
 #include "ISimpleLinkedListNode.h"
 #include "ISimpleLinkedList.h"
-#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -25,7 +23,7 @@ namespace WinCopies
 			virtual void Push(const T value) = 0;
 			virtual bool TryPush(const T value) = 0;
 			virtual T Pop() = 0;
-			virtual bool TryPop(OUTPOINTER result) = 0;
+			virtual bool TryPop(T* result) = 0;
 		};
 	}
 }

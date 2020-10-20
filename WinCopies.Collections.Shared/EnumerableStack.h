@@ -1,8 +1,6 @@
 #pragma once
 #ifndef ENUMERABLESTACK_H
 #define ENUMERABLESTACK_H
-
-#include "defines.h"
 #include "IStack.h"
 #include "Stack.h"
 #include "EnumerableStack.h"
@@ -10,8 +8,6 @@
 #include "IEnumerator.h"
 #include "IEnumerable.h"
 #include "StackEnumerator.h"
-#include "../WinCopies.Util.Base.Shared/SafePointer.h"
-#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -43,26 +39,27 @@ namespace WinCopies
                 public virtual IEnumerableStack<T>
         {
         private:
-            SafePointer<Stack<T>> _stack;
+            Stack<T>* _stack;
             unsigned int _version = 0;
             unsigned int _enumeratorsCount = 0;
-
             void incrementEnumeratorsCount()
             {
                 _enumeratorsCount++;
             }
-            
             friend class StackEnumerator<T>;
-
         public:
             explicit EnumerableStack()
             {
-                _stack = new SafePointer<Stack<T>>(new Stack<T>());
+                _stack = new Stack<T>();
             }
 
-            virtual ~EnumerableStack()
+            ~EnumerableStack()
             {
-                // Left empty.
+                _stack->~Stack<T>();
+
+                delete _stack;
+
+                _stack = nullptr;
             }
 
             virtual IEnumerator<T>* GetEnumerator() final
@@ -74,57 +71,57 @@ namespace WinCopies
 
             virtual unsigned int GetCount() const final
             {
-                return _stack.GetPointer()->GetCount();
+                return _stack->GetCount();
             }
 
             virtual bool GetIsReadOnly() const final
             {
-                return _stack.GetPointer()->GetIsReadOnly();
+                return _stack->GetIsReadOnly();
             }
 
             virtual void Clear() final
             {
                 _version++;
 
-                return _stack.GetPointer()->Clear();
+                return _stack->Clear();
             }
 
             virtual T Peek() const final
             {
-                return _stack.GetPointer()->Peek();
+                return _stack->Peek();
             }
 
-            virtual bool TryPeek(OUTPOINTER result) const final
+            virtual bool TryPeek(T* result) const final
             {
-                return _stack.GetPointer()->TryPeek(result);
+                return _stack->TryPeek(result);
             }
 
             virtual void Push(const T value) final
             {
                 _version++;
 
-                _stack.GetPointer()->Push(value);
+                _stack->Push(value);
             }
 
             virtual bool TryPush(const T value) final
             {
                 _version++;
 
-                return _stack.GetPointer()->TryPush(value);
+                return _stack->TryPush(value);
             }
 
             virtual T Pop() final
             {
                 _version++;
 
-                return _stack.GetPointer()->Pop();
+                return _stack->Pop();
             }
 
-            virtual bool TryPop(OUTPOINTER result) final
+            virtual bool TryPop(T* result) final
             {
                 _version++;
 
-                return _stack.GetPointer()->TryPop(result);
+                return _stack->TryPop(result);
             }
         };
     }

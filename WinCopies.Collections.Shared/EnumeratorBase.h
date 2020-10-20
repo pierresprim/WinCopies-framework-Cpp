@@ -1,11 +1,10 @@
 #pragma once
 #ifndef ENUMERATORBASE_H
 #define ENUMERATORBASE_H
-
 #include "defines.h"
-#include "IEnumerable.h"
 #include "IEnumerator.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
+#include "IEnumerable.h"
 
 namespace WinCopies
 {

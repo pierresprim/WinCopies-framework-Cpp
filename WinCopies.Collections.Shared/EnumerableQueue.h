@@ -1,8 +1,6 @@
 #pragma once
 #ifndef ENUMERABLEQUEUE_H
 #define ENUMERABLEQUEUE_H
-
-#include "defines.h"
 #include "IQueue.h"
 #include "Queue.h"
 #include "EnumerableQueue.h"
@@ -10,7 +8,6 @@
 #include "IEnumerator.h"
 #include "IEnumerable.h"
 #include "QueueEnumerator.h"
-#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -45,27 +42,27 @@ namespace WinCopies
                 public virtual IEnumerableQueue<T>
         {
         private:
-            typedef struct SafePointer<Queue<T>> SafePointer;
-            SafePointer _queue;
+            Queue<T>* _queue;
             unsigned int _version = 0;
             unsigned int _enumeratorsCount = 0;
-
             void incrementEnumeratorsCount()
             {
                 _enumeratorsCount++;
             }
-
             friend class QueueEnumerator<T>;
-
         public:
-             EnumerableQueue()
+            explicit EnumerableQueue()
             {
-                 _queue = SafePointer::GetSafePointer( new Queue<T>());
+                _queue = new Queue<T>();
             }
 
-            virtual ~EnumerableQueue()
+            ~EnumerableQueue()
             {
-                // Left empty.
+                _queue->~Queue<T>();
+
+                delete _queue;
+
+                _queue = nullptr;
             }
 
             virtual IEnumerator<T>* GetEnumerator() final
@@ -77,57 +74,57 @@ namespace WinCopies
 
             virtual unsigned int GetCount() const final
             {
-                return _queue.GetPointer()->GetCount();
+                return _queue->GetCount();
             }
 
             virtual bool GetIsReadOnly() const final
             {
-                return _queue.GetPointer()->GetIsReadOnly();
+                return _queue->GetIsReadOnly();
             }
 
             virtual void Clear() final
             {
                 _version++;
 
-                return _queue.GetPointer()->Clear();
+                return _queue->Clear();
             }
 
             virtual T Peek() const final
             {
-                return _queue.GetPointer()->Peek();
+                return _queue->Peek();
             }
 
-            virtual bool TryPeek( OUTPOINTER result) const final
+            virtual bool TryPeek(T* result) const final
             {
-                return _queue.GetPointer()->TryPeek(result);
+                return _queue->TryPeek(result);
             }
 
             virtual void Enqueue(const T value) final
             {
                 _version++;
 
-                _queue.GetPointer()->Enqueue(value);
+                _queue->Enqueue(value);
             }
 
             virtual bool TryEnqueue(const T value) final
             {
                 _version++;
 
-                return _queue.GetPointer()->TryEnqueue(value);
+                return _queue->TryEnqueue(value);
             }
 
             virtual T Dequeue() final
             {
                 _version++;
 
-                return _queue.GetPointer()->Dequeue();
+                return _queue->Dequeue();
             }
 
-            virtual bool TryDequeue(OUTPOINTER result) final
+            virtual bool TryDequeue(T* result) final
             {
                 _version++;
 
-                return _queue.GetPointer()->TryDequeue(result);
+                return _queue->TryDequeue(result);
             }
         };
     }

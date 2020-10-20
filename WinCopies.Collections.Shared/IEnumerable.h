@@ -47,7 +47,7 @@ namespace WinCopies
 			virtual IEnumerator<T>* GetReversedEnumerator() = 0;
 
 			METHOD_TEMPLATE
-				int ForEach( F* func)
+				int ForEach(F* func)
 			{
 				return _ForEach(func, GetEnumerator());
 			}

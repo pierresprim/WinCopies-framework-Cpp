@@ -1,12 +1,9 @@
 #pragma once
 #ifndef ISIMPLELINKEDLIST_H
 #define ISIMPLELINKEDLIST_H
-
 #include "defines.h"
 #include "IUIntCountable.h"
-#include "IEnumerable.h"
 #include "ISimpleLinkedListNode.h"
-#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -30,7 +27,7 @@ namespace WinCopies
 			virtual bool GetIsReadOnly() const = 0;
 			virtual void Clear() = 0;
 			virtual T Peek() const = 0;
-			virtual bool TryPeek(OUTPOINTER result) const = 0;
+			virtual bool TryPeek(T* result) const = 0;
 		};
 
 		TEMPLATE

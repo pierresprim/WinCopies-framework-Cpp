@@ -14,7 +14,7 @@ namespace WinCopies
 	namespace Collections
 	{
 		TEMPLATE2
-		class SelectEnumerable :
+			class SelectEnumerable :
 			public virtual EnumeratorEnumerable<T>
 		{
 		private:

@@ -23,7 +23,6 @@
 //#include "IEnumerable.h"
 //#include "EnumeratorBase.h"
 //#include "ILinkedList.h"
-//#include "ILinkedListNode.h"
 //#include "../WinCopies.Util.Base.Shared/Exception.h"
 //#include "../WinCopies.Util.Base.Shared/ThrowHelper.h"
 //
@@ -93,7 +92,7 @@
 //					newNode.Previous = previous;
 //				}
 //
-//				if (next != nullptr)
+//				if (next != null)
 //				{
 //					newNode.Next = next;
 //
@@ -110,15 +109,9 @@
 //				next.Previous = previous;
 //			}
 //
-//			void _AddAfter(LinkedListNode addAfter, LinkedListNode node)
-//			{
-//				Weld(addAfter, node, node.Next);
-//			}
+//			void _AddAfter(LinkedListNode addAfter, LinkedListNode node) = > Weld(addAfter, node, node.Next);
 //
-//			void _AddBefore(LinkedListNode addBefore, LinkedListNode node)
-//			{
-//				Weld(addBefore.Previous, node, addBefore);
-//			}
+//			void _AddBefore(LinkedListNode addBefore, LinkedListNode node) = > Weld(addBefore.Previous, node, addBefore);
 //
 //			void _AddFirst(LinkedListNode node)
 //			{
@@ -185,7 +178,7 @@
 //					throw new ArgumentException("The given node is not contained in the current list.");
 //			}
 //
-//			private ILinkedListNode<T>* Find(const T value, const EnumerationDirection enumerationDirection)
+//			private ILinkedListNode<T>* Find(const T value, const LinkedListEnumerationDirection enumerationDirection)
 //			{
 //				new Enumerable<LinkedListNode*>(() = > GetNodeEnumerator(enumerationDirection)).FirstOrDefault(node = > (node.Value == null && value == null) || node.Value.Equals(value));
 //			}
@@ -534,12 +527,12 @@
 //
 //			ILinkedListNode<T>* Find(const T value)
 //			{
-//				return Find(value, EnumerationDirection::FIFO);
+//				return Find(value, LinkedListEnumerationDirection::FIFO);
 //			}
 //
 //			ILinkedListNode<T>* FindLast(const T value)
 //			{
-//				return Find(value, EnumerationDirection::LIFO);
+//				return Find(value, LinkedListEnumerationDirection.LIFO);
 //			}
 //
 //
@@ -648,6 +641,117 @@
 //			void CopyTo(Array array, int index) = > Extensions.CopyTo(this, array, index, Count);
 //
 //			System.Collections.IEnumerator IEnumerable.GetEnumerator() = > GetEnumerator();
+//		};
+//
+//		TEMPLATE
+//			class ReadOnlyLinkedList :
+//			public virtual IReadOnlyLinkedList<T>,
+//			public virtual ILinkedList2<T>
+//		{
+//		public:
+//			bool GetIsReadOnly()
+//			{
+//				return true;
+//			}
+//
+//			// protected ILinkedList<T> InnerList{ get; } // Already was ILinkedList<T> in WinCopies 2.
+//
+//			ILinkedListNode<T> GetLast = > InnerList.Last;
+//
+//			ILinkedListNode<T> First = > InnerList.First;
+//
+//			unsigned int GetCount()
+//			{
+//				return InnerList.Count;
+//			}
+//
+//			// object ICollection.SyncRoot = > InnerList.SyncRoot;
+//
+//			// bool ICollection.IsSynchronized = > InnerList.IsSynchronized;
+//
+//			bool Contains(const T value) const
+//			{
+//				return InnerList->Contains(value);
+//			}
+//
+//			void CopyTo(const T[] array, const int index)
+//			{
+//				InnerList->CopyTo(array, index);
+//			}
+//
+//			ILinkedListNode<T> Find(T value) = > InnerList.Find(value);
+//
+//#if WinCopies2
+//			System.Collections.Generic.LinkedListNode
+//#else
+//			ILinkedListNode
+//#endif
+//				<T> FindLast(T value) = > InnerList.FindLast(value);
+//
+//			System.Collections.Generic.IEnumerator<T>
+//#if WinCopies2
+//				IEnumerable<T>.
+//#endif
+//				GetEnumerator() = > InnerList.GetEnumerator();
+//
+//			System.Collections.IEnumerator IEnumerable.GetEnumerator() = >
+//#if WinCopies2
+//				InnerList
+//#else
+//				((IEnumerable)InnerList)
+//#endif
+//				.GetEnumerator();
+//
+//			System.Collections.Generic.IEnumerator<T> GetEnumerator(LinkedListEnumerationDirection enumerationDirection) = > InnerList.GetEnumerator(enumerationDirection);
+//
+//			System.Collections.Generic.IEnumerator<ILinkedListNode<T>> GetNodeEnumerator(LinkedListEnumerationDirection enumerationDirection) = > InnerList.GetNodeEnumerator(enumerationDirection);
+//
+//#if WinCopies2
+//			System.Collections.Generic.LinkedListNode
+//#else
+//			ILinkedListNode
+//#endif
+//				<T> AddAfter(
+//#if WinCopies2
+//					System.Collections.Generic.LinkedListNode
+//#else
+//					ILinkedListNode
+//#endif
+//					<T> node, T value) = > throw GetReadOnlyListOrCollectionException();
+//
+//#if WinCopies2
+//			System.Collections.Generic.LinkedListNode
+//#else
+//			ILinkedListNode
+//#endif
+//				<T> AddBefore(
+//#if WinCopies2
+//					System.Collections.Generic.LinkedListNode
+//#else
+//					ILinkedListNode
+//#endif
+//					<T> node, T value) = > throw GetReadOnlyListOrCollectionException();
+//
+//			ILinkedListNode<T> AddFirst(T value) = > throw GetReadOnlyListOrCollectionException();
+//
+//#if WinCopies2
+//			System.Collections.Generic.LinkedListNode
+//#else
+//			ILinkedListNode
+//#endif
+//				<T> AddLast(T value) = > throw GetReadOnlyListOrCollectionException();
+//
+//			public void Remove(
+//#if WinCopies2
+//				System.Collections.Generic.LinkedListNode
+//#else
+//				ILinkedListNode
+//#endif
+//				<T> node) = > throw GetReadOnlyListOrCollectionException();
+//
+//			void RemoveFirst() = > throw GetReadOnlyListOrCollectionException();
+//
+//			void RemoveLast() = > throw GetReadOnlyListOrCollectionException();
 //		};
 //	}
 //}
