@@ -5,3 +5,6 @@
 #define ABSTRACT abstract
 #define TEMPLATE template<class T>
 #define METHOD_TEMPLATE
+#define TEMPLATE2
+#define PREDICATE bool(*Predicate)(T);
+#define SELECTOR U(*Selector)(T);

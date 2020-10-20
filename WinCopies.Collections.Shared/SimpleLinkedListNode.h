@@ -1,6 +1,8 @@
 #pragma once
 #ifndef SIMPLELINKEDLISTNODE_H
 #define SIMPLELINKEDLISTNODE_H
+
+#include "defines.h"
 #include "ISimpleLinkedListNode.h"
 #include "EnumerableStack.h"
 #include "../WinCopies.Util.Base.Shared/IDisposable.h"

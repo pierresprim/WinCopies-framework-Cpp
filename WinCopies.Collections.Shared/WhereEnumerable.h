@@ -1,8 +1,9 @@
 #pragma once
 #ifndef WHEREENUMERABLE_H
 #define WHEREENUMERABLE_H
+
 #include "defines.h"
-#include "IEnumerable.h"
+#include "Enumerable.h"
 #include "IEnumerator.h"
 #include "IUIntCountable.h"
 #include "EnumeratorBase.h"
@@ -13,11 +14,10 @@ namespace WinCopies
 	{
 		template <typename T>
 		class WhereEnumerable :
-			public virtual IEnumerable<T>
+			public virtual EnumerableEnumerable<T>
 		{
 		private:
-			IEnumerable<T>* _enumerable;
-			bool(*_func)(T);
+			PREDICATE_FIELD
 		public:
 			class WhereEnumerator :
 				public virtual EnumeratorBase<T>
@@ -40,7 +40,7 @@ namespace WinCopies
 
 					while (_enumerator->MoveNext(&moveNextSucceeded) >= 0 && moveNextSucceeded)
 
-						if (_enumerable->_func(_enumerator->GetCurrent()))
+						if (_enumerable->_predicate(_enumerator->GetCurrent()))
 						{
 							*result = true;
 
@@ -67,7 +67,7 @@ namespace WinCopies
 				{
 					_enumerable = enumerable;
 
-					_enumerator = enumerable->_enumerable->GetEnumerator();
+					_enumerator = enumerable->GetEnumerable()->GetEnumerator();
 				}
 
 				virtual bool GetIsResetSupported() const override
@@ -85,21 +85,23 @@ namespace WinCopies
 				}
 			};
 
-			explicit WhereEnumerable(IEnumerable<T>* enumerable, bool(*func)(T))
+			explicit WhereEnumerable(const IEnumerable<T>* enumerable, const PREDICATE_PARAMETER, const bool autoDispose) : EnumerableEnumerable<T>(enumerable, autoDispose)
 			{
-				_enumerable = enumerable;
-
-				_func = func;
-			}
-
-			virtual ~WhereEnumerable()
-			{
-				// Left empty.
+				_predicate = predicate;
 			}
 
 			virtual IEnumerator<T>* GetEnumerator() override
 			{
 				return new WhereEnumerator(this);
+			}
+
+			virtual ~WhereEnumerable()
+			{
+				if (this->GetAutoDispose())
+
+					delete _predicate;
+
+				_predicate = nullptr;
 			}
 		};
 	}

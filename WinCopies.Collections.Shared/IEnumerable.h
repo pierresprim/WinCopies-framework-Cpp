@@ -1,10 +1,12 @@
 #pragma once
 #ifndef IENUMERABLE_H
 #define IENUMERABLE_H
+
+#include <stdlib.h>
+
 #include "defines.h"
 #include "IEnumerator.h"
 #include "IUIntCountable.h"
-#include "../WinCopies.Util.Base.Shared/wincopies_defines.h"
 
 namespace WinCopies
 {
@@ -22,7 +24,9 @@ namespace WinCopies
 
 				while ((errorCode = enumerator->MoveNext(&moveNextSucceeded)) >= 0 && moveNextSucceeded)
 
-					(*func)(enumerator->GetCurrent());
+					if ((*func)(enumerator->GetCurrent()))
+
+						break;
 
 				delete enumerator;
 				enumerator = nullptr;
@@ -43,7 +47,7 @@ namespace WinCopies
 			virtual IEnumerator<T>* GetReversedEnumerator() = 0;
 
 			METHOD_TEMPLATE
-				int ForEach(F* func const)
+				int ForEach( F* func)
 			{
 				return _ForEach(func, GetEnumerator());
 			}
@@ -53,6 +57,22 @@ namespace WinCopies
 			{
 				return GetSupportsReversedEnumeration() ? _ForEach(func, GetReversedEnumerator()) : INVALID_OPERATION_EXCEPTION;
 			}
+
+			/*int First(PREDICATE_PARAMETER, T** result)
+			{
+				auto func = [](T item) -> bool
+				{
+
+				};
+
+				bool(IEnumerable<T>:: * func)(T)
+
+					int retVal = ForEach();
+
+				if (retVal < 0)
+
+					*result = nullptr;
+			}*/
 		};
 
 		TEMPLATE
@@ -61,21 +81,21 @@ namespace WinCopies
 			public virtual IEnumerable<T>
 		{
 public:
-			int First(T * result) const
+			int First(T * *result) const
 			{
-					IEnumerator<T>* enumerator = GetEnumerator();
+					IEnumerator<T>* enumerator = this->GetEnumerator();
 
 					int retVal = 0;
 
 					bool moveNextSucceeded = false;
 
-					try
+					__try
 					{
 						if ((retVal = enumerator->MoveNext(&moveNextSucceeded)) >= 0)
 						{
 							if (moveNextSucceeded)
 							{
-								*result = enumerator->GetCurrent();
+								**result = enumerator->GetCurrent();
 
 								return EXIT_SUCCESS;
 							}
@@ -85,12 +105,12 @@ public:
 								return EMPTY_OBJECT_EXCEPTION;
 						}
 
-						result = nullptr;
+						*result = nullptr;
 
 						return retVal;
 					}
 
-					finally
+					__finally
 					{
 						delete enumerator;
 						enumerator = nullptr;

@@ -2,6 +2,7 @@
 #ifndef SAFEARRAY_H
 #define SAFEARRAY_H
 
+#include "defines.h"
 #include "EnumeratorBase.h"
 #include "../WinCopies.Util.Base.Shared/Nullable.h"
 
@@ -14,11 +15,11 @@ namespace WinCopies
 			public virtual IUIntCountableEnumerable<T>
 		{
 		private:
-			T[] _array;
+			T* _array;
 
 			unsigned int _length;
 		public:
-			explicit SafeArray(const T array[], const unsigned int length)
+			explicit SafeArray( T array[], const unsigned int length)
 			{
 				_array = array;
 
@@ -32,12 +33,12 @@ namespace WinCopies
 
 			T GetAt(const int index) const
 			{
-				return _array[index];
+				return *(_array + index);
 			}
 
 			virtual IEnumerator<T>* GetEnumerator() final
 			{
-				return new ArrayEnumerator(this);
+				return new ArrayEnumerator(this, EnumerationDirection::FIFO);
 			}
 
 			virtual bool GetSupportsReversedEnumeration() const final
@@ -47,7 +48,7 @@ namespace WinCopies
 
 			virtual IEnumerator<T>* GetReversedEnumerator() final
 			{
-
+				return new ArrayEnumerator(this, EnumerationDirection::LIFO);
 			}
 
 			~SafeArray()
@@ -75,7 +76,7 @@ namespace WinCopies
 					ResetOverride();
 				}
 
-				explicit ArrayEnumerator(const SafeArray<T>* const array , const EnumerationDirection enumerationDirection)
+				explicit ArrayEnumerator(const SafeArray<T>* const array, const EnumerationDirection enumerationDirection)
 				{
 					_array = array;
 
@@ -87,7 +88,9 @@ namespace WinCopies
 
 						_currentIndex = -1;
 
-						*_moveNextPtr = () ->
+						// auto _moveNextMethod = 
+
+						*_moveNextPtr = []() -> bool
 						{
 							++_currentIndex;
 
@@ -100,9 +103,9 @@ namespace WinCopies
 
 						_currentIndex = _array->_length;
 
-						*_moveNextPtr = () ->
+						*_moveNextPtr = []() -> bool
 						{
-							--currentIndex;
+							--_currentIndex;
 
 							return _currentIndex == -1;
 						};
@@ -121,14 +124,14 @@ namespace WinCopies
 				}
 
 			protected:
-				virtual bool GetIsResetSupported()
+				virtual bool GetIsResetSupported() const final
 				{
 					return true;
 				}
 
 				virtual T GetCurrentOverride() const final
 				{
-					return *(_array->GetAt(_currentIndex));
+					return _array->GetAt(_currentIndex);
 				}
 
 				virtual int MoveNextOverride(const bool* result) override
@@ -148,9 +151,9 @@ namespace WinCopies
 
 						_currentIndex = _array->_length;
 				}
-			}
+			};
 		};
-	};
+	}
 }
 
 #endif // SAFEARRAY_H

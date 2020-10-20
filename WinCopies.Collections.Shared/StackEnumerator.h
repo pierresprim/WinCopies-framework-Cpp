@@ -66,7 +66,7 @@ namespace WinCopies
 				{
 					*result = false;
 
-					return OBJECT_HAS_CHANGED_DURING_ENUMERATION;
+					return OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION;
 				}
 
 				if (_currentNode == nullptr)
@@ -86,7 +86,7 @@ namespace WinCopies
             {
                 if (_stack->_version != _version)
 
-                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION;
+                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION;
 
                 _currentNode = _stack->_stack->GetFirst();
 

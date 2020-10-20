@@ -2,6 +2,7 @@
 #ifndef QUEUEENUMERATOR_H
 #define QUEUEENUMERATOR_H
 
+#include "../WinCopies.Util.Base.Shared/wincopies_defines.h"
 #include "defines.h"
 #include "EnumeratorBase.h"
 #include "EnumerableQueue.h"
@@ -60,13 +61,13 @@ namespace WinCopies
                 return _currentNode->GetValue();
             }
 
-            virtual int MoveNextOverride(bool* result) final
+            virtual int MoveNextOverride(const bool* result) final
             {
                 if (_queue->_version!=_version)
                 {
                     *result = false;
 
-                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION;
+                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION;
                 }
 
                 if (_currentNode == nullptr)
@@ -86,7 +87,7 @@ namespace WinCopies
             {
                 if (_queue->_version != _version)
 
-                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION;
+                    return OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION;
 
                 _currentNode = _queue->_queue->GetFirst();
 

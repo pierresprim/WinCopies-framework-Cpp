@@ -1,11 +1,13 @@
 #pragma once
 #ifndef STACK_H
 #define STACK_H
+
 #include "defines.h"
 #include "IStack.h"
 #include "SimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
+#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -89,13 +91,16 @@ namespace WinCopies
 				return OnPop();
 			}
 
-            virtual bool TryPop( T*  result) final
+            virtual bool TryPop(OUTPOINTER result) final
 			{
-                if (this->GetCount() == 0)
+				if (this->GetCount() == 0)
+				{
+					*result = new OutPointer();
 
-                    return false;
+					return false;
+				}
 
-                *result = OnPop();
+                *result = new OutPointer<T>(OnPop());
 
 				return true;
             }

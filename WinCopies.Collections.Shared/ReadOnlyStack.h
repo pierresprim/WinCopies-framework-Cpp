@@ -2,8 +2,11 @@
 #ifndef READONLYSTACK_H
 #define READONLYSTACK_H
 
+#include "defines.h"
 #include "EnumerableStack.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
+#include "../WinCopies.Util.Base.Shared/ThrowHelper.h"
+#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -17,8 +20,10 @@ namespace WinCopies
             bool _autoDispose;
         public:
             // Initializes a new instance of the ReadOnlyStack class.
-            explicit ReadOnlyStack(IEnumerableStack<T>* stack, bool autoDispose)
+            explicit ReadOnlyStack(const IEnumerableStack<T>* stack, const bool autoDispose)
             {
+                ThrowHelper::ThrowIfNullPtrValue(stack, "stack");
+
                 _stack = stack;
 
                 _autoDispose = autoDispose;
@@ -54,8 +59,10 @@ namespace WinCopies
                 throw new ReadOnlyException();
             }
 
-            virtual bool TryPop( T*  result) final
+            virtual bool TryPop(OUTPOINTER result) final
             {
+                result = new OutPointer<T>();
+
                 return false;
             }
 
@@ -74,7 +81,7 @@ namespace WinCopies
                 return _stack->Peek();
             }
 
-            virtual bool TryPeek( T*  result) const final
+            virtual bool TryPeek(OUTPOINTER result) const final
             {
                 return _stack->TryPeek(result);
             }

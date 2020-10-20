@@ -2,8 +2,11 @@
 #ifndef READONLYQUEUE_H
 #define READONLYQUEUE_H
 
+#include "defines.h"
 #include "EnumerableQueue.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
+#include "../WinCopies.Util.Base.Shared/ThrowHelper.h"
+#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -17,8 +20,10 @@ namespace WinCopies
             bool _autoDispose;
         public:
             // Initializes a new instance of the ReadOnlyQueue class.
-            explicit ReadOnlyQueue(IEnumerableQueue<T>* queue, bool autoDispose)
+            explicit ReadOnlyQueue( IEnumerableQueue<T>* const queue, const bool autoDispose)
             {
+                ThrowHelper::ThrowIfNullPtrValue(queue, L"queue");
+
                 _queue = queue;
 
                 _autoDispose = autoDispose;
@@ -54,7 +59,7 @@ namespace WinCopies
                 throw new ReadOnlyException();
             }
 
-            virtual bool TryDequeue( T*  result) final
+            virtual bool TryDequeue(OUTPOINTER result) final
             {
                 return false;
             }
@@ -74,7 +79,7 @@ namespace WinCopies
                 return _queue->Peek();
             }
 
-            virtual bool TryPeek( T*  result) const final
+            virtual bool TryPeek(OUTPOINTER result) const final
             {
                 return _queue->TryPeek(result);
             }

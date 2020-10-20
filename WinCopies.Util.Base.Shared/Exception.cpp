@@ -26,6 +26,11 @@ namespace WinCopies
 		return _message;
 	}
 
+	WinCopiesException::~WinCopiesException()
+	{
+		// Left empty.
+	}
+
 	ArgumentException::ArgumentException(const wchar_t* const message, const wchar_t* const argumentName) : ArgumentException(ARGUMENT_EXCEPTION, message, argumentName)
 	{
 		// Left empty.
@@ -53,6 +58,11 @@ namespace WinCopies
 		// Left empty.
 	}
 
+	ArgumentOutOfRangeException::~ArgumentOutOfRangeException()
+	{
+		// Left empty.
+	}
+
 	InvalidOperationException::InvalidOperationException(const wchar_t* const message) : InvalidOperationException(INVALID_OPERATION_EXCEPTION, message)
 	{
 		// Left empty.
@@ -63,9 +73,19 @@ namespace WinCopies
 		// Left empty.
 	}
 
+	InvalidOperationException::~InvalidOperationException()
+	{
+		// Left empty.
+	}
+
 	ReadOnlyException::ReadOnlyException() : WinCopiesException(READ_ONLY_EXCEPTION, L"The current object is read-only.")
 	{
 		// Left empty.
+	}
+
+	ReadOnlyException::~ReadOnlyException()
+	{
+		// Left empty;
 	}
 
 	EmptyObjectException::EmptyObjectException() : InvalidOperationException(READ_ONLY_EXCEPTION, L"The current object is empty.")
@@ -73,7 +93,17 @@ namespace WinCopies
 		// Left empty.
 	}
 
+	EmptyObjectException::~EmptyObjectException()
+	{
+		// Left empty.
+	}
+
 	NullPtrValueException::NullPtrValueException(const wchar_t* const argumentName) : ArgumentException(NULLPTR_VALUE_EXCEPTION, L"The given value is nullptr.", argumentName)
+	{
+		// Left empty.
+	}
+
+	NullPtrValueException::~NullPtrValueException()
 	{
 		// Left empty.
 	}

@@ -5,10 +5,10 @@
 #include "../WinCopies.Collections.Shared/Queue.h"
 #include "../WinCopies.Collections.Shared/ReadOnlyQueue.h"
 #include "../WinCopies.Collections.Shared/SafeArray.h"
+#include "../WinCopies.Util.Base.Shared/SafePointer.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace WinCopies::Collections;
-using namespace std;
 
 class Something
 {
@@ -26,6 +26,9 @@ public:
 	}
 };
 
+#define SAFESOMETHING SafePointer<Something>
+#define NEWSAFESOMETHING SAFESOMETHING(new Something(
+
 namespace WinCopies
 {
 	namespace Collections
@@ -37,136 +40,129 @@ namespace WinCopies
 			public:
 				TEST_METHOD(PeekAndPop)
 				{
-					Stack<int>* stack = new Stack<int>();
+					SafePointer<Stack<int>> stack = SafePointer<Stack<int>>(new Stack<int>());
 
-					stack->Push(10);
+					stack.GetPointer()->Push(10);
 
-					Assert::AreEqual(stack->Peek(), 10);
+					Assert::AreEqual(stack.GetPointer()->Peek(), 10);
 
-					stack->Push(1000);
+					stack.GetPointer()->Push(1000);
 
-					Assert::AreEqual(stack->Peek(), 1000);
+					Assert::AreEqual(stack.GetPointer()->Peek(), 1000);
 
-					Assert::AreEqual(stack->Pop(), 1000);
+					Assert::AreEqual(stack.GetPointer()->Pop(), 1000);
 
-					Assert::AreEqual(stack->Peek(), 10);
+					Assert::AreEqual(stack.GetPointer()->Peek(), 10);
 
-					Assert::AreEqual(stack->Pop(), 10);
+					Assert::AreEqual(stack.GetPointer()->Pop(), 10);
 
 
 
-					stack->Push(1000);
+					stack.GetPointer()->Push(1000);
 
-					Assert::AreEqual(stack->Peek(), 1000);
+					Assert::AreEqual(stack.GetPointer()->Peek(), 1000);
 
-					stack->Push(10);
+					stack.GetPointer()->Push(10);
 
-					Assert::AreEqual(stack->Peek(), 10);
+					Assert::AreEqual(stack.GetPointer()->Peek(), 10);
 
-					Assert::AreEqual(stack->Pop(), 10);
+					Assert::AreEqual(stack.GetPointer()->Pop(), 10);
 
-					Assert::AreEqual(stack->Peek(), 1000);
+					Assert::AreEqual(stack.GetPointer()->Peek(), 1000);
 
-					Assert::AreEqual(stack->Pop(), 1000);
-
-					delete stack;
-
-					stack = nullptr;
+					Assert::AreEqual(stack.GetPointer()->Pop(), 1000);
 				}
 
 				TEST_METHOD(TryPop)
 				{
-					Stack<int>* stack = new Stack<int>();
+					SafePointer<Stack<int>> stack = SafePointer<Stack<int>>(new Stack<int>());
 
-					stack->Push(10);
+					stack.GetPointer()->Push(10);
 
-					stack->Push(1000);
+					stack.GetPointer()->Push(1000);
 
-					int i;
+					OutPointer<int> i;
 
-					Assert::IsTrue(stack->TryPop(&i));
+					Assert::IsTrue(stack.GetPointer()->TryPop(&i));
 
-					Assert::AreEqual(i, 1000);
+					Assert::AreEqual(i.GetValue(), 1000);
 
-					Assert::IsTrue(stack->TryPop(&i));
+					Assert::IsTrue(stack.GetPointer()->TryPop(&i));
 
-					Assert::AreEqual(i, 10);
+					Assert::AreEqual(i.GetValue(), 10);
 
-					Assert::IsFalse(stack->TryPop(&i));
-
-					delete stack;
-
-					stack = nullptr;
+					Assert::IsFalse(stack.GetPointer()->TryPop(&i));
 				}
 
 				TEST_METHOD(Clear)
 				{
-					Stack<int>* stack = new Stack<int>();
+					SafePointer<Stack<int>> stack = SafePointer<Stack<int>>(new Stack<int>());
 
-					stack->Push(10);
+					stack.GetPointer()->Push(10);
 
-					stack->Push(1000);
+					stack.GetPointer()->Push(1000);
 
-					Assert::AreEqual(stack->GetCount(), 2u);
+					Assert::AreEqual(stack.GetPointer()->GetCount(), 2u);
 
-					stack->Clear();
+					stack.GetPointer()->Clear();
 
-					Assert::AreEqual(stack->GetCount(), 0u);
-
-					delete stack;
-
-					stack = nullptr;
+					Assert::AreEqual(stack.GetPointer()->GetCount(), 0u);
 				}
 
 				TEST_METHOD(PeekAndPopObject)
 				{
-					Stack<Something*>* stack = new Stack<Something*>();
+					SafePointer<Stack<SAFESOMETHING>> stack = SafePointer<Stack<SAFESOMETHING>>(new Stack<SAFESOMETHING>());
 
-					stack->Push(new Something(10));
+					stack.GetPointer()->Push(SAFESOMETHING(NEWSAFESOMETHING 10))));
 
-					Assert::AreEqual(stack->Peek()->GetId(), 10);
+Assert::AreEqual(stack.GetPointer()->Peek().GetPointer()->GetId(), 10);
 
-					stack->Push(new Something(1000));
+stack.GetPointer()->Push(NEWSAFESOMETHING 1000)));
 
-					Assert::AreEqual(stack->Peek()->GetId(), 1000);
+Assert::AreEqual(stack.GetPointer()->Peek().GetPointer()->GetId(), 1000);
 
-					Something* result;
+Something* result;
 
-					Assert::AreEqual((result = stack->Pop())->GetId(), 1000);
+Assert::AreEqual((result = stack.GetPointer()->Pop().GetPointer())->GetId(), 1000);
 
-					delete result;
+bool exception = false;
 
-					Assert::AreEqual(stack->Peek()->GetId(), 10);
+try
+{
+	delete result;
+}
+catch (const std::exception&)
+{
+	exception = true;
+}
 
-					Assert::AreEqual((result = stack->Pop())->GetId(), 10);
+Assert::IsTrue(exception);
 
-					delete result;
+Assert::AreEqual(stack.GetPointer()->Peek().GetPointer()->GetId(), 10);
+
+Assert::AreEqual((result = stack.GetPointer()->Pop().GetPointer())->GetId(), 10);
 
 
 
-					stack->Push(new Something(1000));
+stack.GetPointer()->Push(NEWSAFESOMETHING 1000)));
 
-					Assert::AreEqual((result = stack->Peek())->GetId(), 1000);
+Assert::AreEqual((result = stack.GetPointer()->Peek().GetPointer())->GetId(), 1000);
 
-					stack->Push(new Something(10));
+stack.GetPointer()->Push(NEWSAFESOMETHING 10)));
 
-					Assert::AreEqual(stack->Peek()->GetId(), 10);
+Assert::AreEqual(stack.GetPointer()->Peek().GetPointer()->GetId(), 10);
 
-					Assert::AreEqual((result = stack->Pop())->GetId(), 10);
+Assert::AreEqual((result = stack.GetPointer()->Pop().GetPointer())->GetId(), 10);
 
-					delete result;
+delete result;
 
-					Assert::AreEqual(stack->Peek()->GetId(), 1000);
+Assert::AreEqual(stack.GetPointer()->Peek().GetPointer()->GetId(), 1000);
 
-					Assert::AreEqual((result = stack->Pop())->GetId(), 1000);
+Assert::AreEqual((result = stack.GetPointer()->Pop().GetPointer())->GetId(), 1000);
 
-					delete result;
+delete result;
 
-					result = nullptr;
-
-					delete stack;
-
-					stack = nullptr;
+result = nullptr;
 				}
 			};
 
@@ -175,34 +171,34 @@ namespace WinCopies
 			public:
 				TEST_METHOD(StackChangingDuringEnumeration)
 				{
-					IEnumerableStack<int>* enumerableStack = new EnumerableStack<int>();
+					SafePointer<IEnumerableStack<int>> enumerableStack = SafePointer<IEnumerableStack<int>>(new EnumerableStack<int>());
 
-					enumerableStack->Push(10);
+					enumerableStack.GetPointer()->Push(10);
 
-					enumerableStack->Push(10);
+					enumerableStack.GetPointer()->Push(10);
 
-					IEnumerator<int>* enumerator = enumerableStack->GetEnumerator();
+					SafePointer<IEnumerator<int>> enumerator = SafePointer<IEnumerator<int>>(enumerableStack.GetPointer()->GetEnumerator());
 
 					bool moveNextSucceeded = false;
 
-					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
+					Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), 0);
 
 					Assert::IsTrue(moveNextSucceeded);
 
-					Assert::AreEqual(enumerator->GetCurrent(), 10);
+					Assert::AreEqual(enumerator.GetPointer()->GetCurrent(), 10);
 
-					enumerableStack->Push(1000);
+					enumerableStack.GetPointer()->Push(1000);
 
-					Assert::AreEqual(OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION, enumerator->MoveNext(&moveNextSucceeded));
+					Assert::AreEqual(OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION, enumerator.GetPointer()->MoveNext(&moveNextSucceeded));
 
 					Assert::IsFalse(moveNextSucceeded); // Should be false because the stack has changed during enumeration.
-
-					delete enumerator;
 				}
 
-				static void EnumerateInt(const int i)
+				static bool EnumerateInt(const int i)
 				{
 					Assert::IsTrue(i == 10 || i == 1000);
+
+					return false;
 				}
 
 				static void EnumerateFloat(const float f)
@@ -212,19 +208,19 @@ namespace WinCopies
 
 				TEST_METHOD(CommonEnumeration)
 				{
-					IEnumerableStack<int>* enumerableStack = new EnumerableStack<int>();
+					SafePointer<IEnumerableStack<int>> enumerableStack = SafePointer<IEnumerableStack<int>>(new EnumerableStack<int>());
 
-					enumerableStack->Push(10);
+					enumerableStack.GetPointer()->Push(10);
 
-					enumerableStack->Push(1000);
+					enumerableStack.GetPointer()->Push(1000);
 
-					enumerableStack = new ReadOnlyStack<int>(enumerableStack, true);
+					enumerableStack = SafePointer<IEnumerableStack<int>>(new ReadOnlyStack<int>(enumerableStack.GetPointer(), true));
 
-					IEnumerator<int>* enumerator = enumerableStack->GetEnumerator();
+					SafePointer<IEnumerator<int>> enumerator = SafePointer<IEnumerator<int>>(enumerableStack.GetPointer()->GetEnumerator());
 
 					bool moveNextSucceeded;
 
-					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
+					Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), 0);
 
 					Assert::IsTrue(moveNextSucceeded);
 
@@ -234,24 +230,16 @@ namespace WinCopies
 
 					for (int i = 0; i < 2; i++)
 					{
-						Assert::AreEqual(enumerator->GetCurrent(), values[i]);
+						Assert::AreEqual(enumerator.GetPointer()->GetCurrent(), values[i]);
 
-						Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
+						Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), 0);
 
 						Assert::AreEqual(moveNextSucceeded, moveNextValues[i]);
 					}
 
-					delete enumerator;
+					enumerableStack.GetPointer()->ForEach(EnumerateInt);
 
-					enumerator = nullptr;
-
-					enumerableStack->ForEach(EnumerateInt);
-
-					enumerableStack->ForEach(EnumerateFloat);
-
-					delete enumerableStack;
-
-					enumerableStack = nullptr;
+					enumerableStack.GetPointer()->ForEach(EnumerateFloat);
 				}
 			};
 
@@ -260,134 +248,108 @@ namespace WinCopies
 			public:
 				TEST_METHOD(PeekAndPop)
 				{
-					Queue<int>* queue = new Queue<int>();
+					SafePointer<Queue<int>> queue = SafePointer<Queue<int>>(new Queue<int>());
 
-					queue->Enqueue(10);
+					queue.GetPointer()->Enqueue(10);
 
-					Assert::AreEqual(queue->Peek(), 10);
+					Assert::AreEqual(queue.GetPointer()->Peek(), 10);
 
-					queue->Enqueue(1000);
+					queue.GetPointer()->Enqueue(1000);
 
-					Assert::AreEqual(queue->Peek(), 10);
+					Assert::AreEqual(queue.GetPointer()->Peek(), 10);
 
-					Assert::AreEqual(queue->Dequeue(), 10);
+					Assert::AreEqual(queue.GetPointer()->Dequeue(), 10);
 
-					Assert::AreEqual(queue->Peek(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Peek(), 1000);
 
-					Assert::AreEqual(queue->Dequeue(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Dequeue(), 1000);
 
 
 
-					queue->Enqueue(1000);
+					queue.GetPointer()->Enqueue(1000);
 
-					Assert::AreEqual(queue->Peek(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Peek(), 1000);
 
-					queue->Enqueue(10);
+					queue.GetPointer()->Enqueue(10);
 
-					Assert::AreEqual(queue->Peek(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Peek(), 1000);
 
-					Assert::AreEqual(queue->Dequeue(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Dequeue(), 1000);
 
-					Assert::AreEqual(queue->Peek(), 10);
+					Assert::AreEqual(queue.GetPointer()->Peek(), 10);
 
-					Assert::AreEqual(queue->Dequeue(), 10);
-
-					delete queue;
-
-					queue = nullptr;
+					Assert::AreEqual(queue.GetPointer()->Dequeue(), 10);
 				}
 
 				TEST_METHOD(TryPop)
 				{
-					Queue<int>* queue = new Queue<int>();
+					SafePointer<Queue<int>> queue = SafePointer<Queue<int>>(new Queue<int>());
 
-					queue->Enqueue(10);
+					queue.GetPointer()->Enqueue(10);
 
-					queue->Enqueue(1000);
+					queue.GetPointer()->Enqueue(1000);
 
-					int i;
+					OutPointer<int> i;
 
-					Assert::IsTrue(queue->TryDequeue(&i));
+					Assert::IsTrue(queue.GetPointer()->TryDequeue(&i));
 
-					Assert::AreEqual(i, 10);
+					Assert::AreEqual(i.GetValue(), 10);
 
-					Assert::IsTrue(queue->TryDequeue(&i));
+					Assert::IsTrue(queue.GetPointer()->TryDequeue(&i));
 
-					Assert::AreEqual(i, 1000);
+					Assert::AreEqual(i.GetValue(), 1000);
 
-					Assert::IsFalse(queue->TryDequeue(&i));
-
-					delete queue;
-
-					queue = nullptr;
+					Assert::IsFalse(queue.GetPointer()->TryDequeue(&i));
 				}
 
 				TEST_METHOD(Clear)
 				{
-					Queue<int>* queue = new Queue<int>();
+					SafePointer<Queue<int>> queue = SafePointer<Queue<int>>(new Queue<int>());
 
-					queue->Enqueue(10);
+					queue.GetPointer()->Enqueue(10);
 
-					queue->Enqueue(1000);
+					queue.GetPointer()->Enqueue(1000);
 
-					Assert::AreEqual(queue->GetCount(), 2u);
+					Assert::AreEqual(queue.GetPointer()->GetCount(), 2u);
 
-					queue->Clear();
+					queue.GetPointer()->Clear();
 
-					Assert::AreEqual(queue->GetCount(), 0u);
-
-					delete queue;
-
-					queue = nullptr;
+					Assert::AreEqual(queue.GetPointer()->GetCount(), 0u);
 				}
 
 				TEST_METHOD(PeekAndPopObject)
 				{
-					Queue<Something*>* queue = new Queue<Something*>();
+					SafePointer<Queue<SAFESOMETHING>> queue = SafePointer<Queue<SAFESOMETHING>>(new Queue<SAFESOMETHING>());
 
-					queue->Enqueue(new Something(10));
+					queue.GetPointer()->Enqueue(NEWSAFESOMETHING 10)));
 
-					Assert::AreEqual(queue->Peek()->GetId(), 10);
+					Assert::AreEqual(queue.GetPointer()->Peek().GetPointer()->GetId(), 10);
 
-					queue->Enqueue(new Something(1000));
+					queue.GetPointer()->Enqueue(NEWSAFESOMETHING 1000)));
 
-					Assert::AreEqual(queue->Peek()->GetId(), 10);
+					Assert::AreEqual(queue.GetPointer()->Peek().GetPointer()->GetId(), 10);
 
-					Something* result;
+					Assert::AreEqual(queue.GetPointer()->Dequeue().GetPointer()->GetId(), 10);
 
-					Assert::AreEqual((result = queue->Dequeue())->GetId(), 10);
+					Assert::AreEqual(queue.GetPointer()->Peek().GetPointer()->GetId(), 1000);
 
-					delete result;
-
-					Assert::AreEqual(queue->Peek()->GetId(), 1000);
-
-					Assert::AreEqual((result = queue->Dequeue())->GetId(), 1000);
-
-					delete result;
+					Assert::AreEqual(queue.GetPointer()->Dequeue().GetPointer()->GetId(), 1000);
 
 
 
-					queue->Enqueue(new Something(1000));
+					queue.GetPointer()->Enqueue(NEWSAFESOMETHING 1000)));
 
-					Assert::AreEqual(queue->Peek()->GetId(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Peek().GetPointer()->GetId(), 1000);
 
-					queue->Enqueue(new Something(10));
+					queue.GetPointer()->Enqueue(NEWSAFESOMETHING 10)));
 
-					Assert::AreEqual(queue->Peek()->GetId(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Peek().GetPointer()->GetId(), 1000);
 
-					Assert::AreEqual((result = queue->Dequeue())->GetId(), 1000);
+					Assert::AreEqual(queue.GetPointer()->Dequeue().GetPointer()->GetId(), 1000);
 
-					delete result;
+					Assert::AreEqual(queue.GetPointer()->Peek().GetPointer()->GetId(), 10);
 
-					Assert::AreEqual(queue->Peek()->GetId(), 10);
-
-					Assert::AreEqual((result = queue->Dequeue())->GetId(), 10);
-
-					delete result;
-
-					delete queue;
-
-					queue = nullptr;
+					Assert::AreEqual(queue.GetPointer()->Dequeue().GetPointer()->GetId(), 10);
 				}
 			};
 
@@ -396,36 +358,36 @@ namespace WinCopies
 			public:
 				TEST_METHOD(QueueChangingDuringEnumeration)
 				{
-					IEnumerableQueue<int>* enumerableQueue = new EnumerableQueue<int>();
+					SafePointer<IEnumerableQueue<int>> enumerableQueue = SafePointer<IEnumerableQueue<int>>(new EnumerableQueue<int>());
 
-					enumerableQueue->Enqueue(10);
+					enumerableQueue.GetPointer()->Enqueue(10);
 
-					IEnumerator<int>* enumerator = enumerableQueue->GetEnumerator();
+					SafePointer<IEnumerator<int>> enumerator = SafePointer<IEnumerator<int>>(enumerableQueue.GetPointer()->GetEnumerator());
 
 					bool moveNextSucceeded = false;
 
-					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
+					Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), 0);
 
 					Assert::IsTrue(moveNextSucceeded);
 
-					Assert::AreEqual(enumerator->GetCurrent(), 10);
+					Assert::AreEqual(enumerator.GetPointer()->GetCurrent(), 10);
 
-					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
+					Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), 0);
 
 					Assert::IsFalse(moveNextSucceeded);
 
-					enumerableQueue->Enqueue(1000);
+					enumerableQueue.GetPointer()->Enqueue(1000);
 
-					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), -1);
+					Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), -1);
 
 					Assert::IsFalse(moveNextSucceeded); // Should be false because the queue has changed during enumeration.
-
-					delete enumerator;
 				}
 
-				static void EnumerateInt(int i)
+				static bool EnumerateInt(int i)
 				{
 					Assert::IsTrue(i == 10 || i == 1000);
+
+					return false;
 				}
 
 				static void EnumerateFloat(float f)
@@ -435,19 +397,19 @@ namespace WinCopies
 
 				TEST_METHOD(CommonEnumeration)
 				{
-					IEnumerableQueue<int>* enumerableQueue = new EnumerableQueue<int>();
+					SafePointer<IEnumerableQueue<int>> enumerableQueue = SafePointer<IEnumerableQueue<int>>(new EnumerableQueue<int>());
 
-					enumerableQueue->Enqueue(10);
+					enumerableQueue.GetPointer()->Enqueue(10);
 
-					enumerableQueue->Enqueue(1000);
+					enumerableQueue.GetPointer()->Enqueue(1000);
 
-					enumerableQueue = new ReadOnlyQueue<int>(enumerableQueue, true);
+					enumerableQueue = SafePointer<IEnumerableQueue<int>>(new ReadOnlyQueue<int>(enumerableQueue.GetPointer(), true));
 
-					IEnumerator<int>* enumerator = enumerableQueue->GetEnumerator();
+					SafePointer<IEnumerator<int>> enumerator = SafePointer<IEnumerator<int>>(enumerableQueue.GetPointer()->GetEnumerator());
 
 					bool moveNextSucceeded = false;
 
-					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
+					Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), 0);
 
 					Assert::IsTrue(moveNextSucceeded);
 
@@ -457,24 +419,16 @@ namespace WinCopies
 
 					for (int i = 0; i < 2; i++)
 					{
-						Assert::AreEqual(enumerator->GetCurrent(), values[i]);
+						Assert::AreEqual(enumerator.GetPointer()->GetCurrent(), values[i]);
 
-						Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), 0);
+						Assert::AreEqual(enumerator.GetPointer()->MoveNext(&moveNextSucceeded), 0);
 
 						Assert::AreEqual(moveNextSucceeded, moveNextValues[i]);
 					}
 
-					delete enumerator;
+					enumerableQueue.GetPointer()->ForEach(EnumerateInt);
 
-					enumerator = nullptr;
-
-					enumerableQueue->ForEach(EnumerateInt);
-
-					enumerableQueue->ForEach(EnumerateFloat);
-
-					delete enumerableQueue;
-
-					enumerableQueue = nullptr;
+					enumerableQueue.GetPointer()->ForEach(EnumerateFloat);
 				}
 			};
 
@@ -484,14 +438,14 @@ namespace WinCopies
 				int _value = -1;
 
 			public:
-				void EnumerateArray(const int value)
+				bool EnumerateArray(const int value)
 				{
 					Assert::IsTrue(value < 10);
 
 					Assert::AreEqual(++_value, value);
 				}
 
-				void ReverseEnumerateArray(const int value)
+				bool ReverseEnumerateArray(const int value)
 				{
 					Assert::IsTrue(value >= 0);
 
@@ -506,39 +460,37 @@ namespace WinCopies
 
 						_array[i] = i;
 
-					SafeArray<int>* safeArray = new SafeArray<int>(_array, 10);
+					SafePointer<SafeArray<int>> safeArray = SafePointer<SafeArray<int>>(new SafeArray<int>(_array, 10));
 
-					Assert::AreEqual(10u, safeArray->GetCount());
+					Assert::AreEqual(10u, safeArray.GetPointer()->GetCount());
 
 					for (int i = 0; i < 10; i++)
 
-						Assert::AreEqual(i, safeArray->GetAt(i));
+						Assert::AreEqual(i, safeArray.GetPointer()->GetAt(i));
 
 					int _result;
 
-					int _retVal = safeArray->First(&_result);
+					int* _resultPtr = &_result;
+
+					int _retVal = safeArray.GetPointer()->First(&_resultPtr);
 
 					Assert::AreEqual(0, _retVal); // The size of an array must be greater than zero, so we do not need to test the return value for this method when called on an empty array.
 
 					Assert::AreEqual(0, _result);
 
-					typedef void(SafeArrayTests::* _enumerateArray)(int);
+					typedef bool(SafeArrayTests::* _enumerateArray)(int);
 
-					_enumerateArray enumerateArray = EnumerateArray;
+					_enumerateArray enumerateArray = &SafeArrayTests::EnumerateArray;
 
-					safeArray->ForEach(&enumerateArray);
+					safeArray.GetPointer()->ForEach(&enumerateArray);
 
-					Assert::IsTrue(safeArray->GetSupportsReversedEnumeration());
+					Assert::IsTrue(safeArray.GetPointer()->GetSupportsReversedEnumeration());
 
 					_value = 10;
 
-					enumerateArray = ReverseEnumerateArray;
+					enumerateArray = &SafeArrayTests::ReverseEnumerateArray;
 
-					safeArray->ReversedForEach(&enumerateArray);
-
-					delete safeArray;
-
-					safeArray = nullptr;
+					safeArray.GetPointer()->ReversedForEach(&enumerateArray);
 				}
 			};
 		}

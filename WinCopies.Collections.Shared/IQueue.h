@@ -1,9 +1,11 @@
 #pragma once
 #ifndef IQUEUE_H
 #define IQUEUE_H
+
 #include "defines.h"
 #include "ISimpleLinkedListNode.h"
 #include "ISimpleLinkedList.h"
+#include "../WinCopies.Util.Base.Shared/OutPointer.h"
 
 namespace WinCopies
 {
@@ -23,7 +25,7 @@ namespace WinCopies
             virtual void Enqueue(const T value) = 0;
             virtual bool TryEnqueue(const T value) = 0;
             virtual T Dequeue() = 0;
-            virtual bool TryDequeue( T*  result) = 0;
+            virtual bool TryDequeue(OUTPOINTER result) = 0;
         };
     }
 }

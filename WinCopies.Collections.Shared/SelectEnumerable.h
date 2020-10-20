@@ -1,92 +1,38 @@
 #pragma once
 #ifndef SELECTENUMERABLE_H
 #define SELECTENUMERABLE_H
+
 #include "defines.h"
 #include "IEnumerable.h"
 #include "IEnumerator.h"
 #include "IUIntCountable.h"
-#include "EnumeratorBase.h"
+#include "Enumerable.h"
+#include "SelectEnumerator.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		template <typename T, typename U>
+		TEMPLATE2
 		class SelectEnumerable :
-			public virtual IEnumerable<T>
+			public virtual EnumeratorEnumerable<T>
 		{
 		private:
-			IEnumerable<T>* _enumerable;
-			U(*_func)(T);
+			SELECTOR_FIELD;
 		public:
-			class SelectEnumerator :
-				public virtual EnumeratorBase<U>
+			explicit SelectEnumerable(const IEnumerable<T>* enumerable, const bool autoDispose, const SELECTOR_PARAMETER) : EnumeratorEnumerable<T>(enumerable, autoDispose)
 			{
-			private:
-				SelectEnumerable<T, U>* _enumerable;
-				IEnumerator<T>* _enumerator;
+				_selector = selector;
+			}
 
-			protected:
-				virtual T GetCurrentOverride()  const override
-				{
-					return _enumerator->GetCurrent();
-				}
-
-				virtual int MoveNextOverride(const bool* result) override
-				{
-					return _enumerator->MoveNext(result);
-				}
-
-				virtual int ResetOverride() override
-				{
-					if (_enumerator->GetIsResetSupported())
-					{
-						_enumerator->Reset();
-
-						return EXIT_SUCCESS;
-					}
-
-					return -1;
-				}
-
-			public:
-				explicit SelectEnumerator(SelectEnumerable<T>* enumerable)
-				{
-					_enumerable = enumerable;
-
-					_enumerator = enumerable->_enumerable->GetEnumerator();
-				}
-
-				virtual bool GetIsResetSupported() const override
-				{
-					return true;
-				}
-
-				~SelectEnumerator()
-				{
-					delete _enumerator;
-
-					_enumerator = nullptr;
-
-					_enumerable = nullptr;
-				}
-			};
-
-			explicit SelectEnumerable(IEnumerable<T>* enumerable, bool(*func)(T))
+			virtual IEnumerator<T>* GetEnumerator() override
 			{
-				_enumerable = enumerable;
-
-				_func = func;
+				return new SelectEnumerator<T, U>(this);
 			}
 
 			virtual ~SelectEnumerable()
 			{
 				// Left empty.
-			}
-
-			virtual IEnumerator<T>* GetEnumerator() override
-			{
-				return new SelectEnumerator(this);
 			}
 		};
 	}

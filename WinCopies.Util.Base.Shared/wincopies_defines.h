@@ -3,6 +3,10 @@
 #ifndef WINCOPIES_UTIL_BASE_DEFINES_H
 #define WINCOPIES_UTIL_BASE_DEFINES_H
 
+///
+/// Defines
+/// 
+
 #ifdef QT
 #define DLLEXPORT Q_DECL_EXPORT
 #define ABSTRACT
@@ -12,10 +16,39 @@
 #define ABSTRACT abstract
 #endif
 
+// Templates
+
 #define TEMPLATE template<class T>
+#define TEMPLATE2 template<class T, class U>
 #define METHOD_TEMPLATE template <class F>
 
+// Misc
+
+#define PREDICATE bool(*Predicate)(T)
+#define PREDICATE_PARAMETER bool(*predicate)(T)
+#define PREDICATE_FIELD bool(*_predicate)(T);
+
+#define SELECTOR U(*Selector)(T)
+#define SELECTOR_PARAMETER U(*selector)(T)
+#define SELECTOR_FIELD U(*_selector)(T);
+
+#define OUTPOINTER OutPointer<T>*
+
+///
+/// Type defs
+/// 
+
+typedef unsigned short USHORT;
+typedef unsigned int UINT;
+typedef unsigned long ULONG;
+typedef unsigned long long ULONGLONG;
+
+typedef char* STRING;
+typedef wchar_t* WSTRING;
+
+///
 /// WinCopies Framework Error codes
+/// 
 
 constexpr auto UNKNOWN_EXCEPTION = -1;
 constexpr auto ARGUMENT_EXCEPTION = -2;

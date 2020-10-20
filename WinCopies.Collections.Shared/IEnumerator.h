@@ -1,6 +1,7 @@
 #pragma once
 #ifndef IENUMERATOR_H
 #define IENUMERATOR_H
+
 #include "defines.h"
 
 namespace WinCopies

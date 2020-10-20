@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)defines.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enumerable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnumerableQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnumerableStack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnumeratorBase.h" />
@@ -23,7 +24,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ILinkedList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ILinkedListNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IQueue.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IReadOnlyLinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IStack.h" />
@@ -32,10 +35,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Queue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)QueueEnumerator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ReadOnlyLinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReadOnlyQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReadOnlyStack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SafeArray.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectEnumerable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectEnumerator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WhereEnumerable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.h" />
@@ -46,13 +51,16 @@
     <None Include="$(MSBuildThisFileDirectory)cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Enumerable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnumerableQueue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnumerableStack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnumeratorBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)IEnumerable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)IEnumerator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ILinkedList.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ILinkedListNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)IQueue.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)IReadOnlyLinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)IStack.cpp" />
@@ -60,10 +68,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)LinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Queue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)QueueEnumerator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyLinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyQueue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyStack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SafeArray.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectEnumerable.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectEnumerator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WhereEnumerable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.cpp" />

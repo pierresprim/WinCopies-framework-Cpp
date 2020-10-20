@@ -6,34 +6,45 @@
 
 namespace WinCopies
 {
-TEMPLATE
-struct DLLEXPORT SafePointer
-{
-private:
-T* _ptr;
-public:
-~SafePointer()
-{
- if (_ptr != nullptr)
- {
-     delete _ptr;
+	template <typename T>
+		struct DLLEXPORT SafePointer
+	{
+	private:
+		T* _ptr;
 
-     _ptr = nullptr;
- }
-}
+		SafePointer()
+		{
 
-    explicit SafePointer(const T* pointer)
-{
-        _ptr = pointer;
-}
+		}
+	public:
+		~SafePointer()
+		{
+			if (_ptr != nullptr)
+			{
+				delete _ptr;
 
-void Update(const T* value)
-{
-    delete _ptr;
+				_ptr = nullptr;
+			}
+		}
 
-    _ptr = value;
-}
-};
+		 static SafePointer<T> GetSafePointer(T*  pointer)
+		{
+			 return SafePointer<T>
+			 {
+				 _ptr = pointer
+			 };
+		}
+
+		T* GetPointer() const
+		{
+			return _ptr;
+		}
+
+		T GetValue() const
+		{
+			return *_ptr;
+		}
+	};
 }
 
 #endif // SAFEPOINTER_H
