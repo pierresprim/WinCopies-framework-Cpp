@@ -200,15 +200,19 @@ namespace WinCopies
 					delete enumerator;
 				}
 
-				static void EnumerateInt(const int i)
+				static bool EnumerateInt( int i)
 				{
 					Assert::IsTrue(i == 10 || i == 1000);
+
+					return false;
 				}
 
-				static void EnumerateFloat(const float f)
+				/*static bool EnumerateFloat( float f)
 				{
 					Assert::IsTrue(f == 10 || f == 1000);
-				}
+
+					return false;
+				}*/
 
 				TEST_METHOD(CommonEnumeration)
 				{
@@ -247,7 +251,7 @@ namespace WinCopies
 
 					enumerableStack->ForEach(EnumerateInt);
 
-					enumerableStack->ForEach(EnumerateFloat);
+					// enumerableStack->ForEach(EnumerateFloat);
 
 					delete enumerableStack;
 
@@ -414,25 +418,38 @@ namespace WinCopies
 
 					Assert::IsFalse(moveNextSucceeded);
 
+					delete enumerator;
+
+					enumerator = enumerableQueue->GetEnumerator();
+
 					enumerableQueue->Enqueue(1000);
 
-					Assert::AreEqual(enumerator->MoveNext(&moveNextSucceeded), -1);
+					Assert::AreEqual(OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION, enumerator->MoveNext(&moveNextSucceeded));
 
 					Assert::IsFalse(moveNextSucceeded); // Should be false because the queue has changed during enumeration.
 
 					delete enumerator;
+
+					enumerator = nullptr;
+
+					delete enumerableQueue;
+
+					enumerableQueue = nullptr;
 				}
 
-				static void EnumerateInt(int i)
+				static bool EnumerateInt(int i)
 				{
 					Assert::IsTrue(i == 10 || i == 1000);
+
+					return false;
 				}
 
-				static void EnumerateFloat(float f)
+				/*static bool EnumerateFloat(float f)
 				{
 					Assert::IsTrue(f == 10 || f == 1000);
-				}
 
+					return false;
+				}*/
 				TEST_METHOD(CommonEnumeration)
 				{
 					IEnumerableQueue<int>* enumerableQueue = new EnumerableQueue<int>();
@@ -470,7 +487,7 @@ namespace WinCopies
 
 					enumerableQueue->ForEach(EnumerateInt);
 
-					enumerableQueue->ForEach(EnumerateFloat);
+					// enumerableQueue->ForEach(EnumerateFloat);
 
 					delete enumerableQueue;
 
@@ -484,23 +501,27 @@ namespace WinCopies
 				int _value = -1;
 
 			public:
-				void EnumerateArray(const int value)
+				bool EnumerateArray( int value)
 				{
 					Assert::IsTrue(value < 10);
 
 					Assert::AreEqual(++_value, value);
+
+					return false;
 				}
 
-				void ReverseEnumerateArray(const int value)
+				bool ReverseEnumerateArray( int value)
 				{
 					Assert::IsTrue(value >= 0);
 
 					Assert::AreEqual(--_value, value);
+
+					return false;
 				}
 
 				TEST_METHOD(Tests)
 				{
-					int _array[10];
+					int* _array=new int[10];
 
 					for (int i = 0; i < 10; i++)
 
@@ -514,6 +535,45 @@ namespace WinCopies
 
 						Assert::AreEqual(i, safeArray->GetAt(i));
 
+					IEnumerator<int>* enumerator = safeArray->GetEnumerator();
+
+					int count = 0;
+
+					bool moveNextSucceeded = false;
+
+					Assert::IsTrue(enumerator->MoveNext(&moveNextSucceeded) >= 0);
+
+					Assert::IsTrue(moveNextSucceeded);
+
+					count++;
+
+					int l = 10;
+
+					int c = 0;
+
+					bool b = true;
+
+					for (int i = 0; i < l; ++i)
+					{
+						if (b)
+						{
+							b = false;
+
+							Assert::AreEqual(0, i);
+						}
+
+						c++;
+					}
+
+					Assert::AreEqual(10, c);
+
+					while (enumerator->MoveNext(&moveNextSucceeded) >= 0 && moveNextSucceeded)
+					{
+						count++;
+					}
+
+					Assert::AreEqual(10, count);
+
 					int _result;
 
 					int _retVal = safeArray->First(&_result);
@@ -522,19 +582,22 @@ namespace WinCopies
 
 					Assert::AreEqual(0, _result);
 
-					typedef void(SafeArrayTests::* _enumerateArray)(int);
+					//typedef bool(SafeArrayTests::* _enumerateArray)(int);
 
-					_enumerateArray enumerateArray = EnumerateArray;
+					/*auto enumerateArray = [](int value)->bool
+					{
+						EnumerateArray(value);
+					};
 
-					safeArray->ForEach(&enumerateArray);
+					safeArray->ForEach(enumerateArray);
 
 					Assert::IsTrue(safeArray->GetSupportsReversedEnumeration());
 
 					_value = 10;
 
-					enumerateArray = ReverseEnumerateArray;
+					_enumerateArray	enumerateArray = &SafeArrayTests::ReverseEnumerateArray;
 
-					safeArray->ReversedForEach(&enumerateArray);
+					 safeArray->ReversedForEach(&enumerateArray);*/
 
 					delete safeArray;
 

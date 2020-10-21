@@ -7,7 +7,7 @@
 #include "SimpleLinkedListNode.h"
 #include "IEnumerator.h"
 #include "IEnumerable.h"
-#include "StackEnumerator.h"
+#include "EnumeratorBase.h"
 
 namespace WinCopies
 {
@@ -46,8 +46,89 @@ namespace WinCopies
             {
                 _enumeratorsCount++;
             }
-            friend class StackEnumerator<T>;
+            void incrementVersionCount()
+            {
+                if (_enumeratorsCount > 0)
+
+                    _version++;
+            }
         public:
+            class DLLEXPORT StackEnumerator :
+                public virtual EnumeratorBase<T>
+            {
+            private:
+                EnumerableStack<T>* _stack;
+                unsigned int _version;
+                const SimpleLinkedListNode<T>* _currentNode;
+            public:
+                explicit StackEnumerator(EnumerableStack<T>* stack)
+                {
+                    _stack = stack;
+
+                    _version = stack->_version;
+                }
+
+                virtual EnumerationDirection GetEnumerationDirection() const final
+                {
+                    return EnumerationDirection::LIFO;
+                }
+
+                virtual ~StackEnumerator() override
+                {
+                    _stack->_enumeratorsCount--;
+
+                    if (_stack->_enumeratorsCount == 0)
+
+                        _stack->_version = 0;
+
+                    _stack = nullptr;
+
+                    _currentNode = nullptr;
+                }
+            protected:
+                virtual bool GetIsResetSupported() const final
+                {
+                    return true;
+                }
+
+                virtual T GetCurrentOverride() const final
+                {
+                    return _currentNode->GetValue();
+                }
+
+                virtual int MoveNextOverride(bool* result) final
+                {
+                    if (_stack->_version != _version)
+                    {
+                        *result = false;
+
+                        return OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION;
+                    }
+
+                    if (_currentNode == nullptr)
+
+                        _currentNode = _stack->_stack->GetFirst();
+
+                    else
+
+                        _currentNode = _currentNode->GetNextNode();
+
+                    *result = _currentNode != nullptr;
+
+                    return EXIT_SUCCESS;
+                }
+
+                virtual int ResetOverride() final
+                {
+                    if (_stack->_version != _version)
+
+                        return OBJECT_HAS_CHANGED_DURING_ENUMERATION_EXCEPTION;
+
+                    _currentNode = _stack->_stack->GetFirst();
+
+                    return EXIT_SUCCESS;
+                }
+            };
             explicit EnumerableStack()
             {
                 _stack = new Stack<T>();
@@ -55,8 +136,6 @@ namespace WinCopies
 
             ~EnumerableStack()
             {
-                _stack->~Stack<T>();
-
                 delete _stack;
 
                 _stack = nullptr;
@@ -66,7 +145,7 @@ namespace WinCopies
             {
                 incrementEnumeratorsCount();
 
-                return new StackEnumerator<T>(this);
+                return new StackEnumerator(this);
             }
 
             virtual unsigned int GetCount() const final
@@ -81,7 +160,7 @@ namespace WinCopies
 
             virtual void Clear() final
             {
-                _version++;
+                incrementVersionCount();
 
                 return _stack->Clear();
             }
@@ -98,30 +177,40 @@ namespace WinCopies
 
             virtual void Push(const T value) final
             {
-                _version++;
+                incrementVersionCount();
 
                 _stack->Push(value);
             }
 
             virtual bool TryPush(const T value) final
             {
-                _version++;
+                if (_stack->TryPush(value))
+                {
+                    incrementVersionCount();
 
-                return _stack->TryPush(value);
+                    return true;
+                }
+
+                return false;
             }
 
             virtual T Pop() final
             {
-                _version++;
+                incrementVersionCount();
 
                 return _stack->Pop();
             }
 
             virtual bool TryPop(T* result) final
             {
-                _version++;
+                if (_stack->TryPop(result))
+                {
+                    incrementVersionCount();
 
-                return _stack->TryPop(result);
+                    return true;
+                }
+
+                return false;
             }
         };
     }

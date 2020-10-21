@@ -12,19 +12,19 @@ namespace WinCopies
 {
 	namespace Collections
 	{
+		typedef bool(*ForEach_t)(int);
 		TEMPLATE
 			class DLLEXPORT IEnumerable ABSTRACT
 		{
 		private:
-			METHOD_TEMPLATE
-				int _ForEach(const F* func, IEnumerator<T>* enumerator)
+			int _ForEach(ForEach_t func, IEnumerator<T>* enumerator)
 			{
 				int errorCode;
 				bool moveNextSucceeded = false;
 
 				while ((errorCode = enumerator->MoveNext(&moveNextSucceeded)) >= 0 && moveNextSucceeded)
 
-					if ((*func)(enumerator->GetCurrent()))
+					if (func(enumerator->GetCurrent()))
 
 						break;
 
@@ -46,14 +46,13 @@ namespace WinCopies
 
 			virtual IEnumerator<T>* GetReversedEnumerator() = 0;
 
-			METHOD_TEMPLATE
-				int ForEach(F* func)
+			int ForEach(ForEach_t func)
 			{
 				return _ForEach(func, GetEnumerator());
 			}
 
 			METHOD_TEMPLATE
-				int ReversedForEach(const F* func)
+				int ReversedForEach(ForEach_t func)
 			{
 				return GetSupportsReversedEnumeration() ? _ForEach(func, GetReversedEnumerator()) : INVALID_OPERATION_EXCEPTION;
 			}
@@ -81,7 +80,7 @@ namespace WinCopies
 			public virtual IEnumerable<T>
 		{
 public:
-			int First(T * *result) const
+			int First(T * result)
 			{
 					IEnumerator<T>* enumerator = this->GetEnumerator();
 
@@ -95,7 +94,7 @@ public:
 						{
 							if (moveNextSucceeded)
 							{
-								**result = enumerator->GetCurrent();
+								*result = enumerator->GetCurrent();
 
 								return EXIT_SUCCESS;
 							}
@@ -104,8 +103,6 @@ public:
 
 								return EMPTY_OBJECT_EXCEPTION;
 						}
-
-						*result = nullptr;
 
 						return retVal;
 					}

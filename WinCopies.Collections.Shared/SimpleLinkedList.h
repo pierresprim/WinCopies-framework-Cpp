@@ -4,9 +4,9 @@
 
 #include "ISimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
-#include "StackEnumerator.h"
-#include "QueueEnumerator.h"
 #include "../WinCopies.Util.Base.Shared/Exception.h"
+#include "EnumerableStack.h"
+#include "EnumerableQueue.h"
 
 namespace WinCopies
 {
@@ -16,10 +16,10 @@ namespace WinCopies
     class SimpleLinkedListNode;
 
     TEMPLATE
-    class StackEnumerator;
+    class EnumerableStack;
 
     TEMPLATE
-    class QueueEnumerator;
+    class EnumerableQueue;
 
         TEMPLATE
 			class DLLEXPORT SimpleLinkedList :
@@ -28,8 +28,8 @@ namespace WinCopies
 		private:
 			const SimpleLinkedListNode<T>* _first = nullptr;
 			unsigned int _count = 0;
-            friend class StackEnumerator<T>;
-            friend class QueueEnumerator<T>;
+            friend class EnumerableStack<T>;
+            friend class EnumerableQueue<T>;
 		protected:
             const SimpleLinkedListNode<T>* GetFirst() const
 			{

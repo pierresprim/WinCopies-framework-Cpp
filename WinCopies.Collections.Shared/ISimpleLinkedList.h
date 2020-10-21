@@ -1,9 +1,11 @@
 #pragma once
 #ifndef ISIMPLELINKEDLIST_H
 #define ISIMPLELINKEDLIST_H
+
 #include "defines.h"
-#include "IUIntCountable.h"
+#include "IEnumerable.h"
 #include "ISimpleLinkedListNode.h"
+#include "../WinCopies.Util.Base.Shared/Exception.h"
 
 namespace WinCopies
 {

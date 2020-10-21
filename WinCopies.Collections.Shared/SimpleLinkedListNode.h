@@ -9,9 +9,6 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-    TEMPLATE
-    class StackEnumerator;
-
         TEMPLATE
 			class DLLEXPORT SimpleLinkedListNode :
                 public virtual ISimpleLinkedListNode<T>
@@ -19,7 +16,6 @@ namespace WinCopies
 		private:
 			T _value;
 			const	SimpleLinkedListNode<T>* _next = nullptr;
-            friend class StackEnumerator<T>;
 		public:
             virtual ~SimpleLinkedListNode() override
             {

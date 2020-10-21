@@ -32,7 +32,7 @@ namespace WinCopies
 					return _enumerator->GetCurrent();
 				}
 
-				virtual int MoveNextOverride(const bool* result) override
+				virtual int MoveNextOverride(bool* result) override
 				{
 					*result = false;
 

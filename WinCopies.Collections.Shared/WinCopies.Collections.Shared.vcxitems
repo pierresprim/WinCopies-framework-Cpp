@@ -34,7 +34,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Queue.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)QueueEnumerator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReadOnlyQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReadOnlyStack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SafeArray.h" />
@@ -43,7 +42,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Stack.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StackEnumerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)cpp.hint" />
@@ -65,7 +63,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)IUIntCountable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Queue.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)QueueEnumerator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyQueue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyStack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SafeArray.cpp" />
@@ -74,6 +71,5 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Stack.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StackEnumerator.cpp" />
   </ItemGroup>
 </Project>

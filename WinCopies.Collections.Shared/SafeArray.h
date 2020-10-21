@@ -14,11 +14,11 @@ namespace WinCopies
 			public virtual IUIntCountableEnumerable<T>
 		{
 		private:
-			T[] _array;
+			T* _array;
 
 			unsigned int _length;
 		public:
-			explicit SafeArray(const T array[], const unsigned int length)
+			explicit SafeArray(T array[], const unsigned int length)
 			{
 				_array = array;
 
@@ -32,12 +32,12 @@ namespace WinCopies
 
 			T GetAt(const int index) const
 			{
-				return _array[index];
+				return *(_array + index);
 			}
 
 			virtual IEnumerator<T>* GetEnumerator() final
 			{
-				return new ArrayEnumerator(this);
+				return new ArrayEnumerator(this, EnumerationDirection::FIFO);
 			}
 
 			virtual bool GetSupportsReversedEnumeration() const final
@@ -47,12 +47,12 @@ namespace WinCopies
 
 			virtual IEnumerator<T>* GetReversedEnumerator() final
 			{
-
+				return new ArrayEnumerator(this, EnumerationDirection::LIFO);
 			}
 
 			~SafeArray()
 			{
-				delete[] _array;
+				delete[]_array;
 
 				_array = nullptr;
 			}
@@ -64,8 +64,59 @@ namespace WinCopies
 				SafeArray<T>* _array;
 				int _currentIndex;
 				EnumerationDirection _enumerationDirection;
-				typedef bool(*_moveNext)();
-				_moveNext _moveNextPtr;
+				class IMoveNextDelegate ABSTRACT
+				{
+				private:
+					ArrayEnumerator* _enumerator;
+				protected:
+					ArrayEnumerator* GetEnumerator()
+					{
+						return _enumerator;
+					}
+				public:
+					virtual bool MoveNext() = 0;
+					explicit IMoveNextDelegate(ArrayEnumerator* enumerator)
+					{
+						_enumerator = enumerator;
+					}
+					virtual ~IMoveNextDelegate()
+					{
+						// Left empty.
+					}
+				};
+				class MoveNextFIFO :
+					public virtual IMoveNextDelegate
+				{
+				public:
+					explicit MoveNextFIFO(ArrayEnumerator* enumerator) :IMoveNextDelegate(enumerator)
+					{
+						// Left empty.
+					}
+
+					virtual bool MoveNext() final
+					{
+						++(this->GetEnumerator()->_currentIndex);
+
+						return this->GetEnumerator()->_currentIndex < this->GetEnumerator()->_array->_length;
+					}
+				};
+				class MoveNextLIFO :
+					public IMoveNextDelegate
+				{
+				public:
+					explicit MoveNextLIFO(ArrayEnumerator* enumerator) : IMoveNextDelegate(enumerator)
+					{
+						// Left empty.
+					}
+
+					virtual bool MoveNext() final
+					{
+						--(this->GetEnumerator()->_currentIndex);
+
+						return this->GetEnumerator()->_currentIndex > -1;
+					}
+				};
+				IMoveNextDelegate* _moveNext;
 
 			public:
 				~ArrayEnumerator()
@@ -75,7 +126,7 @@ namespace WinCopies
 					ResetOverride();
 				}
 
-				explicit ArrayEnumerator(const SafeArray<T>* const array , const EnumerationDirection enumerationDirection)
+				explicit ArrayEnumerator(SafeArray<T>* array, const EnumerationDirection enumerationDirection)
 				{
 					_array = array;
 
@@ -87,12 +138,7 @@ namespace WinCopies
 
 						_currentIndex = -1;
 
-						*_moveNextPtr = () ->
-						{
-							++_currentIndex;
-
-							return _currentIndex == _array->_length;
-						};
+						_moveNext = new MoveNextFIFO(this);
 
 						break;
 
@@ -100,12 +146,7 @@ namespace WinCopies
 
 						_currentIndex = _array->_length;
 
-						*_moveNextPtr = () ->
-						{
-							--currentIndex;
-
-							return _currentIndex == -1;
-						};
+						_moveNext = new MoveNextLIFO(this);
 
 						break;
 
@@ -121,24 +162,24 @@ namespace WinCopies
 				}
 
 			protected:
-				virtual bool GetIsResetSupported()
+				virtual bool GetIsResetSupported() const
 				{
 					return true;
 				}
 
 				virtual T GetCurrentOverride() const final
 				{
-					return *(_array->GetAt(_currentIndex));
+					return _array->GetAt(_currentIndex);
 				}
 
-				virtual int MoveNextOverride(const bool* result) override
+				virtual int MoveNextOverride(bool* result) final
 				{
-					*result = _moveNextPtr();
+					*result = _moveNext->MoveNext();
 
 					return 0;
 				}
 
-				virtual int ResetOverride() override
+				virtual int ResetOverride() final
 				{
 					if (_enumerationDirection == EnumerationDirection::FIFO)
 
@@ -147,10 +188,12 @@ namespace WinCopies
 					else
 
 						_currentIndex = _array->_length;
+
+					return EXIT_SUCCESS;
 				}
-			}
+			};
 		};
-	};
+	}
 }
 
 #endif // SAFEARRAY_H
