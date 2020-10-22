@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util.Base", "WinC
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Tests", "WinCopies.Collections.Tests\WinCopies.Collections.Tests.vcxproj", "{54616CF4-B4E5-49B4-BF13-C8B342F008DD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util.Tests", "WinCopies.Util.Tests\WinCopies.Util.Tests.vcxproj", "{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		WinCopies.IO.Shared\WinCopies.IO.Shared.vcxitems*{05e3b079-5eed-41ee-870a-70de531c2125}*SharedItemsImports = 4
@@ -89,6 +91,14 @@ Global
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x64.Build.0 = Release|x64
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x86.ActiveCfg = Release|Win32
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x86.Build.0 = Release|Win32
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Debug|x64.ActiveCfg = Debug|x64
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Debug|x64.Build.0 = Debug|x64
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Debug|x86.ActiveCfg = Debug|Win32
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Debug|x86.Build.0 = Debug|Win32
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Release|x64.ActiveCfg = Release|x64
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Release|x64.Build.0 = Release|x64
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Release|x86.ActiveCfg = Release|Win32
+		{DA8CA78F-8BF2-4CA9-B8B4-CF7C8D28FADA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

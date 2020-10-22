@@ -18,21 +18,37 @@ namespace WinCopies
 
 			unsigned int _length;
 		public:
-			explicit SafeArray(T array[], const unsigned int length)
+			explicit SafeArray(T array[], const UINT length)
 			{
 				_array = array;
 
 				_length = length;
 			}
 
-			virtual unsigned int GetCount() const final
+			explicit SafeArray(const UINT length)
+			{
+				_array = new T[length];
+
+				_length = length;
+			}
+
+			virtual UINT GetCount() const final
 			{
 				return _length;
 			}
 
 			T GetAt(const int index) const
 			{
+				if (index < 0 || index >= _length)
+
+					throw new ArgumentOutOfRangeException(L"index");
+
 				return *(_array + index);
+			}
+
+			void SetAt(const int index, T value)
+			{
+				*(_array + index) = value;
 			}
 
 			virtual IEnumerator<T>* GetEnumerator() final

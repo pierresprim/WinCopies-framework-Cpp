@@ -12,6 +12,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Delegates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilHelpers.h">
@@ -21,6 +24,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Delegates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

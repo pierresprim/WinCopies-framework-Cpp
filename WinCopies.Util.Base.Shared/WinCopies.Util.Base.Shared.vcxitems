@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Exception.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)framework.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IActionDelegate.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IDisposable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OutPointer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -25,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)IActionDelegate.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)IDisposable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OutPointer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SafePointer.cpp" />
