@@ -24,7 +24,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ILinkedList.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ILinkedListNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IReadOnlyLinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.h" />

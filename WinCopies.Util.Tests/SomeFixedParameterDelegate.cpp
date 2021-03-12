@@ -3,29 +3,48 @@
 
 namespace WinCopies
 {
-	namespace Util
+	namespace Tests
 	{
-		namespace Tests
+		void SomeFixedParameterDelegateParameter::IncrementCount()
 		{
-			void SomeFixedParameterDelegateParameter::IncrementCount()
-			{
-				_count++;
-			}
+			_count++;
+		}
 
-			UINT SomeFixedParameterDelegateParameter::GetCount()
-			{
-				return _count;
-			}
+		UINT SomeFixedParameterDelegateParameter::GetCount()
+		{
+			return _count;
+		}
 
-			SomeFixedParameterDelegate::SomeFixedParameterDelegate(SomeFixedParameterDelegateParameter* param) : IFixedParameterActionDelegate(param)
-			{
-				// Left empty.
-			}
+		SomeFixedParameterDelegate::SomeFixedParameterDelegate(SomeFixedParameterDelegateParameter* param) : IFixedParameterActionDelegate(param)
+		{
+			// Left empty.
+		}
 
-			void SomeFixedParameterDelegate::Action()
-			{
-				GetParameter()->IncrementCount();
-			}
+		void SomeFixedParameterDelegate::Action()
+		{
+			GetParameter()->IncrementCount();
+		}
+
+		SomeFixedParameterDelegate::~SomeFixedParameterDelegate()
+		{
+			// Left empty.
+		}
+
+		SomeFuncFixedParameterDelegate::SomeFuncFixedParameterDelegate(SomeFixedParameterDelegateParameter* param) : IFixedParameterFuncDelegate(param)
+		{
+			// Left empty.
+		}
+
+		bool SomeFuncFixedParameterDelegate::Func()
+		{
+			GetParameter()->IncrementCount();
+
+			return true;
+		}
+
+		SomeFuncFixedParameterDelegate::~SomeFuncFixedParameterDelegate()
+		{
+			// Left empty.
 		}
 	}
 }

@@ -2,12 +2,10 @@
 #ifndef SOMEDELEGATE_H
 #define SOMEDELEGATE_H
 
-#include "../WinCopies.Util.Base.Shared/IActionDelegate.h"
+#include "../WinCopies.Util.Base.Shared/Delegates.h"
 
 namespace WinCopies
 {
-	namespace Util
-	{
 		namespace Tests
 		{
 			class SomeDelegate :
@@ -16,9 +14,17 @@ namespace WinCopies
 			public:
 				static bool result;
 				virtual void Action() final;
+				virtual ~SomeDelegate();
+			};
+
+			class SomeFuncDelegate :
+				public virtual IFuncDelegate<bool>
+			{
+			public:
+				virtual bool Func() final;
+				virtual ~SomeFuncDelegate();
 			};
 		}
-	}
 }
 
 #endif

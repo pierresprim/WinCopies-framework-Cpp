@@ -6,8 +6,6 @@
 
 namespace WinCopies
 {
-	namespace Util
-	{
 		namespace Tests
 		{
 			class SomeFixedParameterDelegateParameter
@@ -19,7 +17,6 @@ namespace WinCopies
 				UINT GetCount();
 			};
 		}
-	}
 }
 
 #endif

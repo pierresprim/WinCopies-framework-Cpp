@@ -7,8 +7,6 @@
 
 namespace WinCopies
 {
-	namespace Util
-	{
 		namespace Tests
 		{
 			class SomeFixedParameterDelegate :
@@ -18,9 +16,19 @@ namespace WinCopies
 				explicit SomeFixedParameterDelegate(SomeFixedParameterDelegateParameter* param);
 
 				virtual void Action() final;
+				virtual ~SomeFixedParameterDelegate();
+			};
+
+			class SomeFuncFixedParameterDelegate :
+				public virtual IFixedParameterFuncDelegate<SomeFixedParameterDelegateParameter*, bool>
+			{
+			public:
+				explicit SomeFuncFixedParameterDelegate(SomeFixedParameterDelegateParameter* param);
+
+				virtual bool Func() final;
+				virtual ~SomeFuncFixedParameterDelegate();
 			};
 		}
-	}
 }
 
 #endif

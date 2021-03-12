@@ -17,13 +17,13 @@
 //		public:
 //			virtual ~IReadOnlyLinkedList() override = default;
 //
-//			virtual ILinkedListNode<T>* GetLast() const = 0;
+//			virtual ILinkedListNode* GetLast() const = 0;
 //
-//			virtual ILinkedListNode<T>* GetFirst() const = 0;
+//			virtual ILinkedListNode* GetFirst() const = 0;
 //
-//			virtual ILinkedListNode<T>* Find(const T value) const = 0;
+//			virtual ILinkedListNode* Find(const T value) const = 0;
 //
-//			virtual ILinkedListNode<T>* FindLast(const T value) const = 0;
+//			virtual ILinkedListNode* FindLast(const T value) const = 0;
 //		};
 //	}
 //}

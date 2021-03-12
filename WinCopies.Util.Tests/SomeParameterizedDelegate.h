@@ -7,20 +7,29 @@
 
 namespace WinCopies
 {
-	namespace Util
+	namespace Tests
 	{
-		namespace Tests
+		class SomeParameterizedDelegate :
+			public virtual IParameterizedActionDelegate<int>
 		{
-			class SomeParameterizedDelegate :
-				public virtual IParameterizedActionDelegate<int>
-			{
-			public:
-				static bool emptyArrayFound;
-				static Queue<int>* queue;
+		public:
+			static bool emptyArrayFound;
+			static Queue<int>* queue;
 
-				virtual void Action(SafeArray<int>* params) final;
-			};
-		}
+			virtual void Action(SafeArray<int>* params) final;
+			virtual ~SomeParameterizedDelegate();
+		};
+
+		class SomeFuncParameterizedDelegate :
+			public virtual IParameterizedFuncDelegate<int, bool>
+		{
+		public:
+			static bool emptyArrayFound;
+			static Queue<int>* queue;
+
+			virtual bool Func(SafeArray<int>* params) final;
+			virtual ~SomeFuncParameterizedDelegate();
+		};
 	}
 }
 

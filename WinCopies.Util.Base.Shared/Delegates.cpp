@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "IActionDelegate.h"
+#include "Delegates.h"
 
 namespace WinCopies
 {

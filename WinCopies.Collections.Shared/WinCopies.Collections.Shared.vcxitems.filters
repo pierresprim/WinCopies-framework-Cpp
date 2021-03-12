@@ -84,9 +84,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)IReadOnlyLinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ILinkedListNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enumerable.h">
       <Filter>Header Files</Filter>
     </ClInclude>

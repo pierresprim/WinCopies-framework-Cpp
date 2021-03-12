@@ -3,8 +3,6 @@
 
 namespace WinCopies
 {
-	namespace Util
-	{
 		namespace Tests
 		{
 			bool SomeFixedParameterizedDelegate::emptyArrayFound = false;
@@ -35,6 +33,31 @@ namespace WinCopies
 			{
 				// Left empty.
 			}
+
+			SomeFuncFixedParameterizedDelegate::SomeFuncFixedParameterizedDelegate(SomeFixedParameterDelegateParameter* param) :IFixedParameterFuncDelegate(param)
+			{
+				// Left empty.
+			}
+
+			bool SomeFuncFixedParameterizedDelegate::Func(SafeArray<int>* params)
+			{
+				if (params->GetCount() == 0)
+				{
+					emptyArrayFound = true;
+
+					GetParameter()->IncrementCount();
+
+					return;
+				}
+
+				for (UINT i = 0u; i < params->GetCount(); i++)
+
+					queue->Enqueue(11 - params->GetAt(i));
+			}
+
+			SomeFuncFixedParameterizedDelegate::~SomeFuncFixedParameterizedDelegate()
+			{
+				// Left empty.
+			}
 		}
-	}
 }

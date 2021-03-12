@@ -19,8 +19,14 @@
 // Templates
 
 #define TEMPLATE template<class T>
-#define TEMPLATE2 template<class T, class U>
+#define TEMPLATE2 template<class T1, class T2>
+#define TEMPLATE3 template<class T1, class T2, class T3>
 #define METHOD_TEMPLATE template <class F>
+
+// Named templates
+
+#define NAMED_TEMPLATE2(t1, t2) template<class t1, class t2>
+#define NAMED_TEMPLATE3(t1, t2, t3) template<class t1, class t2, class t3>
 
 // Misc
 

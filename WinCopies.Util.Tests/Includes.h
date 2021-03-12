@@ -9,7 +9,7 @@
 #include "../WinCopies.Collections.Shared/SafeArray.h"
 
 #include "../WinCopies.Util.Base.Shared/wincopies_defines.h"
-#include "../WinCopies.Util.Base.Shared/IActionDelegate.h"
+#include "../WinCopies.Util.Base.Shared/Delegates.h"
 
 #include "../WinCopies.Util.Shared/Delegates.h"
 

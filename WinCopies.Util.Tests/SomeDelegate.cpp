@@ -3,8 +3,6 @@
 
 namespace WinCopies
 {
-	namespace Util
-	{
 		namespace Tests
 		{
 			bool SomeDelegate::result = false;
@@ -13,6 +11,22 @@ namespace WinCopies
 			{
 				result = true;
 			}
+
+			SomeDelegate::~SomeDelegate()
+			{
+				// Left empty.
+			}
+
+			bool SomeFuncDelegate::Func()
+			{
+				SomeDelegate::result = true;
+
+				return true;
+			}
+
+			SomeFuncDelegate::~SomeFuncDelegate()
+			{
+				// Left empty.
+			}
 		}
-	}
 }

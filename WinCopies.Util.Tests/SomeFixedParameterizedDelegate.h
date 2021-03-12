@@ -8,24 +8,35 @@
 
 namespace WinCopies
 {
-	namespace Util
+	namespace Tests
 	{
-		namespace Tests
+		class SomeFixedParameterizedDelegate :
+			public virtual IFixedParameterizedActionDelegate<SomeFixedParameterDelegateParameter*, int>
 		{
-			class SomeFixedParameterizedDelegate :
-				public virtual IFixedParameterizedActionDelegate<SomeFixedParameterDelegateParameter*, int>
-			{
-			public:
-				static bool emptyArrayFound;
-				static Queue<int>* queue;
+		public:
+			static bool emptyArrayFound;
+			static Queue<int>* queue;
 
-				explicit SomeFixedParameterizedDelegate(SomeFixedParameterDelegateParameter* param);
+			explicit SomeFixedParameterizedDelegate(SomeFixedParameterDelegateParameter* param);
 
-				virtual void Action(SafeArray<int>* params) final;
+			virtual void Action(SafeArray<int>* params) final;
 
-				virtual ~SomeFixedParameterizedDelegate();
-			};
-		}
+			virtual ~SomeFixedParameterizedDelegate();
+		};
+
+		class SomeFuncFixedParameterizedDelegate :
+			public virtual IFixedParameterizedFuncDelegate<SomeFixedParameterDelegateParameter*, int, bool>
+		{
+		public:
+			static bool emptyArrayFound;
+			static Queue<int>* queue;
+
+			explicit SomeFuncFixedParameterizedDelegate(SomeFixedParameterDelegateParameter* param);
+
+			virtual bool Func(SafeArray<int>* params) final;
+
+			virtual ~SomeFuncFixedParameterizedDelegate();
+		};
 	}
 }
 

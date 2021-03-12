@@ -3,26 +3,49 @@
 
 namespace WinCopies
 {
-	namespace Util
+	namespace Tests
 	{
-		namespace Tests
+		bool SomeParameterizedDelegate::emptyArrayFound = false;
+		Queue<int>* SomeParameterizedDelegate::queue = nullptr;
+
+		void SomeParameterizedDelegate::Action(SafeArray<int>* params)
 		{
-			bool SomeParameterizedDelegate::emptyArrayFound = false;
-			Queue<int>* SomeParameterizedDelegate::queue = nullptr;
-
-			void SomeParameterizedDelegate::Action(SafeArray<int>* params)
+			if (params->GetCount() == 0)
 			{
-				if (params->GetCount() == 0)
-				{
-					emptyArrayFound = true;
+				emptyArrayFound = true;
 
-					return;
-				}
-
-				for (UINT i = 0u; i < params->GetCount(); i++)
-
-					queue->Enqueue(11 - params->GetAt(i));
+				return;
 			}
+
+			for (UINT i = 0u; i < params->GetCount(); i++)
+
+				queue->Enqueue(11 - params->GetAt(i));
+
+		}
+
+		SomeParameterizedDelegate::~SomeParameterizedDelegate()
+		{
+			// Left empty.
+		}
+
+		bool SomeFuncParameterizedDelegate::Func(SafeArray<int>* params)
+		{
+			if (params->GetCount() == 0)
+			{
+				emptyArrayFound = true;
+
+				return;
+			}
+
+			for (UINT i = 0u; i < params->GetCount(); i++)
+
+				queue->Enqueue(11 - params->GetAt(i));
+
+		}
+
+		SomeFuncParameterizedDelegate::~SomeFuncParameterizedDelegate()
+		{
+			// Left empty.
 		}
 	}
 }
