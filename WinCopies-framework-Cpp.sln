@@ -13,6 +13,36 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util", "WinCopies
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util.Shared", "WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems", "{591DA994-C2A7-4217-BC92-3E8C32167115}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}"
+	ProjectSection(SolutionItems) = preProject
+		Includes\WinCopies.Util.Shared\Exception.h = Includes\WinCopies.Util.Shared\Exception.h
+		Include\Util\wincopies_defines.h = Include\Util\wincopies_defines.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections", "{CAE43DBB-BBD8-48A3-810D-870B988FCCA6}"
+	ProjectSection(SolutionItems) = preProject
+		Include\Collections\Countable.h = Include\Collections\Countable.h
+		Include\Collections\defines.h = Include\Collections\defines.h
+		Include\Collections\Enumerable.h = Include\Collections\Enumerable.h
+		Include\Collections\EnumeratorBase.h = Include\Collections\EnumeratorBase.h
+		Include\Collections\IEnumerable.h = Include\Collections\IEnumerable.h
+		Include\Collections\IEnumerator.h = Include\Collections\IEnumerator.h
+		Include\Collections\IQueue.h = Include\Collections\IQueue.h
+		Include\Collections\ISimpleLinkedList.h = Include\Collections\ISimpleLinkedList.h
+		Include\Collections\ISimpleLinkedListNode.h = Include\Collections\ISimpleLinkedListNode.h
+		Include\Collections\IStack.h = Include\Collections\IStack.h
+		Include\Collections\Queue.h = Include\Collections\Queue.h
+		Include\Collections\SafeArray.h = Include\Collections\SafeArray.h
+		Include\Collections\SelectEnumerable.h = Include\Collections\SelectEnumerable.h
+		Include\Collections\SelectEnumerator.h = Include\Collections\SelectEnumerator.h
+		Include\Collections\SimpleLinkedList.h = Include\Collections\SimpleLinkedList.h
+		Include\Collections\SimpleLinkedListNode.h = Include\Collections\SimpleLinkedListNode.h
+		Include\Collections\Stack.h = Include\Collections\Stack.h
+		Include\Collections\WhereEnumerable.h = Include\Collections\WhereEnumerable.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{10acd228-5e39-46a2-8f61-894381a0e427}*SharedItemsImports = 4
@@ -54,6 +84,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
+		{CAE43DBB-BBD8-48A3-810D-870B988FCCA6} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}

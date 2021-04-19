@@ -16,12 +16,11 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHelper.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)wincopies_defines.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Exception.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Util\wincopies_defines.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Includes\WinCopies.Util.Shared\Exception.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHelper.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)wincopies_defines.h" />
   </ItemGroup>
 </Project>

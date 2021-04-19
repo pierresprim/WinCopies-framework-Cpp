@@ -15,32 +15,33 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Countable.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)defines.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Enumerable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Countable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\defines.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Enumerable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\EnumeratorBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IEnumerable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IEnumerator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IQueue.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ISimpleLinkedList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ISimpleLinkedListNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IStack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Queue.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SafeArray.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SelectEnumerable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SelectEnumerator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SimpleLinkedList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SimpleLinkedListNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Stack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\WhereEnumerable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnumerableQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnumerableStack.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnumeratorBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)framework.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerable.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IEnumerator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ILinkedList.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IReadOnlyLinkedList.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IStack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Queue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReadOnlyQueue.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReadOnlyStack.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SafeArray.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SelectEnumerable.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)WhereEnumerable.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedList.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)cpp.hint" />
