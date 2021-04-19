@@ -1,56 +1,68 @@
 #pragma once
-#ifndef ISIMPLELINKEDLIST_H
-#define ISIMPLELINKEDLIST_H
+#ifndef ISIMPLELINKEDLISTBASE_H
+#define ISIMPLELINKEDLISTBASE_H
 
 #include "defines.h"
-#include "IEnumerable.h"
-#include "ISimpleLinkedListNode.h"
-#include "../WinCopies.Util.Base.Shared/Exception.h"
+#include "Countable.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		enum class DLLEXPORT LinkedListDirection
-		{
-			FIFO = 1,
-
-			LIFO = 2
-		};
-
-		TEMPLATE
-			class DLLEXPORT ISimpleLinkedList ABSTRACT : public virtual IUIntCountable
+		INTERFACE(ISimpleLinkedListBase)
 		{
 		public:
-			virtual ~ISimpleLinkedList() override = default;
+			ABSTRACT_METHOD_CONST(bool GetIsReadOnly);
 
-			// Gets the enumeration direction of the current linked list.
-			virtual LinkedListDirection GetDirection() const = 0;
-			virtual bool GetIsReadOnly() const = 0;
-			virtual void Clear() = 0;
-			virtual T Peek() const = 0;
-			virtual bool TryPeek(T* result) const = 0;
+			ABSTRACT_METHOD_CONST(bool GetHasItems);
 		};
 
-		TEMPLATE
-			class DLLEXPORT ISimpleEnumerableLinkedList ABSTRACT : public virtual IUIntCountableEnumerable<T>
+		INTERFACE(ISimpleLinkedListBase2) :
+			BASE_INTERFACE ISimpleLinkedListBase,
+			BASE_INTERFACE IUIntCountable
 		{
 		public:
-			virtual bool GetSupportsReversedEnumeration() const final
-			{
-				return false;
-			}
-
-			virtual IEnumerator<T>* GetReversedEnumerator() final
-			{
-				throw new InvalidOperationException(L"This collection does not support reversed enumeration.");
-			}
-
-			virtual ~ISimpleEnumerableLinkedList()
-			{
-				// Left empty.
-			}
+			ABSTRACT_METHOD(int Clear);
 		};
+
+		INTERFACE(ISimpleLinkedList) :
+			BASE_INTERFACE ISimpleLinkedListBase2
+		{
+		public:
+			ABSTRACT_ARG_METHOD_CONST(bool TryPeek, void** const result);
+
+			ABSTRACT_ARG_METHOD_CONST(int Peek, void** const result);
+		};
+
+		namespace Generic
+		{
+			TEMPLATE
+				INTERFACE(ISimpleLinkedListBase)
+			{
+			public:
+				ABSTRACT_ARG_METHOD_CONST(bool GenericTryPeek, T* const result);
+
+				ABSTRACT_ARG_METHOD_CONST(int GenericPeek, T* const result);
+			};
+
+			TEMPLATE
+				INTERFACE(ISimpleLinkedList) :
+				BASE_INTERFACE ISimpleLinkedListBase2,
+				BASE_INTERFACE ISimpleLinkedListBase<T>,
+				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedList
+			{
+			public:
+				FINAL_ARG_METHOD_CONST(bool TryPeek, void** const result)
+				{
+					return GenericTryPeek((T*)*result);
+				}
+
+				FINAL_ARG_METHOD_CONST(int Peek, void** const result)
+				{
+					return GenericPeek((T*)*result);
+				}
+			};
+		}
 	}
 }
 

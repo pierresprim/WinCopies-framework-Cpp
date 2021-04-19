@@ -11,55 +11,58 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		TEMPLATE2
-			class SelectEnumerator :
-			public virtual EnumeratorBase<U>
+		namespace Generic
 		{
-		private:
-			IEnumerator<T>* _enumerator;
-			SELECTOR_FIELD
-
-		protected:
-			virtual U GetCurrentOverride()  const override
+			NAMED_TEMPLATE2(TSource, TDestination)
+				class SelectEnumerator :
+				BASE_INTERFACE EnumeratorBase<TDestination>
 			{
-				return _selector(_enumerator->GetCurrent());
-			}
+			private:
+				IEnumerator<TSource>* _enumerator;
+				SELECTOR_FIELD(TSource, TDestination)
 
-			virtual int MoveNextOverride(const bool* result) override
-			{
-				return _enumerator->MoveNext(result);
-			}
-
-			virtual int ResetOverride() override
-			{
-				if (_enumerator->GetIsResetSupported())
+			protected:
+				virtual TDestination GetCurrentOverride() const override
 				{
-					_enumerator->Reset();
-
-					return EXIT_SUCCESS;
+					return _selector(_enumerator->GetCurrent());
 				}
 
-				return -1;
-			}
+				virtual int MoveNextOverride(const bool* result) override
+				{
+					return _enumerator->MoveNext(result);
+				}
 
-		public:
-			explicit SelectEnumerator(IEnumerable<T>* enumerable)
-			{
-				_enumerator = enumerable->_enumerable->GetEnumerator();
-			}
+				virtual int ResetOverride() override
+				{
+					if (_enumerator->GetIsResetSupported())
+					{
+						_enumerator->Reset();
 
-			virtual bool GetIsResetSupported() const override
-			{
-				return _enumerator->GetIsResetSupported();
-			}
+						return EXIT_SUCCESS;
+					}
 
-			~SelectEnumerator()
-			{
-				delete _enumerator;
+					return -1;
+				}
 
-				_enumerator = nullptr;
-			}
-		};
+			public:
+				explicit SelectEnumerator(IEnumerable<TSource>* enumerable)
+				{
+					_enumerator = enumerable->_enumerable->GetEnumerator();
+				}
+
+				virtual bool GetIsResetSupported() const override
+				{
+					return _enumerator->GetIsResetSupported();
+				}
+
+				~SelectEnumerator()
+				{
+					delete _enumerator;
+
+					_enumerator = nullptr;
+				}
+			};
+		}
 	}
 }
 

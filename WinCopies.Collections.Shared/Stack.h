@@ -5,101 +5,61 @@
 #include "IStack.h"
 #include "SimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
-#include "../WinCopies.Util.Base.Shared/Exception.h"
 
 namespace WinCopies
 {
 	namespace Collections
-    {
-    TEMPLATE
-    class SimpleLinkedList;
-
-    TEMPLATE
-    class SimpleLinkedListNode;
-
-    TEMPLATE
-    class IStack;
-
-        TEMPLATE
-			class DLLEXPORT Stack :
-			virtual public SimpleLinkedList<T>,
-			virtual public IStack<T>
+	{
+		namespace Generic
 		{
-		protected:
-			void OnPush(SimpleLinkedListNode<T>* const node)
+			TEMPLATE
+				CLASS Stack :
+			BASE_INTERFACE SimpleLinkedList<T>,
+				BASE_INTERFACE IStack<T>
 			{
-				if (this->GetCount() != 0)
+			protected:
+				virtual SimpleLinkedListNode<T>*AddItem(const T item, bool* const actionAfter) final
+					{
+						*actionAfter = false;
 
-					node->SetNext(this->GetFirst());
+						SimpleLinkedListNode<T>* newNode = new SimpleLinkedListNode<T>(item);
 
-				this->AddFirstItem(node);
+						this->ItemSetNext(newNode, this->GetFirstItem());
 
-				this->IncrementCount();
-			}
+						return newNode;
+					}
 
-			T OnPop()
-			{
-				T result;
+					FINAL_METHOD(void OnItemAdded)
+					{
+						// Left empty.
+					}
 
-				if (this->GetCount() == 1)
+					FINAL_METHOD(SimpleLinkedListNode<T>* RemoveItem)
+					{
+						SimpleLinkedListNode<T>* node;
+
+						int result = this->GetFirstItem()->GenericGetNext2(&node);
+
+						return node;
+					}
+
+			public:
+				FINAL_ARG_METHOD(void Push, const T item)
 				{
-					result = this->GetFirst()->GetValue();
+					this->Add(item);
+					}
 
-					this->RemoveFirstItem();
-				}
+					FINAL_ARG_METHOD(bool TryPop, T* const result)
+					{
+						return this->TryRemove(result);
+						}
 
-				else
-				{
-					const	SimpleLinkedListNode<T>* node = this->GetFirst();
-
-					result = node->GetValue();
-
-					this->AddFirstItem(node->GetNextNode());
-
-					delete node;
-
-                    node = nullptr;
-
-                    this->DecrementCount();
-				}
-
-				return result;
-			}
-		public:
-            virtual ~Stack() override = default;
-
-            virtual void Push(const T value) final
-			{
-				OnPush(new SimpleLinkedListNode<T>(value));
-			}
-
-            virtual bool TryPush(const T value) final
-			{
-				Push(value);
-
-				return true;
-			}
-
-            virtual T Pop() final
-			{
-				if (this->GetCount() == 0)
-
-                    throw new EmptyObjectException();
-
-				return OnPop();
-			}
-
-            virtual bool TryPop( T*  result) final
-			{
-                if (this->GetCount() == 0)
-
-                    return false;
-
-                *result = OnPop();
-
-				return true;
-            }
-		};
+					FINAL_ARG_METHOD(int Pop, T* const result)
+					{
+						return this->Remove(result);
+}
+			};
+		}
 	}
 }
 

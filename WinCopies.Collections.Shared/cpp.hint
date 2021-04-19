@@ -5,3 +5,13 @@
 #define ABSTRACT abstract
 #define TEMPLATE template<class T>
 #define METHOD_TEMPLATE
+#define INTERFACE
+#define INTERFACE(interfaceName)
+#define BASE_INTERFACE(interfaceName)
+#define ABSTRACT_METHOD(type, name, constKeyword) ABSTRACT_ARG_METHOD(type, name, , constKeyword)
+#define FINAL_METHOD_CONST(typeAndName) FINAL_ARG_METHOD_CONST(typeAndName, )
+#define ABSTRACT_METHOD_CONST(typeAndName) ABSTRACT_ARG_METHOD_CONST(typeAndName, )
+#define FINAL_ARG_METHOD_CONST(typeAndName, arguments) _ABSTRACT_ARG_METHOD(typeAndName, arguments, const, final)
+#define ABSTRACT_ARG_METHOD_CONST(typeAndName, arguments) _ABSTRACT_ARG_METHOD(typeAndName, arguments, const, = 0)
+#define SELECTOR_FIELD(t1, t2) t2(*_selector)(t1);
+#define NAMED_TEMPLATE2(t1, t2)

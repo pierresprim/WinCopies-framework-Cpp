@@ -2,7 +2,7 @@
 //#ifndef IREADONLYLINKEDLIST_H
 //#define IREADONLYLINKEDLIST_H
 //
-//#include "../WinCopies.Util.Base.Shared/wincopies_defines.h"
+//#include "../WinCopies.Util.Shared/wincopies_defines.h"
 //#include "IEnumerable.h"
 //#include "ILinkedListNode.h"
 //

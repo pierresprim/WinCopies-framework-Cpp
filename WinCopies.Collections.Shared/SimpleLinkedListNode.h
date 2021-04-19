@@ -1,40 +1,98 @@
 #pragma once
 #ifndef SIMPLELINKEDLISTNODE_H
 #define SIMPLELINKEDLISTNODE_H
+
+#include "defines.h"
 #include "ISimpleLinkedListNode.h"
-#include "EnumerableStack.h"
-#include "../WinCopies.Util.Base.Shared/IDisposable.h"
+#include "SimpleLinkedList.h"
+#include <stdlib.h>
 
 namespace WinCopies
 {
-	namespace Collections
-	{
-        TEMPLATE
-			class DLLEXPORT SimpleLinkedListNode :
-                public virtual ISimpleLinkedListNode<T>
-		{
-		private:
-			T _value;
-			const	SimpleLinkedListNode<T>* _next = nullptr;
-		public:
-            virtual ~SimpleLinkedListNode() override
+    namespace Collections
+    {
+        namespace Generic
+        {
+            TEMPLATE
+            class SimpleLinkedList;
+
+            TEMPLATE
+                CLASS SimpleLinkedListNode :
+            BASE_INTERFACE ISimpleLinkedListNode<T>
             {
-                _next = nullptr;
-            }
+                friend class SimpleLinkedList<T>;
+            private:
+                T _value;
+                SimpleLinkedListNode<T>* _next;
+                bool _isCleared;
 
-            SimpleLinkedListNode(T value) { _value = value; }
+                int SetNext(SimpleLinkedListNode<T>* const node)
+                {
+                    if (_isCleared)
 
-			// Gets the value of the current node.
-            T GetValue() const { return _value; }
+                        return OBJECT_IS_DISPOSED_EXCEPTION;
 
-			// Gets the next node in the parent linked list.
-            const	SimpleLinkedListNode<T>* GetNextNode() const { return _next; }
+                    _next = node;
 
-            const ISimpleLinkedListNode<T>* GetNext() const { return GetNextNode(); }
+                    return EXIT_SUCCESS;
+                }
 
-            void SetNext(const SimpleLinkedListNode<T>* node) { _next = node; }
-		};
-	}
+            public:
+                bool GetIsCleared() const
+                {
+                    return _isCleared;
+                }
+
+                FINAL_ARG_METHOD_CONST(int GenericGetValue, T* const result)
+                {
+                    if (_isCleared)
+
+                        return OBJECT_IS_DISPOSED_EXCEPTION;
+
+                    *result = _value;
+
+                    return EXIT_SUCCESS;
+                }
+
+                int GenericGetNext2(SimpleLinkedListNode<T>** const result) const
+                {
+                    if (_isCleared)
+
+                        return OBJECT_IS_DISPOSED_EXCEPTION;
+
+                    *result = _next;
+                }
+
+                FINAL_ARG_METHOD_CONST(int GenericGetNext, ISimpleLinkedListNode<T>** const result)
+                {
+                    SimpleLinkedListNode<T>* node;
+
+                    int _result = GenericGetNext2(&node);
+
+                    *result = node;
+
+                    return _result;
+                }
+
+                void Clear()
+                {
+                    _next = nullptr;
+
+                    _isCleared = true;
+                }
+
+                SimpleLinkedListNode(T value)
+                {
+                    _value = value;
+                }
+
+                ~SimpleLinkedListNode()
+                {
+                    Clear();
+                }
+            };
+        }
+    }
 }
 
 #endif

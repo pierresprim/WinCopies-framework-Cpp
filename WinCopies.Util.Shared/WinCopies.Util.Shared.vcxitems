@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <ItemsProjectGuid>{eda027b1-303d-4a3a-8318-1e8e79ecd397}</ItemsProjectGuid>
+    <ItemsProjectGuid>{591da994-c2a7-4217-bc92-3e8c32167115}</ItemsProjectGuid>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -14,13 +14,14 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Delegates.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)framework.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UtilHelpers.h" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)wincopies_defines.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Delegates.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UtilHelpers.cpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Exception.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)wincopies_defines.h" />
   </ItemGroup>
 </Project>

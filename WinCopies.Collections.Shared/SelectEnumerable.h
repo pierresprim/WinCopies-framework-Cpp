@@ -5,7 +5,6 @@
 #include "defines.h"
 #include "IEnumerable.h"
 #include "IEnumerator.h"
-#include "IUIntCountable.h"
 #include "Enumerable.h"
 #include "SelectEnumerator.h"
 
@@ -13,28 +12,31 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		TEMPLATE2
-			class SelectEnumerable :
-			public virtual EnumeratorEnumerable<T>
+		namespace Generic
 		{
-		private:
-			SELECTOR_FIELD;
-		public:
-			explicit SelectEnumerable(const IEnumerable<T>* enumerable, const bool autoDispose, const SELECTOR_PARAMETER) : EnumeratorEnumerable<T>(enumerable, autoDispose)
+			NAMED_TEMPLATE2(TSource, TDestination)
+				class SelectEnumerable :
+				public virtual EnumeratorEnumerable<TDestination>
 			{
-				_selector = selector;
-			}
+			private:
+				SELECTOR_FIELD(TSource, TDestination)
+			public:
+				explicit SelectEnumerable(const IEnumerable<TSource>* enumerable, const bool autoDispose, const SELECTOR_PARAMETER(TSource, TDestination)) : EnumeratorEnumerable<TDestination>(enumerable, autoDispose)
+				{
+					_selector = selector;
+				}
 
-			virtual IEnumerator<T>* GetEnumerator() override
-			{
-				return new SelectEnumerator<T, U>(this);
-			}
+				virtual IEnumerator<TDestination>* GetEnumerator() override
+				{
+					return new SelectEnumerator<TSource, TDestination>(this);
+				}
 
-			virtual ~SelectEnumerable()
-			{
-				// Left empty.
-			}
-		};
+				virtual ~SelectEnumerable()
+				{
+					// Left empty.
+				}
+			};
+		}
 	}
 }
 

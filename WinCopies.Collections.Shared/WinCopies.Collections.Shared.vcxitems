@@ -15,6 +15,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Countable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)defines.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enumerable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnumerableQueue.h" />
@@ -29,7 +30,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IStack.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IUIntCountable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LinkedList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Queue.h" />
@@ -46,6 +46,7 @@
     <None Include="$(MSBuildThisFileDirectory)cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Countable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enumerable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnumerableQueue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnumerableStack.cpp" />
@@ -59,7 +60,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)IStack.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)IUIntCountable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LinkedList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Queue.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyQueue.cpp" />

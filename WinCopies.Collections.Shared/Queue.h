@@ -5,113 +5,74 @@
 #include "IQueue.h"
 #include "SimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
-#include "../WinCopies.Util.Base.Shared/Exception.h"
 
 namespace WinCopies
 {
-    namespace Collections
-    {
-    TEMPLATE
-    class SimpleLinkedList;
+	namespace Collections
+	{
+		namespace Generic
+		{
+			TEMPLATE
+				CLASS Queue :
+			BASE_INTERFACE SimpleLinkedList<T>,
+				BASE_INTERFACE IQueue<T>
+			{
+			private:
+				SimpleLinkedListNode<T>*_lastItem;
 
-    TEMPLATE
-    class SimpleLinkedListNode;
+			protected:
+				virtual SimpleLinkedListNode<T>* AddItem(const T item, bool* const actionAfter) final
+				{
+					if (GetFirstItem() == nullptr)
+					{
+						*actionAfter = true;
 
-    TEMPLATE
-    class IQueue;
+						return new SimpleLinkedListNode<T>(item);
+					}
 
-        TEMPLATE
-            class DLLEXPORT Queue :
-            virtual public SimpleLinkedList<T>,
-            virtual public IQueue<T>
-        {
-            private:
-                SimpleLinkedListNode<T>* _lastNode = nullptr;
-        protected:
-            void OnEnqueue(SimpleLinkedListNode<T>* const node)
-            {
-                if (this->GetCount() == 0)
+					*actionAfter = false;
 
-                    this->AddFirstItem(node);
+					SimpleLinkedListNode<T>* newNode = new SimpleLinkedListNode<T>(item);
 
-                else {
-                    _lastNode->SetNext(node);
-                }
+					this->ItemSetNext(_lastItem, newNode);
 
-                _lastNode = node;
+					_lastItem = newNode;
 
-                this->IncrementCount();
-            }
+					return GetFirstItem();
+				}
 
-            T OnDequeue()
-            {
-                T result;
+				FINAL_METHOD(void OnItemAdded)
+				{
+					_lastItem = GetFirstItem();
+				}
 
-                if (this->GetCount() == 1)
-                {
-                    result = this->GetFirst()->GetValue();
+				FINAL_METHOD(SimpleLinkedListNode<T>* RemoveItem)
+				{
+					SimpleLinkedListNode<T>* node;
 
-                    this->RemoveFirstItem();
-                }
+					int result = GetFirstItem()->GenericGetNext2(&node);
 
-                else
-                {
-                    const	SimpleLinkedListNode<T>* node = this->GetFirst();
+					return node;
+				}
 
-                    result = node->GetValue();
+			public:
+				FINAL_ARG_METHOD(void Enqueue, const T item)
+				{
+					this->Add(item);
+				}
 
-                    this->AddFirstItem(node->GetNextNode());
+				FINAL_ARG_METHOD(bool TryDequeue, T* const result)
+				{
+					return this->TryRemove(result);
+				}
 
-                    delete node;
-
-                    node = nullptr;
-
-                    this->DecrementCount();
-                }
-
-                return result;
-            }
-        public:
-            virtual ~Queue() override
-            {
-                if (_lastNode != nullptr)
-
-                    _lastNode = nullptr; // This is a pointer to the last item of the Queue. Because all of the items are deleted in the SimpleLinkedList deconstructor, we do not have to delete _lastNode here.
-            }
-
-            virtual void Enqueue(const T value) final
-            {
-                OnEnqueue(new SimpleLinkedListNode<T>(value));
-            }
-
-            virtual bool TryEnqueue(const T value) final
-            {
-                Enqueue(value);
-
-                return true;
-            }
-
-            virtual T Dequeue() final
-            {
-                if (this->GetCount() == 0)
-
-                    throw new EmptyObjectException();
-
-                return OnDequeue();
-            }
-
-            virtual bool TryDequeue( T*  result) final
-            {
-                if (this->GetCount() == 0)
-
-                    return false;
-
-                *result = OnDequeue();
-
-                return true;
-            }
-        };
-    }
+				FINAL_ARG_METHOD(int Dequeue, T* const result)
+				{
+					return this->Remove(result);
+				}
+			};
+		}
+	}
 }
 
 #endif

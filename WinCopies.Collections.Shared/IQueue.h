@@ -2,30 +2,34 @@
 #ifndef IQUEUE_H
 #define IQUEUE_H
 #include "defines.h"
-#include "ISimpleLinkedListNode.h"
 #include "ISimpleLinkedList.h"
 
 namespace WinCopies
 {
-    namespace Collections
-    {
-        TEMPLATE
-            class DLLEXPORT IQueue ABSTRACT : public virtual ISimpleLinkedList<T>
-        {
-        public:
-            virtual ~IQueue() override = default;
+	namespace Collections
+	{
+		namespace Generic
+		{
+			TEMPLATE
+				INTERFACE(IQueueBase) :
+				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListBase
+			{
+			public:
+				ABSTRACT_ARG_METHOD(void Enqueue, const T item);
 
-            virtual LinkedListDirection GetDirection() const final
-            {
-                return LinkedListDirection::FIFO;
-            }
+				ABSTRACT_ARG_METHOD(bool TryDequeue, T* const result);
 
-            virtual void Enqueue(const T value) = 0;
-            virtual bool TryEnqueue(const T value) = 0;
-            virtual T Dequeue() = 0;
-            virtual bool TryDequeue( T*  result) = 0;
-        };
-    }
+				ABSTRACT_ARG_METHOD(int Dequeue, T* const result);
+			};
+
+			TEMPLATE
+				INTERFACE(IQueue) :
+				BASE_INTERFACE IQueueBase<T>
+			{
+
+			};
+		}
+	}
 }
 
 #endif

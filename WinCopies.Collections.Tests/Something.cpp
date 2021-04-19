@@ -5,16 +5,19 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		namespace Tests
+		namespace Generic
 		{
-			Something::Something(const int id)
+			namespace Tests
 			{
-				_id = id;
-			}
+				Something::Something(const int id)
+				{
+					_id = id;
+				}
 
-			const int	Something::GetId()
-			{
-				return _id;
+				const int	Something::GetId()
+				{
+					return _id;
+				}
 			}
 		}
 	}

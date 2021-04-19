@@ -1,23 +1,50 @@
 #pragma once
 #ifndef ISIMPLELINKEDLISTNODE_H
 #define ISIMPLELINKEDLISTNODE_H
+
 #include "defines.h"
+#include "ISimpleLinkedList.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-        TEMPLATE
-        class DLLEXPORT ISimpleLinkedListNode ABSTRACT
+		INTERFACE(ISimpleLinkedListNode)
 		{
 		public:
-            virtual ~ISimpleLinkedListNode() {}
+			ABSTRACT_ARG_METHOD_CONST(int GetValue, void** const result);
 
-			// Gets the value of the current node.
-			virtual T GetValue() const = 0;
-			// Gets the next node in the parent linked list.
-			virtual const ISimpleLinkedListNode<T>* GetNext() const = 0;
+			ABSTRACT_ARG_METHOD_CONST(int GetNext, ISimpleLinkedListNode** const result);
 		};
+
+		namespace Generic
+		{
+			TEMPLATE
+				INTERFACE(ISimpleLinkedListNode) :
+				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListNode
+			{
+			public:
+				ABSTRACT_ARG_METHOD_CONST(int GenericGetValue, T* const result);
+
+				FINAL_ARG_METHOD_CONST(int GetValue, void** const result)
+				{
+					return GenericGetValue((T*) *result);
+				}
+
+				ABSTRACT_ARG_METHOD_CONST(int GenericGetNext, ISimpleLinkedListNode<T>** const result);
+
+				FINAL_ARG_METHOD_CONST(int GetNext, WinCopies::Collections::ISimpleLinkedListNode** const result)
+				{
+					ISimpleLinkedListNode<T>* node;
+
+					int _result = GenericGetNext(&node);
+
+					*result = node;
+
+					return _result;
+				}
+			};
+		}
 	}
 }
 

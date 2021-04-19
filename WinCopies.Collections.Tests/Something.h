@@ -6,17 +6,20 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		namespace Tests
+		namespace Generic
 		{
-			class Something
+			namespace Tests
 			{
-			private:
-				int _id = 0;
-			public:
-				explicit Something(const int id);
+				class Something
+				{
+				private:
+					int _id = 0;
+				public:
+					explicit Something(const int id);
 
-				const int GetId();
-			};
+					const int GetId();
+				};
+			}
 		}
 	}
 }

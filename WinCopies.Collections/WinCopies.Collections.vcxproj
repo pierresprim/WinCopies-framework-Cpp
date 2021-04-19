@@ -169,11 +169,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WinCopies.Util.Base\WinCopies.Util.Base.vcxproj">
-      <Project>{f01e987e-31c1-4e5e-9d23-166bf14e9581}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Update="D:\repositories\WinCopies-framework-Cpp\WinCopies.Collections.Shared\EnumeratorBase.cpp">
       <FileType>Document</FileType>
     </ClCompile>
@@ -183,6 +178,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinCopies.Util\WinCopies.Util.vcxproj">
+      <Project>{10acd228-5e39-46a2-8f61-894381a0e427}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,139 +2,203 @@
 #ifndef SIMPLELINKEDLIST_H
 #define SIMPLELINKEDLIST_H
 
+#include "defines.h"
 #include "ISimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
-#include "../WinCopies.Util.Base.Shared/Exception.h"
-#include "EnumerableStack.h"
-#include "EnumerableQueue.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-    TEMPLATE
-    class SimpleLinkedListNode;
-
-    TEMPLATE
-    class EnumerableStack;
-
-    TEMPLATE
-    class EnumerableQueue;
-
-        TEMPLATE
-			class DLLEXPORT SimpleLinkedList :
-			public virtual ISimpleLinkedList<T>
+		namespace Generic
 		{
-		private:
-			const SimpleLinkedListNode<T>* _first = nullptr;
-			unsigned int _count = 0;
-            friend class EnumerableStack<T>;
-            friend class EnumerableQueue<T>;
-		protected:
-            const SimpleLinkedListNode<T>* GetFirst() const
+			INTERFACE(SimpleLinkedListBase) :
+				BASE_INTERFACE ISimpleLinkedListBase2
 			{
-				return _first;
-			}
+			protected:
+				ABSTRACT_METHOD(void ClearItems);
 
-			void AddFirstItem(const SimpleLinkedListNode<T>* const node)
+			public:
+				OVERRIDE_METHOD_CONST(bool GetHasItems)
+				{
+					return HAS_ITEMS;
+				}
+
+				int Clear()
+				{
+					if (GetIsReadOnly())
+
+						return READ_ONLY_EXCEPTION;
+
+					ClearItems();
+				}
+			};
+
+			TEMPLATE
+				INTERFACE(SimpleLinkedList) :
+				BASE_INTERFACE SimpleLinkedListBase,
+				BASE_INTERFACE ISimpleLinkedList<T>
 			{
-				_first = node;
-			}
+			private:
+				// Fields
+				UINT _count = 0;
+				SimpleLinkedListNode<T>* _firstItem = nullptr;
 
-			void RemoveFirstItem()
-			{
-				if (_count == 0)
+				// Methods
+				T OnRemove()
+				{
+					SimpleLinkedListNode<T>* firstItem = _firstItem;
 
-					throw new EmptyObjectException();
+					T result;
 
-				delete _first;
+					firstItem->GenericGetValue(&result);
 
-				_first = nullptr;
+					_firstItem = RemoveItem();
 
-				_count--;
-			}
+					firstItem->Clear();
 
-			void IncrementCount()
-			{
-				_count++;
-			}
+					_count--;
 
-			void DecrementCount()
-			{
-				_count--;
-			}
+					return result;
+				}
 
-			void OnCleared()
-			{
-				_count = 0;
-			}
-		public:
-            virtual ~SimpleLinkedList() override
-			{
-				if (_first != nullptr)
-                {
-                    Clear();
+			protected:
+				ABSTRACT_METHOD(SimpleLinkedListNode<T>* RemoveItem);
 
-                    _first = nullptr; // Because all of the items are deleted in the Clear method, we do not need to delete _first here.
-                }
-			}
+				void ItemSetNext(SimpleLinkedListNode<T>* const item, SimpleLinkedListNode<T>* const newNode)
+				{
+					item->SetNext(newNode);
+				}
 
-            virtual unsigned int GetCount() const final
-			{
-				return _count;
-			}
+				virtual SimpleLinkedListNode<T>* AddItem(const T item, bool* const actionAfter) = 0;
 
-			virtual bool GetIsReadOnly() const final
-			{
-				return false;
-			}
+				ABSTRACT_METHOD(void OnItemAdded);
 
-			virtual T Peek() const final
-			{
-				if (GetCount() == 0)
+				T _Peek() const
+				{
+					T result;
 
-					throw new EmptyObjectException();
+					_firstItem->GenericGetValue(&result);
 
-				return GetFirst()->GetValue();
-			}
+					return result;
+				}
 
-			virtual bool TryPeek( T*  result) const final
-			{
-				if (GetCount() == 0)
+				SimpleLinkedListNode<T>* GetFirstItem()
+				{
+					return _firstItem;
+				}
 
-                    return false;
+				int Remove(T* const result)
+				{
+					if (GetIsReadOnly())
 
-                *result = GetFirst()->GetValue();
+						return READ_ONLY_EXCEPTION;
 
-				return true;
-			}
+					if (GetHasItems())
+					{
+						*result = OnRemove();
 
-            virtual void Clear() final
-            {
-                if (this->GetCount() == 0)
+						return EXIT_SUCCESS;
+					}
 
-                    return;
+					return EMPTY_OBJECT_EXCEPTION;
+				}
 
-                const	SimpleLinkedListNode<T>* node = this->GetFirst();
-                const	SimpleLinkedListNode<T>* nextNode;
+				int Add(const T item)
+				{
+					if (GetIsReadOnly())
 
-                do
-                {
-                    nextNode = node->GetNextNode();
+						return READ_ONLY_EXCEPTION;
 
-                    delete node;
+					bool actionAfter;
 
-                    node = nextNode;
+					_firstItem = AddItem(item, &actionAfter);
 
-                } while (node->GetNext() != nullptr);
+					_count++;
 
-                node = nullptr;
+					if (actionAfter)
 
-                nextNode = nullptr;
+						OnItemAdded();
 
-                this->OnCleared();
-            }
-		};
+					return EXIT_SUCCESS;
+				}
+
+				FINAL_METHOD(void ClearItems)
+				{
+					SimpleLinkedListNode<T>* node,* temp;
+
+					node = _firstItem;
+
+					while (node != nullptr)
+					{
+						node->GenericGetNext2(&temp);
+
+						node->Clear();
+
+						node = temp;
+					}
+
+					_firstItem = nullptr;
+
+					_count = 0;
+				}
+
+				bool TryRemove(T* const result)
+				{
+					if (GetIsReadOnly() || GetCount() == 0)
+
+						return false;
+
+					*result = OnRemove();
+
+					return true;
+				}
+
+			public:
+				FINAL_ARG_METHOD_CONST(bool GenericTryPeek, T* const result)
+				{
+					if (_count > 0)
+					{
+						*result = _Peek();
+
+						return true;
+					}
+
+					return false;
+				}
+
+				FINAL_ARG_METHOD_CONST(int GenericPeek, T* const result)
+				{
+					if (_count > 0)
+					{
+						*result = _Peek();
+
+						return EXIT_SUCCESS;
+					}
+
+					return EMPTY_OBJECT_EXCEPTION;
+				}
+
+				FINAL_METHOD_CONST(bool GetIsReadOnly)
+				{
+					return false;
+				}
+
+				FINAL_METHOD_CONST(UINT GetCount)
+				{
+					return _count;
+				}
+
+				~SimpleLinkedList()
+				{
+					Clear();
+
+					delete _firstItem;
+
+					_firstItem = nullptr;
+				}
+			};
+		}
 	}
 }
 

@@ -2,29 +2,33 @@
 #ifndef ISTACK_H
 #define ISTACK_H
 #include "defines.h"
-#include "ISimpleLinkedListNode.h"
 #include "ISimpleLinkedList.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-        TEMPLATE
-            class DLLEXPORT IStack ABSTRACT : public virtual ISimpleLinkedList<T>
+		namespace Generic
 		{
-		public:
-            virtual ~IStack() override = default;
-
-			virtual LinkedListDirection GetDirection() const final
+			TEMPLATE
+				INTERFACE(IStackBase) :
+				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListBase
 			{
-				return LinkedListDirection::LIFO;
-			}
+			public:
+				ABSTRACT_ARG_METHOD(void Push, const T item);
 
-			virtual void Push(const T value) = 0;
-			virtual bool TryPush(const T value) = 0;
-			virtual T Pop() = 0;
-			virtual bool TryPop(T* result) = 0;
-		};
+				ABSTRACT_ARG_METHOD(bool TryPop, T* const result);
+
+				ABSTRACT_ARG_METHOD(int Pop, T* const result);
+			};
+
+			TEMPLATE
+				INTERFACE(IStack) :
+				BASE_INTERFACE IStackBase<T>
+			{
+
+			};
+		}
 	}
 }
 
