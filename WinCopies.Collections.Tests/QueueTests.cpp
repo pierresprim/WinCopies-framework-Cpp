@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../WinCopies.Collections.Shared/Queue.h"
+#include "../Include/Collections/Queue.h"
 //#include "../WinCopies.Collections.Shared/ReadOnlyQueue.h"
 #include "Something.h"
 

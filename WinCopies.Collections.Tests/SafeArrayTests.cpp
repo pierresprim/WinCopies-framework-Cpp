@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../WinCopies.Collections.Shared/SafeArray.h"
+#include "../Include/Collections/SafeArray.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

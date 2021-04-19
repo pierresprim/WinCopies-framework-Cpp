@@ -5,7 +5,7 @@
 #include "defines.h"
 #include "IEnumerator.h"
 #include "IEnumerable.h"
-#include "../WinCopies.Util.Shared/Exception.h"
+#include "../Util/Exception.h"
 
 namespace WinCopies
 {

@@ -2,10 +2,10 @@
 #ifndef SIMPLELINKEDLISTNODE_H
 #define SIMPLELINKEDLISTNODE_H
 
+#include <stdlib.h>
 #include "defines.h"
 #include "ISimpleLinkedListNode.h"
 #include "SimpleLinkedList.h"
-#include <stdlib.h>
 
 namespace WinCopies
 {

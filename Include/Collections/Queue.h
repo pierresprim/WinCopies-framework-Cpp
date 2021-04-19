@@ -23,7 +23,7 @@ namespace WinCopies
 			protected:
 				virtual SimpleLinkedListNode<T>* AddItem(const T item, bool* const actionAfter) final
 				{
-					if (GetFirstItem() == nullptr)
+					if (this->GetFirstItem() == nullptr)
 					{
 						*actionAfter = true;
 
@@ -38,19 +38,19 @@ namespace WinCopies
 
 					_lastItem = newNode;
 
-					return GetFirstItem();
+					return this->GetFirstItem();
 				}
 
 				FINAL_METHOD(void OnItemAdded)
 				{
-					_lastItem = GetFirstItem();
+					_lastItem = this->GetFirstItem();
 				}
 
 				FINAL_METHOD(SimpleLinkedListNode<T>* RemoveItem)
 				{
 					SimpleLinkedListNode<T>* node;
 
-					int result = GetFirstItem()->GenericGetNext2(&node);
+					int result = this->GetFirstItem()->GenericGetNext2(&node);
 
 					return node;
 				}

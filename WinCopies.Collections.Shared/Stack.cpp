@@ -1,2 +1,2 @@
 #include "pch.h"
-#include "Stack.h"
+#include "..\Include\Collections\Stack.h"

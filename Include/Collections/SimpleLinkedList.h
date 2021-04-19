@@ -12,6 +12,9 @@ namespace WinCopies
 	{
 		namespace Generic
 		{
+			TEMPLATE
+				CLASS SimpleLinkedListNode;
+
 			INTERFACE(SimpleLinkedListBase) :
 				BASE_INTERFACE ISimpleLinkedListBase2
 			{
@@ -125,7 +128,8 @@ namespace WinCopies
 
 				FINAL_METHOD(void ClearItems)
 				{
-					SimpleLinkedListNode<T>* node,* temp;
+					SimpleLinkedListNode<T>* node;
+					SimpleLinkedListNode<T>* temp;
 
 					node = _firstItem;
 

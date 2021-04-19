@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../WinCopies.Collections.Shared/Stack.h"
+#include "../Include/Collections/Stack.h"
 //#include "../WinCopies.Collections.Shared/ReadOnlyStack.h"
 #include "Something.h"
 
