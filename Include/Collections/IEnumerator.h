@@ -7,17 +7,17 @@ namespace WinCopies
 {
 	namespace Collections
 	{
+		enum class DLLEXPORT EnumerationDirection
+		{
+			Undetermined = 0,
+
+			FIFO = 1,
+
+			LIFO = 2
+		};
+
 		namespace Generic
 		{
-			enum class DLLEXPORT EnumerationDirection
-			{
-				Undetermined = 0,
-
-				FIFO = 1,
-
-				LIFO = 2
-			};
-
 			TEMPLATE
 				class DLLEXPORT IEnumerator ABSTRACT
 			{

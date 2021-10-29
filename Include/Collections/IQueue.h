@@ -11,7 +11,7 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE
-				INTERFACE(IQueueBase) :
+				INTERFACE(IQueue) :
 				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListBase
 			{
 			public:
@@ -20,13 +20,6 @@ namespace WinCopies
 				ABSTRACT_ARG_METHOD(bool TryDequeue, T* const result);
 
 				ABSTRACT_ARG_METHOD(int Dequeue, T* const result);
-			};
-
-			TEMPLATE
-				INTERFACE(IQueue) :
-				BASE_INTERFACE IQueueBase<T>
-			{
-
 			};
 		}
 	}

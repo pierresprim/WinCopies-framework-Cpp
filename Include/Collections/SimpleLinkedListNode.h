@@ -81,7 +81,7 @@ namespace WinCopies
                     _isCleared = true;
                 }
 
-                SimpleLinkedListNode(T value)
+                SimpleLinkedListNode(const T value)
                 {
                     _value = value;
                 }

@@ -82,39 +82,6 @@ namespace WinCopies
 				BASE_INTERFACE IEnumerable<T>
 			{
 	public:
-				int First(T * result)
-				{
-						IEnumerator<T>* enumerator = this->GetEnumerator();
-
-						int retVal = 0;
-
-						bool moveNextSucceeded = false;
-
-						__try
-						{
-							if ((retVal = enumerator->MoveNext(&moveNextSucceeded)) >= 0)
-							{
-								if (moveNextSucceeded)
-								{
-									*result = enumerator->GetCurrent();
-
-									return EXIT_SUCCESS;
-								}
-
-								else
-
-									return EMPTY_OBJECT_EXCEPTION;
-							}
-
-							return retVal;
-						}
-
-						__finally
-						{
-							delete enumerator;
-							enumerator = nullptr;
-						}
-				}
 				virtual ~IUIntCountableEnumerable() override = default;
 			};
 		}

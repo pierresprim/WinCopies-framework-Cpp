@@ -11,7 +11,7 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE
-				INTERFACE(IStackBase) :
+				INTERFACE(IStack) :
 				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListBase
 			{
 			public:
@@ -20,13 +20,6 @@ namespace WinCopies
 				ABSTRACT_ARG_METHOD(bool TryPop, T* const result);
 
 				ABSTRACT_ARG_METHOD(int Pop, T* const result);
-			};
-
-			TEMPLATE
-				INTERFACE(IStack) :
-				BASE_INTERFACE IStackBase<T>
-			{
-
 			};
 		}
 	}

@@ -16,7 +16,8 @@ namespace WinCopies
 				CLASS SimpleLinkedListNode;
 
 			INTERFACE(SimpleLinkedListBase) :
-				BASE_INTERFACE ISimpleLinkedListBase2
+				BASE_INTERFACE ISimpleLinkedListBase2,
+				BASE_INTERFACE WinCopies::Collections::ICollection
 			{
 			protected:
 				ABSTRACT_METHOD(void ClearItems);
@@ -27,7 +28,7 @@ namespace WinCopies
 					return HAS_ITEMS;
 				}
 
-				int Clear()
+				virtual int Clear() final
 				{
 					if (GetIsReadOnly())
 

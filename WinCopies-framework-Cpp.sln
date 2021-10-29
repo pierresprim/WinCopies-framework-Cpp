@@ -17,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{8E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}"
 	ProjectSection(SolutionItems) = preProject
-		Includes\WinCopies.Util.Shared\Exception.h = Includes\WinCopies.Util.Shared\Exception.h
+		Include\Util\Exception.h = Include\Util\Exception.h
+		Include\Util\Nullable.h = Include\Util\Nullable.h
+		Include\Util\ThrowHelper.h = Include\Util\ThrowHelper.h
 		Include\Util\wincopies_defines.h = Include\Util\wincopies_defines.h
 	EndProjectSection
 EndProject
@@ -26,13 +28,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections"
 		Include\Collections\Countable.h = Include\Collections\Countable.h
 		Include\Collections\defines.h = Include\Collections\defines.h
 		Include\Collections\Enumerable.h = Include\Collections\Enumerable.h
+		Include\Collections\EnumerableExtensions.h = Include\Collections\EnumerableExtensions.h
 		Include\Collections\EnumeratorBase.h = Include\Collections\EnumeratorBase.h
+		Include\Collections\ICollection.h = Include\Collections\ICollection.h
 		Include\Collections\IEnumerable.h = Include\Collections\IEnumerable.h
 		Include\Collections\IEnumerator.h = Include\Collections\IEnumerator.h
+		Include\Collections\ILinkedList.h = Include\Collections\ILinkedList.h
+		Include\Collections\ILinkedListNode.h = Include\Collections\ILinkedListNode.h
 		Include\Collections\IQueue.h = Include\Collections\IQueue.h
+		Include\Collections\IReadOnlyLinkedList.h = Include\Collections\IReadOnlyLinkedList.h
 		Include\Collections\ISimpleLinkedList.h = Include\Collections\ISimpleLinkedList.h
 		Include\Collections\ISimpleLinkedListNode.h = Include\Collections\ISimpleLinkedListNode.h
+		Include\Collections\ISortable.h = Include\Collections\ISortable.h
 		Include\Collections\IStack.h = Include\Collections\IStack.h
+		Include\Collections\LinkedList.h = Include\Collections\LinkedList.h
 		Include\Collections\Queue.h = Include\Collections\Queue.h
 		Include\Collections\SafeArray.h = Include\Collections\SafeArray.h
 		Include\Collections\SelectEnumerable.h = Include\Collections\SelectEnumerable.h
@@ -40,6 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections"
 		Include\Collections\SimpleLinkedList.h = Include\Collections\SimpleLinkedList.h
 		Include\Collections\SimpleLinkedListNode.h = Include\Collections\SimpleLinkedListNode.h
 		Include\Collections\Stack.h = Include\Collections\Stack.h
+		Include\Collections\ThrowHelper.h = Include\Collections\ThrowHelper.h
 		Include\Collections\WhereEnumerable.h = Include\Collections\WhereEnumerable.h
 	EndProjectSection
 EndProject

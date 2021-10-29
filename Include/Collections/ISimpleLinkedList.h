@@ -4,6 +4,7 @@
 
 #include "defines.h"
 #include "Countable.h"
+#include "ICollection.h"
 
 namespace WinCopies
 {
@@ -12,8 +13,6 @@ namespace WinCopies
 		INTERFACE(ISimpleLinkedListBase)
 		{
 		public:
-			ABSTRACT_METHOD_CONST(bool GetIsReadOnly);
-
 			ABSTRACT_METHOD_CONST(bool GetHasItems);
 		};
 
@@ -21,8 +20,7 @@ namespace WinCopies
 			BASE_INTERFACE ISimpleLinkedListBase,
 			BASE_INTERFACE IUIntCountable
 		{
-		public:
-			ABSTRACT_METHOD(int Clear);
+			// Left empty.
 		};
 
 		INTERFACE(ISimpleLinkedList) :
@@ -49,7 +47,10 @@ namespace WinCopies
 				INTERFACE(ISimpleLinkedList) :
 				BASE_INTERFACE ISimpleLinkedListBase2,
 				BASE_INTERFACE ISimpleLinkedListBase<T>,
-				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedList
+				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedList,
+				BASE_INTERFACE IList<T>,
+				BASE_INTERFACE IList,
+				BASE_INTERFACE ICollection
 			{
 			public:
 				FINAL_ARG_METHOD_CONST(bool TryPeek, void** const result)

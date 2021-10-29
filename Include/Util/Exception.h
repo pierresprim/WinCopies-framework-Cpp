@@ -6,7 +6,7 @@
 
 namespace WinCopies
 {
-	class DLLEXPORT Exception
+	CLASS Exception
 	{
 	private:
 		int _errorCode;
