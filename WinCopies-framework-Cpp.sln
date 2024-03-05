@@ -1,65 +1,67 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Shared", "WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems", "{CE304143-BD6F-4D55-A3DC-001CB662BE20}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections", "WinCopies.Collections\WinCopies.Collections.vcxproj", "{B8631384-D958-4DF3-861A-1386C643C7EC}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Tests", "WinCopies.Collections.Tests\WinCopies.Collections.Tests.vcxproj", "{54616CF4-B4E5-49B4-BF13-C8B342F008DD}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util", "WinCopies.Util\WinCopies.Util.vcxproj", "{10ACD228-5E39-46A2-8F61-894381A0E427}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util.Shared", "WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems", "{591DA994-C2A7-4217-BC92-3E8C32167115}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}"
 	ProjectSection(SolutionItems) = preProject
-		Include\Util\Exception.h = Include\Util\Exception.h
-		Include\Util\Nullable.h = Include\Util\Nullable.h
-		Include\Util\ThrowHelper.h = Include\Util\ThrowHelper.h
-		Include\Util\wincopies_defines.h = Include\Util\wincopies_defines.h
+		Source\Include\Util\Exception.h = Source\Include\Util\Exception.h
+		Source\Include\Util\Nullable.h = Source\Include\Util\Nullable.h
+		Source\Include\Util\ThrowHelper.h = Source\Include\Util\ThrowHelper.h
+		Source\Include\Util\wincopies_defines.h = Source\Include\Util\wincopies_defines.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections", "{CAE43DBB-BBD8-48A3-810D-870B988FCCA6}"
 	ProjectSection(SolutionItems) = preProject
-		Include\Collections\Countable.h = Include\Collections\Countable.h
-		Include\Collections\defines.h = Include\Collections\defines.h
-		Include\Collections\Enumerable.h = Include\Collections\Enumerable.h
-		Include\Collections\EnumerableExtensions.h = Include\Collections\EnumerableExtensions.h
-		Include\Collections\EnumeratorBase.h = Include\Collections\EnumeratorBase.h
-		Include\Collections\ICollection.h = Include\Collections\ICollection.h
-		Include\Collections\IEnumerable.h = Include\Collections\IEnumerable.h
-		Include\Collections\IEnumerator.h = Include\Collections\IEnumerator.h
-		Include\Collections\ILinkedList.h = Include\Collections\ILinkedList.h
-		Include\Collections\ILinkedListNode.h = Include\Collections\ILinkedListNode.h
-		Include\Collections\IQueue.h = Include\Collections\IQueue.h
-		Include\Collections\IReadOnlyLinkedList.h = Include\Collections\IReadOnlyLinkedList.h
-		Include\Collections\ISimpleLinkedList.h = Include\Collections\ISimpleLinkedList.h
-		Include\Collections\ISimpleLinkedListNode.h = Include\Collections\ISimpleLinkedListNode.h
-		Include\Collections\ISortable.h = Include\Collections\ISortable.h
-		Include\Collections\IStack.h = Include\Collections\IStack.h
-		Include\Collections\LinkedList.h = Include\Collections\LinkedList.h
-		Include\Collections\Queue.h = Include\Collections\Queue.h
-		Include\Collections\SafeArray.h = Include\Collections\SafeArray.h
-		Include\Collections\SelectEnumerable.h = Include\Collections\SelectEnumerable.h
-		Include\Collections\SelectEnumerator.h = Include\Collections\SelectEnumerator.h
-		Include\Collections\SimpleLinkedList.h = Include\Collections\SimpleLinkedList.h
-		Include\Collections\SimpleLinkedListNode.h = Include\Collections\SimpleLinkedListNode.h
-		Include\Collections\Stack.h = Include\Collections\Stack.h
-		Include\Collections\ThrowHelper.h = Include\Collections\ThrowHelper.h
-		Include\Collections\WhereEnumerable.h = Include\Collections\WhereEnumerable.h
+		Source\Include\Collections\Countable.h = Source\Include\Collections\Countable.h
+		Source\Include\Collections\defines.h = Source\Include\Collections\defines.h
+		Source\Include\Collections\Enumerable.h = Source\Include\Collections\Enumerable.h
+		Source\Include\Collections\EnumerableExtensions.h = Source\Include\Collections\EnumerableExtensions.h
+		Source\Include\Collections\EnumeratorBase.h = Source\Include\Collections\EnumeratorBase.h
+		Source\Include\Collections\ICollection.h = Source\Include\Collections\ICollection.h
+		Source\Include\Collections\IEnumerable.h = Source\Include\Collections\IEnumerable.h
+		Source\Include\Collections\IEnumerator.h = Source\Include\Collections\IEnumerator.h
+		Source\Include\Collections\ILinkedList.h = Source\Include\Collections\ILinkedList.h
+		Source\Include\Collections\ILinkedListNode.h = Source\Include\Collections\ILinkedListNode.h
+		Source\Include\Collections\IQueue.h = Source\Include\Collections\IQueue.h
+		Source\Include\Collections\IReadOnlyLinkedList.h = Source\Include\Collections\IReadOnlyLinkedList.h
+		Source\Include\Collections\ISimpleLinkedList.h = Source\Include\Collections\ISimpleLinkedList.h
+		Source\Include\Collections\ISimpleLinkedListNode.h = Source\Include\Collections\ISimpleLinkedListNode.h
+		Source\Include\Collections\ISortable.h = Source\Include\Collections\ISortable.h
+		Source\Include\Collections\IStack.h = Source\Include\Collections\IStack.h
+		Source\Include\Collections\LinkedList.h = Source\Include\Collections\LinkedList.h
+		Source\Include\Collections\Queue.h = Source\Include\Collections\Queue.h
+		Source\Include\Collections\SafeArray.h = Source\Include\Collections\SafeArray.h
+		Source\Include\Collections\SelectEnumerable.h = Source\Include\Collections\SelectEnumerable.h
+		Source\Include\Collections\SelectEnumerator.h = Source\Include\Collections\SelectEnumerator.h
+		Source\Include\Collections\SimpleLinkedList.h = Source\Include\Collections\SimpleLinkedList.h
+		Source\Include\Collections\SimpleLinkedListNode.h = Source\Include\Collections\SimpleLinkedListNode.h
+		Source\Include\Collections\Stack.h = Source\Include\Collections\Stack.h
+		Source\Include\Collections\ThrowHelper.h = Source\Include\Collections\ThrowHelper.h
+		Source\Include\Collections\WhereEnumerable.h = Source\Include\Collections\WhereEnumerable.h
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{FCA4B167-AB35-4C40-BA5A-4871D89B331C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util.Shared", "Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems", "{591DA994-C2A7-4217-BC92-3E8C32167115}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Shared", "Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems", "{CE304143-BD6F-4D55-A3DC-001CB662BE20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Current", "Current", "{85892C8A-687D-40E9-B05F-38B0937D4C16}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util", "Source\Current\WinCopies.Util\WinCopies.Util.vcxproj", "{10ACD228-5E39-46A2-8F61-894381A0E427}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections", "Source\Current\WinCopies.Collections\WinCopies.Collections.vcxproj", "{B8631384-D958-4DF3-861A-1386C643C7EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5944965A-C6BC-448C-898B-C4AA45517A4E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Tests", "Tests\WinCopies.Collections.Tests\WinCopies.Collections.Tests.vcxproj", "{54616CF4-B4E5-49B4-BF13-C8B342F008DD}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{10acd228-5e39-46a2-8f61-894381a0e427}*SharedItemsImports = 4
-		WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{591da994-c2a7-4217-bc92-3e8c32167115}*SharedItemsImports = 9
-		WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{b8631384-d958-4df3-861a-1386c643c7ec}*SharedItemsImports = 4
-		WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{ce304143-bd6f-4d55-a3dc-001cb662be20}*SharedItemsImports = 9
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
@@ -67,6 +69,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x64.ActiveCfg = Debug|x64
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x64.Build.0 = Debug|x64
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x86.ActiveCfg = Debug|Win32
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x86.Build.0 = Debug|Win32
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x64.ActiveCfg = Release|x64
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x64.Build.0 = Release|x64
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x86.ActiveCfg = Release|Win32
+		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x86.Build.0 = Release|Win32
 		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x64.ActiveCfg = Debug|x64
 		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x64.Build.0 = Debug|x64
 		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x86.ActiveCfg = Debug|Win32
@@ -83,23 +93,27 @@ Global
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x64.Build.0 = Release|x64
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x86.ActiveCfg = Release|Win32
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x86.Build.0 = Release|Win32
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x64.ActiveCfg = Debug|x64
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x64.Build.0 = Debug|x64
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x86.ActiveCfg = Debug|Win32
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Debug|x86.Build.0 = Debug|Win32
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x64.ActiveCfg = Release|x64
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x64.Build.0 = Release|x64
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x86.ActiveCfg = Release|Win32
-		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{8E2E9AC9-9091-4338-A2D8-B1EC68CF452C} = {FCA4B167-AB35-4C40-BA5A-4871D89B331C}
 		{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
 		{CAE43DBB-BBD8-48A3-810D-870B988FCCA6} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
+		{591DA994-C2A7-4217-BC92-3E8C32167115} = {F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}
+		{F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9} = {FCA4B167-AB35-4C40-BA5A-4871D89B331C}
+		{CE304143-BD6F-4D55-A3DC-001CB662BE20} = {F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}
+		{85892C8A-687D-40E9-B05F-38B0937D4C16} = {FCA4B167-AB35-4C40-BA5A-4871D89B331C}
+		{10ACD228-5E39-46A2-8F61-894381A0E427} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
+		{B8631384-D958-4DF3-861A-1386C643C7EC} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
+		{54616CF4-B4E5-49B4-BF13-C8B342F008DD} = {5944965A-C6BC-448C-898B-C4AA45517A4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{591da994-c2a7-4217-bc92-3e8c32167115}*SharedItemsImports = 9
+		Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{ce304143-bd6f-4d55-a3dc-001cb662be20}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
