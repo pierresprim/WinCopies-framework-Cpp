@@ -131,6 +131,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{
 		Source\Include\Util\Includes\Types\Delegates\Delegates.h = Source\Include\Util\Includes\Types\Delegates\Delegates.h
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Meta\Math.hpp = Source\Include\Util\Meta\Math.hpp
+		Source\Include\Util\Meta\MISC.hpp = Source\Include\Util\Meta\MISC.hpp
+		Source\Include\Util\Meta\Util.hpp = Source\Include\Util\Meta\Util.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conditional", "Conditional", "{B9D054DC-F7D0-404D-8E53-B928725DB2DB}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Meta\Conditional\Bool.hpp = Source\Include\Util\Meta\Conditional\Bool.hpp
+		Source\Include\Util\Meta\Conditional\Conditional.hpp = Source\Include\Util\Meta\Conditional\Conditional.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D1C3-45C5-9EB1-1F26ABECF20A}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Meta\Loop\For.hpp = Source\Include\Util\Meta\Loop\For.hpp
+		Source\Include\Util\Meta\Loop\ForEach.hpp = Source\Include\Util\Meta\Loop\ForEach.hpp
+		Source\Include\Util\Meta\Loop\Loop.hpp = Source\Include\Util\Meta\Loop\Loop.hpp
+		Source\Include\Util\Meta\Loop\META_FOR.hpp = Source\Include\Util\Meta\Loop\META_FOR.hpp
+		Source\Include\Util\Meta\Loop\Repeat.hpp = Source\Include\Util\Meta\Loop\Repeat.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-98D3-434E-BDF9-35454434D2CF}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Meta\Math\DECREMENT.h = Source\Include\Util\Meta\Math\DECREMENT.h
+		Source\Include\Util\Meta\Math\INCREMENT.h = Source\Include\Util\Meta\Math\INCREMENT.h
+		Source\Include\Util\Meta\Math\Math.hpp = Source\Include\Util\Meta\Math\Math.hpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -188,6 +217,10 @@ Global
 		{4FAA7D93-045F-4B8E-A301-E0C23FE1B089} = {AA4541B8-3389-4373-95A7-558B73F51A09}
 		{F28AAB9C-1061-4B29-9DF0-6F53C911CF50} = {FD892CCF-A7A6-4756-83A4-A16589FEB168}
 		{9B4B76DA-1F60-4A57-95D7-8ACFF190F7EF} = {5B4C381B-667E-46B0-AF41-04760F5E3859}
+		{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
+		{B9D054DC-F7D0-404D-8E53-B928725DB2DB} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
+		{4220B618-D1C3-45C5-9EB1-1F26ABECF20A} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
+		{1ACF941A-98D3-434E-BDF9-35454434D2CF} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}
