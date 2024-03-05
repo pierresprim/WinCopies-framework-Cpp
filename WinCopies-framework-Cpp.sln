@@ -113,7 +113,9 @@ Global
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{10acd228-5e39-46a2-8f61-894381a0e427}*SharedItemsImports = 4
 		Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{591da994-c2a7-4217-bc92-3e8c32167115}*SharedItemsImports = 9
+		Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{b8631384-d958-4df3-861a-1386c643c7ec}*SharedItemsImports = 4
 		Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{ce304143-bd6f-4d55-a3dc-001cb662be20}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
