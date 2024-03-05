@@ -6,17 +6,16 @@
 
 namespace WinCopies
 {
-	TEMPLATE
-		struct Nullable
+	TEMPLATE STRUCT Nullable
 	{
 	private:
 		T _value;
 		bool _hasValue;
 
 	public:
-		Nullable(T& const value) { _value = value; }
+		INLINE_SET_FIELD(Nullable, T& const, value)
 
-		bool HasValue() { return _hasValue; }
+		INLINE_FIELD_RETURN(bool, HasValue, hasValue)
 
 		ErrorCode GetValue(T* value)
 		{

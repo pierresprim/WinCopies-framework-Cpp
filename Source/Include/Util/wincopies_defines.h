@@ -79,6 +79,9 @@
 #define FINAL_METHOD(typeAndName) FINAL_ARG_METHOD(typeAndName, )
 #define FINAL_METHOD_CONST(typeAndName) FINAL_ARG_METHOD_CONST(typeAndName, )
 
+#define INLINE_SET_FIELD(className, param, field) className(param field) { _##field = field; }
+#define INLINE_FIELD_RETURN(returnType, methodName, field) returnType methodName() { return _##field; }
+
 ///
 /// Type defs
 /// 

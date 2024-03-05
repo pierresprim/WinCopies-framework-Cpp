@@ -67,10 +67,7 @@ namespace WinCopies
 		}
 	}
 
-	TEMPLATE INLINE_METHOD MemoryReset(T* ptr)
-	{
-		*ptr = T{};
-	}
+	TEMPLATE INLINE_METHOD MemoryReset(T* ptr) { *ptr = T{}; }
 
 	TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUniquePtr<T>* const ptr)
 	{
