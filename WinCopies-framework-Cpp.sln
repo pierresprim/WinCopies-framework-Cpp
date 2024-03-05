@@ -12,10 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F
 		Source\Include\Util\Math.h = Source\Include\Util\Math.h
 		Source\Include\Util\Nullable.h = Source\Include\Util\Nullable.h
 		Source\Include\Util\System.h = Source\Include\Util\System.h
-		Source\Include\Util\ThrowHelper.h = Source\Include\Util\ThrowHelper.h
 		Source\Include\Util\Util.h = Source\Include\Util\Util.h
 		Source\Include\Util\UtilBase.h = Source\Include\Util\UtilBase.h
-		Source\Include\Util\wincopies_defines.h = Source\Include\Util\wincopies_defines.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections", "{CAE43DBB-BBD8-48A3-810D-870B988FCCA6}"
@@ -133,7 +131,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Meta\Math.hpp = Source\Include\Util\Meta\Math.hpp
 		Source\Include\Util\Meta\MISC.hpp = Source\Include\Util\Meta\MISC.hpp
 		Source\Include\Util\Meta\Util.hpp = Source\Include\Util\Meta\Util.hpp
 	EndProjectSection

@@ -1,7 +1,7 @@
 #ifndef WINCOPIES_BOOL_HPP
 #define WINCOPIES_BOOL_HPP
 
-#include "../Math.hpp"
+#include "../Math/Math.hpp"
 
 #define _CHECK(value, n, ...) n
 #define CHECK(...) _CHECK(__VA_ARGS__, 0,)

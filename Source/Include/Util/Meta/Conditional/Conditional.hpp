@@ -22,4 +22,6 @@
 
 #define PRINT_OR_CALL(b, value) IF_B(b, value, DISCARD)()
 
+#define SURROUND_IF(condition, prefix, value, ...) IF(condition, SURROUND(prefix, value, __VA_ARGS__), value)
+
 #endif // WINCOPIES_BOOL_HPP
