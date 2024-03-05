@@ -15,13 +15,43 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Math.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)System.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Util\Exception.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Util\Nullable.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Util\ThrowHelper.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Util\wincopies_defines.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegates.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\ErrorCode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\SystemErrorCode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Arithmetic.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Bitwise.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Comparison.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Operators.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Exception.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Framework.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Libraries.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Method.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Func.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Function.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Inline.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Method.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Misc.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Template.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\TemplateIf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Class.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Enum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Interface.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Struct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Type.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Defs.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Defines.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Delegates.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Usings.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Math.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Nullable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\System.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\UtilBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)framework.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
   </ItemGroup>
