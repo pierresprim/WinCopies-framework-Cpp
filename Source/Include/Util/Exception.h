@@ -1,89 +1,124 @@
 #pragma once
-#ifndef EXCEPTION_H
-#define EXCEPTION_H
-#include <string>
-#include "wincopies_defines.h"
+#ifndef WINCOPIES_EXCEPTION_H
+#define WINCOPIES_EXCEPTION_H
+
+#include "UtilBase.h"
+#include "System.h"
 
 namespace WinCopies
 {
-	CLASS Exception
+	TEMPLATE
+	CLASS ExceptionBase : public std::exception
 	{
 	private:
-		int _errorCode;
-		const wchar_t* _message;
+		T _errorCode;
+
 	public:
-		explicit Exception(const int errorCode, const wchar_t* const message);
+		explicit ExceptionBase(const T errorCode, const LPCSTR message) : std::exception(message, 1)
+		{
+			_errorCode = errorCode;
+		}
 
-		~Exception();
-
-		int GetErrorCode() const;
-
-		wchar_t const* GetErrorMessage() const;
+		T GetErrorCode() const
+		{
+			return _errorCode;
+		}
 	};
 
-	class DLLEXPORT WinCopiesException : public Exception
+	CLASS Exception : public ExceptionBase<ErrorCode>
+	{
+	private:
+		LPCWSTR UNKNOWN_ERROR = L"Unknown error.";
+
+	public:
+		explicit Exception(const ErrorCode errorCode, STDSTRING* const message);
+		explicit Exception(const ErrorCode errorCode, const LPCWSTR message);
+
+		virtual ~Exception();
+
+		inline STDSTRING* GetErrorMessage() const;
+	};
+
+	CLASS WinCopiesException : public Exception
 	{
 	public:
 		using Exception::Exception;
 
-		virtual ~WinCopiesException();
+		virtual ~WinCopiesException() override;
 	};
 
-	class DLLEXPORT ArgumentException : public WinCopiesException
+	CLASS ArgumentException : public WinCopiesException
 	{
 	private:
-		const wchar_t* _argumentName;
+		STDSTRING* _argumentName;
 	public:
-		explicit ArgumentException(const wchar_t* const message, const wchar_t* const argumentName);
+		explicit ArgumentException(const ErrorCode errorCode, STDSTRING* const message, STDSTRING* const argumentName);
+		explicit ArgumentException(const ErrorCode errorCode, const LPCWSTR message, const LPCWSTR argumentName);
+		explicit ArgumentException(STDSTRING* const message, STDSTRING* const argumentName);
+		explicit ArgumentException(const LPCWSTR message, const LPCWSTR argumentName);
 
-		explicit ArgumentException(const int errorCode, const wchar_t* const message, const wchar_t* const argumentName);
+		virtual ~ArgumentException() override;
 
-		virtual ~ArgumentException();
-
-		const wchar_t* GetArgumentName();
+		inline STDSTRING* GetArgumentName() const;
 	};
 
-	class DLLEXPORT ArgumentOutOfRangeException : public ArgumentException
+	CLASS ArgumentOutOfRangeException : public ArgumentException
 	{
 	public:
-		explicit ArgumentOutOfRangeException(const wchar_t* const argumentName);
+		explicit ArgumentOutOfRangeException(STDSTRING* const argumentName);
+		explicit ArgumentOutOfRangeException(const LPCWSTR argumentName);
 
-		virtual ~ArgumentOutOfRangeException();
+		virtual ~ArgumentOutOfRangeException() override;
 	};
 
-	class DLLEXPORT InvalidOperationException : public WinCopiesException
+	CLASS InvalidOperationException : public WinCopiesException
 	{
 	public:
-		explicit InvalidOperationException(const wchar_t* const message);
+		explicit InvalidOperationException(STDSTRING* const message);
+		explicit InvalidOperationException(const LPCWSTR message);
+		explicit InvalidOperationException(const ErrorCode errorCode, STDSTRING* const message);
+		explicit InvalidOperationException(const ErrorCode errorCode, const LPCWSTR message);
 
-		explicit InvalidOperationException(const int errorCode, const wchar_t* const message);
-
-		virtual ~InvalidOperationException();
+		virtual ~InvalidOperationException() override;
 	};
 
-	class DLLEXPORT ReadOnlyException : public WinCopiesException
+	CLASS ReadOnlyException : public WinCopiesException
 	{
 	public:
 		ReadOnlyException();
 
-		virtual ~ReadOnlyException();
+		virtual ~ReadOnlyException() override;
 	};
 
-	class DLLEXPORT EmptyObjectException : public InvalidOperationException
+	CLASS EmptyObjectException : public InvalidOperationException
 	{
 	public:
 		EmptyObjectException();
 
-		virtual ~EmptyObjectException();
+		virtual ~EmptyObjectException() override;
 	};
 
-	class DLLEXPORT NullPtrValueException : public ArgumentException
+	CLASS NullPtrValueException : public ArgumentException
 	{
 	public:
-		NullPtrValueException(const wchar_t* const argumentName);
+		NullPtrValueException(STDSTRING* const argumentName);
+		NullPtrValueException(const LPCWSTR argumentName);
 
-		virtual ~NullPtrValueException();
+		virtual ~NullPtrValueException() override;
+	};
+
+	CLASS SystemException : public ExceptionBase<SystemErrorCode>
+	{
+	private:
+		char _empty = '\0';
+
+	public:
+		explicit SystemException(const SystemErrorCode errorCode, STDSTRING* const message);
+		explicit SystemException(const SystemErrorCode errorCode);
+
+		virtual ~SystemException() = default;
+
+		STDSTRING GetErrorMessage(STDSTRING** const errorMessage) const;
 	};
 }
-
 #endif

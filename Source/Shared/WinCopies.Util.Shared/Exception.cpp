@@ -1,29 +1,29 @@
 #include "pch.h"
-#include "..\Include\Util\Exception.h"
+
+#include "../../Include/Util/Exception.h"
+
+using namespace std::string_literals;
+using namespace std::string_view_literals;
 
 namespace WinCopies
 {
-	Exception::Exception(const int errorCode, const wchar_t* const message)
+	Exception::Exception(const ErrorCode errorCode, STDSTRING* const message) : ExceptionBase(errorCode, (char*)(message ? message : new STDSTRING(UNKNOWN_ERROR)))
 	{
-		_errorCode = errorCode;
-		_message = message;
+		// Left empty.
+	}
+	Exception::Exception(const ErrorCode errorCode, const LPCWSTR message) : Exception(errorCode, new STDSTRING(message ? message : UNKNOWN_ERROR))
+	{
+		// Left empty.
 	}
 
 	Exception::~Exception()
 	{
-		delete _message;
-
-		_message = nullptr;
+		delete GetErrorMessage();
 	}
 
-	int Exception::GetErrorCode() const
+	STDSTRING* Exception::GetErrorMessage() const
 	{
-		return _errorCode;
-	}
-
-	wchar_t const* Exception::GetErrorMessage() const
-	{
-		return _message;
+		return (STDSTRING*)what();
 	}
 
 	WinCopiesException::~WinCopiesException()
@@ -31,29 +31,42 @@ namespace WinCopies
 		// Left empty.
 	}
 
-	ArgumentException::ArgumentException(const wchar_t* const message, const wchar_t* const argumentName) : ArgumentException(ARGUMENT_EXCEPTION, message, argumentName)
+	ArgumentException::ArgumentException(const ErrorCode errorCode, STDSTRING* const message, STDSTRING* const argumentName) : WinCopiesException(errorCode, message)
+	{
+		_argumentName = argumentName;
+	}
+	ArgumentException::ArgumentException(const ErrorCode errorCode, const LPCWSTR message, const LPCWSTR argumentName) : WinCopiesException(errorCode, message)
+	{
+		_argumentName = argumentName ? new STDSTRING(argumentName) : NULL;
+	}
+	ArgumentException::ArgumentException(STDSTRING* const message, STDSTRING* const argumentName) : ArgumentException(ErrorCode::ArgumentException, message, argumentName)
+	{
+		// Left empty.
+	}
+	ArgumentException::ArgumentException(const LPCWSTR message, const LPCWSTR argumentName) : ArgumentException(ErrorCode::ArgumentException, message, argumentName)
 	{
 		// Left empty.
 	}
 
-	ArgumentException::ArgumentException(const int errorCode, const wchar_t* const message, const wchar_t* const argumentName) : WinCopiesException(errorCode, message)
-	{
-		_argumentName = argumentName;
-	}
-
 	ArgumentException::~ArgumentException()
 	{
-		delete _argumentName;
-
-		_argumentName = nullptr;
+		if (_argumentName)
+		{
+			delete _argumentName;
+			_argumentName = NULL;
+		}
 	}
 
-	const wchar_t* ArgumentException::GetArgumentName()
+	STDSTRING* ArgumentException::GetArgumentName() const
 	{
 		return _argumentName;
 	}
 
-	ArgumentOutOfRangeException::ArgumentOutOfRangeException(const wchar_t* const argumentName) : ArgumentException(ARGUMENT_OUT_OF_RANGE_EXCEPTION, std::wstring(argumentName, L" is out of range.").c_str(), argumentName)
+	ArgumentOutOfRangeException::ArgumentOutOfRangeException(STDSTRING* const argumentName) : ArgumentException(ErrorCode::ArgumentOutOfRange, new STDSTRING(*argumentName + L" is out of range."), argumentName)
+	{
+		// Left empty.
+	}
+	ArgumentOutOfRangeException::ArgumentOutOfRangeException(const LPCWSTR argumentName) : ArgumentOutOfRangeException(new STDSTRING(argumentName))
 	{
 		// Left empty.
 	}
@@ -63,12 +76,19 @@ namespace WinCopies
 		// Left empty.
 	}
 
-	InvalidOperationException::InvalidOperationException(const wchar_t* const message) : InvalidOperationException(INVALID_OPERATION_EXCEPTION, message)
+	InvalidOperationException::InvalidOperationException(STDSTRING* const message) : InvalidOperationException(ErrorCode::InvalidOperation, message)
 	{
 		// Left empty.
 	}
-
-	InvalidOperationException::InvalidOperationException(const int errorCode, const wchar_t* const message) : WinCopiesException(errorCode, message)
+	InvalidOperationException::InvalidOperationException(const ErrorCode errorCode, STDSTRING* const message) : WinCopiesException(errorCode, message)
+	{
+		// Left empty.
+	}
+	InvalidOperationException::InvalidOperationException(const LPCWSTR message) : InvalidOperationException(new STDSTRING(message))
+	{
+		// Left empty.
+	}
+	InvalidOperationException::InvalidOperationException(const ErrorCode errorCode, const LPCWSTR message) : WinCopiesException(errorCode, new STDSTRING(message))
 	{
 		// Left empty.
 	}
@@ -78,7 +98,7 @@ namespace WinCopies
 		// Left empty.
 	}
 
-	ReadOnlyException::ReadOnlyException() : WinCopiesException(READ_ONLY_EXCEPTION, L"The current object is read-only.")
+	ReadOnlyException::ReadOnlyException() : WinCopiesException(ErrorCode::ReadOnly, L"The current object is read-only.")
 	{
 		// Left empty.
 	}
@@ -88,7 +108,7 @@ namespace WinCopies
 		// Left empty;
 	}
 
-	EmptyObjectException::EmptyObjectException() : InvalidOperationException(READ_ONLY_EXCEPTION, L"The current object is empty.")
+	EmptyObjectException::EmptyObjectException() : InvalidOperationException(ErrorCode::ReadOnly, L"The current object is empty.")
 	{
 		// Left empty.
 	}
@@ -98,7 +118,11 @@ namespace WinCopies
 		// Left empty.
 	}
 
-	NullPtrValueException::NullPtrValueException(const wchar_t* const argumentName) : ArgumentException(NULLPTR_VALUE_EXCEPTION, L"The given value is nullptr.", argumentName)
+	NullPtrValueException::NullPtrValueException(STDSTRING* const argumentName) : ArgumentException(ErrorCode::NullPtrValue, new STDSTRING(L"The given value is nullptr."), argumentName)
+	{
+		// Left empty.
+	}
+	NullPtrValueException::NullPtrValueException(const LPCWSTR argumentName) : NullPtrValueException(new STDSTRING(argumentName))
 	{
 		// Left empty.
 	}
@@ -106,5 +130,49 @@ namespace WinCopies
 	NullPtrValueException::~NullPtrValueException()
 	{
 		// Left empty.
+	}
+
+	SystemException::SystemException(const SystemErrorCode errorCode, STDSTRING* const message) : ExceptionBase(errorCode, message ? (char*)message : &_empty)
+	{
+		// Left empty.
+	}
+	SystemException::SystemException(const SystemErrorCode errorCode) : SystemException(errorCode, NULL) { /* Left empty. */ }
+
+	STDSTRING SystemException::GetErrorMessage(STDSTRING** errorMessage) const
+	{
+		char const* const _what = what();
+
+		if (_what != &_empty)
+		{
+			*errorMessage = (STDSTRING*)_what;
+
+			return STDSTRING();
+		}
+
+		SystemErrorCode errorCode = GetErrorCode();
+
+		if (*errorMessage = (STDSTRING*)malloc(sizeof(STDSTRING)))
+		{
+#ifdef _WIN32
+#pragma push_macro("FormatMessage")
+#undef FormatMessage
+#endif
+			System::ErrorHandling::FormatMessage(&errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), *errorMessage);
+#ifdef _WIN32
+#pragma pop_macro("FormatMessage")
+#endif
+			if (errorCode == SystemErrorCode::Success)
+			{
+				SystemException* ptr = (SystemException*)this;
+
+				*ptr = SystemException(errorCode, *errorMessage);
+
+				return STDSTRING();
+			}
+		}
+
+		*errorMessage = NULL;
+
+		return WinCopies::Format(L"Could not retrieve error message. The exception error is {} and the message retrieval error is {}."sv, ENUM_CAST(SystemErrorCode, errorCode), ENUM_CAST(SystemErrorCode, errorCode));
 	}
 }
