@@ -7,9 +7,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{8E2E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}"
 	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Delegates.h = Source\Include\Util\Delegates.h
 		Source\Include\Util\Exception.h = Source\Include\Util\Exception.h
+		Source\Include\Util\Math.h = Source\Include\Util\Math.h
 		Source\Include\Util\Nullable.h = Source\Include\Util\Nullable.h
+		Source\Include\Util\System.h = Source\Include\Util\System.h
 		Source\Include\Util\ThrowHelper.h = Source\Include\Util\ThrowHelper.h
+		Source\Include\Util\Util.h = Source\Include\Util\Util.h
+		Source\Include\Util\UtilBase.h = Source\Include\Util\UtilBase.h
 		Source\Include\Util\wincopies_defines.h = Source\Include\Util\wincopies_defines.h
 	EndProjectSection
 EndProject
@@ -61,6 +66,71 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5944965A
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Tests", "Tests\WinCopies.Collections.Tests\WinCopies.Collections.Tests.vcxproj", "{54616CF4-B4E5-49B4-BF13-C8B342F008DD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{B7CC362B-A327-41EB-96A6-1F141F4C16CA}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Enum\Arithmetic.h = Source\Include\Util\Enum\Arithmetic.h
+		Source\Include\Util\Enum\Bitwise.h = Source\Include\Util\Enum\Bitwise.h
+		Source\Include\Util\Enum\Comparison.h = Source\Include\Util\Enum\Comparison.h
+		Source\Include\Util\Enum\Operators.h = Source\Include\Util\Enum\Operators.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enums", "Enums", "{1EAE9819-A0C4-4B34-BB02-62BB1A0F49F7}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Enums\ErrorCode.h = Source\Include\Util\Enums\ErrorCode.h
+		Source\Include\Util\Enums\SystemErrorCode.h = Source\Include\Util\Enums\SystemErrorCode.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{9935193F-5EBE-4D77-89F2-17E3B65774AA}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Framework.h = Source\Include\Util\Includes\Framework.h
+		Source\Include\Util\Includes\Libraries.h = Source\Include\Util\Includes\Libraries.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Macros", "Macros", "{80187EF8-648A-4C74-AABF-1431E6DBAE5A}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Macros\Misc.h = Source\Include\Util\Includes\Macros\Misc.h
+		Source\Include\Util\Includes\Macros\Template.h = Source\Include\Util\Includes\Macros\Template.h
+		Source\Include\Util\Includes\Macros\TemplateIf.h = Source\Include\Util\Includes\Macros\TemplateIf.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{5B4C381B-667E-46B0-AF41-04760F5E3859}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Types\Defs.h = Source\Include\Util\Includes\Types\Defs.h
+		Source\Include\Util\Includes\Types\Usings.h = Source\Include\Util\Includes\Types\Usings.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Method", "Method", "{AA4541B8-3389-4373-95A7-558B73F51A09}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Macros\Method\Method.h = Source\Include\Util\Includes\Macros\Method\Method.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Type", "Type", "{FD892CCF-A7A6-4756-83A4-A16589FEB168}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Macros\Type\Type.h = Source\Include\Util\Includes\Macros\Type\Type.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{4FAA7D93-045F-4B8E-A301-E0C23FE1B089}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Macros\Method\Templates\Func.h = Source\Include\Util\Includes\Macros\Method\Templates\Func.h
+		Source\Include\Util\Includes\Macros\Method\Templates\Function.h = Source\Include\Util\Includes\Macros\Method\Templates\Function.h
+		Source\Include\Util\Includes\Macros\Method\Templates\Inline.h = Source\Include\Util\Includes\Macros\Method\Templates\Inline.h
+		Source\Include\Util\Includes\Macros\Method\Templates\Method.h = Source\Include\Util\Includes\Macros\Method\Templates\Method.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{F28AAB9C-1061-4B29-9DF0-6F53C911CF50}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Macros\Type\Templates\Class.h = Source\Include\Util\Includes\Macros\Type\Templates\Class.h
+		Source\Include\Util\Includes\Macros\Type\Templates\Enum.h = Source\Include\Util\Includes\Macros\Type\Templates\Enum.h
+		Source\Include\Util\Includes\Macros\Type\Templates\Interface.h = Source\Include\Util\Includes\Macros\Type\Templates\Interface.h
+		Source\Include\Util\Includes\Macros\Type\Templates\Struct.h = Source\Include\Util\Includes\Macros\Type\Templates\Struct.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{9B4B76DA-1F60-4A57-95D7-8ACFF190F7EF}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Types\Delegates\Defines.h = Source\Include\Util\Includes\Types\Delegates\Defines.h
+		Source\Include\Util\Includes\Types\Delegates\Delegates.h = Source\Include\Util\Includes\Types\Delegates\Delegates.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -108,6 +178,16 @@ Global
 		{10ACD228-5E39-46A2-8F61-894381A0E427} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
 		{B8631384-D958-4DF3-861A-1386C643C7EC} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD} = {5944965A-C6BC-448C-898B-C4AA45517A4E}
+		{B7CC362B-A327-41EB-96A6-1F141F4C16CA} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
+		{1EAE9819-A0C4-4B34-BB02-62BB1A0F49F7} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
+		{9935193F-5EBE-4D77-89F2-17E3B65774AA} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
+		{80187EF8-648A-4C74-AABF-1431E6DBAE5A} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
+		{5B4C381B-667E-46B0-AF41-04760F5E3859} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
+		{AA4541B8-3389-4373-95A7-558B73F51A09} = {80187EF8-648A-4C74-AABF-1431E6DBAE5A}
+		{FD892CCF-A7A6-4756-83A4-A16589FEB168} = {80187EF8-648A-4C74-AABF-1431E6DBAE5A}
+		{4FAA7D93-045F-4B8E-A301-E0C23FE1B089} = {AA4541B8-3389-4373-95A7-558B73F51A09}
+		{F28AAB9C-1061-4B29-9DF0-6F53C911CF50} = {FD892CCF-A7A6-4756-83A4-A16589FEB168}
+		{9B4B76DA-1F60-4A57-95D7-8ACFF190F7EF} = {5B4C381B-667E-46B0-AF41-04760F5E3859}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}

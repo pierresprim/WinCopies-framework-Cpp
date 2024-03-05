@@ -1,6 +1,6 @@
 #pragma once
-#ifndef NULLABLE_H
-#define NULLABLE_H
+#ifndef WINCOPIES_NULLABLE_H
+#define WINCOPIES_NULLABLE_H
 
 #include "Exception.h"
 
@@ -14,23 +14,22 @@ namespace WinCopies
 		bool _hasValue;
 
 	public:
-		Nullable(T value)
-		{
-			_value = value;
-		}
+		Nullable(T& const value) { _value = value; }
 
-		bool GetHasValue()
-		{
-			return _hasValue;
-		}
+		bool HasValue() { return _hasValue; }
 
-		T GetValue()
+		ErrorCode GetValue(T* value)
 		{
 			if (_hasValue)
+			{
+				*value = _value;
 
-				return _value;
+				return ErrorCode::Success;
+			}
 
-			throw new InvalidOperationException(L"There is no value.");
+			*value = default;
+
+			return ErrorCode::EmptyObject;
 		}
 	};
 }
