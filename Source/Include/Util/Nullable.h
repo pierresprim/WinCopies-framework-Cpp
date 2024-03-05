@@ -3,6 +3,7 @@
 #define WINCOPIES_NULLABLE_H
 
 #include "Exception.h"
+#include "Misc.h"
 
 namespace WinCopies
 {
@@ -17,19 +18,7 @@ namespace WinCopies
 
 		INLINE_FIELD_RETURN(bool, HasValue, hasValue)
 
-		ErrorCode GetValue(T* value)
-		{
-			if (_hasValue)
-			{
-				*value = _value;
-
-				return ErrorCode::Success;
-			}
-
-			*value = default;
-
-			return ErrorCode::EmptyObject;
-		}
+		GET_FIELD_IF_ELSE(ErrorCode, GetValue, T, value, _hasValue, ErrorCode::Success, default, ErrorCode::EmptyObject)
 	};
 }
 

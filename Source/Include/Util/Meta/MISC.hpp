@@ -1,8 +1,8 @@
 #ifndef WINCOPIES_MISC_HPP
 #define WINCOPIES_MISC_HPP
 
-#include "INCREMENT.h"
-#include "DECREMENT.h"
+#include "Math/INCREMENT.h"
+#include "Math/DECREMENT.h"
 
 #define CONCATENATE(value, ...) value##__VA_ARGS__
 #define SURROUND(prefix, value, ...) CONCATENATE(prefix##value, __VA_ARGS__)
