@@ -1,3 +1,4 @@
+#define CLASS
 #define TEMPLATE
 #define DLLEXPORT __declspec(dllexport)
 #define DLLEXPORT

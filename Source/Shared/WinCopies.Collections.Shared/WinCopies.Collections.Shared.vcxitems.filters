@@ -7,6 +7,30 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{4784c278-dd51-4e49-aec4-1e2be9bbfddc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LinkedList">
+      <UniqueIdentifier>{46bbb4ae-5d10-4fad-9c88-3b03c69a9b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enumeration">
+      <UniqueIdentifier>{da4a4bac-4313-49a2-b450-7a41013f2e17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Array">
+      <UniqueIdentifier>{98ce75da-4583-4843-810a-73338b18ccff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Array\Array.Partial">
+      <UniqueIdentifier>{196e8859-a827-4394-8aa1-cdcc2f6ca185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Array\Generic">
+      <UniqueIdentifier>{6f70d8d9-9d8d-4c4b-83c9-e74085c746d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Array\Generic\Array.Partial">
+      <UniqueIdentifier>{d5611eb8-15bc-4a25-afc3-81cedab9dc52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Array">
+      <UniqueIdentifier>{32ddbbf9-0346-48b9-912b-46ceef7b539b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Array\Array.Partial">
+      <UniqueIdentifier>{3642842a-8abf-4f58-acde-9b0cdf759357}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)framework.h">
@@ -15,160 +39,121 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Queue.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\ILinkedList.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\ILinkedListNode.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\IQueue.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\IReadOnlyLinkedList.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\ISimpleLinkedList.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\ISimpleLinkedListNode.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\IStack.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\LinkedList.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\Queue.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\SimpleLinkedList.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\SimpleLinkedListNode.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\LinkedList\Stack.h">
+      <Filter>Header Files\LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Countable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IStack.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ISimpleLinkedListNode.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\ICollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ISimpleLinkedList.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\ISortable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IQueue.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\ThrowHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\defines.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Enumeration\Enumerable.h">
+      <Filter>Header Files\Enumeration</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Countable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Enumeration\EnumerableExtensions.h">
+      <Filter>Header Files\Enumeration</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\WhereEnumerable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Enumeration\EnumeratorBase.h">
+      <Filter>Header Files\Enumeration</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Stack.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Enumeration\IEnumerable.h">
+      <Filter>Header Files\Enumeration</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SimpleLinkedListNode.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Enumeration\IEnumerator.h">
+      <Filter>Header Files\Enumeration</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SimpleLinkedList.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Array\Array.Partial\Array.h">
+      <Filter>Header Files\Array\Array.Partial</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SelectEnumerator.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Array\Array.Partial\Enumerator.h">
+      <Filter>Header Files\Array\Array.Partial</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SelectEnumerable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Array\Generic\Array.Partial\ArrayBase.h">
+      <Filter>Header Files\Array\Generic\Array.Partial</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\SafeArray.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Array\Generic\Array.Partial\Enumerator.h">
+      <Filter>Header Files\Array\Generic\Array.Partial</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IEnumerator.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Array\Generic\Array.Partial\Array.h">
+      <Filter>Header Files\Array\Generic\Array.Partial</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IEnumerable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Array\Generic\Array.Partial\Sort.h">
+      <Filter>Header Files\Array\Generic\Array.Partial</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\EnumeratorBase.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Array\Array.Partial\Sort.h">
+      <Filter>Header Files\Array\Array.Partial</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\Enumerable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ILinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\IReadOnlyLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ILinkedListNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\EnumerableExtensions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\LinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ThrowHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ISortable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Include\Collections\ICollection.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Collections\Enumeration\EnumerableBase.h">
+      <Filter>Header Files\Enumeration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedListNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnumerableQueue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnumerableStack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)IQueue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Queue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyQueue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ReadOnlyStack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Stack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnumeratorBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleLinkedListNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)IStack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)IEnumerable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)IEnumerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SafeArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ILinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)LinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)WhereEnumerable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SelectEnumerable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ILinkedListNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)IReadOnlyLinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enumerable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Countable.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Collections.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ISimpleLinkedList.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHelpers.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Enumerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Array\Array.Partial\Array.cpp">
+      <Filter>Source Files\Array\Array.Partial</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Array\Array.Partial\Enumerator.cpp">
+      <Filter>Source Files\Array\Array.Partial</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Array\Array.Partial\Sort.cpp">
+      <Filter>Source Files\Array\Array.Partial</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
