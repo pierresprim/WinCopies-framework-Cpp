@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_UTIL_FRAMEWORK_H
 #define WINCOPIES_UTIL_FRAMEWORK_H
 
-#define SINGLE_ARG(...) __VA_ARGS__
+#include "../Meta/MiscBase.hpp"
 
 #include "Libraries.h"
 #include "Macros/Template.h"

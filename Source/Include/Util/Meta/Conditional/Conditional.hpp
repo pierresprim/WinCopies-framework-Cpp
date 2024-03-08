@@ -1,7 +1,7 @@
 #ifndef WINCOPIES_CONDITIONAL_HPP
 #define WINCOPIES_CONDITIONAL_HPP
 
-#include "Bool.hpp"
+#include "../Math/Math.hpp"
 
 #define IF_B(value, ifTrue, ...) CONCATENATE(IF, value)(ifTrue, __VA_ARGS__)
 #define IF0(value, ...) __VA_ARGS__
@@ -14,9 +14,10 @@
 
 #define IF(value, ifTrue, ...) IF_B(BOOL(value), ifTrue, __VA_ARGS__)
 
+#define LESS(x, y) IF(x, BOOL(SUB(y, x)), BOOL(y))
+
 #define _EQUAL_OR_GREATER(x, y, macro) IF_B(LESS(x, y), 0, macro(LESS(y, x)))
 
-#define LESS(x, y) IF(x, BOOL(SUB(y, x)), BOOL(y))
 #define EQUAL(x, y) _EQUAL_OR_GREATER(x, y, NOT)
 #define GREATER(x, y) _EQUAL_OR_GREATER(x, y, SINGLE_ARG)
 

@@ -132,7 +132,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
 	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Meta\CountArgs.hpp = Source\Include\Util\Meta\CountArgs.hpp
 		Source\Include\Util\Meta\MISC.hpp = Source\Include\Util\Meta\MISC.hpp
+		Source\Include\Util\Meta\MiscBase.hpp = Source\Include\Util\Meta\MiscBase.hpp
 		Source\Include\Util\Meta\Util.hpp = Source\Include\Util\Meta\Util.hpp
 	EndProjectSection
 EndProject

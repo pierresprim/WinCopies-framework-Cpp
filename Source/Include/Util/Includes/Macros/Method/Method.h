@@ -16,7 +16,7 @@
 #include "Templates/Func.h"
 #include "Templates/Function.h"
 
-#define _ABSTRACT_ARG_METHOD(typeAndName, constKeyword, virtualityType, arguments) virtual typeAndName(arguments) constKeyword virtualityType
+#define _ABSTRACT_ARG_METHOD(typeAndName, constKeyword, virtualityType, ...) virtual typeAndName(__VA_ARGS__) constKeyword virtualityType
 
 #define ABSTRACT_ARG_METHOD(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, , = 0, __VA_ARGS__)
 #define ABSTRACT_ARG_CONST(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, const, = 0, __VA_ARGS__)
