@@ -2,10 +2,9 @@
 #ifndef IREADONLYLINKEDLIST_H
 #define IREADONLYLINKEDLIST_H
 
-#include "defines.h"
-#include "IEnumerable.h"
+#include "../Enumeration/IEnumerable.h"
 #include "ILinkedListNode.h"
-#include "ICollection.h"
+#include "../ICollection.h"
 
 namespace WinCopies
 {
@@ -17,7 +16,7 @@ namespace WinCopies
 				class IReadOnlyLinkedListNode;
 
 			TEMPLATE
-				INTERFACE(IReadOnlyLinkedList) :
+				INTERFACE_CLASS(IReadOnlyLinkedList) :
 					BASE_INTERFACE IUIntCountableEnumerable<T>,
 					BASE_INTERFACE IReadOnlyCollection
 			{

@@ -1,7 +1,8 @@
 #pragma once
-#ifndef IQUEUE_H
-#define IQUEUE_H
-#include "defines.h"
+#ifndef WINCOPIES_IQUEUE_H
+#define WINCOPIES_IQUEUE_H
+
+#include "../Util.h"
 #include "ISimpleLinkedList.h"
 
 namespace WinCopies
@@ -11,14 +12,12 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE
-				INTERFACE(IQueue) :
+				INTERFACE_CLASS(IQueue) :
 				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListBase
 			{
 			public:
 				ABSTRACT_ARG_METHOD(void Enqueue, const T item);
-
 				ABSTRACT_ARG_METHOD(bool TryDequeue, T* const result);
-
 				ABSTRACT_ARG_METHOD(int Dequeue, T* const result);
 			};
 		}
