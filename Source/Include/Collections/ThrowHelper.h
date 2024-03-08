@@ -1,9 +1,10 @@
 #pragma once
-#ifndef THROWHELPER_H
-#define THROWHELPER_H
+#ifndef WINCOPIES_COLLECTIONS_THROWHELPER_H
+#define WINCOPIES_COLLECTIONS_THROWHELPER_H
 
-#include "ILinkedList.h"
-#include "ILinkedListNode.h"
+#include "Countable.h"
+#include "LinkedList/ILinkedList.h"
+#include "LinkedList/ILinkedListNode.h"
 #include "../Util/Exception.h"
 
 using namespace WinCopies::Collections;
@@ -13,56 +14,35 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		TEMPLATE
-			CLASS ThrowHelper
+		namespace ThrowHelpers
 		{
-		private:
-			ThrowHelper() { /* Left empty. */ }
+			DLLEXPORT ArgumentException* GetNotContainedLinkedListNodeException(const wchar_t* const argumentName);
 
-		public:
-			static ArgumentException* GetNotContainedLinkedListNodeException(const wchar_t* const argumentName)
+			DLLEXPORT ArgumentException* GetNodesAreEqualException(const wchar_t* const argumentName);
+
+			DLLEXPORT InvalidOperationException* GetEmptyListOrCollectionException();
+
+			UNSIGNED_INTEGRAL_METHOD ThrowIfEmptyListOrCollection(const ICountable<T>* obj)
 			{
-				return new ArgumentException(L"The given node is not contained in the current list.", argumentName);
+				if (obj->GetCount() == 0)
+
+					throw GetEmptyListOrCollectionException();
 			}
 
-			static void ThrowIfNotContainedNode(const ILinkedListNode<T>*node, const wchar_t* const argumentName, const ILinkedList<T>*list)
+			TEMPLATE METHOD ThrowIfNotContainedNode(const ILinkedListNode<T>* node, const wchar_t* const argumentName, const ILinkedList<T>* list)
 			{
 				if (node->GetList() != list)
 
-					throw GetNotContainedLinkedListNodeException(argumentName);
+					throw WinCopies::Collections::ThrowHelper::GetNotContainedLinkedListNodeException(argumentName);
 			}
 
-			static ArgumentException* GetNodesAreEqualException()
-			{
-				return new ArgumentException(L"The given nodes are equal.");
-			}
-
-			static void ThrowIfNodesAreEqual<T>(const ILinkedListNode<T>* x, const ILinkedListNode<T>* y)
+			TEMPLATE METHOD ThrowIfNodesAreEqual(const ILinkedListNode<T>* x, const ILinkedListNode<T>* y)
 			{
 				if (x == y)
 
-					throw GetNodesAreEqualException();
+					throw WinCopies::Collections::ThrowHelper::GetNodesAreEqualException();
 			}
-
-			public static InvalidOperationException* GetEmptyListOrCollectionException()
-			{
-				return new InvalidOperationException(L"The current list or collection is empty.");
-			}
-
-			public static void ThrowIfEmptyListOrCollection(const ICountable* obj)
-			{
-				if (obj->GetCount() == 0)
-
-					throw GetEmptyListOrCollectionException();
-			}
-
-			public static void ThrowIfEmptyListOrCollection(const IUIntCountable* obj)
-			{
-				if (obj->GetCount() == 0)
-
-					throw GetEmptyListOrCollectionException();
-			}
-		};
+		}
 	}
 }
 #endif
