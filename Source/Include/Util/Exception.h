@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef WINCOPIES_EXCEPTION_H
 #define WINCOPIES_EXCEPTION_H
 

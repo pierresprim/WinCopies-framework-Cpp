@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef WINCOPIES_DECREMENT_HPP
 #define WINCOPIES_DECREMENT_HPP
 

@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef WINCOPIES_NULLABLE_H
 #define WINCOPIES_NULLABLE_H
 

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef WINCOPIES_MISC_BASE_HPP
 #define WINCOPIES_MISC_BASE_HPP
 

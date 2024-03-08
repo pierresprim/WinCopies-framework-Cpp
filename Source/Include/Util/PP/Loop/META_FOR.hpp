@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef WINCOPIES_META_FOR_HPP
 #define WINCOPIES_META_FOR_HPP
 

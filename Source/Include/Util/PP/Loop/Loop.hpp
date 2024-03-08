@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef WINCOPIES_LOOP_HPP
 #define WINCOPIES_LOOP_HPP
 

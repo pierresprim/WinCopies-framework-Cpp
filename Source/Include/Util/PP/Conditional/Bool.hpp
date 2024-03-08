@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef WINCOPIES_BOOL_HPP
 #define WINCOPIES_BOOL_HPP
 
