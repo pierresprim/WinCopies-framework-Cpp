@@ -1,10 +1,9 @@
 #pragma once
-#ifndef ILINKEDLIST_H
-#define ILINKEDLIST_H
+#ifndef WINCOPIES_ILINKEDLIST_H
+#define WINCOPIES_ILINKEDLIST_H
 
-#include "defines.h"
-#include "IEnumerable.h"
-#include "IEnumerator.h"
+#include "../Enumeration/IEnumerable.h"
+#include "../Enumeration/IEnumerator.h"
 #include "IReadOnlyLinkedList.h"
 
 using namespace WinCopies::Collections::Generic;
@@ -15,6 +14,9 @@ namespace WinCopies
 	{
 		namespace Generic
 		{
+			TEMPLATE
+				INTERFACE_CLASS(ILinkedList);
+
 			TEMPLATE
 				CLASS LinkedListNodeEnumerable :
 			BASE_INTERFACE IUIntCountableEnumerable<ILinkedListNode<T>*>
@@ -49,12 +51,12 @@ namespace WinCopies
 
 				~LinkedListNodeEnumerable()
 				{
-					_linkedList = nullptr;
+					_list = nullptr;
 				}
 			};
 
 			TEMPLATE
-				INTERFACE(ILinkedList) :
+				INTERFACE_CLASS(ILinkedList) :
 				BASE_INTERFACE IReadOnlyLinkedList<T>,
 				BASE_INTERFACE WinCopies::Collections::ICollection
 			{
@@ -97,7 +99,7 @@ namespace WinCopies
 			};
 
 			TEMPLATE
-				INTERFACE(ILinkedList2) :
+				INTERFACE_CLASS(ILinkedList2) :
 				BASE_INTERFACE ILinkedList<T>
 			{
 				virtual ~ILinkedList2() override = default;

@@ -3,10 +3,10 @@
 #define LINKEDLIST_H
 
 #include "ILinkedList.h"
-#include "EnumerableExtensions.h"
-#include "../Util/Exception.h"
-#include "ISortable.h"
-#include "ThrowHelper.h"
+#include "../Enumeration/EnumerableExtensions.h"
+#include "../../Util/Exception.h"
+#include "../ISortable.h"
+#include "../ThrowHelper.h"
 
 using namespace WinCopies::Collections;
 using namespace WinCopies::Collections::Generic;
@@ -18,7 +18,7 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE
-				INTERFACE(LinkedList) :
+				INTERFACE_CLASS(LinkedList) :
 				BASE_INTERFACE ILinkedList2<T>,
 				BASE_INTERFACE ISortable
 			{
@@ -287,12 +287,12 @@ namespace WinCopies
 					return _last;
 				}
 
-				virtual bool GetIsReadOnly() final
+				virtual bool IsReadOnly() final
 				{
 					return false;
 				}
 
-				virtual bool GetSupportsReversedEnumeration() final
+				virtual bool SupportsReversedEnumeration() final
 				{
 					return true;
 				}

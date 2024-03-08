@@ -3,7 +3,7 @@
 #define SIMPLELINKEDLISTNODE_H
 
 #include <stdlib.h>
-#include "defines.h"
+#include "../Util.h"
 #include "ISimpleLinkedListNode.h"
 #include "SimpleLinkedList.h"
 
@@ -43,31 +43,31 @@ namespace WinCopies
                     return _isCleared;
                 }
 
-                FINAL_ARG_METHOD_CONST(int GenericGetValue, T* const result)
+                FINAL_ARG_METHOD_CONST(ErrorCode GenericGetValue, T* const result)
                 {
                     if (_isCleared)
 
-                        return OBJECT_IS_DISPOSED_EXCEPTION;
+                        return ErrorCode::ObjectIsDisposedException;
 
                     *result = _value;
 
                     return EXIT_SUCCESS;
                 }
 
-                int GenericGetNext2(SimpleLinkedListNode<T>** const result) const
+                ErrorCode GenericGetNext2(SimpleLinkedListNode<T>** const result) const
                 {
                     if (_isCleared)
 
-                        return OBJECT_IS_DISPOSED_EXCEPTION;
+                        return ErrorCode::ObjectIsDisposedException;
 
                     *result = _next;
                 }
 
-                FINAL_ARG_METHOD_CONST(int GenericGetNext, ISimpleLinkedListNode<T>** const result)
+                FINAL_ARG_METHOD_CONST(ErrorCode GenericGetNext, ISimpleLinkedListNode<T>** const result)
                 {
                     SimpleLinkedListNode<T>* node;
 
-                    int _result = GenericGetNext2(&node);
+                    ErrorCode _result = GenericGetNext2(&node);
 
                     *result = node;
 

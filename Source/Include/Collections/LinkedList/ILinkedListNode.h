@@ -2,7 +2,7 @@
 #ifndef ILINKEDLISTNODE_H
 #define ILINKEDLISTNODE_H
 
-#include "defines.h"
+#include "../Util.h"
 //#include "IEnumerable.h"
 //#include "EnumeratorBase.h"
 #include "IReadOnlyLinkedList.h"
@@ -19,7 +19,7 @@ namespace WinCopies
 				class IReadOnlyLinkedList;
 
 			TEMPLATE
-				INTERFACE(IReadOnlyLinkedListNode)
+				INTERFACE_CLASS(IReadOnlyLinkedListNode)
 			{
 			public:
 				virtual T GetValue() = 0;
@@ -35,7 +35,7 @@ namespace WinCopies
 			};
 
 			TEMPLATE
-				INTERFACE(ILinkedListNodeBase) :
+				INTERFACE_CLASS(ILinkedListNodeBase) :
 				BASE_INTERFACE IReadOnlyLinkedListNode<T>
 			{
 			public:
@@ -47,24 +47,8 @@ namespace WinCopies
 			};
 
 			TEMPLATE
-				INTERFACE(ILinkedListNode) :
+				INTERFACE_CLASS(ILinkedListNode) :
 				BASE_INTERFACE ILinkedListNodeBase<T>,
-				BASE_INTERFACE IReadOnlyLinkedListNode<T>
-			{
-				// Left empty.
-			};
-
-			TEMPLATE
-				INTERFACE(ILinkedListNode) :
-				BASE_INTERFACE ILinkedListNode<T>,
-				BASE_INTERFACE IReadOnlyLinkedListNode<T>
-			{
-				// Left empty.
-			};
-
-			TEMPLATE
-				INTERFACE(ILinkedListNode) :
-				BASE_INTERFACE ILinkedListNode<T>,
 				BASE_INTERFACE IReadOnlyLinkedListNode<T>
 			{
 				// Left empty.

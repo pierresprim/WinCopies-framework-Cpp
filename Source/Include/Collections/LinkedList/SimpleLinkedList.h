@@ -2,7 +2,7 @@
 #ifndef SIMPLELINKEDLIST_H
 #define SIMPLELINKEDLIST_H
 
-#include "defines.h"
+#include "../ICollection.h"
 #include "ISimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"
 
@@ -10,37 +10,27 @@ namespace WinCopies
 {
 	namespace Collections
 	{
+		INTERFACE_CLASS(SimpleLinkedListBase) :
+			BASE_INTERFACE ISimpleLinkedListBase2,
+			BASE_INTERFACE WinCopies::Collections::ICollection
+		{
+		protected:
+			ABSTRACT_METHOD(void ClearItems);
+
+		public:
+			OVERRIDE_METHOD_CONST(bool GetHasItems);
+
+			virtual ErrorCode Clear() final;
+		};
+
 		namespace Generic
 		{
 			TEMPLATE
 				CLASS SimpleLinkedListNode;
 
-			INTERFACE(SimpleLinkedListBase) :
-				BASE_INTERFACE ISimpleLinkedListBase2,
-				BASE_INTERFACE WinCopies::Collections::ICollection
-			{
-			protected:
-				ABSTRACT_METHOD(void ClearItems);
-
-			public:
-				OVERRIDE_METHOD_CONST(bool GetHasItems)
-				{
-					return HAS_ITEMS;
-				}
-
-				virtual int Clear() final
-				{
-					if (GetIsReadOnly())
-
-						return READ_ONLY_EXCEPTION;
-
-					ClearItems();
-				}
-			};
-
 			TEMPLATE
-				INTERFACE(SimpleLinkedList) :
-				BASE_INTERFACE SimpleLinkedListBase,
+				INTERFACE_CLASS(SimpleLinkedList) :
+				BASE_INTERFACE WinCopies::Collections::SimpleLinkedListBase,
 				BASE_INTERFACE ISimpleLinkedList<T>
 			{
 			private:
@@ -92,27 +82,27 @@ namespace WinCopies
 					return _firstItem;
 				}
 
-				int Remove(T* const result)
+				ErrorCode Remove(T* const result)
 				{
 					if (GetIsReadOnly())
 
-						return READ_ONLY_EXCEPTION;
+						return ErrorCode::ReadOnlyException;
 
 					if (GetHasItems())
 					{
 						*result = OnRemove();
 
-						return EXIT_SUCCESS;
+						return ErrorCode::Success;
 					}
 
-					return EMPTY_OBJECT_EXCEPTION;
+					return ErrorCode::EmptyObjectException;
 				}
 
-				int Add(const T item)
+				ErrorCode Add(const T item)
 				{
 					if (GetIsReadOnly())
 
-						return READ_ONLY_EXCEPTION;
+						return ErrorCode::ReadOnlyException;
 
 					bool actionAfter;
 
@@ -124,7 +114,7 @@ namespace WinCopies
 
 						OnItemAdded();
 
-					return EXIT_SUCCESS;
+					return ErrorCode::Success;
 				}
 
 				FINAL_METHOD(void ClearItems)
@@ -150,7 +140,7 @@ namespace WinCopies
 
 				bool TryRemove(T* const result)
 				{
-					if (GetIsReadOnly() || GetCount() == 0)
+					if (IsReadOnly() || GetCount() == 0)
 
 						return false;
 
@@ -172,19 +162,19 @@ namespace WinCopies
 					return false;
 				}
 
-				FINAL_ARG_METHOD_CONST(int GenericPeek, T* const result)
+				FINAL_ARG_METHOD_CONST(ErrorCode GenericPeek, T* const result)
 				{
 					if (_count > 0)
 					{
 						*result = _Peek();
 
-						return EXIT_SUCCESS;
+						return ErrorCode::Success;
 					}
 
-					return EMPTY_OBJECT_EXCEPTION;
+					return ErrorCode::EmptyObjectException;
 				}
 
-				FINAL_METHOD_CONST(bool GetIsReadOnly)
+				FINAL_METHOD_CONST(bool IsReadOnly)
 				{
 					return false;
 				}
@@ -206,5 +196,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif

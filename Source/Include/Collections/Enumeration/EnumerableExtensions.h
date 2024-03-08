@@ -1,10 +1,10 @@
 #pragma once
-#ifndef ENUMERABLEEXTENSIONS_H
-#define ENUMERABLEEXTENSIONS_H
 
-#include "defines.h"
+#ifndef WINCOPIES_ENUMERABLE_EXTENSIONS_H
+#define WINCOPIES_ENUMERABLE_EXTENSIONS_H
+
 #include "IEnumerable.h"
-#include "../Util/Nullable.h"
+#include "../../Util/Nullable.h"
 #include "WhereEnumerable.h"
 
 using namespace WinCopies;
@@ -193,4 +193,4 @@ namespace WinCopies
 	}
 }
 
-#endif // ENUMERABLEEXTENSIONS_H
+#endif // WINCOPIES_ENUMERABLE_EXTENSIONS_H

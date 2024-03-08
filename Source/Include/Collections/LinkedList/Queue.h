@@ -1,7 +1,7 @@
 #pragma once
-#ifndef QUEUE_H
-#define QUEUE_H
-#include "defines.h"
+#ifndef WINCOPIES_QUEUE_H
+#define WINCOPIES_QUEUE_H
+
 #include "IQueue.h"
 #include "SimpleLinkedList.h"
 #include "SimpleLinkedListNode.h"

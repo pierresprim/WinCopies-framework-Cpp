@@ -1,7 +1,7 @@
 #pragma once
 #ifndef ISTACK_H
 #define ISTACK_H
-#include "defines.h"
+#include "../Util.h"
 #include "ISimpleLinkedList.h"
 
 namespace WinCopies
@@ -11,14 +11,12 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE
-				INTERFACE(IStack) :
+				INTERFACE_CLASS(IStack) :
 				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListBase
 			{
 			public:
 				ABSTRACT_ARG_METHOD(void Push, const T item);
-
 				ABSTRACT_ARG_METHOD(bool TryPop, T* const result);
-
 				ABSTRACT_ARG_METHOD(int Pop, T* const result);
 			};
 		}

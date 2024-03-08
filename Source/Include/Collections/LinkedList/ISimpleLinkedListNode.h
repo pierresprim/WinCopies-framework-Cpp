@@ -2,14 +2,13 @@
 #ifndef ISIMPLELINKEDLISTNODE_H
 #define ISIMPLELINKEDLISTNODE_H
 
-#include "defines.h"
 #include "ISimpleLinkedList.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		INTERFACE(ISimpleLinkedListNode)
+		INTERFACE_CLASS(ISimpleLinkedListNode)
 		{
 		public:
 			ABSTRACT_ARG_METHOD_CONST(int GetValue, void** const result);
@@ -20,7 +19,7 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE
-				INTERFACE(ISimpleLinkedListNode) :
+				INTERFACE_CLASS(ISimpleLinkedListNode) :
 				BASE_INTERFACE WinCopies::Collections::ISimpleLinkedListNode
 			{
 			public:
