@@ -1,26 +1,27 @@
 #pragma once
-#ifndef ICOLLECTION_H
-#define ICOLLECTION_H
+#ifndef WINCOPIES_ICOLLECTION_H
+#define WINCOPIES_ICOLLECTION_H
 
-#include "IEnumerable.h"
+#include "Enumeration/IEnumerable.h"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		INTERFACE(IReadOnlyCollection)
+		INTERFACE_CLASS(IReadOnlyCollection)
 		{
-			virtual bool GetIsReadOnly() = 0;
+		public:
+			virtual bool IsReadOnly() = 0;
 		};
 
-		INTERFACE(ICollection) :
+		INTERFACE_CLASS(ICollection) :
 			BASE_INTERFACE IReadOnlyCollection
 		{
 		public:
-			virtual int Clear() = 0;
+			virtual ErrorCode Clear() = 0;
 		};
 
-		INTERFACE(IList)
+		INTERFACE_CLASS(IList)
 		{
 		public:
             virtual bool GetIsFixedSize() = 0;
@@ -31,9 +32,10 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE
-				INTERFACE(ICollection) :
+				INTERFACE_CLASS(ICollection) :
 				BASE_INTERFACE IEnumerable<T>
 			{
+		public:
 				virtual int Add(const T item) = 0;
 
 				virtual bool Contains(const T item) = 0;
@@ -44,7 +46,7 @@ namespace WinCopies
 			};
 
 			TEMPLATE
-				INTERFACE(IReadOnlyList) :
+				INTERFACE_CLASS(IReadOnlyList) :
 				BASE_INTERFACE IEnumerable<T>
 			{
 			public:
@@ -52,7 +54,7 @@ namespace WinCopies
 			};
 
             TEMPLATE
-                INTERFACE(IList) :
+				INTERFACE_CLASS(IList) :
                 BASE_INTERFACE IReadOnlyList<T>,
                 BASE_INTERFACE ICollection<T>
             {
