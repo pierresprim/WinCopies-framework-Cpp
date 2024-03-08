@@ -1,4 +1,4 @@
-#include "Meta/Conditional/Conditional.hpp"
+#include "PP/Conditional/Conditional.hpp"
 
 #define INLINE_SET_FIELD(className, param, field) className(param field) { _##field = field; }
 #define INLINE_FIELD_RETURN(returnType, methodName, field) returnType methodName() { return _##field; }

@@ -130,34 +130,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{
 		Source\Include\Util\Includes\Types\Delegates\Delegates.h = Source\Include\Util\Includes\Types\Delegates\Delegates.h
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PP", "PP", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Meta\CountArgs.hpp = Source\Include\Util\Meta\CountArgs.hpp
-		Source\Include\Util\Meta\MISC.hpp = Source\Include\Util\Meta\MISC.hpp
-		Source\Include\Util\Meta\MiscBase.hpp = Source\Include\Util\Meta\MiscBase.hpp
-		Source\Include\Util\Meta\Util.hpp = Source\Include\Util\Meta\Util.hpp
+		Source\Include\Util\PP\CountArgs.hpp = Source\Include\Util\PP\CountArgs.hpp
+		Source\Include\Util\PP\MISC.hpp = Source\Include\Util\PP\MISC.hpp
+		Source\Include\Util\PP\MiscBase.hpp = Source\Include\Util\PP\MiscBase.hpp
+		Source\Include\Util\PP\Util.hpp = Source\Include\Util\PP\Util.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conditional", "Conditional", "{B9D054DC-F7D0-404D-8E53-B928725DB2DB}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Meta\Conditional\Bool.hpp = Source\Include\Util\Meta\Conditional\Bool.hpp
-		Source\Include\Util\Meta\Conditional\Conditional.hpp = Source\Include\Util\Meta\Conditional\Conditional.hpp
+		Source\Include\Util\PP\Conditional\Bool.hpp = Source\Include\Util\PP\Conditional\Bool.hpp
+		Source\Include\Util\PP\Conditional\Conditional.hpp = Source\Include\Util\PP\Conditional\Conditional.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D1C3-45C5-9EB1-1F26ABECF20A}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Meta\Loop\For.hpp = Source\Include\Util\Meta\Loop\For.hpp
-		Source\Include\Util\Meta\Loop\ForEach.hpp = Source\Include\Util\Meta\Loop\ForEach.hpp
-		Source\Include\Util\Meta\Loop\Loop.hpp = Source\Include\Util\Meta\Loop\Loop.hpp
-		Source\Include\Util\Meta\Loop\META_FOR.hpp = Source\Include\Util\Meta\Loop\META_FOR.hpp
-		Source\Include\Util\Meta\Loop\Repeat.hpp = Source\Include\Util\Meta\Loop\Repeat.hpp
+		Source\Include\Util\PP\Loop\For.hpp = Source\Include\Util\PP\Loop\For.hpp
+		Source\Include\Util\PP\Loop\ForEach.hpp = Source\Include\Util\PP\Loop\ForEach.hpp
+		Source\Include\Util\PP\Loop\Loop.hpp = Source\Include\Util\PP\Loop\Loop.hpp
+		Source\Include\Util\PP\Loop\META_FOR.hpp = Source\Include\Util\PP\Loop\META_FOR.hpp
+		Source\Include\Util\PP\Loop\Repeat.hpp = Source\Include\Util\PP\Loop\Repeat.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-98D3-434E-BDF9-35454434D2CF}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Meta\Math\DECREMENT.h = Source\Include\Util\Meta\Math\DECREMENT.h
-		Source\Include\Util\Meta\Math\INCREMENT.h = Source\Include\Util\Meta\Math\INCREMENT.h
-		Source\Include\Util\Meta\Math\Math.hpp = Source\Include\Util\Meta\Math\Math.hpp
+		Source\Include\Util\PP\Math\DECREMENT.h = Source\Include\Util\PP\Math\DECREMENT.h
+		Source\Include\Util\PP\Math\INCREMENT.h = Source\Include\Util\PP\Math\INCREMENT.h
+		Source\Include\Util\PP\Math\Math.hpp = Source\Include\Util\PP\Math\Math.hpp
 	EndProjectSection
 EndProject
 Global
