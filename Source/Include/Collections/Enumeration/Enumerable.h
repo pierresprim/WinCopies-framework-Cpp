@@ -1,8 +1,13 @@
 #pragma once
-#ifndef ENUMERABLE_H
-#define ENUMERABLE_H
 
-#include "defines.h"
+#ifndef WINCOPIES_ENUMERABLE_H
+#define WINCOPIES_ENUMERABLE_H
+
+#include <functional>
+#include <memory>
+
+#include <Windows.h>
+
 #include "IEnumerable.h"
 
 namespace WinCopies
@@ -11,69 +16,14 @@ namespace WinCopies
 	{
 		namespace Generic
 		{
-			TEMPLATE
-				CLASS Enumerable :
+			TEMPLATE CLASS EnumeratorEnumerable :
 			BASE_INTERFACE IEnumerable<T>
 			{
 			private:
-				bool _autoDispose;
-			protected:
-				bool GetAutoDispose()
-				{
-					return _autoDispose;
-				}
+				std::shared_ptr<IEnumerator<T>> _enumerator;
+
 			public:
-				Enumerable() : Enumerable(false)
-				{
-					// Left empty.
-				}
-
-				Enumerable(const bool autoDispose)
-				{
-					_autoDispose = autoDispose;
-				}
-
-				~Enumerable()
-				{
-					// Left empty.
-				}
-			};
-
-			TEMPLATE
-				class DLLEXPORT EnumerableEnumerable :
-				public virtual Enumerable<T>
-			{
-			private:
-				IEnumerable<T>* _enumerable;
-			protected:
-				IEnumerable<T>* GetEnumerable()
-				{
-					return _enumerable;
-				}
-			public:
-				explicit EnumerableEnumerable(const IEnumerable<T>* enumerable, const bool autoDispose) : Enumerable<T>(autoDispose)
-				{
-					_enumerable = enumerable;
-				}
-
-				~EnumerableEnumerable()
-				{
-					if (this->GetAutoDispose())
-
-						delete _enumerable;
-
-					_enumerable = nullptr;
-				}
-			};
-
-			TEMPLATE
-				class DLLEXPORT EnumeratorEnumerable :
-				public virtual Enumerable<T>
-			{
-			private:
-				IEnumerator<T>* _enumerator;
-			public:
-				explicit EnumeratorEnumerable(const IEnumerator<T>* enumerator, const bool autoDispose) : Enumerable<T>(autoDispose)
+				explicit EnumeratorEnumerable(const std::shared_ptr<IEnumerator<T>> enumerator)
 				{
 					_enumerator = enumerator;
 				}
@@ -85,38 +35,30 @@ namespace WinCopies
 
 				~EnumeratorEnumerable()
 				{
-					if (this->GetAutoDispose())
-
-						delete _enumerator;
-
-					_enumerator = nullptr;
+					_enumerator = NULL;
 				}
 			};
 
-			TEMPLATE
-				class DLLEXPORT EnumeratorProviderEnumerable :
-				public virtual Enumerable<T>
+			TEMPLATE CLASS EnumeratorProviderEnumerable :
+			BASE_INTERFACE IEnumerable<T>
 			{
 			private:
-				IEnumerator<T>* (*_func)();
+				FunctionFunction<std::shared_ptr<IEnumerator<T>>> _func;
+
 			public:
-				explicit EnumeratorProviderEnumerable(const IEnumerator<T>* (*func)(), const bool autoDispose) : Enumerable<T>(autoDispose)
+				explicit EnumeratorProviderEnumerable(const FunctionFunction<std::shared_ptr<IEnumerator<T>>>& func)
 				{
 					_func = func;
 				}
 
-				virtual IEnumerator<T>* GetEnumerator() override
+				virtual std::shared_ptr<IEnumerator<T>> GetEnumerator() override
 				{
-					return (*_func)();
+					return _func();
 				}
 
 				~EnumeratorProviderEnumerable()
 				{
-					if (this->GetAutoDispose())
-
-						delete _func;
-
-					_func = nullptr;
+					_func = NULL;
 				}
 			};
 		}
