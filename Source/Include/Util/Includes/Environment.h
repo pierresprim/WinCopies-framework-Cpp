@@ -103,6 +103,16 @@
 #ifndef HAS_CXX20
 #define HAS_CXX20
 #endif
+
+#if __cplusplus > 202002L
+#ifndef HAS_CPP23
+#define HAS_CPP23
+#endif
+
+#ifndef HAS_CXX23
+#define HAS_CXX23
+#endif
+#endif // HAS_CPP23
 #endif // HAS_CPP20
 #endif // HAS_CPP17
 #endif // HAS_CPP14
