@@ -22,5 +22,6 @@
 
 #define SELECT(n, printExtra, concatenator, prefix, macro, suffix, ...) CONCATENATE(FOR_EACH, n)(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define FOR_EACH(concatenator, prefix, macro, suffix, ...) SELECT(COUNT_ARGS(__VA_ARGS__), 0, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH_C(concatenator, prefix, suffix, ...) FOR_EACH(concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
 
 #endif // WINCOPIES_FOR_EACH_HPP
