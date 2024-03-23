@@ -5,6 +5,7 @@
 
 #include "UtilBase.h"
 #include "System.h"
+#include "Misc.h"
 
 namespace WinCopies
 {
@@ -20,10 +21,7 @@ namespace WinCopies
 			_errorCode = errorCode;
 		}
 
-		T GetErrorCode() const
-		{
-			return _errorCode;
-		}
+		INLINE_FIELD_RETURN(T, ErrorCode, errorCode)
 	};
 
 	CLASS Exception : public ExceptionBase<ErrorCode>
