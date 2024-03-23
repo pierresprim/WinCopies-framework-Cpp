@@ -8,7 +8,7 @@
 #define OUTPOINTER OutPointer<T>*
 
 #define _MALLOC(type, factor, _operator) (type*)malloc(factor = sizeof(type) _operator factor)
-#define MALLOC(type) _MALLOC(type, )
+#define MALLOC(type) _MALLOC(type, , )
 #define MALLOC_SHIFT(type, count) _MALLOC(type, count, <<)
 #define MALLOC_MULT(type, count) _MALLOC(type, count, *)
 

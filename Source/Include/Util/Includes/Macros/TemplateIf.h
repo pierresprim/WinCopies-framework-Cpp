@@ -5,13 +5,13 @@
 
 using namespace WinCopies;
 
-#define __TEMPLATE_IF(typeKind, condition) __TEMPLATE(typeKind, SINGLE_ARG(, condition = true))
+#define __TEMPLATE_IF(typeKind, ...) __TEMPLATE(typeKind, SINGLE_ARG(, __VA_ARGS__ = true))
 
 #define _TEMPLATE_IF(typeKind, condition) __TEMPLATE_IF(typeKind, SINGLE_ARG(::std::enable_if_t<condition, bool>))
 #define TEMPLATE_IF(condition) _TEMPLATE_IF(class, condition)
 
-#define __TEMPLATE_IF_T(typeKind, condition) __TEMPLATE_IF(typeKind, condition)
-#define _TEMPLATE_IF_T(condition) __TEMPLATE_IF_T(class, condition<T>)
+#define __TEMPLATE_IF_T(typeKind, ...) __TEMPLATE_IF(typeKind, __VA_ARGS__)
+#define _TEMPLATE_IF_T(...) __TEMPLATE_IF_T(class, __VA_ARGS__<T>)
 
 #define TEMPLATE_IF_SIGNED _TEMPLATE_IF_T(EnableIfSigned)
 #define TEMPLATE_IF_UNSIGNED _TEMPLATE_IF_T(EnableIfUnsigned)
