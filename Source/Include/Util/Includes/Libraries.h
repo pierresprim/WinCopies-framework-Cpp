@@ -12,11 +12,13 @@
 #include <cstdlib>
 #include <memory>
 #include <type_traits>
-#include <format>
 #include <typeinfo>
+
+#ifdef WINDOWS
+#include <format>
 
 /// Windows
 
 #include <Windows.h>
-
 #endif
+#endif // WINCOPIES_UTIL_LIBRARIES_H

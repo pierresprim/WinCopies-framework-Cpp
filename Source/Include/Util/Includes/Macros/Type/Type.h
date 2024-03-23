@@ -3,20 +3,7 @@
 #ifndef WINCOPIES_UTIL_MACROS_TYPE_H
 #define WINCOPIES_UTIL_MACROS_TYPE_H
 
-#ifdef QT
-#define DLLEXPORT Q_DECL_EXPORT
-#define ABSTRACT
-#include "../WinCopies_Qt/WinCopies.Util/WinCopies_Util/main.h"
-#else
-#ifdef _WIN32
-#define WINDOWS
-#ifdef _WIN64
-#define X64
-#endif
-#define DLLEXPORT __declspec(dllexport)
-#define ABSTRACT abstract
-#endif
-#endif
+#include "../Environment.h"
 
 // Type kinds
 
