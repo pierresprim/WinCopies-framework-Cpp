@@ -101,7 +101,7 @@ TEMPLATE STRUCT enable_enum_bitwise_operators
  */
 TEMPLATE constexpr bool enable_enum_bitwise_operators_v = enable_enum_bitwise_operators<T>::value;
 
-#define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, enable_enum_bitwise_operators_v<T>)
+#define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, enable_enum_bitwise_operators_v)
 
 #define BITWISE_ENUM_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) TEMPLATE constexpr auto operator operatorAssignmentSymbol(T& lhs, const T& rhs) \
     -> typename enable_if_t<enable_enum_bitwise_operators_v<T>, void> \
