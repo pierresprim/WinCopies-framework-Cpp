@@ -54,6 +54,14 @@
 #define DLLIMPORT __declspec(dllimport)
 
 #define ABSTRACT abstract
+
+#define HAS_CXX23 _HAS_CXX23
+
+#if HAS_CXX23
+#define WINDOWS_CXX23
+#else
+#define WINDOWS_NOT_CXX23
+#endif
 #elif HAS_GCC
 #define DLLEXPORT __attribute__((visibility("default")))
 #define DLLIMPORT
