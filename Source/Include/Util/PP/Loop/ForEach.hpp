@@ -19,6 +19,12 @@
 #define FOR_EACH8(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH7(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define FOR_EACH9(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH8(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define FOR_EACH10(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH9(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH11(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH10(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH12(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH11(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH13(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH12(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH14(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH13(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH15(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH14(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH16(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH15(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 
 #define SELECT(n, printExtra, concatenator, prefix, macro, suffix, ...) CONCATENATE(FOR_EACH, n)(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define FOR_EACH(concatenator, prefix, macro, suffix, ...) SELECT(COUNT_ARGS(__VA_ARGS__), 0, concatenator, prefix, macro, suffix, __VA_ARGS__)
