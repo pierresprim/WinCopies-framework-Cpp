@@ -19,7 +19,7 @@
 #define HAS_ITEMS GetCount() != 0;
 
 #define GET_OR_THROW_IF_NULL_PTR(value, valueName) value == nullptr ? throw new NullPtrValueException(valueName) : value
-#ifdef _WIN32
+#ifdef WINDOWS
 #define ERROR_OUT_OF_MEMORY ERROR_OUTOFMEMORY
 #endif
 

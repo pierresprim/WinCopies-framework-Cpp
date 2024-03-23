@@ -25,4 +25,4 @@ namespace WinCopies
 	};
 }
 
-#endif
+#endif // WINCOPIES_UTIL_ERROR_CODE_H
