@@ -15,9 +15,9 @@ namespace WinCopies
 		bool _hasValue;
 
 	public:
-		INLINE_SET_FIELD(Nullable, T& const, value)
+		INLINE_FIELD_SET(Nullable, T& const, value)
 
-		INLINE_FIELD_RETURN(bool, HasValue, hasValue)
+		IINLINE_FIELD_RETURN(bool, HasValue, hasValue)
 
 		GET_FIELD_IF_ELSE(ErrorCode, GetValue, T, value, _hasValue, ErrorCode::Success, default, ErrorCode::EmptyObject)
 	};
