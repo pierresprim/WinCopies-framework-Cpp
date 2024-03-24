@@ -17,12 +17,11 @@
 
 #define METHOD_TEMPLATE template<class F>
 
-#define CEAOPERATOR constexpr auto operator
+#define CEA_OPERATOR constexpr auto operator
 
-#define OPERATOR_TEMPLATE TEMPLATE CEAOPERATOR
-#define _OPERATOR_TEMPLATE_N(n, templateType, templateMacro) templateMacro(n,  templateType) CEAOPERATOR
-#define OPERATOR_TEMPLATE_N(n, templateType) TEMPLATE_N(n, templateType) CEAOPERATOR
-#define OPERATOR_TEMPLATE_NC(n) OPERATOR_TEMPLATE_N(n, class)
+#define CEA_OPERATOR_TEMPLATE TEMPLATE CEAOPERATOR
+#define CEA_OPERATOR_TEMPLATE_N(n, templateType) TEMPLATE_N(n, templateType) CEAOPERATOR
+#define CEA_OPERATOR_TEMPLATE_NC(n) CEA_OPERATOR_TEMPLATE_N(n, class)
 
 // Named templates
 
