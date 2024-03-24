@@ -3,20 +3,28 @@
 #ifndef WINCOPIES_UTIL_DELEGATE_USINGS_H
 #define WINCOPIES_UTIL_DELEGATE_USINGS_H
 
+#include "../../../PP/Loop/For.hpp"
+#include "../../../PP/Loop/Loop.hpp"
+#include "../../../PP/MiscBase.hpp"
+
 typedef void(*ActionVoid)();
 typedef std::function<void()> ActionFunctionVoid;
 
 #define _DELEGATE_ACTION(typeName, name, ...) using name = void(typeName *)(__VA_ARGS__);
 
-#define DELEGATE_ACTION(count, ...) _DELEGATE_ACTION(, Action##count, __VA_ARGS__)
+#define DELEGATE_ACTION(count) _DELEGATE_ACTION(, Action##count, FOR_I(count, SURROUND, class T, ))
 #define INSTANCE_ACTION(count, ...) _DELEGATE_ACTION(TObj::, InstanceAction##count, __VA_ARGS__)
 #define ACTION_FUNCTION(count, ...) using ActionFunction##count = std::function<void(__VA_ARGS__)>;
+
+#define TEMPLATE_METHOD_ARG(n) T##n value##n
+#define TEMPLATE_METHOD_MAX_ARGS 16
+#define TEMPLATE_FUNCTION_MAX_ARGS INCREMENT(TEMPLATE_METHOD_MAX_ARGS)
 
 TEMPLATE DELEGATE_ACTION(, T)
 template<class TObj, class T> INSTANCE_ACTION(, T)
 TEMPLATE ACTION_FUNCTION(, T)
 
-TEMPLATE2 DELEGATE_ACTION(2, T1, T2)
+TEMPLATE_NC(TEMPLATE_METHOD_MAX_ARGS) LOOP_TO(2, TEMPLATE_METHOD_MAX_ARGS, DELEGATE_ACTION)
 template<class TObj, class T1, class T2> INSTANCE_ACTION(2, T1, T2)
 TEMPLATE2 ACTION_FUNCTION(2, T1, T2)
 
