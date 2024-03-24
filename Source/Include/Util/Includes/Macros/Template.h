@@ -3,7 +3,8 @@
 #ifndef WINCOPIES_UTIL_TEMPLATE_H
 #define WINCOPIES_UTIL_TEMPLATE_H
 
-#include "../../PP/Loop/For.hpp"
+#include "../../PP/Loop/ForEach.hpp"
+#include "../../PP/Util.hpp"
 #include "../Main.h"
 
 #define __TEMPLATE(typeKind, extraParameters) template<typeKind T extraParameters>
@@ -26,7 +27,7 @@
 // Named templates
 
 #define NAMED_TEMPLATE(typeName) template<class typeName>
-#define NAMED_TEMPLATE2(t1, t2) template<class t1, class t2>
-#define NAMED_TEMPLATE3(t1, t2, t3) template<class t1, class t2, class t3>
+#define NAMED_TEMPLATE_N(templateType, ...) template<SURROUND_ARGS(TRANSCRIBE_ARGS, templateType, , __VA_ARGS__)>
+#define NAMED_TEMPLATE_NC(...) NAMED_TEMPLATE_N(class, __VA_ARGS__)
 
 #endif

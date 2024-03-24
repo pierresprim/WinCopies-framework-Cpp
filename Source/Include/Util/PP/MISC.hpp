@@ -8,7 +8,8 @@
 #include "Math/INCREMENT.h"
 #include "Math/DECREMENT.h"
 
-#define SURROUND(prefix, value, ...) CONCATENATE(prefix##value, __VA_ARGS__)
+#define _SURROUND(x, y) CONCATENATE(x, y)
+#define SURROUND(prefix, value, ...) _SURROUND(CONCATENATE(prefix, value), __VA_ARGS__)
 #define ARGS_TRANSCRIPTION(value, ...) value __VA_ARGS__
 #define TRANSCRIBE_ARGS(prefix, value, ...) prefix value __VA_ARGS__
 

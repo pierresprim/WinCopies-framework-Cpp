@@ -3,7 +3,6 @@
 #ifndef WINCOPIES_FOR_EACH_HPP
 #define WINCOPIES_FOR_EACH_HPP
 
-#include "../Conditional/Conditional.hpp"
 #include "../CountArgs.hpp"
 
 #define _FOR_EACH(concatenator, prefix, macro, suffix, value) concatenator(prefix, macro(value), suffix)

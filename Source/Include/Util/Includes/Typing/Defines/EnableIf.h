@@ -7,7 +7,7 @@
 #include "../../../PP/CountArgs.hpp"
 #include "../../../PP/Loop/ForEach.hpp"
 
-#define __ENABLE_IF(valuePrefix, n, prefix, suffix, ...) FOR_EACH(SURROUND, && ::valuePrefix::prefix, SINGLE_ARG, suffix<T##n>, __VA_ARGS__)
+#define __ENABLE_IF(valuePrefix, n, prefix, suffix, ...) FOR_EACH_C(SURROUND, && ::valuePrefix::prefix, suffix<T##n>, __VA_ARGS__)
 #define _ENABLE_IF(prefix, value, n, type, extra, ...) SURROUND(::WinCopies::Typing::Enable, type, If)<::prefix::value<T##n> SINGLE_ARG(IF(VA_ARGS_FILLED(__VA_ARGS__), __ENABLE_IF, DISCARD)(prefix, n, __VA_ARGS__)) extra>
 #define ENABLE_IF(prefix, value, ...) _ENABLE_IF(prefix, value, , Bool, , __VA_ARGS__)
 #define ENABLE_TYPE_IF(prefix, value, ...) _ENABLE_IF(prefix, value, 1, , COMMA T2, __VA_ARGS__)
