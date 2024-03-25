@@ -13,6 +13,8 @@
 #define ARGS_TRANSCRIPTION(value, ...) value __VA_ARGS__
 #define TRANSCRIBE_ARGS(prefix, value, ...) prefix value __VA_ARGS__
 
+#define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
+
 #define INCREMENT(n) CONCATENATE(INCREMENT, n)
 #define DECREMENT(n) CONCATENATE(DECREMENT, n)
 
