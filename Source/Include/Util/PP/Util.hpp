@@ -18,11 +18,8 @@
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH(concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
 #define SURROUND_ARGS(concatenator, prefix, suffix, ...) CONCATENATE_WITH(concatenator, prefix, suffix, __VA_ARGS__)
 
-#define TEMPLATE template<class T>
 #define TYPE_TEMPLATE_N(n, kind, ...) template<FFOR(n, SURROUND, kind T, SINGLE_ARG) __VA_OPT__(,) SURROUND_ARGS(TRANSCRIBE_ARGS, kind, , __VA_ARGS__)>
-#define TEMPLATE_N(n, ...) TYPE_TEMPLATE_N(n, class, __VA_ARGS__)
+#define TEMPLATE_NE(n, ...) TYPE_TEMPLATE_N(n, class, __VA_ARGS__)
 #define TEMPLATE_TYPES(n) FFOR(n, SURROUND, T, SINGLE_ARG)
-#define CLASS class
-#define CLASS_N(n) TEMPLATE_N(n, ) CLASS
 
 #endif // WINCOPIES_UTIL_HPP
