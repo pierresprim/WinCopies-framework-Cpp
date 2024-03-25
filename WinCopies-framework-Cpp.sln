@@ -53,13 +53,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util.Shared", "So
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Shared", "Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems", "{CE304143-BD6F-4D55-A3DC-001CB662BE20}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Current", "Current", "{85892C8A-687D-40E9-B05F-38B0937D4C16}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Util", "Source\Current\WinCopies.Util\WinCopies.Util.vcxproj", "{10ACD228-5E39-46A2-8F61-894381A0E427}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections", "Source\Current\WinCopies.Collections\WinCopies.Collections.vcxproj", "{B8631384-D958-4DF3-861A-1386C643C7EC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5944965A-C6BC-448C-898B-C4AA45517A4E}"
 EndProject
@@ -83,6 +79,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{99
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\Includes\Framework.h = Source\Include\Util\Includes\Framework.h
 		Source\Include\Util\Includes\Libraries.h = Source\Include\Util\Includes\Libraries.h
+		Source\Include\Util\Includes\Main.h = Source\Include\Util\Includes\Main.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Macros", "Macros", "{80187EF8-648A-4C74-AABF-1431E6DBAE5A}"
@@ -160,6 +157,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-9
 		Source\Include\Util\PP\Math\Math.hpp = Source\Include\Util\PP\Math\Math.hpp
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Typing\Consts.h = Source\Include\Util\Includes\Typing\Consts.h
+		Source\Include\Util\Includes\Typing\EnableIf.h = Source\Include\Util\Includes\Typing\EnableIf.h
+		Source\Include\Util\Includes\Typing\Enum.h = Source\Include\Util\Includes\Typing\Enum.h
+		Source\Include\Util\Includes\Typing\Typing.h = Source\Include\Util\Includes\Typing\Typing.h
+		Source\Include\Util\Includes\Typing\Usings.h = Source\Include\Util\Includes\Typing\Usings.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Defines", "Defines", "{219B4B48-FA64-487B-9808-85C395CF0421}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Typing\Defines\Consts.h = Source\Include\Util\Includes\Typing\Defines\Consts.h
+		Source\Include\Util\Includes\Typing\Defines\EnableIf.h = Source\Include\Util\Includes\Typing\Defines\EnableIf.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -176,14 +188,6 @@ Global
 		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x64.Build.0 = Release|x64
 		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x86.ActiveCfg = Release|Win32
 		{10ACD228-5E39-46A2-8F61-894381A0E427}.Release|x86.Build.0 = Release|Win32
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x64.ActiveCfg = Debug|x64
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x64.Build.0 = Debug|x64
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x86.ActiveCfg = Debug|Win32
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x86.Build.0 = Debug|Win32
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x64.ActiveCfg = Release|x64
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x64.Build.0 = Release|x64
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x86.ActiveCfg = Release|Win32
-		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x86.Build.0 = Release|Win32
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Debug|x64.ActiveCfg = Debug|x64
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Debug|x64.Build.0 = Debug|x64
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Debug|x86.ActiveCfg = Debug|Win32
@@ -202,10 +206,8 @@ Global
 		{CAE43DBB-BBD8-48A3-810D-870B988FCCA6} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
 		{591DA994-C2A7-4217-BC92-3E8C32167115} = {F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}
 		{F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9} = {FCA4B167-AB35-4C40-BA5A-4871D89B331C}
-		{CE304143-BD6F-4D55-A3DC-001CB662BE20} = {F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}
 		{85892C8A-687D-40E9-B05F-38B0937D4C16} = {FCA4B167-AB35-4C40-BA5A-4871D89B331C}
 		{10ACD228-5E39-46A2-8F61-894381A0E427} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
-		{B8631384-D958-4DF3-861A-1386C643C7EC} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD} = {5944965A-C6BC-448C-898B-C4AA45517A4E}
 		{B7CC362B-A327-41EB-96A6-1F141F4C16CA} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
 		{1EAE9819-A0C4-4B34-BB02-62BB1A0F49F7} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
@@ -221,6 +223,8 @@ Global
 		{B9D054DC-F7D0-404D-8E53-B928725DB2DB} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{4220B618-D1C3-45C5-9EB1-1F26ABECF20A} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{1ACF941A-98D3-434E-BDF9-35454434D2CF} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
+		{21D6F6E5-FB17-4B6E-AB77-30C359F231E5} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
+		{219B4B48-FA64-487B-9808-85C395CF0421} = {21D6F6E5-FB17-4B6E-AB77-30C359F231E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}
@@ -228,7 +232,5 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{10acd228-5e39-46a2-8f61-894381a0e427}*SharedItemsImports = 4
 		Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{591da994-c2a7-4217-bc92-3e8c32167115}*SharedItemsImports = 9
-		Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{b8631384-d958-4df3-861a-1386c643c7ec}*SharedItemsImports = 4
-		Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{ce304143-bd6f-4d55-a3dc-001cb662be20}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
