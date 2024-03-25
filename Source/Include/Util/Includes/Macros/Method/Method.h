@@ -3,13 +3,12 @@
 #ifndef WINCOPIES_UTIL_MACROS_METHOD_H
 #define WINCOPIES_UTIL_MACROS_METHOD_H
 
-#define __METHOD(modifiers) DLLEXPORT modifiers
-#define _METHOD(modifiers) __METHOD() void
+#define _METHOD(modifiers) DLLEXPORT modifiers void
 
 #define METHOD _METHOD()
 
 #define INLINE_METHOD _METHOD(inline)
-#define FUNCTION __METHOD(inline)
+#define INLINE_FUNCTION DLLEXPORT inline
 
 #include "Templates/Method.h"
 #include "Templates/Inline.h"
