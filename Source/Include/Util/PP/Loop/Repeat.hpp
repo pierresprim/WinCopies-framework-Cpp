@@ -9,6 +9,7 @@
 
 #define _REPEAT10(n, macro, ...) REPEAT##n(macro, REPEAT10(macro, __VA_ARGS__))
 
+#define REPEAT1(macro, ...) macro(__VA_ARGS__)
 #define REPEAT2(macro, ...) macro(macro(__VA_ARGS__))
 #define REPEAT3(macro, ...) _REPEAT1(2, macro, __VA_ARGS__)
 #define REPEAT4(macro, ...) REPEAT2(macro, REPEAT2(macro, __VA_ARGS__))
