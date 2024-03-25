@@ -37,6 +37,18 @@
     <Filter Include="Header Files\Includes\Macros\Type\Templates">
       <UniqueIdentifier>{b440287a-4bc1-44e3-a82e-43563ec98f90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PP">
+      <UniqueIdentifier>{6b7e99af-419b-48c3-bb4b-777c960af9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Includes\Typing">
+      <UniqueIdentifier>{858fc747-3cf6-4e7d-bc72-01f01ce4bf0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Types">
+      <UniqueIdentifier>{b7d9d416-6150-41e5-891f-cd28171b3fad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Includes\Typing\Defines">
+      <UniqueIdentifier>{9392a46b-f69f-44ec-927a-8641cb6532dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h">
@@ -93,9 +105,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Defs.h">
       <Filter>Header Files\Includes\Types</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Usings.h">
-      <Filter>Header Files\Includes\Types</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Defines.h">
       <Filter>Header Files\Includes\Types\Delegates</Filter>
     </ClInclude>
@@ -141,6 +150,42 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Struct.h">
       <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Misc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Util.hpp">
+      <Filter>Header Files\PP</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\MiscBase.hpp">
+      <Filter>Header Files\PP</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\MISC.hpp">
+      <Filter>Header Files\PP</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\CountArgs.hpp">
+      <Filter>Header Files\PP</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Main.h">
+      <Filter>Header Files\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Typing.h">
+      <Filter>Header Files\Includes\Typing</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Defines\Consts.h">
+      <Filter>Header Files\Includes\Typing\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Defines\EnableIf.h">
+      <Filter>Header Files\Includes\Typing\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Usings.h">
+      <Filter>Header Files\Includes\Typing</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Usings.h">
+      <Filter>Header Files\Includes\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Enum.h">
+      <Filter>Header Files\Includes\Typing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp">
@@ -154,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Math.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Types\Usings.cpp">
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

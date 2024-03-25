@@ -5,3 +5,7 @@
 #define INTERFACE(interfaceName)
 #define INTERFACE
 #define ABSTRACT_METHOD(typeAndName) ABSTRACT_ARG_METHOD(typeAndName, )
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define MAKE_ENABLE_IF(enableFor, __VA_ARGS__) _MAKE_ENABLE_IF(enableFor, WinCopies::Typing, , , Is##enableFor, __VA_ARGS__)

@@ -17,6 +17,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Math.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)System.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Types\Usings.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,12 +44,23 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Interface.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Struct.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Type.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Main.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Defs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Defines.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Delegates.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Usings.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Defines\Consts.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Defines\EnableIf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Enum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Typing.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Usings.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Math.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Misc.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Nullable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\CountArgs.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\MISC.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\MiscBase.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Util.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\System.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Util.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\UtilBase.h" />
