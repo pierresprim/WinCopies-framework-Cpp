@@ -79,42 +79,58 @@
 
 #if __cplusplus >= 201402L
 #ifndef HAS_CPP14
-#define HAS_CPP14
+#define HAS_CPP14 1
 #endif
-
-#ifndef HAS_CXX14
-#define HAS_CXX14
+#else
+#ifndef HAS_CPP14
+#define HAS_CPP14 0
 #endif
+#endif // HAS_CPP14
 
 #if __cplusplus >= 201703L
 #ifndef HAS_CPP17
-#define HAS_CPP17
+#define HAS_CPP17 1
 #endif
-
-#ifndef HAS_CXX17
-#define HAS_CXX17
+#else
+#ifndef HAS_CPP17
+#define HAS_CPP17 0
 #endif
+#endif // HAS_CPP17
 
 #if __cplusplus >= 202002L
 #ifndef HAS_CPP20
-#define HAS_CPP20
+#define HAS_CPP20 1
 #endif
-
-#ifndef HAS_CXX20
-#define HAS_CXX20
+#else
+#ifndef HAS_CPP20
+#define HAS_CPP20 0
 #endif
+#endif // HAS_CPP20
 
 #if __cplusplus > 202002L
 #ifndef HAS_CPP23
-#define HAS_CPP23
+#define HAS_CPP23 1
+#endif
+#else
+#ifndef HAS_CPP23
+#define HAS_CPP23 0
+#endif
+#endif // HAS_CPP23
+
+#ifndef HAS_CXX14
+#define HAS_CXX14 HAS_CPP14
+#endif
+
+#ifndef HAS_CXX17
+#define HAS_CXX17 HAS_CPP17
+#endif
+
+#ifndef HAS_CXX20
+#define HAS_CXX20 HAS_CPP20
 #endif
 
 #ifndef HAS_CXX23
-#define HAS_CXX23
+#define HAS_CXX23 HAS_CPP23
 #endif
-#endif // HAS_CPP23
-#endif // HAS_CPP20
-#endif // HAS_CPP17
-#endif // HAS_CPP14
 
 #endif // WINCOPIES_UTIL_ENVIRONMENT_H

@@ -17,12 +17,13 @@ namespace WinCopies
 	{
 #define ENUM_CAST(enumType, enumValue) static_cast<::WinCopies::Typing::UnderlyingType<enumType>>(enumValue)
 
-#ifdef WINDOWS_NOT_CXX23
-		TEMPLATE inline CONST_EXPR ::WinCopies::Typing::UnderlyingType<T> ToUnderlyingType(T value) noexcept {
-			return ENUM_CAST(value);
-		}
+#if HAS_CPP23
+		USING_TEMPLATE_FUNCTION(ToUnderlyingType, std::to_underlying)
 #else
-		USING_TEMPLATE_FUNCTION(ToUnderlyingType, std:: to_underlying)
+		TEMPLATE inline CONST_EXPR ::WinCopies::Typing::UnderlyingType<T> ToUnderlyingType(T value) noexcept
+		{
+			return ENUM_CAST(T, value);
+		}
 #endif
 
 #define TO_UNDERLYING_TYPE(value) ::WinCopies::Typing::ToUnderlyingType(value)
