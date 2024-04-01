@@ -19,7 +19,7 @@
 #define SURROUND_ARGS(prefix, suffix, ...) CONCATENATE_WITH(SURROUND, prefix, suffix, __VA_ARGS__)
 #define TRANSCRIBE_ARGS_WITH(prefix, suffix, ...) CONCATENATE_WITH(TRANSCRIBE_ARGS, prefix, suffix, __VA_ARGS__)
 
-#define TYPE_TEMPLATE_N(n, kind, ...) template<FFOR(n, SURROUND, kind T, SINGLE_ARG) __VA_OPT__(,)  TRANSCRIBE_ARGS_WITH(kind, , __VA_ARGS__)>
+#define TYPE_TEMPLATE_N(n, kind, ...) template<FFOR(n, SURROUND, kind T, SINGLE_ARG) VA_OPT(COMMA)  TRANSCRIBE_ARGS_WITH(kind, , __VA_ARGS__)>
 #define TEMPLATE_NE(n, ...) TYPE_TEMPLATE_N(n, class, __VA_ARGS__)
 #define TEMPLATE_TYPES(n) FFOR(n, SURROUND, T, SINGLE_ARG)
 
