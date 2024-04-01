@@ -14,6 +14,8 @@
 #include <type_traits>
 #include <typeinfo>
 
+#include "Environment.h"
+
 #ifdef WINDOWS
 #include <format>
 
