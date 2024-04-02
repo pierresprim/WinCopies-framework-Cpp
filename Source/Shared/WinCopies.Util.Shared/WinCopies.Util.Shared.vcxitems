@@ -29,6 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Comparison.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Operators.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Exception.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Environment.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Framework.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Libraries.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Method.h" />
