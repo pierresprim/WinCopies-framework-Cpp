@@ -4,13 +4,18 @@
 #define WINCOPIES_REPEAT_HPP
 
 #include "../MISC.hpp"
+#include "../Conditional/If.hpp"
+#include "../CountArgs.hpp"
 
 #define _REPEAT1(n, macro, ...) macro (REPEAT##n(macro, __VA_ARGS__))
+
+#define __REPEAT2(...) VA_OPT(SINGLE_ARG(COMMA __VA_ARGS__), __VA_ARGS__)
+#define _REPEAT2(...) VA_OPT(__REPEAT2(ALL_BUT_FIRST_ARG(__VA_ARGS__)), __VA_ARGS__)
 
 #define _REPEAT10(n, macro, ...) REPEAT##n(macro, REPEAT10(macro, __VA_ARGS__))
 
 #define REPEAT1(macro, ...) macro(__VA_ARGS__)
-#define REPEAT2(macro, ...) macro(macro(__VA_ARGS__))
+#define REPEAT2(macro, ...) macro(macro(__VA_ARGS__) _REPEAT2(__VA_ARGS__))
 #define REPEAT3(macro, ...) _REPEAT1(2, macro, __VA_ARGS__)
 #define REPEAT4(macro, ...) REPEAT2(macro, REPEAT2(macro, __VA_ARGS__))
 #define REPEAT5(macro, ...) _REPEAT1(4, macro, __VA_ARGS__)
