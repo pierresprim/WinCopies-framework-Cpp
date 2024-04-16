@@ -3,9 +3,8 @@
 #ifndef WINCOPIES_CONDITIONAL_HPP
 #define WINCOPIES_CONDITIONAL_HPP
 
+#include "If.hpp"
 #include "../Math/Math.hpp"
-
-#define IF(value, ifTrue, ...) IF_B(BOOL(value), ifTrue, __VA_ARGS__)
 
 #define LESS(x, y) IF(x, BOOL(SUB(y, x)), BOOL(y))
 
@@ -20,4 +19,4 @@
 #define SURROUND_IF(condition, prefix, value, ...) SURROUND_IF_ELSE(condition, prefix, value, __VA_ARGS__, value)
 #define SURROUND_ONLY_IF(condition, prefix, value, ...) SURROUND_IF_ELSE(condition, prefix, value, __VA_ARGS__, )
 
-#endif // WINCOPIES_BOOL_HPP
+#endif // WINCOPIES_CONDITIONAL_HPP
