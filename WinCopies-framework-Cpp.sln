@@ -140,6 +140,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conditional", "Conditional"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\PP\Conditional\Bool.hpp = Source\Include\Util\PP\Conditional\Bool.hpp
 		Source\Include\Util\PP\Conditional\Conditional.hpp = Source\Include\Util\PP\Conditional\Conditional.hpp
+		Source\Include\Util\PP\Conditional\If.hpp = Source\Include\Util\PP\Conditional\If.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D1C3-45C5-9EB1-1F26ABECF20A}"
