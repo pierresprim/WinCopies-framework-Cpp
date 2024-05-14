@@ -20,8 +20,8 @@
 
 #define CEA_OPERATOR constexpr auto operator
 
-#define CEA_OPERATOR_TEMPLATE TEMPLATE CEAOPERATOR
-#define CEA_OPERATOR_TEMPLATE_N(n, templateType) TEMPLATE_N(n, templateType) CEAOPERATOR
+#define CEA_OPERATOR_TEMPLATE TEMPLATE CEA_OPERATOR
+#define CEA_OPERATOR_TEMPLATE_N(n, templateType) TEMPLATE_N(n, templateType) CEA_OPERATOR
 #define CEA_OPERATOR_TEMPLATE_NC(n) CEA_OPERATOR_TEMPLATE_N(n, class)
 
 // Named templates
