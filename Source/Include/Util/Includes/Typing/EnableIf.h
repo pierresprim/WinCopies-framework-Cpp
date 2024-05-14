@@ -6,6 +6,22 @@
 #include "Consts.h"
 #include "Defines/EnableIf.h"
 
+/**
+ * Type trait class for enabling bitwise operations on enums. By default
+ * bitwise operations on enums are disabled.
+ *
+ * @tparam T The enum type on which the type trait is being queried.
+ */
+TEMPLATE STRUCT IsBitwiseEnumType
+{
+	/**
+	 * Whether or not bitwise operators should be enabled for the enum type.
+	 * To enable make a template specialization of this class for your type and
+	 * set value to true.
+	 */
+	static constexpr bool value = false;
+};
+
 namespace WinCopies
 {
 	namespace Typing

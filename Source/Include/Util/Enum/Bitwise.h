@@ -77,43 +77,19 @@
 
 #include "Operators.h"
 
- /**
-  * Type trait class for enabling bitwise operations on enums. By default
-  * bitwise operations on enums are disabled.
-  *
-  * @tparam T The enum type on which the type trait is being queried.
-  */
-TEMPLATE STRUCT enable_enum_bitwise_operators
-{
-	/**
-	 * Whether or not bitwise operators should be enabled for the enum type.
-	 * To enable make a template specialization of this class for your type and
-	 * set value to true.
-	 */
-	static constexpr bool value = false;
-};
-
-/**
- * Helper to simplify syntax for querying whether or not bitwise operations are
- * enabled for a given enum.
- *
- * @tparam T The enum type on which the type trait is being queried.
- */
-TEMPLATE constexpr bool enable_enum_bitwise_operators_v = enable_enum_bitwise_operators<T>::value;
-
-#define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, enable_enum_bitwise_operators_v)
+#define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, IsBitwiseEnumType)
 
 #define BITWISE_ENUM_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) TEMPLATE constexpr auto operator operatorAssignmentSymbol(T& lhs, const T& rhs) \
-    -> typename enable_if_t<enable_enum_bitwise_operators_v<T>, void> \
+    -> typename CALL_ENABLE_IF(IsBitwiseEnum<T>, void) \
     { lhs = lhs operatorSymbol rhs; }
 
 #define BITWISE_ENUM_UNARY_OPERATOR(operatorSymbol) template<typename enum_t> constexpr auto operator operatorSymbol(const enum_t& val) \
-	-> typename enable_if_t<enable_enum_bitwise_operators_v<enum_t>, enum_t> \
+	-> typename CALL_ENABLE_IF(IsBitwiseEnum<enum_t>, enum_t) \
 	{ return static_cast<enum_t>( \
 		operatorSymbol ENUM_CAST(enum_t, val)); }
 
 #define BITWISE_ENUM_UNARY_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) template<typename enum_t> constexpr auto operator operatorAssignmentSymbol(const enum_t& val) \
-    -> typename std::enable_if_t<enable_enum_bitwise_operators_v<enum_t>, void> \
+    -> typename CALL_ENABLE_IF(IsBitwiseEnum<enum_t>, void) \
     { val = operatorSymbol val; }
 
 /**
@@ -220,11 +196,15 @@ BITWISE_ENUM_UNARY_OPERATOR(!)
  * @param T The enum type for which bitwise operations should be enabled.
  */
 #define ENABLE_ENUM_BITWISE_OPERATORS(T)                 \
-    template <> struct enable_enum_bitwise_operators<T>	 \
+    template <> struct IsBitwiseEnumType<T>              \
     {                                                    \
         static_assert(IS_ENUM(T), "T must be an enum."); \
         static constexpr bool value = true;              \
-    }
+    };
+
+#define BITWISE_ENUM(T) ENUM T;      \
+    ENABLE_ENUM_BITWISE_OPERATORS(T) \
+    enum class T
 
 BITWISE_ENUM_SHIFT_OPERATOR(<<)
 BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(<< , <<=)

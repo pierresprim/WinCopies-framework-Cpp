@@ -6,7 +6,7 @@
 #include "Operators.h"
 #include "../Util.h"
 
-#define _ARITHMETIC_ENUM_UNARY_OPERATOR(operatorSymbol, dummyParameter, referenceOperator) OPERATOR_TEMPLATE operatorSymbol(T& val dummyParameter) \
+#define _ARITHMETIC_ENUM_UNARY_OPERATOR(operatorSymbol, dummyParameter, referenceOperator) CEA_OPERATOR_TEMPLATE operatorSymbol(T& val dummyParameter) \
 	-> typename enable_if_t<IS_ENUM(T), T referenceOperator>
 
 #define ARITHMETIC_ENUM_PREFIX_INCREMENTATION_OPERATOR(operatorSymbol) _ARITHMETIC_ENUM_UNARY_OPERATOR(operatorSymbol, , &) \

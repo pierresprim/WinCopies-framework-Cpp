@@ -20,4 +20,62 @@
 #define MAKE_ENABLE_IF_STD(enableType, enableFor, ...) _MAKE_ENABLE_IF(enableType, std, is_, _v, enableFor, __VA_ARGS__)
 #define MAKE_ENABLE_IF(enableFor, ...) _MAKE_ENABLE_IF(enableFor, WinCopies::Typing, , , Is##enableFor, __VA_ARGS__)
 
+
+
+#define __CALL_ENABLE_IF(kind, check, ...) ::WinCopies::Typing::Enable##check##kind<__VA_ARGS__>
+#define _CALL_ENABLE_IF(kind, ...) __CALL_ENABLE_IF(kind, If, __VA_ARGS__)
+#define CALL_ENABLE_IF(...) _CALL_ENABLE_IF(, __VA_ARGS__)
+
+#define ENABLE_IF_VALUE(firstType, ...) CALL_ENABLE_IF(firstType::value, __VA_ARGS__)
+
+
+
+#define _CALL_ENABLE_TYPE_IF(kind, ...) __CALL_ENABLE_IF(kind, TypeIf, __VA_ARGS__)
+#define CALL_ENABLE_TYPE_IF(...) _CALL_ENABLE_TYPE_IF(, __VA_ARGS__)
+
+#define ENABLE_TYPE_IF_VALUE(firstType, ...) CALL_ENABLE_TYPE_IF(firstType::value, __VA_ARGS__)
+
+
+
+#define _CALL_ENABLE_WHEN(kind, ...) __CALL_ENABLE_IF(kind, When, __VA_ARGS__)
+#define CALL_ENABLE_WHEN(...) _CALL_ENABLE_WHEN(, __VA_ARGS__)
+
+#define ENABLE_WHEN_VALUE(firstType, ...) CALL_ENABLE_WHEN(firstType::value, __VA_ARGS__)
+
+
+
+#define ENABLE_IF_SIGNED(type) _CALL_ENABLE_IF(Signed, type)
+#define ENABLE_IF_UNSIGNED(type) _CALL_ENABLE_IF(Unsigned, type)
+
+#define ENABLE_IF_INTEGRAL(type) _CALL_ENABLE_IF(Integral, type)
+#define ENABLE_IF_SIGNED_INTEGRAL(type) _CALL_ENABLE_IF(SignedIntegral, type)
+#define ENABLE_IF_UNSIGNED_INTEGRAL(type) _CALL_ENABLE_IF(UnsignedIntegral, type)
+
+#define ENABLE_IF_FLOAT(type) _CALL_ENABLE_IF(Float, type)
+#define ENABLE_IF_ENUM(type) _CALL_ENABLE_IF(Enum, type)
+
+
+
+#define ENABLE_TYPE_IF_SIGNED(typeIn, typeOut) _CALL_ENABLE_TYPE_IF(Signed, typeIn, typeOut)
+#define ENABLE_TYPE_IF_UNSIGNED(type1, type2) _CALL_ENABLE_TYPE_IF(Unsigned, type1, type2)
+
+#define ENABLE_TYPE_IF_INTEGRAL(type1, type2) _CALL_ENABLE_TYPE_IF(Integral, type1, type2)
+#define ENABLE_TYPE_IF_SIGNED_INTEGRAL(type1, type2) _CALL_ENABLE_TYPE_IF(SignedIntegral, type1, type2)
+#define ENABLE_TYPE_IF_UNSIGNED_INTEGRAL(type1, type2) _CALL_ENABLE_TYPE_IF(UnsignedIntegral, type1, type2)
+
+#define ENABLE_TYPE_IF_FLOAT(type1, type2) _CALL_ENABLE_TYPE_IF(Float, type1, type2)
+#define ENABLE_TYPE_IF_ENUM(type1, type2) _CALL_ENABLE_TYPE_IF(Enum, type1, type2)
+
+
+
+#define ENABLE_WHEN_SIGNED(type) _CALL_ENABLE_WHEN(Signed, type)
+#define ENABLE_WHEN_UNSIGNED(type) _CALL_ENABLE_WHEN(Unsigned, type)
+
+#define ENABLE_WHEN_INTEGRAL(type) _CALL_ENABLE_WHEN(Integral, type)
+#define ENABLE_WHEN_SIGNED_INTEGRAL(type) _CALL_ENABLE_WHEN(SignedIntegral, type)
+#define ENABLE_WHEN_UNSIGNED_INTEGRAL(type) _CALL_ENABLE_WHEN(UnsignedIntegral, type)
+
+#define ENABLE_WHEN_FLOAT(type) _CALL_ENABLE_WHEN(Float, type)
+#define ENABLE_WHEN_ENUM(type) _CALL_ENABLE_WHEN(Enum, type)
+
 #endif // WINCOPIES_UTIL_TYPING_DEFINES_ENABLE_IF_H

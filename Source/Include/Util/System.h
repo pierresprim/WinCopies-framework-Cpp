@@ -10,7 +10,7 @@ using namespace WinCopies;
 namespace System
 {
 #ifdef WINDOWS
-	ENUM FormatMessageFlags
+	BITWISE_ENUM(FormatMessageFlags)
 	{
 		MaxWidthMask = FORMAT_MESSAGE_MAX_WIDTH_MASK,
 		AllocateBuffer = FORMAT_MESSAGE_ALLOCATE_BUFFER,
@@ -21,16 +21,14 @@ namespace System
 		ArgumentArray = FORMAT_MESSAGE_ARGUMENT_ARRAY
 	};
 
-	ENABLE_ENUM_BITWISE_OPERATORS(FormatMessageFlags);
-
 #pragma push_macro("FormatMessage")
 #undef FormatMessage
-	FUNCTION DWORD FormatMessage(FormatMessageFlags dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD dwLanguageId, LPWSTR lpBuffer, DWORD nSize, va_list* Arguments);
+	INLINE_FUNCTION DWORD FormatMessage(FormatMessageFlags dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD dwLanguageId, LPWSTR lpBuffer, DWORD nSize, va_list* Arguments);
 #endif
 
 	namespace ErrorHandling
 	{
-		FUNCTION SystemErrorCode GetLastError();
+		INLINE_FUNCTION SystemErrorCode GetLastError();
 		INLINE_METHOD SetLastError(const SystemErrorCode& errorCode);
 		INLINE_METHOD SetLastError(const SystemErrorCode& systemErrorCode);
 		DLLEXPORT ErrorCode SetSystemNotification(const SystemErrorCode& systemErrorCode);
@@ -41,13 +39,13 @@ namespace System
 		static inline Bool CheckMessage(const ErrorCode& x, const ErrorCode& y, const SystemErrorCode& systemErrorCode);
 		static inline bool CheckMessage2(const ErrorCode& x, const ErrorCode& y, const SystemErrorCode& systemErrorCode);
 
-		FUNCTION Bool CheckNotification(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
-		FUNCTION Bool CheckError(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
+		INLINE_FUNCTION Bool CheckNotification(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
+		INLINE_FUNCTION Bool CheckError(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
 
-		FUNCTION bool CheckNotification2(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
-		FUNCTION bool CheckError2(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
+		INLINE_FUNCTION bool CheckNotification2(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
+		INLINE_FUNCTION bool CheckError2(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode);
 #ifdef WINDOWS
-		FUNCTION DWORD FormatMessage(FormatMessageFlags dwFlags, LPCVOID lpSource, SystemErrorCode dwMessageId, DWORD dwLanguageId, LPWSTR lpBuffer, DWORD nSize, va_list* Arguments);
+		INLINE_FUNCTION DWORD FormatMessage(FormatMessageFlags dwFlags, LPCVOID lpSource, SystemErrorCode dwMessageId, DWORD dwLanguageId, LPWSTR lpBuffer, DWORD nSize, va_list* Arguments);
 		METHOD FormatMessage(SystemErrorCode* dwMessageId, DWORD dwLanguageId, STDSTRING* const message);
 		DLLEXPORT STDSTRING FormatMessage(SystemErrorCode* dwMessageId, DWORD dwLanguageId);
 #endif
