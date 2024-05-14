@@ -6,37 +6,37 @@
 #include "../Includes/Framework.h"
 #include "../Includes/Typing/EnableIf.h"
 
-#define ENUM_OPERATOR(operatorSymbol, condition) OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \
-	-> typename ENABLE_IF(condition, T) \
+#define ENUM_OPERATOR(operatorSymbol, condition) CEA_OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \
+	-> typename ENABLE_IF_VALUE(condition<T>, T) \
 	{ return static_cast<T>( \
 		ENUM_CAST(T, lhs) operatorSymbol \
 		ENUM_CAST(T, rhs)); }
 
-#define ENUM_COMPARISON_OPERATOR(operatorSymbol) OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \
+#define ENUM_COMPARISON_OPERATOR(operatorSymbol) CEA_OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \
 	-> typename ENABLE_IF_ENUM(T) \
 	{ return ENUM_CAST(T, lhs) operatorSymbol \
 		ENUM_CAST(T, rhs); }
 
-#define ENUM_COMPARISON_OPERATOR2(operatorSymbol) OPERATOR_TEMPLATE_NC(2) operatorSymbol(const T1& lhs, const T2& rhs) \
+#define ENUM_COMPARISON_OPERATOR2(operatorSymbol) CEA_OPERATOR_TEMPLATE_NC(2) operatorSymbol(const T1& lhs, const T2& rhs) \
 	-> typename ENABLE_IF_ENUM(T1) \
 	{ return ENUM_CAST(T1, lhs) operatorSymbol rhs; }
 
-#define BITWISE_ENUM_SHIFT_OPERATOR(operatorSymbol) OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \
-	-> typename enable_if_t<is_enum_v<T>, T> \
+#define BITWISE_ENUM_SHIFT_OPERATOR(operatorSymbol) CEA_OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \
+	-> typename ENABLE_WHEN_ENUM(T) \
 	{ return static_cast<T>( \
 		ENUM_CAST(T, lhs) operatorSymbol \
 		ENUM_CAST(T, rhs)); }
 
-#define BITWISE_ENUM_SHIFT_OPERATOR2(operatorSymbol) OPERATOR_TEMPLATE_NC(2) operatorSymbol(const T1& lhs, const T2& rhs) \
+#define BITWISE_ENUM_SHIFT_OPERATOR2(operatorSymbol) CEA_OPERATOR_TEMPLATE_NC(2) operatorSymbol(const T1& lhs, const T2& rhs) \
 	-> typename enable_if_t<is_enum_v<T1>, T1> \
 	{ return static_cast<T1>( \
 		ENUM_CAST(T1, lhs) operatorSymbol rhs); }
 
-#define BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) OPERATOR_TEMPLATE operatorAssignmentSymbol(T& lhs, const T& rhs) \
+#define BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) CEA_OPERATOR_TEMPLATE operatorAssignmentSymbol(T& lhs, const T& rhs) \
 	-> typename enable_if_t<is_enum_v<T>, T> \
 	{ return lhs = lhs operatorSymbol rhs; }
 
-#define BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR2(operatorSymbol, operatorAssignmentSymbol) OPERATOR_TEMPLATE_NC(2) operatorAssignmentSymbol(T1& lhs, const T2& rhs) \
+#define BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR2(operatorSymbol, operatorAssignmentSymbol) CEA_OPERATOR_TEMPLATE_NC(2) operatorAssignmentSymbol(T1& lhs, const T2& rhs) \
 	-> typename enable_if_t<is_enum_v<T1>, T1> \
 	{ return lhs = lhs operatorSymbol rhs; }
 
