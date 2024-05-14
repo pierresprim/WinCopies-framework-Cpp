@@ -21,7 +21,8 @@
 #define _APPEND_TOBJ(appendTObj, prependClass) IF(NOT(appendTObj), , SINGLE_ARG(IF(prependClass, class) TObj COMMA))
 #define APPEND_TOBJ(appendTObj) _APPEND_TOBJ(appendTObj, 1)
 
-#define __MAKE_TEMPLATE_PARAMS(count, prefix, suffix, appendTOut) FOR_I(count, SURROUND, prefix T##suffix, ) APPEND_TOUT(appendTOut)
+#define ___MAKE_TEMPLATE_PARAMS(count, prefix, suffix) FOR_I(count, SURROUND, prefix T##suffix, )
+#define __MAKE_TEMPLATE_PARAMS(count, prefix, suffix, appendTOut)  ___MAKE_TEMPLATE_PARAMS(count, prefix, suffix) APPEND_TOUT(appendTOut)
 #define _MAKE_TEMPLATE_PARAMS(count, suffix, appendTObj, appendTOut) template<APPEND_TOBJ(appendTObj) __MAKE_TEMPLATE_PARAMS(count, class, suffix, appendTOut)>
 
 #define MAKE_DELEGATE_ACTION(count, appendTObj, delegateKind, suffix, appendTOut, macro) _MAKE_TEMPLATE_PARAMS(count, suffix, appendTObj, appendTOut) macro(count, delegateKind, GET_DELEGATE_ACTION_RETURN_TYPE(appendTOut), __MAKE_TEMPLATE_PARAMS(count, , suffix, 0))
@@ -72,31 +73,29 @@ CREATE_DELEGATE_ACTIONS(ACTION)
 CREATE_SELECTOR_DELEGATES(Converter, T)
 CREATE_SELECTOR_DELEGATES(Predicate, bool)
 
-#define CREATE_SELECTOR(name, TOut) template<>
+MAKE_DELEGATE_ACTION(2, 0, Action, In, 0, _DELEGATE_ACTION)
 
-template<class T1, class T2>
-using Predicate2 = Selector2<T1, T2, bool>;
-template<class T1, class T2>
-using PredicateFunction2 = SelectorFunction2<T1, T2, bool>;
+#define CREATE_SELECTOR_TEMPLATE(count, prefix) template<___MAKE_TEMPLATE_PARAMS(count, prefix, )>
+#define CREATE_SELECTOR_TEMPLATE_ARGS(count) ___MAKE_TEMPLATE_PARAMS(count, , )
+#define __CREATE_SELECTOR(count, kind, name, suffix, prefix, ...) CREATE_SELECTOR_TEMPLATE(count, prefix) using CONCATENATE(name##suffix, count) = CONCATENATE(kind##suffix, count)<CREATE_SELECTOR_TEMPLATE_ARGS(count), VA_PREPEND(, __VA_ARGS__)>;
+#define _CREATE_SELECTOR(count, kind, name, suffix, ...) __CREATE_SELECTOR(count, kind, name, suffix, class, __VA_ARGS__)
+#define CREATE_SELECTOR(count, kind, name, ...) _CREATE_SELECTOR(count, kind, name, , __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, Instance, __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, Function, __VA_ARGS__)
 
-template<class T1, class T2>
-using Comparison2 = Selector2<T1, T2, BYTE>;
-template<class T1, class T2>
-using ComparisonFunction2 = SelectorFunction2<T1, T2, BYTE>;
+#define CREATE_PREDICATE(count) CREATE_SELECTOR(count, Selector, Predicate, bool)
+#define CREATE_COMPARISON(count) CREATE_SELECTOR(count, Selector, Comparison, BYTE)
+#define CREATE_EQUALITY_COMPARISON(count) CREATE_SELECTOR(count, Predicate, EqualityComparison)
 
-template<class T1, class T2>
-using EqualityComparison2 = Predicate2<T1, T2>;
-template<class T1, class T2>
-using EqualityComparisonFunction2 = PredicateFunction2<T1, T2>;
+#define CREATE_SELECTORS(macro) LOOP_TO(2, TEMPLATE_METHOD_MAX_ARGS, CREATE_##macro)
 
-TEMPLATE
-using Comparison = Comparison2<T, T>;
-TEMPLATE
-using ComparisonFunction = ComparisonFunction2<T, T>;
+CREATE_SELECTORS(PREDICATE)
+CREATE_SELECTORS(COMPARISON)
+CREATE_SELECTORS(EQUALITY_COMPARISON)
 
-TEMPLATE
-using EqualityComparison = EqualityComparison2<T, T>;
-TEMPLATE
-using EqualityComparisonFunction = EqualityComparisonFunction2<T, T>;
+#define _CREATE_COMPARISON_DELEGATES(prefix, suffix) TEMPLATE using SURROUND(prefix, Comparison, suffix) = SURROUND(prefix, Comparison, suffix)2<T, T>;
+
+#define CREATE_COMPARISON_DELEGATES(prefix) _CREATE_COMPARISON_DELEGATES(prefix,) _CREATE_COMPARISON_DELEGATES(prefix, Instance) _CREATE_COMPARISON_DELEGATES(prefix, Function)
+
+CREATE_COMPARISON_DELEGATES()
+CREATE_COMPARISON_DELEGATES(Equality)
 
 #endif
