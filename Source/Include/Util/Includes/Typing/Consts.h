@@ -23,6 +23,14 @@ namespace WinCopies
 
 		TEMPLATE inline CONST_EXPR bool IsFloat = is_floating_point_v<T>;
 		TEMPLATE inline CONST_EXPR bool IsEnum = is_enum_v<T>;
+
+		/**
+		 * Helper to simplify syntax for querying whether or not bitwise operations are
+		 * enabled for a given enum.
+		 *
+		 * @tparam T The enum type on which the type trait is being queried.
+		 */
+		TEMPLATE inline CONST_EXPR bool IsBitwiseEnum = IsBitwiseEnumType<T>::value;
 	}
 }
 
