@@ -7,6 +7,7 @@
 #include "../Macros/Template.h"
 #include "../Macros/Type/Type.h"
 #include "Defines/Consts.h"
+#include "EnableIf.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ namespace WinCopies
 		TEMPLATE inline CONST_EXPR bool IsFloat = is_floating_point_v<T>;
 		TEMPLATE inline CONST_EXPR bool IsEnum = is_enum_v<T>;
 
+		TEMPLATE struct IsBitwiseEnumType;
 		/**
 		 * Helper to simplify syntax for querying whether or not bitwise operations are
 		 * enabled for a given enum.
