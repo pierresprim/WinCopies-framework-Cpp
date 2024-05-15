@@ -28,16 +28,16 @@
 		ENUM_CAST(T, rhs)); }
 
 #define BITWISE_ENUM_SHIFT_OPERATOR2(operatorSymbol) CEA_OPERATOR_TEMPLATE_NC(2) operatorSymbol(const T1& lhs, const T2& rhs) \
-	-> typename enable_if_t<is_enum_v<T1>, T1> \
+	-> typename ENABLE_WHEN_ENUM(T1) \
 	{ return static_cast<T1>( \
 		ENUM_CAST(T1, lhs) operatorSymbol rhs); }
 
 #define BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) CEA_OPERATOR_TEMPLATE operatorAssignmentSymbol(T& lhs, const T& rhs) \
-	-> typename enable_if_t<is_enum_v<T>, T> \
+	-> typename ENABLE_WHEN_ENUM(T) \
 	{ return lhs = lhs operatorSymbol rhs; }
 
 #define BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR2(operatorSymbol, operatorAssignmentSymbol) CEA_OPERATOR_TEMPLATE_NC(2) operatorAssignmentSymbol(T1& lhs, const T2& rhs) \
-	-> typename enable_if_t<is_enum_v<T1>, T1> \
+	-> typename ENABLE_WHEN_ENUM(T1) \
 	{ return lhs = lhs operatorSymbol rhs; }
 
 ENUM_COMPARISON_OPERATOR(== )

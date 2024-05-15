@@ -77,19 +77,19 @@
 
 #include "Operators.h"
 
-#define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, IsBitwiseEnumType)
+#define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, ::WinCopies::Typing::IsBitwiseEnum)
 
 #define BITWISE_ENUM_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) TEMPLATE constexpr auto operator operatorAssignmentSymbol(T& lhs, const T& rhs) \
-    -> typename CALL_ENABLE_IF(IsBitwiseEnum<T>, void) \
+    -> typename ENABLE_TYPE_IF_BITWISE_ENUM(T, void) \
     { lhs = lhs operatorSymbol rhs; }
 
 #define BITWISE_ENUM_UNARY_OPERATOR(operatorSymbol) template<typename enum_t> constexpr auto operator operatorSymbol(const enum_t& val) \
-	-> typename CALL_ENABLE_IF(IsBitwiseEnum<enum_t>, enum_t) \
+	-> typename ENABLE_WHEN_BITWISE_ENUM(enum_t) \
 	{ return static_cast<enum_t>( \
 		operatorSymbol ENUM_CAST(enum_t, val)); }
 
 #define BITWISE_ENUM_UNARY_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) template<typename enum_t> constexpr auto operator operatorAssignmentSymbol(const enum_t& val) \
-    -> typename CALL_ENABLE_IF(IsBitwiseEnum<enum_t>, void) \
+    -> typename ENABLE_TYPE_IF_BITWISE_ENUM(enum_t, void) \
     { val = operatorSymbol val; }
 
 /**
@@ -190,21 +190,25 @@ BITWISE_ENUM_UNARY_OPERATOR(~)
  */
 BITWISE_ENUM_UNARY_OPERATOR(!)
 
+#define _ENABLE_ENUM_BITWISE_OPERATORS(_namespace, T)                      \
+    template <> struct WinCopies::Typing::IsBitwiseEnumType<_namespace::T> \
+    {                                                                      \
+        static_assert(IS_ENUM(_namespace::T), "T must be an enum.");       \
+        static constexpr bool value = true;                                \
+    };
+
 /**
  * Helper macro to enable bitwise operations on a given enum type.
  *
  * @param T The enum type for which bitwise operations should be enabled.
  */
-#define ENABLE_ENUM_BITWISE_OPERATORS(T)                 \
-    template <> struct IsBitwiseEnumType<T>              \
-    {                                                    \
-        static_assert(IS_ENUM(T), "T must be an enum."); \
-        static constexpr bool value = true;              \
-    };
+#define ENABLE_ENUM_BITWISE_OPERATORS(T, ...) _ENABLE_ENUM_BITWISE_OPERATORS(JOIN_ARGS(::, __VA_ARGS__), T)
 
-#define BITWISE_ENUM(T) ENUM T;      \
-    ENABLE_ENUM_BITWISE_OPERATORS(T) \
-    enum class T
+#define __BITWISE_ENUM(open, namespaces, T, ...) IF(NOT(open), , namespaces) ENUM T; TRANSCRIBE_REPEATED_FOR_EACH(}, __VA_ARGS__) \
+    ENABLE_ENUM_BITWISE_OPERATORS(T, __VA_ARGS__) \
+    namespaces enum class T
+#define _BITWISE_ENUM(open, T, ...) __BITWISE_ENUM(open, TRANSCRIBE_ARGS_WITH(namespace, {, __VA_ARGS__), T, __VA_ARGS__)
+#define BITWISE_ENUM(T, ...) _BITWISE_ENUM(0, T, __VA_ARGS__)
 
 BITWISE_ENUM_SHIFT_OPERATOR(<<)
 BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(<< , <<=)
