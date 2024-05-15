@@ -15,4 +15,6 @@
 #define IS_FLOAT(type) IS_TYPE(type, Float)
 #define IS_ENUM(type) IS_TYPE(type, Enum)
 
+#define IS_BITWISE_ENUM(type) IS_TYPE(type, BitwiseEnum)
+
 #endif // WINCOPIES_UTIL_TYPING_DEFINES_CONSTS_H
