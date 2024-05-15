@@ -32,6 +32,6 @@
 #define FOR_EACH(concatenator, prefix, macro, suffix, ...) FFOR_EACH(COUNT_ARGS(__VA_ARGS__), concatenator, prefix, macro, suffix, __VA_ARGS__)
 
 #define FFOR_EACH_C(count, concatenator, prefix, suffix, ...) FFOR_EACH(count, concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
-#define FOR_EACH_C(concatenator, prefix, suffix, ...) _FOR_EACH_C(COUNT_ARGS(__VA_ARGS__), concatenator, prefix, suffix, __VA_ARGS__)
+#define FOR_EACH_C(concatenator, prefix, suffix, ...) FFOR_EACH_C(COUNT_ARGS(__VA_ARGS__), concatenator, prefix, suffix, __VA_ARGS__)
 
 #endif // WINCOPIES_FOR_EACH_HPP
