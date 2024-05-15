@@ -3,12 +3,16 @@
 #ifndef WINCOPIES_UTIL_MISC_H
 #define WINCOPIES_UTIL_MISC_H
 
+#include "../../PP/CountArgs.hpp"
+
 // Misc
 
 #define OUTPOINTER OutPointer<T>*
 
-#define _MALLOC(type, factor, _operator) (type*)malloc(factor = sizeof(type) _operator factor)
-#define MALLOC(type) _MALLOC(type, , )
+#define __MALLOC(type, prefix, _operator, suffix) (type*)malloc(prefix sizeof(type) _operator suffix)
+#define _MALLOC(type, factor, _operator) __MALLOC(type, factor =, _operator, factor)
+
+#define MALLOC(type) __MALLOC(type, , , )
 #define MALLOC_SHIFT(type, count) _MALLOC(type, count, <<)
 #define MALLOC_MULT(type, count) _MALLOC(type, count, *)
 
