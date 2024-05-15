@@ -3,3 +3,4 @@
 // For more information see https://go.microsoft.com/fwlink/?linkid=865984
 #define INLINE_FIELD_RETURN(returnType, methodName, field) returnType methodName() { return _field; }
 #define LOOP_TO(start, end, macro) LOOP(start, SUB(end, DECREMENT(start)), macro)
+#define _BITWISE_ENUM(open, T, __VA_ARGS__) __BITWISE_ENUM(open, TRANSCRIBE_ARGS_WITH(namespace, {, __VA_ARGS__), T, __VA_ARGS__)
