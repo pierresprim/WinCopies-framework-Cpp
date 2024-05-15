@@ -38,9 +38,9 @@ namespace WinCopies
 		*y = tmp;
 	}
 
-	MULTI_TEMPLATE DLLEXPORT STDSTRING Format(const std::wstring_view message, T... formatItems)
+	MULTI_TEMPLATE DLLEXPORT STDSTRING Format(const std::wstring_view message, T&... formatItems)
 	{
-		return std::vformat(message, std::make_wformat_args(std::forward<T>(formatItems)...));
+		return std::vformat(message, std::make_wformat_args(std::forward<T&>(formatItems)...));
 	}
 
 	TEMPLATE METHOD OneLeftShift(T* const val, const BYTE& n)

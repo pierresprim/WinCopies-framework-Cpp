@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_UTIL_MACROS_TYPE_H
 #define WINCOPIES_UTIL_MACROS_TYPE_H
 
-#include "../Environment.h"
+#include "../../Environment.h"
 
 // Type kinds
 

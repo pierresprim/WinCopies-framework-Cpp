@@ -150,6 +150,7 @@ namespace WinCopies
 		}
 
 		SystemErrorCode errorCode = GetErrorCode();
+		SystemErrorCode msgErrorCode = SystemErrorCode::Error;
 
 		if (*errorMessage = (STDSTRING*)malloc(sizeof(STDSTRING)))
 		{
@@ -157,11 +158,11 @@ namespace WinCopies
 #pragma push_macro("FormatMessage")
 #undef FormatMessage
 #endif
-			System::ErrorHandling::FormatMessage(&errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), *errorMessage);
+			System::ErrorHandling::FormatMessage(&msgErrorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), *errorMessage);
 #ifdef _WIN32
 #pragma pop_macro("FormatMessage")
 #endif
-			if (errorCode == SystemErrorCode::Success)
+			if (msgErrorCode == SystemErrorCode::Success)
 			{
 				SystemException* ptr = (SystemException*)this;
 
@@ -171,8 +172,15 @@ namespace WinCopies
 			}
 		}
 
+		else
+
+			msgErrorCode = SystemErrorCode::OutOfMemory;
+
 		*errorMessage = NULL;
 
-		return WinCopies::Format(L"Could not retrieve error message. The exception error is {} and the message retrieval error is {}."sv, ENUM_CAST(SystemErrorCode, errorCode), ENUM_CAST(SystemErrorCode, errorCode));
+		auto _errorCode = TO_UNDERLYING_TYPE(errorCode);
+		auto _msgErrorCode = TO_UNDERLYING_TYPE(msgErrorCode);
+
+		return WinCopies::Format(L"Could not retrieve error message. The exception error is {} and the message retrieval error is {}."sv, _errorCode, _msgErrorCode);
 	}
 }
