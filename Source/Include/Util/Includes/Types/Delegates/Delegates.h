@@ -75,11 +75,11 @@ CREATE_SELECTOR_DELEGATES(Predicate, bool)
 
 MAKE_DELEGATE_ACTION(2, 0, Action, In, 0, _DELEGATE_ACTION)
 
-#define CREATE_SELECTOR_TEMPLATE(count, prefix) template<___MAKE_TEMPLATE_PARAMS(count, prefix, )>
-#define CREATE_SELECTOR_TEMPLATE_ARGS(count) ___MAKE_TEMPLATE_PARAMS(count, , )
-#define __CREATE_SELECTOR(count, kind, name, suffix, prefix, ...) CREATE_SELECTOR_TEMPLATE(count, prefix) using CONCATENATE(name##suffix, count) = CONCATENATE(kind##suffix, count)<CREATE_SELECTOR_TEMPLATE_ARGS(count), VA_PREPEND(, __VA_ARGS__)>;
-#define _CREATE_SELECTOR(count, kind, name, suffix, ...) __CREATE_SELECTOR(count, kind, name, suffix, class, __VA_ARGS__)
-#define CREATE_SELECTOR(count, kind, name, ...) _CREATE_SELECTOR(count, kind, name, , __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, Instance, __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, Function, __VA_ARGS__)
+#define CREATE_SELECTOR_TEMPLATE(count, prefix, appendTObj) template<APPEND_TOBJ(appendTObj) ___MAKE_TEMPLATE_PARAMS(count, prefix, )>
+#define CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) _APPEND_TOBJ(appendTObj, 0) ___MAKE_TEMPLATE_PARAMS(count, , )
+#define __CREATE_SELECTOR(count, kind, name, prefix, suffix, templatePrefix, appendTObj, ...) CREATE_SELECTOR_TEMPLATE(count, templatePrefix, appendTObj) using CONCATENATE(prefix##name##suffix, count) = CONCATENATE(prefix##kind##suffix, count)<CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) VA_PREPEND(, __VA_ARGS__)>;
+#define _CREATE_SELECTOR(count, kind, name, prefix, suffix, appendTObj, ...) __CREATE_SELECTOR(count, kind, name, prefix, suffix, class, appendTObj, __VA_ARGS__)
+#define CREATE_SELECTOR(count, kind, name, ...) _CREATE_SELECTOR(count, kind, name, , , 0, __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, Instance, , 1, __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, , Function, 0, __VA_ARGS__)
 
 #define CREATE_PREDICATE(count) CREATE_SELECTOR(count, Selector, Predicate, bool)
 #define CREATE_COMPARISON(count) CREATE_SELECTOR(count, Selector, Comparison, BYTE)
@@ -91,9 +91,9 @@ CREATE_SELECTORS(PREDICATE)
 CREATE_SELECTORS(COMPARISON)
 CREATE_SELECTORS(EQUALITY_COMPARISON)
 
-#define _CREATE_COMPARISON_DELEGATES(prefix, suffix) TEMPLATE using SURROUND(prefix, Comparison, suffix) = SURROUND(prefix, Comparison, suffix)2<T, T>;
+#define _CREATE_COMPARISON_DELEGATES(prefix, suffix, appendTObj) template<APPEND_TOBJ(appendTObj) class T> using SURROUND(prefix, Comparison, suffix) = SURROUND(prefix, Comparison, suffix##2)<_APPEND_TOBJ(appendTObj, 0) T, T>;
 
-#define CREATE_COMPARISON_DELEGATES(prefix) _CREATE_COMPARISON_DELEGATES(prefix,) _CREATE_COMPARISON_DELEGATES(prefix, Instance) _CREATE_COMPARISON_DELEGATES(prefix, Function)
+#define CREATE_COMPARISON_DELEGATES(prefix) _CREATE_COMPARISON_DELEGATES(prefix, , 0) _CREATE_COMPARISON_DELEGATES(Instance##prefix, , 1) _CREATE_COMPARISON_DELEGATES(prefix, Function, 0)
 
 CREATE_COMPARISON_DELEGATES()
 CREATE_COMPARISON_DELEGATES(Equality)
