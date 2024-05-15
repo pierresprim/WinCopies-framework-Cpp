@@ -27,7 +27,11 @@
 #define FOR_EACH16(printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(concatenator, prefix, macro, suffix, value) FOR_EACH15(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 
 #define SELECT(n, printExtra, concatenator, prefix, macro, suffix, ...) CONCATENATE(FOR_EACH, n)(printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH(concatenator, prefix, macro, suffix, ...) SELECT(COUNT_ARGS(__VA_ARGS__), 0, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH_C(concatenator, prefix, suffix, ...) FOR_EACH(concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
+
+#define FFOR_EACH(count, concatenator, prefix, macro, suffix, ...) SELECT(count, 0, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH(concatenator, prefix, macro, suffix, ...) FFOR_EACH(COUNT_ARGS(__VA_ARGS__), concatenator, prefix, macro, suffix, __VA_ARGS__)
+
+#define FFOR_EACH_C(count, concatenator, prefix, suffix, ...) FFOR_EACH(count, concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
+#define FOR_EACH_C(concatenator, prefix, suffix, ...) _FOR_EACH_C(COUNT_ARGS(__VA_ARGS__), concatenator, prefix, suffix, __VA_ARGS__)
 
 #endif // WINCOPIES_FOR_EACH_HPP
