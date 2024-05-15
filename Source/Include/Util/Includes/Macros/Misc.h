@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_MISC_H
-#define WINCOPIES_UTIL_MISC_H
+#ifndef WINCOPIES_UTIL_MACROS_MISC_H
+#define WINCOPIES_UTIL_MACROS_MISC_H
 
 #include "../../PP/CountArgs.hpp"
 
@@ -27,4 +27,4 @@
 #define ERROR_OUT_OF_MEMORY ERROR_OUTOFMEMORY
 #endif
 
-#endif
+#endif // WINCOPIES_UTIL_MACROS_MISC_H

@@ -11,7 +11,7 @@
 #define _TEMPLATE(typeKind) __TEMPLATE(typeKind, )
 
 #define TEMPLATE _TEMPLATE(class)
-#define TEMPLATE_N(n, templateType) template<FOR_I(n, SURROUND, class T, )>
+#define TEMPLATE_N(n, templateType) template<FOR_I(n, SURROUND, templateType T, )>
 #define TEMPLATE_NC(n) TEMPLATE_N(n, class)
 
 #define MULTI_TEMPLATE _TEMPLATE(class...)

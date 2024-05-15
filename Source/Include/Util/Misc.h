@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef WINCOPIES_UTIL_MISC_H
+#define WINCOPIES_UTIL_MISC_H
+
 #include "PP/Conditional/Conditional.hpp"
 
 #define _INLINE_METHOD_ACTION(isConst, returnType, methodName, action, ...) returnType methodName(__VA_ARGS__) IF(isConst, const) { action; }
@@ -15,3 +20,5 @@
 #define RETURN_BRANCH(condition, ifTrue, valueIfTrue, ifFalse, valueIfFalse) _GENERIC_BRANCH(0, condition, ifTrue; return valueIfTrue, ifFalse; return valueIfFalse)
 
 #define GET_FIELD_IF_ELSE(returnType, methodName, paramType, paramName, condition, valueIfTrue, ifFalse, valueIfFalse) returnType methodName(paramType* paramName) { RETURN_BRANCH(condition, *##paramName = _##paramName, valueIfTrue, *##paramName = ifFalse, valueIfFalse) }
+
+#endif // WINCOPIES_UTIL_MISC_H
