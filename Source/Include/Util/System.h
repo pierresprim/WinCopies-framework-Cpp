@@ -7,20 +7,22 @@
 
 using namespace WinCopies;
 
-namespace System
-{
 #ifdef WINDOWS
-	BITWISE_ENUM(FormatMessageFlags)
-	{
-		MaxWidthMask = FORMAT_MESSAGE_MAX_WIDTH_MASK,
+_BITWISE_ENUM(1, FormatMessageFlags, System)
+{
+	MaxWidthMask = FORMAT_MESSAGE_MAX_WIDTH_MASK,
 		AllocateBuffer = FORMAT_MESSAGE_ALLOCATE_BUFFER,
 		IgnoreInserts = FORMAT_MESSAGE_IGNORE_INSERTS,
 		FromString = FORMAT_MESSAGE_FROM_STRING,
 		FromHModule = FORMAT_MESSAGE_FROM_HMODULE,
 		FromSystem = FORMAT_MESSAGE_FROM_SYSTEM,
 		ArgumentArray = FORMAT_MESSAGE_ARGUMENT_ARRAY
-	};
-
+};
+}
+#endif
+namespace System
+{
+#ifdef WINDOWS
 #pragma push_macro("FormatMessage")
 #undef FormatMessage
 	INLINE_FUNCTION DWORD FormatMessage(FormatMessageFlags dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD dwLanguageId, LPWSTR lpBuffer, DWORD nSize, va_list* Arguments);
