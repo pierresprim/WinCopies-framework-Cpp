@@ -14,10 +14,17 @@
 #define GET_ARG(i, ...) GET_ARGS(i, 1, __VA_ARGS__)
 
 //#define CONCATENATE_ARGS(...) 
-#define JOIN_ARGS(separator, ...) FOR_EACH(TRANSCRIBE_ARGS, separator, SINGLE_ARG, , __VA_ARGS__)
-#define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH(concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
+#define _JOIN_ARGS(separator, first, ...) first FOR_EACH_C(TRANSCRIBE_ARGS, separator, , __VA_ARGS__)
+#define JOIN_ARGS(separator, ...) _JOIN_ARGS(separator, __VA_ARGS__)
+#define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
 #define SURROUND_ARGS(prefix, suffix, ...) CONCATENATE_WITH(SURROUND, prefix, suffix, __VA_ARGS__)
 #define TRANSCRIBE_ARGS_WITH(prefix, suffix, ...) CONCATENATE_WITH(TRANSCRIBE_ARGS, prefix, suffix, __VA_ARGS__)
+
+#define REPEAT_ARG(count, value) FOR_I(count, FIRST_ARG, value, )
+#define REPEAT_FOR_EACH(value, ...) REPEAT_ARG(COUNT_ARGS(__VA_ARGS__), value)
+
+#define TRANSCRIBE_REPEATED_ARG(count, value) _FOR_EACH_C(count, TRANSCRIBE_ARGS, , , REPEAT_ARG(count, value))
+#define TRANSCRIBE_REPEATED_FOR_EACH(value, ...) TRANSCRIBE_REPEATED_ARG(COUNT_ARGS(__VA_ARGS__), value)
 
 #define TYPE_TEMPLATE_N(n, kind, ...) template<FFOR(n, SURROUND, kind T, SINGLE_ARG) VA_OPT(COMMA)  TRANSCRIBE_ARGS_WITH(kind, , __VA_ARGS__)>
 #define TEMPLATE_NE(n, ...) TYPE_TEMPLATE_N(n, class, __VA_ARGS__)
