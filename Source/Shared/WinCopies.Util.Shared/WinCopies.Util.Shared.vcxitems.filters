@@ -7,9 +7,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{9b7ca014-1523-4759-acee-a08f2a591faf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enum">
-      <UniqueIdentifier>{a05c3828-90d2-4489-a6b5-133d187f1918}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Includes">
       <UniqueIdentifier>{a341325e-b1c5-4b84-8680-4cffd27e1c4b}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,18 @@
     <Filter Include="Header Files\Includes\Typing\Defines">
       <UniqueIdentifier>{9392a46b-f69f-44ec-927a-8641cb6532dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PP\Enum">
+      <UniqueIdentifier>{a05c3828-90d2-4489-a6b5-133d187f1918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PP\Conditional">
+      <UniqueIdentifier>{e83d5252-f204-45ce-ba45-5d27fec83c83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PP\Loop">
+      <UniqueIdentifier>{6e5a6790-bf2d-4e58-b193-91a89f93c0e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PP\Math">
+      <UniqueIdentifier>{c1aa3ad5-bbbe-48d6-9c45-3dd043ea57c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h">
@@ -69,17 +78,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Bitwise.h">
-      <Filter>Header Files\Enum</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Bitwise.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Comparison.h">
-      <Filter>Header Files\Enum</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Comparison.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Operators.h">
-      <Filter>Header Files\Enum</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Operators.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Arithmetic.h">
-      <Filter>Header Files\Enum</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Arithmetic.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Framework.h">
       <Filter>Header Files\Includes</Filter>
@@ -188,6 +197,45 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Environment.h">
       <Filter>Header Files\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\Bool.hpp">
+      <Filter>Header Files\PP\Conditional</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\Conditional.hpp">
+      <Filter>Header Files\PP\Conditional</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\If.hpp">
+      <Filter>Header Files\PP\Conditional</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\For.hpp">
+      <Filter>Header Files\PP\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\ForEach.hpp">
+      <Filter>Header Files\PP\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Loop.hpp">
+      <Filter>Header Files\PP\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\META_FOR.hpp">
+      <Filter>Header Files\PP\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Repeat.hpp">
+      <Filter>Header Files\PP\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\DECREMENT.h">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\INCREMENT.h">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\Math.hpp">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Consts.h">
+      <Filter>Header Files\Includes\Typing</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\EnableIf.h">
+      <Filter>Header Files\Includes\Typing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_UTIL_BASE_H
 #define WINCOPIES_UTIL_BASE_H
 
-#include "Enum/Bitwise.h"
+#include "PP/Enum/Bitwise.hpp"
 #include "Enums/ErrorCode.h"
 #include "Enums/SystemErrorCode.h"
 

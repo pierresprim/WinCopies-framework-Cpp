@@ -3,7 +3,7 @@
 #ifndef SYSTEM_API_H
 #define SYSTEM_API_H
 
-#include "Enum/Bitwise.h"
+#include "PP/Enum/Bitwise.hpp"
 
 using namespace WinCopies;
 
