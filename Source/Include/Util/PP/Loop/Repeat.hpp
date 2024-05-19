@@ -5,12 +5,12 @@
 
 #include "../MISC.hpp"
 #include "../Conditional/If.hpp"
-#include "../CountArgs.hpp"
+#include "../Variadic/CountArgs.hpp"
 
 #define _REPEAT1(n, macro, ...) macro (REPEAT##n(macro, __VA_ARGS__))
 
-#define __REPEAT2(...) VA_OPT(SINGLE_ARG(COMMA __VA_ARGS__), __VA_ARGS__)
-#define _REPEAT2(...) VA_OPT(__REPEAT2(ALL_BUT_FIRST_ARG(__VA_ARGS__)), __VA_ARGS__)
+#define __REPEAT2(...) IF(COUNT_ARGS(__VA_ARGS__), SINGLE_ARG(COMMA __VA_ARGS__))
+#define _REPEAT2(...) IF(COUNT_ARGS(__VA_ARGS__), __REPEAT2(REMOVE_FIRST_ARG(__VA_ARGS__)))
 
 #define _REPEAT10(n, macro, ...) REPEAT##n(macro, REPEAT10(macro, __VA_ARGS__))
 
