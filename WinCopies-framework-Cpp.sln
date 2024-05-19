@@ -66,6 +66,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{B7CC362B-A
 		Source\Include\Util\PP\Enum\Arithmetic.hpp = Source\Include\Util\PP\Enum\Arithmetic.hpp
 		Source\Include\Util\PP\Enum\Bitwise.hpp = Source\Include\Util\PP\Enum\Bitwise.hpp
 		Source\Include\Util\PP\Enum\Comparison.hpp = Source\Include\Util\PP\Enum\Comparison.hpp
+		Source\Include\Util\PP\Enum\MakeEnum.hpp = Source\Include\Util\PP\Enum\MakeEnum.hpp
 		Source\Include\Util\PP\Enum\Operators.hpp = Source\Include\Util\PP\Enum\Operators.hpp
 	EndProjectSection
 EndProject
@@ -130,7 +131,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PP", "PP", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\CountArgs.hpp = Source\Include\Util\PP\CountArgs.hpp
 		Source\Include\Util\PP\MISC.hpp = Source\Include\Util\PP\MISC.hpp
 		Source\Include\Util\PP\MiscBase.hpp = Source\Include\Util\PP\MiscBase.hpp
 		Source\Include\Util\PP\Util.hpp = Source\Include\Util\PP\Util.hpp
@@ -150,6 +150,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D
 		Source\Include\Util\PP\Loop\Loop.hpp = Source\Include\Util\PP\Loop\Loop.hpp
 		Source\Include\Util\PP\Loop\META_FOR.hpp = Source\Include\Util\PP\Loop\META_FOR.hpp
 		Source\Include\Util\PP\Loop\Repeat.hpp = Source\Include\Util\PP\Loop\Repeat.hpp
+		Source\Include\Util\PP\Loop\While.hpp = Source\Include\Util\PP\Loop\While.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-98D3-434E-BDF9-35454434D2CF}"
@@ -157,6 +158,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-9
 		Source\Include\Util\PP\Math\DECREMENT.h = Source\Include\Util\PP\Math\DECREMENT.h
 		Source\Include\Util\PP\Math\INCREMENT.h = Source\Include\Util\PP\Math\INCREMENT.h
 		Source\Include\Util\PP\Math\Math.hpp = Source\Include\Util\PP\Math\Math.hpp
+		Source\Include\Util\PP\Math\MathBase.hpp = Source\Include\Util\PP\Math\MathBase.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"
@@ -172,6 +174,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Defines", "Defines", "{219B
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\Includes\Typing\Defines\Consts.h = Source\Include\Util\Includes\Typing\Defines\Consts.h
 		Source\Include\Util\Includes\Typing\Defines\EnableIf.h = Source\Include\Util\Includes\Typing\Defines\EnableIf.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Variadic", "Variadic", "{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\PP\Variadic\CountArgs.hpp = Source\Include\Util\PP\Variadic\CountArgs.hpp
+		Source\Include\Util\PP\Variadic\Variadic.hpp = Source\Include\Util\PP\Variadic\Variadic.hpp
 	EndProjectSection
 EndProject
 Global
@@ -227,6 +235,7 @@ Global
 		{1ACF941A-98D3-434E-BDF9-35454434D2CF} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{21D6F6E5-FB17-4B6E-AB77-30C359F231E5} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
 		{219B4B48-FA64-487B-9808-85C395CF0421} = {21D6F6E5-FB17-4B6E-AB77-30C359F231E5}
+		{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}

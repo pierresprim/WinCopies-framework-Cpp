@@ -58,6 +58,9 @@
     <Filter Include="Header Files\PP\Math">
       <UniqueIdentifier>{c1aa3ad5-bbbe-48d6-9c45-3dd043ea57c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PP\Variadic">
+      <UniqueIdentifier>{38f6bab0-4996-4fff-b74e-3ef999929d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h">
@@ -171,9 +174,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\MISC.hpp">
       <Filter>Header Files\PP</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\CountArgs.hpp">
-      <Filter>Header Files\PP</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Main.h">
       <Filter>Header Files\Includes</Filter>
     </ClInclude>
@@ -236,6 +236,18 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\EnableIf.h">
       <Filter>Header Files\Includes\Typing</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\MakeEnum.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Variadic\Variadic.hpp">
+      <Filter>Header Files\PP\Variadic</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Variadic\CountArgs.hpp">
+      <Filter>Header Files\PP\Variadic</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\While.hpp">
+      <Filter>Header Files\PP\Loop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
