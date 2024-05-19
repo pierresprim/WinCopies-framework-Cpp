@@ -30,6 +30,6 @@
 #define GET_ALL_ARGS(...) ALL_ARGS(__VA_ARGS__)
 
 #define _HAS_VA_OPT(...) THIRD_ARG(__VA_OPT__(,), 1, 0, )
-#define HAS_VA_OPT _HAS_VA_OPT()
+#define HAS_VA_OPT _HAS_VA_OPT(?)
 
 #endif // WINCOPIES_MISC_BASE_HPP
