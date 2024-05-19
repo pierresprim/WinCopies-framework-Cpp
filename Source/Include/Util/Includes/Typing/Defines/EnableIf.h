@@ -4,8 +4,8 @@
 #define WINCOPIES_UTIL_TYPING_DEFINES_ENABLE_IF_H
 
 #include "../../Macros/Template.h"
-#include "../../../PP/CountArgs.hpp"
 #include "../../../PP/Loop/ForEach.hpp"
+#include "../../../PP/Variadic/Variadic.hpp"
 
 #define __ENABLE_IF(valuePrefix, n, prefix, suffix, ...) FOR_EACH_C(SURROUND, && ::valuePrefix::prefix, suffix<T##n>, __VA_ARGS__)
 #define _ENABLE_IF(prefix, value, n, type, extra, ...) SURROUND(::WinCopies::Typing::Enable, type, If)<::prefix::value<T##n> SINGLE_ARG(IF(VA_ARGS_FILLED(__VA_ARGS__), __ENABLE_IF, DISCARD)(prefix, n, __VA_ARGS__)) extra>
