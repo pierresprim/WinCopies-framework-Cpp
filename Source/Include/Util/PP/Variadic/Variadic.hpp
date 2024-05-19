@@ -3,10 +3,9 @@
 #ifndef WINCOPIES_VARIADIC_HPP
 #define WINCOPIES_VARIADIC_HPP
 
-#include "CountArgs.hpp"
 #include "../Conditional/Conditional.hpp"
 
-#if 0 < 1
+#if HAS_VA_OPT < 1
 #define VA_ARGS_FILLED(...) ___COUNT_ARGS(BOOL, __VA_ARGS__)
 #define VA_ARGS_EMPTY(...) NOT(VA_ARGS_FILLED(__VA_ARGS__))
 
@@ -21,9 +20,6 @@
 #define VA_PREPEND(value, ...) __VA_OPT__(value, __VA_ARGS__)
 #define VA_APPEND(value, ...) __VA_OPT__(__VA_ARGS__, value)
 #define VA_SURROUND(prefix, suffix, macro, ...) __VA_OPT__(macro(prefix, suffix, __VA_ARGS__))
-
-#define VA_ARGS_EMPTY(...) FIRST_ARG(__VA_OPT__(1,)0,)
-#define VA_ARGS_FILLED(...) NOT(VA_ARGS_EMPTY(__VA_ARGS__))
 #endif
 
 #endif // WINCOPIES_VARIADIC_HPP
