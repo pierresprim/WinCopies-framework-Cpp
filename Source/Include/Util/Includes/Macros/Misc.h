@@ -3,8 +3,6 @@
 #ifndef WINCOPIES_UTIL_MACROS_MISC_H
 #define WINCOPIES_UTIL_MACROS_MISC_H
 
-#include "../../PP/CountArgs.hpp"
-
 // Misc
 
 #define OUTPOINTER OutPointer<T>*
