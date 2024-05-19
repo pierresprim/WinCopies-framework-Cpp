@@ -12,8 +12,12 @@
 #define SURROUND(prefix, value, ...) _SURROUND(CONCATENATE(prefix, value), __VA_ARGS__)
 #define ARGS_TRANSCRIPTION(value, ...) value __VA_ARGS__
 #define TRANSCRIBE_ARGS(prefix, value, ...) prefix value __VA_ARGS__
+#define TRANSCRIBE_ARGS_CS(prefix, value, ...) TRANSCRIBE_ARGS(COMMA prefix, value, __VA_ARGS__)
+#define TRANSCRIBE_ARGS_CE(prefix, value, ...) TRANSCRIBE_ARGS(prefix, value, __VA_ARGS__ COMMA)
 
 #define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
+
+#define CALL_VA_MACRO(macro, ...) macro(__VA_ARGS__)
 
 #define INCREMENT(n) CONCATENATE(INCREMENT, n)
 #define DECREMENT(n) CONCATENATE(DECREMENT, n)
