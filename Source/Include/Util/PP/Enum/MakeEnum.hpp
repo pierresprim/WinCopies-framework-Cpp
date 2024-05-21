@@ -6,8 +6,10 @@
 #include "../MISC.hpp"
 #include "../Loop/ForEach.hpp"
 #include "../../Includes/Macros/Type/Type.h"
+#include "../Math/Math.hpp"
 
 #define TRANSCRIBE_ENUM_ARG(i, value) value = i
+#define TRANSCRIBE_FLAGS_ENUM_ARG(i, value) TRANSCRIBE_ENUM_ARG(MUL(i, 2), value)
 
 #define MAKE_ENUM(name, ...) ENUM name \
 	{ \
