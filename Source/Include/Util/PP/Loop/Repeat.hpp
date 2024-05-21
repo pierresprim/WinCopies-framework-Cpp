@@ -3,7 +3,6 @@
 #ifndef WINCOPIES_REPEAT_HPP
 #define WINCOPIES_REPEAT_HPP
 
-#include "../Conditional/If.hpp"
 #include "../Variadic/CountArgs.hpp"
 
 #define _REPEAT1(n, macro, ...) macro (REPEAT##n(macro, __VA_ARGS__))
