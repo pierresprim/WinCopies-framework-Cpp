@@ -15,7 +15,8 @@ namespace WinCopies
 {
 	namespace Typing
 	{
-#define ENUM_CAST(enumType, enumValue) static_cast<::WinCopies::Typing::UnderlyingType<enumType>>(enumValue)
+#define UNDERLYING_TYPE(enumType) ::WinCopies::Typing::UnderlyingType<enumType>
+#define ENUM_CAST(enumType, enumValue) static_cast<UNDERLYING_TYPE(enumType)>(enumValue)
 
 #if HAS_CPP23
 		USING_TEMPLATE_FUNCTION(ToUnderlyingType, std::to_underlying)
