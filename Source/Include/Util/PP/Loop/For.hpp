@@ -68,6 +68,6 @@
 #define FOR_C(n, constant) FFOR(n, SURROUND, constant, DISCARD)
 #define FOR_M(n, macro) FFOR(n, SURROUND, , macro)
 #define FOR_I(n, concatenator, prefix, suffix) FOR(n, concatenator, prefix, SINGLE_ARG, suffix)
-#define FFOR_I(n, constant) FOR_I(n, SURROUND, constant)
+#define FFOR_I(n, constant) FOR_I(n, SURROUND, constant, )
 
 #endif // WINCOPIES_FOR_HPP
