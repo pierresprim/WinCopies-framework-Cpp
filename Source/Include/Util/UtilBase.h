@@ -6,6 +6,7 @@
 #include "PP/Enum/Bitwise.hpp"
 #include "Enums/ErrorCode.h"
 #include "Enums/SystemErrorCode.h"
+#include "PP/Enum/MakeEnum.hpp"
 
 namespace WinCopies
 {
@@ -16,22 +17,9 @@ namespace WinCopies
 		True = 1
 	};
 
-	ENUM ByteSelector : BYTE
-	{
-		None = 0,
-		First = 1,
-		Second = First << 1,
-		Third = Second << 1,
-		Fourth = Third << 1,
-		Fifth = Fourth << 1,
-		Sixth = Fifth << 1,
-		Seventh = Sixth << 1,
-		Eighth = Seventh << 1
-	};
+	_MAKE_ENUM(1, 1, 0, ByteSelector, BYTE, First, Second, Third, Fourth, Fifth, Sixth, Seventh, Eighth)
 
-	ENABLE_ENUM_BITWISE_OPERATORS(ByteSelector);
-
-	TEMPLATE METHOD Swap(T* const x, T* const y)
+	TEMPLATE INLINE_METHOD Swap(T* const x, T* const y)
 	{
 		T tmp = *x;
 		*x = *y;
