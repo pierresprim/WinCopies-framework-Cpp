@@ -24,10 +24,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegates.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\ErrorCode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\SystemErrorCode.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Arithmetic.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Bitwise.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Comparison.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Operators.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Exception.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Environment.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Framework.h" />
@@ -63,7 +59,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\Bool.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\Conditional.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\If.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Arithmetic.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Bitwise.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Comparison.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\MakeEnum.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Operators.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\For.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\ForEach.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Loop.hpp" />

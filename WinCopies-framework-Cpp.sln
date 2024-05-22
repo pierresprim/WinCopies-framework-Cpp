@@ -141,6 +141,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conditional", "Conditional"
 		Source\Include\Util\PP\Conditional\Bool.hpp = Source\Include\Util\PP\Conditional\Bool.hpp
 		Source\Include\Util\PP\Conditional\Conditional.hpp = Source\Include\Util\PP\Conditional\Conditional.hpp
 		Source\Include\Util\PP\Conditional\If.hpp = Source\Include\Util\PP\Conditional\If.hpp
+		Source\Include\Util\PP\Conditional\Tables.h = Source\Include\Util\PP\Conditional\Tables.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D1C3-45C5-9EB1-1F26ABECF20A}"
@@ -158,7 +159,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-9
 		Source\Include\Util\PP\Math\DECREMENT.h = Source\Include\Util\PP\Math\DECREMENT.h
 		Source\Include\Util\PP\Math\INCREMENT.h = Source\Include\Util\PP\Math\INCREMENT.h
 		Source\Include\Util\PP\Math\Math.hpp = Source\Include\Util\PP\Math\Math.hpp
-		Source\Include\Util\PP\Math\MathBase.hpp = Source\Include\Util\PP\Math\MathBase.hpp
+		Source\Include\Util\PP\Math\Base.hpp = Source\Include\Util\PP\Math\Base.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"

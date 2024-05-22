@@ -81,18 +81,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Bitwise.hpp">
-      <Filter>Header Files\PP\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Comparison.hpp">
-      <Filter>Header Files\PP\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Operators.hpp">
-      <Filter>Header Files\PP\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enum\Arithmetic.hpp">
-      <Filter>Header Files\PP\Enum</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Framework.h">
       <Filter>Header Files\Includes</Filter>
     </ClInclude>
@@ -248,6 +236,18 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\While.hpp">
       <Filter>Header Files\PP\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Arithmetic.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Bitwise.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Comparison.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Operators.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
