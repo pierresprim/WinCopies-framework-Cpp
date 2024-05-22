@@ -190,11 +190,11 @@ BITWISE_ENUM_UNARY_OPERATOR(~)
  */
 BITWISE_ENUM_UNARY_OPERATOR(!)
 
-#define _ENABLE_ENUM_BITWISE_OPERATORS(_namespace, T)                      \
-    template <> struct WinCopies::Typing::IsBitwiseEnumType<_namespace::T> \
-    {                                                                      \
-        static_assert(IS_ENUM(_namespace::T), "T must be an enum.");       \
-        static constexpr bool value = true;                                \
+#define _ENABLE_ENUM_BITWISE_OPERATORS(_namespace, T)                        \
+    template <> struct ::WinCopies::Typing::IsBitwiseEnumType<_namespace::T> \
+    {                                                                        \
+        static_assert(IS_ENUM(_namespace::T), "T must be an enum.");         \
+        static constexpr bool value = true;                                  \
     };
 
 /**
