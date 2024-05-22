@@ -22,6 +22,8 @@
 #define SHARED_TEMPLATE(className) TEMPLATE _SHARED_CLASS(className, <T>)
 #define SHARED_TEMPLATE_CLASS(className) TEMPLATE SHARED_TYPE(class, className, <T>)
 
+#define ENUM_HEADER(name, type) ENUM name : type
+
 #include "Templates/Enum.h"
 #include "Templates/Struct.h"
 #include "Templates/Interface.h"
