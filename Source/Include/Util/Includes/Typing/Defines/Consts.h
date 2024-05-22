@@ -13,8 +13,9 @@
 #define IS_UNSIGNED_INTEGRAL(type) IS_TYPE(type, UnsignedIntegral)
 
 #define IS_FLOAT(type) IS_TYPE(type, Float)
-#define IS_ENUM(type) IS_TYPE(type, Enum)
 
+#define IS_ENUM(type) IS_TYPE(type, Enum)
 #define IS_BITWISE_ENUM(type) IS_TYPE(type, BitwiseEnum)
+#define IS_UNSIGNED_ENUM(type) IS_TYPE(type, UnsignedEnum)
 
 #endif // WINCOPIES_UTIL_TYPING_DEFINES_CONSTS_H
