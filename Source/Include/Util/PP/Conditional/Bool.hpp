@@ -6,15 +6,25 @@
 #include "../MiscBase.hpp"
 
 #define _CHECK(value, n, ...) n
-#define CHECK(...) SINGLE_ARG(_CHECK(__VA_ARGS__, 0,))
+#define CHECK(n, ...) SINGLE_ARG(_CHECK(__VA_ARGS__, n,))
 
-#define NOT(value) CHECK(CONCATENATE(NOT, value))
+#define CHECK_N(macro, value) CHECK(0, CONCATENATE(macro, value))
+
+#define NOT(value) CHECK_N(NOT, value)
 #define NOT0 , 1
 
 #define COMPL(b) CONCATENATE(COMPL, b)
 #define COMPL0 1
 #define COMPL1 0
 
-#define BOOL(value) COMPL(NOT(value))
+#define _BOOL(value) CHECK(1, CONCATENATE(_BOOL, value))
+#define _BOOL0 , 0
+
+#define _IS_ONE1 NOT0
+
+#define IS_ZERO(value) NOT(value)
+#define IS_ONE(value) CHECK_N(_IS_ONE, value)
+
+#define BOOL(value) _BOOL(value)
 
 #endif // WINCOPIES_BOOL_HPP

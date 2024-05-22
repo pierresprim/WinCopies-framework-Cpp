@@ -8,6 +8,9 @@
 
 #define IF(value, ifTrue, ...) IF_B(BOOL(value), ifTrue, __VA_ARGS__)
 
+#define IF_ZERO(value, ifTrue, ...) IF(NOT(value), ifTrue, __VA_ARGS__)
+#define IF_ONE(value, ifTrue, ...) IF(IS_ONE(value), ifTrue, __VA_ARGS__)
+
 #define IF_VALUES(_operator, x, y) SURROUND(_operator, x, y)
 
 #define AND_B(x, y) IF_VALUES(AND, x, y)
