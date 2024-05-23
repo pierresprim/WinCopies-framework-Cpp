@@ -20,31 +20,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections", "{CAE43DBB-BBD8-48A3-810D-870B988FCCA6}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Collections\Countable.h = Source\Include\Collections\Countable.h
-		Source\Include\Collections\defines.h = Source\Include\Collections\defines.h
-		Source\Include\Collections\Enumerable.h = Source\Include\Collections\Enumerable.h
-		Source\Include\Collections\EnumerableExtensions.h = Source\Include\Collections\EnumerableExtensions.h
-		Source\Include\Collections\EnumeratorBase.h = Source\Include\Collections\EnumeratorBase.h
 		Source\Include\Collections\ICollection.h = Source\Include\Collections\ICollection.h
-		Source\Include\Collections\IEnumerable.h = Source\Include\Collections\IEnumerable.h
-		Source\Include\Collections\IEnumerator.h = Source\Include\Collections\IEnumerator.h
-		Source\Include\Collections\ILinkedList.h = Source\Include\Collections\ILinkedList.h
-		Source\Include\Collections\ILinkedListNode.h = Source\Include\Collections\ILinkedListNode.h
-		Source\Include\Collections\IQueue.h = Source\Include\Collections\IQueue.h
-		Source\Include\Collections\IReadOnlyLinkedList.h = Source\Include\Collections\IReadOnlyLinkedList.h
-		Source\Include\Collections\ISimpleLinkedList.h = Source\Include\Collections\ISimpleLinkedList.h
-		Source\Include\Collections\ISimpleLinkedListNode.h = Source\Include\Collections\ISimpleLinkedListNode.h
 		Source\Include\Collections\ISortable.h = Source\Include\Collections\ISortable.h
-		Source\Include\Collections\IStack.h = Source\Include\Collections\IStack.h
-		Source\Include\Collections\LinkedList.h = Source\Include\Collections\LinkedList.h
-		Source\Include\Collections\Queue.h = Source\Include\Collections\Queue.h
-		Source\Include\Collections\SafeArray.h = Source\Include\Collections\SafeArray.h
-		Source\Include\Collections\SelectEnumerable.h = Source\Include\Collections\SelectEnumerable.h
-		Source\Include\Collections\SelectEnumerator.h = Source\Include\Collections\SelectEnumerator.h
-		Source\Include\Collections\SimpleLinkedList.h = Source\Include\Collections\SimpleLinkedList.h
-		Source\Include\Collections\SimpleLinkedListNode.h = Source\Include\Collections\SimpleLinkedListNode.h
-		Source\Include\Collections\Stack.h = Source\Include\Collections\Stack.h
 		Source\Include\Collections\ThrowHelper.h = Source\Include\Collections\ThrowHelper.h
-		Source\Include\Collections\WhereEnumerable.h = Source\Include\Collections\WhereEnumerable.h
+		Source\Include\Collections\Util.h = Source\Include\Collections\Util.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{FCA4B167-AB35-4C40-BA5A-4871D89B331C}"
@@ -185,6 +164,36 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Variadic", "Variadic", "{C3
 		Source\Include\Util\PP\Variadic\Variadic.hpp = Source\Include\Util\PP\Variadic\Variadic.hpp
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Shared", "Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems", "{CE304143-BD6F-4D55-A3DC-001CB662BE20}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections", "Source\Current\WinCopies.Collections\WinCopies.Collections.vcxproj", "{B8631384-D958-4DF3-861A-1386C643C7EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enumeration", "Enumeration", "{44BC91E9-3EE6-407D-BFDD-47E9EB9123C6}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Collections\Enumeration\Enumerable.h = Source\Include\Collections\Enumeration\Enumerable.h
+		Source\Include\Collections\Enumeration\EnumerableBase.h = Source\Include\Collections\Enumeration\EnumerableBase.h
+		Source\Include\Collections\Enumeration\EnumerableExtensions.h = Source\Include\Collections\Enumeration\EnumerableExtensions.h
+		Source\Include\Collections\Enumeration\EnumeratorBase.h = Source\Include\Collections\Enumeration\EnumeratorBase.h
+		Source\Include\Collections\Enumeration\IEnumerable.h = Source\Include\Collections\Enumeration\IEnumerable.h
+		Source\Include\Collections\Enumeration\IEnumerator.h = Source\Include\Collections\Enumeration\IEnumerator.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinkedList", "LinkedList", "{14997D21-DA87-44E5-BD17-78D324D0B2E0}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Collections\LinkedList\ILinkedList.h = Source\Include\Collections\LinkedList\ILinkedList.h
+		Source\Include\Collections\LinkedList\ILinkedListNode.h = Source\Include\Collections\LinkedList\ILinkedListNode.h
+		Source\Include\Collections\LinkedList\IQueue.h = Source\Include\Collections\LinkedList\IQueue.h
+		Source\Include\Collections\LinkedList\IReadOnlyLinkedList.h = Source\Include\Collections\LinkedList\IReadOnlyLinkedList.h
+		Source\Include\Collections\LinkedList\ISimpleLinkedList.h = Source\Include\Collections\LinkedList\ISimpleLinkedList.h
+		Source\Include\Collections\LinkedList\ISimpleLinkedListNode.h = Source\Include\Collections\LinkedList\ISimpleLinkedListNode.h
+		Source\Include\Collections\LinkedList\IStack.h = Source\Include\Collections\LinkedList\IStack.h
+		Source\Include\Collections\LinkedList\LinkedList.h = Source\Include\Collections\LinkedList\LinkedList.h
+		Source\Include\Collections\LinkedList\Queue.h = Source\Include\Collections\LinkedList\Queue.h
+		Source\Include\Collections\LinkedList\SimpleLinkedList.h = Source\Include\Collections\LinkedList\SimpleLinkedList.h
+		Source\Include\Collections\LinkedList\SimpleLinkedListNode.h = Source\Include\Collections\LinkedList\SimpleLinkedListNode.h
+		Source\Include\Collections\LinkedList\Stack.h = Source\Include\Collections\LinkedList\Stack.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -209,6 +218,14 @@ Global
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x64.Build.0 = Release|x64
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x86.ActiveCfg = Release|Win32
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD}.Release|x86.Build.0 = Release|Win32
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x64.ActiveCfg = Debug|x64
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x64.Build.0 = Debug|x64
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x86.ActiveCfg = Debug|Win32
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Debug|x86.Build.0 = Debug|Win32
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x64.ActiveCfg = Release|x64
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x64.Build.0 = Release|x64
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x86.ActiveCfg = Release|Win32
+		{B8631384-D958-4DF3-861A-1386C643C7EC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -239,6 +256,10 @@ Global
 		{21D6F6E5-FB17-4B6E-AB77-30C359F231E5} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
 		{219B4B48-FA64-487B-9808-85C395CF0421} = {21D6F6E5-FB17-4B6E-AB77-30C359F231E5}
 		{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
+		{CE304143-BD6F-4D55-A3DC-001CB662BE20} = {F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}
+		{B8631384-D958-4DF3-861A-1386C643C7EC} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
+		{44BC91E9-3EE6-407D-BFDD-47E9EB9123C6} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
+		{14997D21-DA87-44E5-BD17-78D324D0B2E0} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}
@@ -246,5 +267,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{10acd228-5e39-46a2-8f61-894381a0e427}*SharedItemsImports = 4
 		Source\Shared\WinCopies.Util.Shared\WinCopies.Util.Shared.vcxitems*{591da994-c2a7-4217-bc92-3e8c32167115}*SharedItemsImports = 9
+		Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{b8631384-d958-4df3-861a-1386c643c7ec}*SharedItemsImports = 4
+		Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems*{ce304143-bd6f-4d55-a3dc-001cb662be20}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
