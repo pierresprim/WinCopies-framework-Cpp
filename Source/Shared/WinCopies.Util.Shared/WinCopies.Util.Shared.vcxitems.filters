@@ -249,6 +249,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Operators.hpp">
       <Filter>Header Files\PP\Enum</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Flags.hpp">
+      <Filter>Header Files\PP\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\DefsBase.h">
+      <Filter>Header Files\Includes\Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp">

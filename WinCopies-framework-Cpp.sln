@@ -66,6 +66,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{B7CC362B-A
 		Source\Include\Util\PP\Enum\Arithmetic.hpp = Source\Include\Util\PP\Enum\Arithmetic.hpp
 		Source\Include\Util\PP\Enum\Bitwise.hpp = Source\Include\Util\PP\Enum\Bitwise.hpp
 		Source\Include\Util\PP\Enum\Comparison.hpp = Source\Include\Util\PP\Enum\Comparison.hpp
+		Source\Include\Util\PP\Enum\Flags.hpp = Source\Include\Util\PP\Enum\Flags.hpp
 		Source\Include\Util\PP\Enum\MakeEnum.hpp = Source\Include\Util\PP\Enum\MakeEnum.hpp
 		Source\Include\Util\PP\Enum\Operators.hpp = Source\Include\Util\PP\Enum\Operators.hpp
 	EndProjectSection
@@ -94,6 +95,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{5B4C381B-667E-46B0-AF41-04760F5E3859}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\Includes\Types\Defs.h = Source\Include\Util\Includes\Types\Defs.h
+		Source\Include\Util\Includes\Types\DefsBase.h = Source\Include\Util\Includes\Types\DefsBase.h
 		Source\Include\Util\Includes\Types\Usings.h = Source\Include\Util\Includes\Types\Usings.h
 	EndProjectSection
 EndProject
@@ -156,10 +158,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-98D3-434E-BDF9-35454434D2CF}"
 	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\PP\Math\Base.hpp = Source\Include\Util\PP\Math\Base.hpp
 		Source\Include\Util\PP\Math\DECREMENT.h = Source\Include\Util\PP\Math\DECREMENT.h
 		Source\Include\Util\PP\Math\INCREMENT.h = Source\Include\Util\PP\Math\INCREMENT.h
 		Source\Include\Util\PP\Math\Math.hpp = Source\Include\Util\PP\Math\Math.hpp
-		Source\Include\Util\PP\Math\Base.hpp = Source\Include\Util\PP\Math\Base.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"

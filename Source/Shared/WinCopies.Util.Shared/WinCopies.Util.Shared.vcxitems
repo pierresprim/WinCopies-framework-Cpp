@@ -43,6 +43,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Type.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Main.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Defs.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\DefsBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Defines.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Delegates.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Usings.h" />
@@ -62,6 +63,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Arithmetic.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Bitwise.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Comparison.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Flags.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\MakeEnum.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Operators.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\For.hpp" />
