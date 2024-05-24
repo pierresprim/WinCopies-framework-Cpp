@@ -7,7 +7,7 @@ namespace WinCopies
 {
 	namespace Collections
 	{
-		ENUM EnumerationReturnReason : SBYTE
+		ENUM_HEADER(EnumerationReturnReason, SBYTE)
 		{
 			Error = -1,
 			Completed = 0,
@@ -150,5 +150,4 @@ namespace WinCopies
 #undef CALLBACK
 	}
 }
-
 #endif

@@ -22,7 +22,7 @@ namespace WinCopies
 
 		namespace Generic
 		{
-			TEMPLATE2 INTERFACE_CLASS(IIndexableR)
+			TEMPLATE_NC(2) INTERFACE_CLASS(IIndexableR)
 			{
 			public:
 				virtual ~IIndexableR() = default;
@@ -33,7 +33,7 @@ namespace WinCopies
 			TEMPLATE using IUIntIndexableR = IIndexableR<T, UINT>;
 			TEMPLATE using IULongIndexableR = IIndexableR<T, ULONGLONG>;
 
-			TEMPLATE2 INTERFACE_CLASS(IIndexableW)
+			TEMPLATE_NC(2) INTERFACE_CLASS(IIndexableW)
 			{
 			public:
 				virtual ~IIndexableW() = default;
@@ -44,7 +44,7 @@ namespace WinCopies
 			TEMPLATE using IUIntIndexableW = IIndexableW<T, UINT>;
 			TEMPLATE using IULongIndexableW = IIndexableW<T, ULONGLONG>;
 
-			TEMPLATE2 INTERFACE_CLASS(IIndexable) :
+			TEMPLATE_NC(2) INTERFACE_CLASS(IIndexable) :
 				BASE_INTERFACE IIndexableR<T1, T2>,
 				BASE_INTERFACE IIndexableW<T1, T2>,
 				BASE_INTERFACE ISortable<T1>
@@ -60,5 +60,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif

@@ -5,7 +5,6 @@
 
 #include "IEnumerable.h"
 #include "../../Util/Nullable.h"
-#include "WhereEnumerable.h"
 
 using namespace WinCopies;
 
@@ -192,5 +191,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif // WINCOPIES_ENUMERABLE_EXTENSIONS_H

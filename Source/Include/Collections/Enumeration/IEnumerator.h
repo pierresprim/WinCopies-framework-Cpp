@@ -4,24 +4,18 @@
 #define WINCOPIES_IENUMERATOR_H
 
 #include "../Util.h"
-#include "../../Util/Enum/Bitwise.h"
+#include "../../Util/PP/Enum/MakeEnum.hpp"
 
 namespace WinCopies
 {
 	namespace Collections
 	{
-		ENUM EnumerationState : BYTE
-		{
-			None = 0,
-			Started = 1,
-			Completed = 2
-		};
+		_MAKE_ENUM(1, 0, 0, EnumerationState, BYTE, Started, Completed)
 
-		ENUM EnumerationDirection : BYTE
+			ENUM EnumerationDirection : BYTE
 		{
 			Undetermined = 0,
-			FIFO = 1,
-			LIFO = 2
+			MAKE_ENUM_FIELDS(FIFO, LIFO)
 		};
 
 		INTERFACE_CLASS(IEnumerator)
@@ -55,5 +49,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif

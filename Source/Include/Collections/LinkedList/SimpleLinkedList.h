@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef SIMPLELINKEDLIST_H
 #define SIMPLELINKEDLIST_H
 
@@ -18,9 +19,9 @@ namespace WinCopies
 			ABSTRACT_METHOD(void ClearItems);
 
 		public:
-			OVERRIDE_METHOD_CONST(bool GetHasItems);
+			OVERRIDE_CONST(bool GetHasItems);
 
-			virtual ErrorCode Clear() final;
+			FINAL_METHOD(ErrorCode Clear);
 		};
 
 		namespace Generic
@@ -31,7 +32,7 @@ namespace WinCopies
 			TEMPLATE
 				INTERFACE_CLASS(SimpleLinkedList) :
 				BASE_INTERFACE WinCopies::Collections::SimpleLinkedListBase,
-				BASE_INTERFACE ISimpleLinkedList<T>
+				BASE_TEMPLATE(ISimpleLinkedList)
 			{
 			private:
 				// Fields
@@ -64,7 +65,7 @@ namespace WinCopies
 					item->SetNext(newNode);
 				}
 
-				virtual SimpleLinkedListNode<T>* AddItem(const T item, bool* const actionAfter) = 0;
+				ABSTRACT_ARG_METHOD(SimpleLinkedListNode<T>* AddItem, const T item, bool* const actionAfter);
 
 				ABSTRACT_METHOD(void OnItemAdded);
 
@@ -150,7 +151,7 @@ namespace WinCopies
 				}
 
 			public:
-				FINAL_ARG_METHOD_CONST(bool GenericTryPeek, T* const result)
+				FINAL_ARG_CONST(bool GenericTryPeek, T* const result)
 				{
 					if (_count > 0)
 					{
@@ -162,7 +163,7 @@ namespace WinCopies
 					return false;
 				}
 
-				FINAL_ARG_METHOD_CONST(ErrorCode GenericPeek, T* const result)
+				FINAL_ARG_CONST(ErrorCode GenericPeek, T* const result)
 				{
 					if (_count > 0)
 					{
@@ -174,12 +175,12 @@ namespace WinCopies
 					return ErrorCode::EmptyObjectException;
 				}
 
-				FINAL_METHOD_CONST(bool IsReadOnly)
+				FINAL_CONST(bool IsReadOnly)
 				{
 					return false;
 				}
 
-				FINAL_METHOD_CONST(UINT GetCount)
+				FINAL_CONST(UINT GetCount)
 				{
 					return _count;
 				}

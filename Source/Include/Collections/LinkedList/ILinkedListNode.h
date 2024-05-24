@@ -1,13 +1,10 @@
 #pragma once
-#ifndef ILINKEDLISTNODE_H
-#define ILINKEDLISTNODE_H
+
+#ifndef WINCOPIES_COLLECTIONS_ILINKEDLISTNODE_H
+#define WINCOPIES_COLLECTIONS_ILINKEDLISTNODE_H
 
 #include "../Util.h"
-//#include "IEnumerable.h"
-//#include "EnumeratorBase.h"
 #include "IReadOnlyLinkedList.h"
-//#include "../WinCopies.Util.Shared/Exception.h"
-//#include "../WinCopies.Util.Shared/ThrowHelper.h"
 
 namespace WinCopies
 {
@@ -24,11 +21,11 @@ namespace WinCopies
 			public:
 				virtual T GetValue() = 0;
 
-				virtual WinCopies::Collections::DotNetFix::Generic::IReadOnlyLinkedList<T>* GetList() = 0;
+				ABSTRACT_CONST(WinCopies::Collections::DotNetFix::Generic::IReadOnlyLinkedList<T>*GetList);
 
-				virtual IReadOnlyLinkedListNode<T>* GetPrevious() = 0;
+				ABSTRACT_CONST(IReadOnlyLinkedListNode<T>*GetPrevious);
 
-				virtual IReadOnlyLinkedListNode<T>* GetNext() final
+				FINAL_CONST(IReadOnlyLinkedListNode<T>*GetNext)
 				{
 					return GetNextGeneric();
 				}
@@ -39,11 +36,10 @@ namespace WinCopies
 				BASE_INTERFACE IReadOnlyLinkedListNode<T>
 			{
 			public:
-				virtual bool GetIsReadOnly() = 0;
+				ABSTRACT_CONST(bool GetIsReadOnly);
 
-				virtual T GetValue() = 0;
-
-				virtual T SetValue() = 0;
+				ABSTRACT_CONST(T GetValue);
+				ABSTRACT_CONST(T SetValue);
 			};
 
 			TEMPLATE
@@ -56,4 +52,4 @@ namespace WinCopies
 		}
 	}
 }
-#endif // ILINKEDLISTNODE_H
+#endif // WINCOPIES_COLLECTIONS_ILINKEDLISTNODE_H

@@ -1,6 +1,7 @@
 #pragma once
-#ifndef IREADONLYLINKEDLIST_H
-#define IREADONLYLINKEDLIST_H
+
+#ifndef WINCOPIES_COLLECTIONS_IREADONLY_LINKEDLIST_H
+#define WINCOPIES_COLLECTIONS_IREADONLY_LINKEDLIST_H
 
 #include "../Enumeration/IEnumerable.h"
 #include "ILinkedListNode.h"
@@ -17,32 +18,28 @@ namespace WinCopies
 
 			TEMPLATE
 				INTERFACE_CLASS(IReadOnlyLinkedList) :
-					BASE_INTERFACE IUIntCountableEnumerable<T>,
-					BASE_INTERFACE IReadOnlyCollection
+				BASE_TEMPLATE(IUIntCountableEnumerable),
+				BASE_INTERFACE IReadOnlyCollection
 			{
 			public:
 				virtual ~IReadOnlyLinkedList() override = default;
 
-				virtual IReadOnlyLinkedListNode<T>* GetFirst() = 0;
+				ABSTRACT_CONST(IReadOnlyLinkedListNode<T>* GetFirst);
+				ABSTRACT_CONST(IReadOnlyLinkedListNode<T>* GetLast);
 
-				virtual IReadOnlyLinkedListNode<T>* GetLast() = 0;
+				ABSTRACT_CONST(bool GetIsReadOnly);
 
-				virtual bool GetIsReadOnly() = 0;
+				ABSTRACT_CONST(bool GetSupportsReversedEnumeration);
 
-				virtual bool GetSupportsReversedEnumeration() = 0;
+				ABSTRACT_CONST(UINT GetCount);
 
-				virtual UINT GetCount() = 0;
+				ABSTRACT_ARG_CONST(IReadOnlyLinkedListNode<T>* Find,const T value) = 0;
+				ABSTRACT_ARG_CONST(IReadOnlyLinkedListNode<T>* FindLast,const T value) = 0;
 
-				virtual IReadOnlyLinkedListNode<T>* Find(const T value) = 0;
-
-				virtual IReadOnlyLinkedListNode<T>* FindLast(const T value) = 0;
-
-				virtual T GetFirstValue() = 0;
-
-				virtual T GetLastValue() = 0;
+				ABSTRACT_CONST(T GetFirstValue);
+				ABSTRACT_CONST(T GetLastValue);
 			};
 		}
 	}
 }
-
-#endif
+#endif // WINCOPIES_COLLECTIONS_IREADONLY_LINKEDLIST_H

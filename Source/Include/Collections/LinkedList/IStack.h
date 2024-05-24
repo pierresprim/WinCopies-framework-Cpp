@@ -1,6 +1,8 @@
 #pragma once
-#ifndef ISTACK_H
-#define ISTACK_H
+
+#ifndef WINCOPIES_COLLECTIONS_ISTACK_H
+#define WINCOPIES_COLLECTIONS_ISTACK_H
+
 #include "../Util.h"
 #include "ISimpleLinkedList.h"
 
@@ -22,5 +24,4 @@ namespace WinCopies
 		}
 	}
 }
-
-#endif
+#endif // WINCOPIES_COLLECTIONS_ISTACK_H

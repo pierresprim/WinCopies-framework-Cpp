@@ -9,90 +9,82 @@
 
 namespace WinCopies
 {
-    namespace Collections
-    {
-        namespace Generic
-        {
-            TEMPLATE
-            class SimpleLinkedList;
+	namespace Collections
+	{
+		namespace Generic
+		{
+			TEMPLATE
+				class SimpleLinkedList;
 
-            TEMPLATE
-                CLASS SimpleLinkedListNode :
-            BASE_INTERFACE ISimpleLinkedListNode<T>
-            {
-                friend class SimpleLinkedList<T>;
-            private:
-                T _value;
-                SimpleLinkedListNode<T>* _next;
-                bool _isCleared;
+			TEMPLATE
+				CLASS SimpleLinkedListNode :
+			BASE_TEMPLATE(ISimpleLinkedListNode)
+			{
+				friend class SimpleLinkedList<T>;
+			private:
+				T _value;
+				SimpleLinkedListNode<T>* _next;
+				bool _isCleared;
 
-                int SetNext(SimpleLinkedListNode<T>* const node)
-                {
-                    if (_isCleared)
+				ErrorCode SetNext(SimpleLinkedListNode<T>*const node)
+				{
+					if (_isCleared)
 
-                        return OBJECT_IS_DISPOSED_EXCEPTION;
+						return ErrorCode::ObjectIsDisposed;
 
-                    _next = node;
+					_next = node;
 
-                    return EXIT_SUCCESS;
-                }
+					return ErrorCode::Success;
+				}
 
-            public:
-                bool GetIsCleared() const
-                {
-                    return _isCleared;
-                }
+			public:
+				INLINE_CONSTRUCTOR(0, SimpleLinkedListNode, _value = value, const T value)
 
-                FINAL_ARG_METHOD_CONST(ErrorCode GenericGetValue, T* const result)
-                {
-                    if (_isCleared)
+					INLINE_METHOD_RETURN(0, bool, GetIsCleared, _isCleared)
 
-                        return ErrorCode::ObjectIsDisposedException;
+					FINAL_ARG_CONST(ErrorCode GenericGetValue, T* const result)
+				{
+					if (_isCleared)
 
-                    *result = _value;
+						return ErrorCode::ObjectIsDisposed;
 
-                    return EXIT_SUCCESS;
-                }
+					*result = _value;
 
-                ErrorCode GenericGetNext2(SimpleLinkedListNode<T>** const result) const
-                {
-                    if (_isCleared)
+					return ErrorCode::Success;
+				}
 
-                        return ErrorCode::ObjectIsDisposedException;
+				ErrorCode GenericGetNext2(SimpleLinkedListNode<T>**const result) const
+				{
+					if (_isCleared)
 
-                    *result = _next;
-                }
+						return ErrorCode::ObjectIsDisposed;
 
-                FINAL_ARG_METHOD_CONST(ErrorCode GenericGetNext, ISimpleLinkedListNode<T>** const result)
-                {
-                    SimpleLinkedListNode<T>* node;
+					*result = _next;
 
-                    ErrorCode _result = GenericGetNext2(&node);
+					return ErrorCode::Success;
+				}
 
-                    *result = node;
+				FINAL_ARG_CONST(ErrorCode GenericGetNext, ISimpleLinkedListNode<T>**const result)
+				{
+					SimpleLinkedListNode<T>* node;
 
-                    return _result;
-                }
+					ErrorCode _result = GenericGetNext2(&node);
 
-                void Clear()
-                {
-                    _next = nullptr;
+					*result = node;
 
-                    _isCleared = true;
-                }
+					return _result;
+				}
 
-                SimpleLinkedListNode(const T value)
-                {
-                    _value = value;
-                }
+				void Clear()
+				{
+					_next = nullptr;
 
-                ~SimpleLinkedListNode()
-                {
-                    Clear();
-                }
-            };
-        }
-    }
+					_isCleared = true;
+				}
+
+				INLINE_CONSTRUCTOR(0, ~SimpleLinkedListNode, Clear())
+			};
+		}
+	}
 }
-
 #endif

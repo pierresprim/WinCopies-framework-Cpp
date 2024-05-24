@@ -1,6 +1,7 @@
 #pragma once
-#ifndef WINCOPIES_QUEUE_H
-#define WINCOPIES_QUEUE_H
+
+#ifndef WINCOPIES_COLLECTIONS_QUEUE_H
+#define WINCOPIES_COLLECTIONS_QUEUE_H
 
 #include "IQueue.h"
 #include "SimpleLinkedList.h"
@@ -14,8 +15,7 @@ namespace WinCopies
 		{
 			TEMPLATE
 				CLASS Queue :
-			BASE_INTERFACE SimpleLinkedList<T>,
-				BASE_INTERFACE IQueue<T>
+			BASE_TEMPLATES(SimpleLinkedList, IQueue)
 			{
 			private:
 				SimpleLinkedListNode<T>*_lastItem;
@@ -74,5 +74,4 @@ namespace WinCopies
 		}
 	}
 }
-
-#endif
+#endif // WINCOPIES_COLLECTIONS_QUEUE_H

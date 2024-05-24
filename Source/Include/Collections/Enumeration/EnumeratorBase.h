@@ -48,7 +48,7 @@ namespace WinCopies
 		{
 			TEMPLATE
 				INTERFACE_CLASS(EnumeratorBase) :
-				BASE_INTERFACE IEnumerator<T>,
+				BASE_TEMPLATE(IEnumerator),
 				BASE_INTERFACE WinCopies::Collections::Enumerator
 			{
 			protected:
@@ -74,7 +74,7 @@ namespace WinCopies
 
 			TEMPLATE
 				INTERFACE_CLASS(Enumerator) :
-				public virtual EnumeratorBase<T>
+				BASE_TEMPLATE(EnumeratorBase)
 			{
 			private:
 				T _current;
@@ -94,9 +94,9 @@ namespace WinCopies
 				virtual ~Enumerator() override = default;
 			};
 
-			TEMPLATE2
+			TEMPLATE_NC(2)
 				CLASS CommonEnumerator :
-			public virtual Enumerator<T1>
+			BASE_INTERFACE Enumerator<T1>
 			{
 			private:
 				T2 _handle;
@@ -147,5 +147,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif

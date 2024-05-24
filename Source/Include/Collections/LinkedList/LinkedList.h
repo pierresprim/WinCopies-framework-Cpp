@@ -1,12 +1,12 @@
 #pragma once
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+
+#ifndef WINCOPIES_COLLECTIONS_LINKEDLIST_H
+#define WINCOPIES_COLLECTIONS_LINKEDLIST_H
 
 #include "ILinkedList.h"
 #include "../Enumeration/EnumerableExtensions.h"
 #include "../../Util/Exception.h"
 #include "../ISortable.h"
-#include "../ThrowHelper.h"
 
 using namespace WinCopies::Collections;
 using namespace WinCopies::Collections::Generic;
@@ -244,90 +244,85 @@ namespace WinCopies
 					}
 
 				public:
-					virtual bool GetIsReadOnly() final
+					FINAL_METHOD(bool GetIsReadOnly)
 					{
 						return false;
 					}
 
-					virtual LinkedList<T>* GetList() final
+					FINAL_METHOD(LinkedList<T>* GetList)
 					{
 						return _list;
 					}
 
-					virtual LinkedListNode* GetPrevious() final
+					FINAL_METHOD(LinkedListNode* GetPrevious)
 					{
 						return _previous;
 					}
 
-					virtual LinkedListNode* GetNext() final
+					FINAL_METHOD(LinkedListNode* GetNext)
 					{
 						return _next;
 					}
 
-					virtual T GetValue() final
+					FINAL_METHOD(T GetValue)
 					{
 						return _value;
 					}
 
-					LinkedListNode(const T value)
-					{
-						_value = value;
-					}
+					INLINE_CONSTRUCTOR(0, LinkedListNode, _value = value, const T value)
 				};
 
 				virtual ~LinkedList() override = default;
 
-				virtual IReadOnlyLinkedListNode<T>* GetFirst() final
+				FINAL_METHOD(IReadOnlyLinkedListNode<T>* GetFirst)
 				{
 					return _first;
 				}
 
-				virtual IReadOnlyLinkedListNode<T>* GetLast() final
+				FINAL_METHOD(IReadOnlyLinkedListNode<T>* GetLast)
 				{
 					return _last;
 				}
 
-				virtual bool IsReadOnly() final
+				FINAL_METHOD(bool IsReadOnly)
 				{
 					return false;
 				}
 
-				virtual bool SupportsReversedEnumeration() final
+				FINAL_METHOD(bool SupportsReversedEnumeration)
 				{
 					return true;
 				}
 
-				virtual UINT GetCount() final
+				FINAL_METHOD(UINT GetCount)
 				{
 					return _count;
 				}
 
-				virtual IReadOnlyLinkedListNode<T>* Find(const T value) final
+				FINAL_ARG_METHOD(IReadOnlyLinkedListNode<T>* Find,const T value)
 				{
 					return Find(value, EnumerationDirection::FIFO);
 				}
 
-				virtual IReadOnlyLinkedListNode<T>* FindLast(const T value) final
+				FINAL_ARG_METHOD(IReadOnlyLinkedListNode<T>* FindLast,const T value)
 				{
 					return Find(value, EnumerationDirection::LIFO);
 				}
 
-				virtual T GetFirstValue() final
+				FINAL_METHOD(T GetFirstValue)
 				{
 					return GetNodeValue(_first);
 				}
 
-				virtual T GetLastValue() final
+				FINAL_METHOD(T GetLastValue)
 				{
 					return GetNodeValue(_last);
 				}
 
 				virtual IEnumerator<T>* GetEnumerator() = 0;
-
 				virtual IEnumerator<T>* GetReversedEnumerator() = 0;
 
 				virtual IEnumerator<ILinkedListNode<T>*> GetNodeEnumerator() = 0;
-
 				virtual IEnumerator<ILinkedListNode<T>*> GetReversedNodeEnumerator() = 0;
 
 
@@ -525,5 +520,4 @@ namespace WinCopies
 		}
 	}
 }
-
-#endif // LINKEDLIST_H
+#endif // WINCOPIES_COLLECTIONS_LINKEDLIST_H

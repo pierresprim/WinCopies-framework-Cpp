@@ -7,7 +7,7 @@
 #include <memory>
 
 #include "IEnumerator.h"
-#include "../../Util/Enum/Comparison.h"
+#include "../../Util/PP/Enum/Comparison.hpp"
 #include "../Countable.h"
 #include "EnumerableBase.h"
 
@@ -29,7 +29,7 @@ namespace WinCopies
 
 			TEMPLATE INTERFACE_CLASS(IEnumerable) :
 				BASE_INTERFACE WinCopies::Collections::Enumerable,
-				BASE_INTERFACE IEnumerableBase<T>
+				BASE_TEMPLATE(IEnumerableBase)
 			{
 			public:
 				typedef EnumerablePredicate<T> Predicate;
@@ -43,7 +43,7 @@ namespace WinCopies
 
 				template<typename U>
 				class DelegateEnumerable final :
-				BASE_INTERFACE IEnumerableBase<T>
+					BASE_TEMPLATE(IEnumerableBase)
 				{
 				private:
 					IEnumerable<T>* _enumerable;
@@ -397,5 +397,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif
