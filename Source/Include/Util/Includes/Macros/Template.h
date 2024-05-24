@@ -3,6 +3,7 @@
 #ifndef WINCOPIES_UTIL_TEMPLATE_H
 #define WINCOPIES_UTIL_TEMPLATE_H
 
+#include "../../PP/Loop/For.hpp"
 #include "../../PP/Loop/ForEach.hpp"
 #include "../../PP/Util.hpp"
 #include "../Main.h"
@@ -17,6 +18,8 @@
 #define MULTI_TEMPLATE _TEMPLATE(class...)
 
 #define METHOD_TEMPLATE template<class F>
+
+#define MAKE_TEMPLATE_PARAMS(count, prefix, suffix) FOR_I(count, SURROUND, prefix T##suffix, )
 
 #define CEA_OPERATOR constexpr auto operator
 

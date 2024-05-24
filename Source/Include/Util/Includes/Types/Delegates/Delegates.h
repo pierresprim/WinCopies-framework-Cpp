@@ -7,9 +7,7 @@
 #include "../../../PP/Util.hpp"
 #include "../../../PP/Loop/Loop.hpp"
 
-#define TEMPLATE_METHOD_ARG(n) T##n value##n
 #define TEMPLATE_METHOD_MAX_ARGS 16
-#define TEMPLATE_FUNCTION_MAX_ARGS INCREMENT(TEMPLATE_METHOD_MAX_ARGS)
 
 #define ___DELEGATE_ACTION(delegateKind, typeName, namePrefix, name, returnType, functionPrefix, functionSuffix, ...) using namePrefix##delegateKind##name = functionPrefix returnType typeName(__VA_ARGS__) functionSuffix;
 #define __DELEGATE_ACTION(delegateKind, typeName, prefix, name, returnType, ...) ___DELEGATE_ACTION(delegateKind, PAR_O typeName * PAR_C, prefix, name, returnType, , , __VA_ARGS__)
@@ -21,8 +19,7 @@
 #define _APPEND_TOBJ(appendTObj, prependClass) IF(NOT(appendTObj), , SINGLE_ARG(IF(prependClass, class) TObj COMMA))
 #define APPEND_TOBJ(appendTObj) _APPEND_TOBJ(appendTObj, 1)
 
-#define ___MAKE_TEMPLATE_PARAMS(count, prefix, suffix) FOR_I(count, SURROUND, prefix T##suffix, )
-#define __MAKE_TEMPLATE_PARAMS(count, prefix, suffix, appendTOut)  ___MAKE_TEMPLATE_PARAMS(count, prefix, suffix) APPEND_TOUT(appendTOut)
+#define __MAKE_TEMPLATE_PARAMS(count, prefix, suffix, appendTOut)  MAKE_TEMPLATE_PARAMS(count, prefix, suffix) APPEND_TOUT(appendTOut)
 #define _MAKE_TEMPLATE_PARAMS(count, suffix, appendTObj, appendTOut) template<APPEND_TOBJ(appendTObj) __MAKE_TEMPLATE_PARAMS(count, class, suffix, appendTOut)>
 
 #define MAKE_DELEGATE_ACTION(count, appendTObj, delegateKind, suffix, appendTOut, macro) _MAKE_TEMPLATE_PARAMS(count, suffix, appendTObj, appendTOut) macro(count, delegateKind, GET_DELEGATE_ACTION_RETURN_TYPE(appendTOut), __MAKE_TEMPLATE_PARAMS(count, , suffix, 0))
@@ -75,8 +72,8 @@ CREATE_SELECTOR_DELEGATES(Predicate, bool)
 
 MAKE_DELEGATE_ACTION(2, 0, Action, In, 0, _DELEGATE_ACTION)
 
-#define CREATE_SELECTOR_TEMPLATE(count, prefix, appendTObj) template<APPEND_TOBJ(appendTObj) ___MAKE_TEMPLATE_PARAMS(count, prefix, )>
-#define CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) _APPEND_TOBJ(appendTObj, 0) ___MAKE_TEMPLATE_PARAMS(count, , )
+#define CREATE_SELECTOR_TEMPLATE(count, prefix, appendTObj) template<APPEND_TOBJ(appendTObj) MAKE_TEMPLATE_PARAMS(count, prefix, )>
+#define CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) _APPEND_TOBJ(appendTObj, 0) MAKE_TEMPLATE_PARAMS(count, , )
 #define __CREATE_SELECTOR(count, kind, name, prefix, suffix, templatePrefix, appendTObj, ...) CREATE_SELECTOR_TEMPLATE(count, templatePrefix, appendTObj) using CONCATENATE(prefix##name##suffix, count) = CONCATENATE(prefix##kind##suffix, count)<CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) VA_PREPEND(, __VA_ARGS__)>;
 #define _CREATE_SELECTOR(count, kind, name, prefix, suffix, appendTObj, ...) __CREATE_SELECTOR(count, kind, name, prefix, suffix, class, appendTObj, __VA_ARGS__)
 #define CREATE_SELECTOR(count, kind, name, ...) _CREATE_SELECTOR(count, kind, name, , , 0, __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, Instance, , 1, __VA_ARGS__) _CREATE_SELECTOR(count, kind, name, , Function, 0, __VA_ARGS__)
