@@ -1,6 +1,7 @@
 #pragma once
-#ifndef WINCOPIES_ILINKEDLIST_H
-#define WINCOPIES_ILINKEDLIST_H
+
+#ifndef WINCOPIES_COLLECTIONS_ILINKEDLIST_H
+#define WINCOPIES_COLLECTIONS_ILINKEDLIST_H
 
 #include "../Enumeration/IEnumerable.h"
 #include "../Enumeration/IEnumerator.h"
@@ -57,61 +58,53 @@ namespace WinCopies
 
 			TEMPLATE
 				INTERFACE_CLASS(ILinkedList) :
-				BASE_INTERFACE IReadOnlyLinkedList<T>,
+				BASE_TEMPLATE(IReadOnlyLinkedList),
 				BASE_INTERFACE WinCopies::Collections::ICollection
 			{
 			public:
 				virtual ~ILinkedList() override = default;
 
-				virtual IEnumerator<T>* GetEnumerator() = 0;
+				ABSTRACT_CONST(IEnumerator<T>* GetEnumerator);
+				ABSTRACT_CONST(IEnumerator<T>* GetReversedEnumerator);
 
-				virtual IEnumerator<T>* GetReversedEnumerator() = 0;
-
-				virtual IEnumerator<ILinkedListNode<T>*> GetNodeEnumerator() = 0;
-
-				virtual IEnumerator<ILinkedListNode<T>*> GetReversedNodeEnumerator() = 0;
+				ABSTRACT_CONST(IEnumerator<ILinkedListNode<T>*> GetNodeEnumerator);
+				ABSTRACT_CONST(IEnumerator<ILinkedListNode<T>*> GetReversedNodeEnumerator);
 
 
 
-				virtual ILinkedListNode<T>* AddAfter(ILinkedListNode<T>* const node, const T value) = 0;
+				ABSTRACT_ARG_CONST(ILinkedListNode<T>* AddBefore, ILinkedListNode<T>* const node, const T value);
+				ABSTRACT_ARG_CONST(ILinkedListNode<T>* AddAfter, ILinkedListNode<T>* const node, const T value);
 
-				virtual ILinkedListNode<T>* AddBefore(ILinkedListNode<T>* const node, const T value) = 0;
-
-				virtual ILinkedListNode<T>* AddFirst(const T value) = 0;
-
-				virtual ILinkedListNode<T>* AddLast(const T value) = 0;
+				ABSTRACT_ARG_CONST(ILinkedListNode<T>* AddFirst,const T value);
+				ABSTRACT_ARG_CONST(ILinkedListNode<T>* AddLast,const T value);
 
 
 
-				virtual void Remove(ILinkedListNode<T>* node) = 0;
+				ABSTRACT_ARG_CONST(void Remove,ILinkedListNode<T>* node);
+				ABSTRACT_ARG_CONST(ILinkedListNode<T>* Remove,T item);
 
-				virtual ILinkedListNode<T>* Remove(T item) = 0;
-
-				virtual void RemoveFirst() = 0;
-
-				virtual void RemoveLast() = 0;
+				ABSTRACT_CONST(void RemoveFirst);
+				ABSTRACT_CONST(void RemoveLast);
 
 
 
-				virtual bool Contains(const T item) = 0;
+				ABSTRACT_ARG_CONST(bool Contains,const T item);
 
-				virtual void CopyTo(const T* _array, const int arrayIndex, const int arrayLength) = 0;
+				ABSTRACT_ARG_CONST(void CopyTo,const T* _array, const int arrayIndex, const int arrayLength);
 			};
 
 			TEMPLATE
 				INTERFACE_CLASS(ILinkedList2) :
-				BASE_INTERFACE ILinkedList<T>
+				BASE_TEMPLATE(ILinkedList)
 			{
 				virtual ~ILinkedList2() override = default;
 
-				virtual bool MoveAfter(ILinkedListNode<T>* node, ILinkedListNode<T>* after) = 0;
+				ABSTRACT_ARG_CONST(bool MoveBefore, ILinkedListNode<T> node, ILinkedListNode<T>*before);
+				ABSTRACT_ARG_CONST(bool MoveAfter, ILinkedListNode<T>*node, ILinkedListNode<T>*after);
 
-				virtual bool MoveBefore(ILinkedListNode<T> node, ILinkedListNode<T>* before) = 0;
-
-				virtual void Swap(ILinkedListNode<T> x, ILinkedListNode<T> y) = 0;
+				ABSTRACT_ARG_CONST(void Swap, ILinkedListNode<T> x, ILinkedListNode<T> y);
 			};
 		}
 	}
 }
-
-#endif // ILINKEDLIST_H
+#endif // WINCOPIES_COLLECTIONS_ILINKEDLIST_H

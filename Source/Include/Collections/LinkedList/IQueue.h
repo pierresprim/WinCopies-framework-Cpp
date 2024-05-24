@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef WINCOPIES_IQUEUE_H
 #define WINCOPIES_IQUEUE_H
 
@@ -23,5 +24,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif

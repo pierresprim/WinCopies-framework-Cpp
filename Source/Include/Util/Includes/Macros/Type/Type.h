@@ -3,11 +3,22 @@
 #ifndef WINCOPIES_UTIL_MACROS_TYPE_H
 #define WINCOPIES_UTIL_MACROS_TYPE_H
 
+#include "../../../PP/Loop/ForEach.hpp"
+#include "../Template.h"
 #include "../../Environment.h"
 
 // Type kinds
 
 #define BASE_INTERFACE public virtual
+
+#define _BASE_INTERFACES(suffix, ...) BASE_INTERFACE FIRST_ARG(__VA_ARGS__)suffix FOR_EACH_C(TRANSCRIBE_ARGS_CS, BASE_INTERFACE, suffix, ALL_BUT_FIRST_ARG(__VA_ARGS__))
+#define BASE_INTERFACES(...) _BASE_INTERFACES(, __VA_ARGS__)
+#define BASE_TEMPLATES(...) _BASE_INTERFACES(<T>, __VA_ARGS__)
+
+#define _BASE_TEMPLATE(name, ...) BASE_INTERFACE name<__VA_ARGS__>
+
+#define BASE_TEMPLATE(name) _BASE_TEMPLATE(name, T)
+#define BASE_TEMPLATE_N(name, count) _BASE_TEMPLATE(name, MAKE_TEMPLATE_PARAMS(count, , ))
 
 #define CLASS class DLLEXPORT
 #define INTERFACE_CLASS(interfaceName) CLASS interfaceName ABSTRACT

@@ -11,7 +11,7 @@ namespace WinCopies
 	{
 		SystemNotification = 1,
 		Success = 0,
-		MAKE_ENUM_FIELDS(0, 1, UnknownException, ArgumentException, ArgumentOutOfRange, InvalidOperation, ReadOnly, EmptyObject, ObjectHasChangedDuringEnumeration, ObjectHasNoValue, InvalidCast, NullPtrValue, ObjectIsDisposed, SystemException, NotFound)
+		_MAKE_ENUM_FIELDS(0, 1, UnknownException, ArgumentException, ArgumentOutOfRange, InvalidOperation, ReadOnly, EmptyObject, ObjectHasChangedDuringEnumeration, ObjectHasNoValue, InvalidCast, NullPtrValue, ObjectIsDisposed, SystemException, NotFound)
 	};
 }
 

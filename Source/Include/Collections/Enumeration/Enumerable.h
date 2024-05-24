@@ -17,7 +17,7 @@ namespace WinCopies
 		namespace Generic
 		{
 			TEMPLATE CLASS EnumeratorEnumerable :
-			BASE_INTERFACE IEnumerable<T>
+			BASE_TEMPLATE(IEnumerable)
 			{
 			private:
 				std::shared_ptr<IEnumerator<T>> _enumerator;
@@ -40,7 +40,7 @@ namespace WinCopies
 			};
 
 			TEMPLATE CLASS EnumeratorProviderEnumerable :
-			BASE_INTERFACE IEnumerable<T>
+			BASE_TEMPLATE(IEnumerable)
 			{
 			private:
 				FunctionFunction<std::shared_ptr<IEnumerator<T>>> _func;
@@ -64,5 +64,4 @@ namespace WinCopies
 		}
 	}
 }
-
 #endif
