@@ -16,12 +16,13 @@
 
 #define TRY_ACTIVATE_NULL_ENUM_FLAG(activateNone) IF(activateNone, TRANSCRIBE_ENUM_ARG(ENUM_FLAG_NONE, None) GET_COMMA, DISCARD)()
 
-#define _MAKE_ENUM_FIELDS(macro, ...) macro(1, FIRST_ARG(__VA_ARGS__)) FOR_EACH_I(2, TRANSCRIBE_ARGS_CS, , macro, , ALL_BUT_FIRST_ARG(__VA_ARGS__))
-#define MAKE_ENUM_FIELDS(activateNone, negative, ...) TRY_ACTIVATE_NULL_ENUM_FLAG(activateNone) _MAKE_ENUM_FIELDS(SURROUND(TRANSCRIBE, IF(negative, _NEGATIVE, ), _ENUM_ARG), __VA_ARGS__)
+#define __MAKE_ENUM_FIELDS(macro, ...) macro(1, FIRST_ARG(__VA_ARGS__)) FOR_EACH_I(2, TRANSCRIBE_ARGS_CS, , macro, , ALL_BUT_FIRST_ARG(__VA_ARGS__))
+#define _MAKE_ENUM_FIELDS(activateNone, negative, ...) TRY_ACTIVATE_NULL_ENUM_FLAG(activateNone) __MAKE_ENUM_FIELDS(SURROUND(TRANSCRIBE, IF(negative, _NEGATIVE, ), _ENUM_ARG), __VA_ARGS__)
+#define MAKE_ENUM_FIELDS(...) _MAKE_ENUM_FIELDS(0, 0, __VA_ARGS__)
 
 #define _MAKE_ENUM(activateNone, bitwise, negative, name, type, ...) ENUM_HEADER(name, type) \
 	{ \
-		MAKE_ENUM_FIELDS(activateNone, negative, __VA_ARGS__) \
+		_MAKE_ENUM_FIELDS(activateNone, negative, __VA_ARGS__) \
 	}; \
 	IF(bitwise, ENABLE_ENUM_BITWISE_OPERATORS, DISCARD)(name)
 
