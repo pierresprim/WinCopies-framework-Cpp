@@ -92,17 +92,17 @@
     -> typename ENABLE_TYPE_IF_BITWISE_ENUM(enum_t, void) \
     { val = operatorSymbol val; }
 
-/**
- * Bitwise-or operator for enums that have bitwise operations enabled.
- *
- * @tparam T The enum type on which the bitwise-or operation is being
- *                performed.
- *
- * @param lhs The left-hand side of the operation.
- * @param rhs The right-hand side of the operation.
- *
- * @returns The result of the bitwise-or operation on the underlying enum type.
- */
+ /**
+  * Bitwise-or operator for enums that have bitwise operations enabled.
+  *
+  * @tparam T The enum type on which the bitwise-or operation is being
+  *                performed.
+  *
+  * @param lhs The left-hand side of the operation.
+  * @param rhs The right-hand side of the operation.
+  *
+  * @returns The result of the bitwise-or operation on the underlying enum type.
+  */
 BITWISE_ENUM_OPERATOR(| )
 
 /**
@@ -114,95 +114,95 @@ BITWISE_ENUM_OPERATOR(| )
  * @param lhs The left-hand side of the operation.
  * @param rhs The right-hand side of the operation.
  */
-BITWISE_ENUM_ASSIGNMENT_OPERATOR(| , |=)
+	BITWISE_ENUM_ASSIGNMENT_OPERATOR(| , |=)
 
-/**
- * Bitwise-and operator for enums that have bitwise operations enabled.
- *
- * @tparam T The enum type on which the bitwise-and operation is being
- *                performed.
- *
- * @param lhs The left-hand side of the operation.
- * @param rhs The right-hand side of the operation.
- *
- * @returns The result of the bitwise-and operation on the underlying enum type.
- */
-BITWISE_ENUM_OPERATOR(&)
+	/**
+	 * Bitwise-and operator for enums that have bitwise operations enabled.
+	 *
+	 * @tparam T The enum type on which the bitwise-and operation is being
+	 *                performed.
+	 *
+	 * @param lhs The left-hand side of the operation.
+	 * @param rhs The right-hand side of the operation.
+	 *
+	 * @returns The result of the bitwise-and operation on the underlying enum type.
+	 */
+	BITWISE_ENUM_OPERATOR(&)
 
-/**
- * Bitwise-and-equals operator for enums that have bitwise operations enabled.
- *
- * @tparam T The enum type on which the bitwise-and-equals operation is
- *                being performed.
- *
- * @param lhs The left-hand side of the operation.
- * @param rhs The right-hand side of the operation.
- */
-BITWISE_ENUM_ASSIGNMENT_OPERATOR(&, &=)
+	/**
+	 * Bitwise-and-equals operator for enums that have bitwise operations enabled.
+	 *
+	 * @tparam T The enum type on which the bitwise-and-equals operation is
+	 *                being performed.
+	 *
+	 * @param lhs The left-hand side of the operation.
+	 * @param rhs The right-hand side of the operation.
+	 */
+	BITWISE_ENUM_ASSIGNMENT_OPERATOR(&, &=)
 
-/**
- * Bitwise-xor operator for enums that have bitwise operations enabled.
- *
- * @tparam T The enum type on which the bitwise-xor operation is being
- *                performed.
- *
- * @param lhs The left-hand side of the operation.
- * @param rhs The right-hand side of the operation.
- *
- * @returns The result of the bitwise-xor operation on the underlying enum type.
- */
-BITWISE_ENUM_OPERATOR(^)
+	/**
+	 * Bitwise-xor operator for enums that have bitwise operations enabled.
+	 *
+	 * @tparam T The enum type on which the bitwise-xor operation is being
+	 *                performed.
+	 *
+	 * @param lhs The left-hand side of the operation.
+	 * @param rhs The right-hand side of the operation.
+	 *
+	 * @returns The result of the bitwise-xor operation on the underlying enum type.
+	 */
+	BITWISE_ENUM_OPERATOR(^)
 
-/**
- * Bitwise-xor-equals operator for enums that have bitwise operations enabled.
- *
- * @tparam T The enum type on which the bitwise-xor-equals operation is
- *                being performed.
- *
- * @param lhs The left-hand side of the operation.
- * @param rhs The right-hand side of the operation.
- */
-BITWISE_ENUM_ASSIGNMENT_OPERATOR(^, ^=)
+	/**
+	 * Bitwise-xor-equals operator for enums that have bitwise operations enabled.
+	 *
+	 * @tparam T The enum type on which the bitwise-xor-equals operation is
+	 *                being performed.
+	 *
+	 * @param lhs The left-hand side of the operation.
+	 * @param rhs The right-hand side of the operation.
+	 */
+	BITWISE_ENUM_ASSIGNMENT_OPERATOR(^, ^=)
 
-/**
- * Bitwise-not operator for enums that have bitwise operations enabled.
- *
- * @tparam T The enum type on which the bitwise-not operation is being
- *                performed.
- *
- * @param val The value to negate.
- *
- * @returns The result of the bitwise-not operation on the underlying enum type.
- */
-BITWISE_ENUM_UNARY_OPERATOR(~)
+	/**
+	 * Bitwise-not operator for enums that have bitwise operations enabled.
+	 *
+	 * @tparam T The enum type on which the bitwise-not operation is being
+	 *                performed.
+	 *
+	 * @param val The value to negate.
+	 *
+	 * @returns The result of the bitwise-not operation on the underlying enum type.
+	 */
+	BITWISE_ENUM_UNARY_OPERATOR(~)
 
-/**
- * Logical-not operator for enums that have bitwise operations enabled. Returns
- * the result of comparing the underlying enum value with the underlying type's
- * representation of zero.
- *
- * @tparam T The enum type on which the logical-not operation is being
- *                performed.
- *
- * @param val The value on which to perform logical-not.
- *
- * @returns True if the enum value is zero, false otherwise.
- */
-BITWISE_ENUM_UNARY_OPERATOR(!)
+	/**
+	 * Logical-not operator for enums that have bitwise operations enabled. Returns
+	 * the result of comparing the underlying enum value with the underlying type's
+	 * representation of zero.
+	 *
+	 * @tparam T The enum type on which the logical-not operation is being
+	 *                performed.
+	 *
+	 * @param val The value on which to perform logical-not.
+	 *
+	 * @returns True if the enum value is zero, false otherwise.
+	 */
+	BITWISE_ENUM_UNARY_OPERATOR(!)
 
 #define _ENABLE_ENUM_BITWISE_OPERATORS(_namespace, T)                        \
-    template <> struct ::WinCopies::Typing::IsBitwiseEnumType<_namespace::T> \
+    template <> struct ::WinCopies::Typing::IsBitwiseEnumType<_namespace##T> \
     {                                                                        \
-        static_assert(IS_ENUM(_namespace::T), "T must be an enum.");         \
+        static_assert(IS_ENUM(_namespace##T), "T must be an enum.");         \
         static constexpr bool value = true;                                  \
     };
 
-/**
- * Helper macro to enable bitwise operations on a given enum type.
- *
- * @param T The enum type for which bitwise operations should be enabled.
- */
-#define ENABLE_ENUM_BITWISE_OPERATORS(T, ...) _ENABLE_ENUM_BITWISE_OPERATORS(JOIN_ARGS(::, __VA_ARGS__), T)
+	/**
+	 * Helper macro to enable bitwise operations on a given enum type.
+	 *
+	 * @param T The enum type for which bitwise operations should be enabled.
+	 */
+#define ENABLE_ENUM_BITWISE_OPERATORS(T, ...) _ENABLE_ENUM_BITWISE_OPERATORS(VA_OPT(JOIN_ARGS(::, __VA_ARGS__)::, __VA_ARGS__), T)
 
 #define __BITWISE_ENUM(open, namespaces, T, ...) IF(NOT(open), , namespaces) ENUM T; TRANSCRIBE_REPEATED_FOR_EACH(}, __VA_ARGS__) \
     ENABLE_ENUM_BITWISE_OPERATORS(T, __VA_ARGS__) \
@@ -210,17 +210,17 @@ BITWISE_ENUM_UNARY_OPERATOR(!)
 #define _BITWISE_ENUM(open, T, ...) __BITWISE_ENUM(open, TRANSCRIBE_ARGS_WITH(namespace, {, __VA_ARGS__), T, __VA_ARGS__)
 #define BITWISE_ENUM(T, ...) _BITWISE_ENUM(0, T, __VA_ARGS__)
 
-BITWISE_ENUM_SHIFT_OPERATOR(<<)
-BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(<< , <<=)
+	BITWISE_ENUM_SHIFT_OPERATOR(<< )
+	BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(<< , <<=)
 
-BITWISE_ENUM_SHIFT_OPERATOR2(<<)
-BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR2(<<, <<=)
+	BITWISE_ENUM_SHIFT_OPERATOR2(<< )
+	BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR2(<< , <<=)
 
-BITWISE_ENUM_SHIFT_OPERATOR(>>)
-BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(>>, >>=)
+	BITWISE_ENUM_SHIFT_OPERATOR(>> )
+	BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR(>> , >>=)
 
-BITWISE_ENUM_SHIFT_OPERATOR2(>>)
-BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR2(>>, >>=)
+	BITWISE_ENUM_SHIFT_OPERATOR2(>> )
+	BITWISE_ENUM_SHIFT_ASSIGNMENT_OPERATOR2(>> , >>=)
 
 #define FLAG_CHECK(enumValue, flag, bitwiseOperator) (enumValue & flag) bitwiseOperator 0
 
