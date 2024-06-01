@@ -16,7 +16,7 @@ namespace WinCopies
 {
 	namespace
 	{
-		MULTI_TEMPLATE_IF_UNSIGNED_INTEGRAL(class TValue)
+		TEMPLATE_IF_UNSIGNED_INTEGRAL(class TValue)
 			static double _Log(const TValue& value, const T& base)
 		{
 			switch (base)
@@ -35,12 +35,12 @@ namespace WinCopies
 	{
 		DLLEXPORT inline bool IsAdditionResultInRange(const auto x, const auto y, const auto maxValue);
 		DLLEXPORT inline bool IsAdditionResultInRange(const auto value, const auto maxValue);
-		TEMPLATE_IF_UNSIGNED_INTEGRAL
+		TEMPLATE_IF_UNSIGNED_INTEGRAL()
 			DLLEXPORT inline bool ValidateLogBase(const T base)
 		{
 			return base >= 2;
 		}
-		TEMPLATE_IF_UNSIGNED_INTEGRAL
+		TEMPLATE_IF_UNSIGNED_INTEGRAL()
 			DLLEXPORT ErrorCode Log(double* const value, const T base)
 		{
 			if (ValidateLogBase(base))
@@ -52,7 +52,7 @@ namespace WinCopies
 
 			return ErrorCode::ArgumentOutOfRange;
 		}
-		MULTI_TEMPLATE_IF_UNSIGNED_INTEGRAL(class TValue)
+		TEMPLATE_IF_UNSIGNED_INTEGRAL(class TValue)
 			DLLEXPORT ErrorCode Log(const TValue value, const T base, double* const result)
 		{
 			if (ValidateLogBase(base))
@@ -67,9 +67,9 @@ namespace WinCopies
 			return ErrorCode::ArgumentOutOfRange;
 		}
 
-		TEMPLATE_IF_UNSIGNED_INTEGRAL
+		TEMPLATE_IF_UNSIGNED_INTEGRAL()
 			DLLEXPORT void Log2(T* value) { *value = (sizeof(value) << 3) - countl_zero(value) - 1; }
-		TEMPLATE_IF_UNSIGNED_INTEGRAL
+		TEMPLATE_IF_UNSIGNED_INTEGRAL()
 			DLLEXPORT T& Log2(T value)
 		{
 			Log2(&value);
