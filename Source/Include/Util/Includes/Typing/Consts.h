@@ -5,7 +5,7 @@
 
 #include <type_traits>
 #include "../Macros/Template.h"
-#include "../Macros/Type/Type.h"
+#include "../Macros/Type/TypeBase.h"
 #include "Defines/Consts.h"
 #include "EnableIf.h"
 #include "Enum.h"
