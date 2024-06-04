@@ -5,6 +5,8 @@
 
 #include "ISortable.h"
 
+#include "../Util/Includes/Framework.h"
+
 namespace WinCopies
 {
 	namespace Collections
@@ -17,32 +19,25 @@ namespace WinCopies
 			ABSTRACT_CONST(T GetCount);
 		};
 
-		typedef ICountable<UINT> IUIntCountable;
-		typedef ICountable<ULONGLONG> IULongCountable;
+		COLLECTION_TEMPLATE_SPECIALIZATION(Countable);
 
 		namespace Generic
 		{
-			TEMPLATE_NC(2) INTERFACE_CLASS(IIndexableR)
+			TEMPLATE_NC(2, ENABLE_IF_UNSIGNED_INTEGRAL(T2) = true) INTERFACE_CLASS(IIndexableR)
 			{
 			public:
 				virtual ~IIndexableR() = default;
 
-				virtual ErrorCode GetAt(const T2 index, T1 * result) const = 0;
+				ABSTRACT_ARG_CONST(ErrorCode GetAt, const T2 index, T1* const result);
 			};
 
-			TEMPLATE using IUIntIndexableR = IIndexableR<T, UINT>;
-			TEMPLATE using IULongIndexableR = IIndexableR<T, ULONGLONG>;
-
-			TEMPLATE_NC(2) INTERFACE_CLASS(IIndexableW)
+			TEMPLATE_NC(2, ENABLE_IF_UNSIGNED_INTEGRAL(T2) = true) INTERFACE_CLASS(IIndexableW)
 			{
 			public:
 				virtual ~IIndexableW() = default;
 
-				virtual ErrorCode SetAt(const T2 index, T1 & result) = 0;
+				ABSTRACT_ARG_CONST(ErrorCode SetAt, const T2 index, T1& const result);
 			};
-
-			TEMPLATE using IUIntIndexableW = IIndexableW<T, UINT>;
-			TEMPLATE using IULongIndexableW = IIndexableW<T, ULONGLONG>;
 
 			TEMPLATE_NC(2) INTERFACE_CLASS(IIndexable) :
 				BASE_INTERFACE IIndexableR<T1, T2>,
@@ -52,11 +47,10 @@ namespace WinCopies
 			public:
 				virtual ~IIndexable() = default;
 
-				virtual ErrorCode Swap(const T2 x, const T2 y) = 0;
+				ABSTRACT_ARG_CONST(ErrorCode Swap,const T2 x, const T2 y);
 			};
 
-			TEMPLATE using IUIntIndexable = IIndexable<T, UINT>;
-			TEMPLATE using IULongIndexable = IIndexable<T, ULONGLONG>;
+			LIST_TEMPLATE_SPECIALIZATION(Indexable);
 		}
 	}
 }
