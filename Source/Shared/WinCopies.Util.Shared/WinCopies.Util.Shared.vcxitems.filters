@@ -255,6 +255,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\DefsBase.h">
       <Filter>Header Files\Includes\Types</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\TypeBase.h">
+      <Filter>Header Files\Includes\Macros\Type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp">
