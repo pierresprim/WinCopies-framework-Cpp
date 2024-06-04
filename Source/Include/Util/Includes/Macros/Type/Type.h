@@ -6,6 +6,8 @@
 #include "../../../PP/Loop/ForEach.hpp"
 #include "../Template.h"
 #include "../../Environment.h"
+#include "../TemplateIf.h"
+#include "TypeBase.h"
 
 // Type kinds
 
@@ -24,7 +26,6 @@
 #define INTERFACE_CLASS(interfaceName) CLASS interfaceName ABSTRACT
 #define STRUCT struct DLLEXPORT
 #define ENUM enum CLASS
-#define CONST_EXPR DLLEXPORT constexpr
 
 #define SHARED_TYPE(typeKind, typeName, type) typeKind typeName : public ::std::enable_shared_from_this<typeName type>
 #define _SHARED_CLASS(className, type) SHARED_TYPE(CLASS, className, type)
