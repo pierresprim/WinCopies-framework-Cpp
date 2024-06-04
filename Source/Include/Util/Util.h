@@ -21,7 +21,7 @@ namespace WinCopies
 
 	namespace
 	{
-		TEMPLATE_IF_SIGNED struct SetOffsetStruct
+		TEMPLATE_IF_SIGNED() struct SetOffsetStruct
 		{
 		private:
 			T& _outStart;
@@ -80,7 +80,7 @@ namespace WinCopies
 		return SystemErrorCode::Success;
 	}
 
-	MULTI_UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocShift(FreeableUniquePtr<T>* const ptr, T2* const count)
+	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocShift(FreeableUniquePtr<T>* const ptr, T2* const count)
 	{
 		if (*ptr == NULL)
 		{
@@ -96,7 +96,7 @@ namespace WinCopies
 		return SystemErrorCode::Success;
 	}
 
-	MULTI_UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocMult(FreeableUniquePtr<T>* const ptr, T2* const count)
+	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocMult(FreeableUniquePtr<T>* const ptr, T2* const count)
 	{
 		if (*ptr == NULL)
 		{
@@ -112,7 +112,7 @@ namespace WinCopies
 		return SystemErrorCode::Success;
 	}
 
-	SIGNED_FUNC ErrorCode SetOffset(T inStart, T* const outStart, const T length)
+	SIGNED_FUNC() ErrorCode SetOffset(T inStart, T* const outStart, const T length)
 	{
 		if (length == 0)
 
@@ -140,7 +140,7 @@ namespace WinCopies
 
 		return ErrorCode::Success;
 	}
-	SIGNED_FUNC ErrorCode GetOffset(T const inStart, T outStart, T const length, T* const offset)
+	SIGNED_FUNC() ErrorCode GetOffset(T const inStart, T outStart, T const length, T* const offset)
 	{
 		ErrorCode errorCode = SetOffset<T>(inStart, &outStart, length);
 
@@ -149,5 +149,4 @@ namespace WinCopies
 		return errorCode;
 	}
 }
-
 #endif
