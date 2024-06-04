@@ -1,4 +1,5 @@
 #include "pch.h"
+
 #include "../../Include/Collections/Countable.h"
 #include "../../Include/Collections/ICollection.h"
 #include "../../Include/Collections/LinkedList/SimpleLinkedList.h"

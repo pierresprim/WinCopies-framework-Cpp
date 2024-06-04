@@ -86,6 +86,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Type", "Type", "{FD892CCF-A7A6-4756-83A4-A16589FEB168}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\Includes\Macros\Type\Type.h = Source\Include\Util\Includes\Macros\Type\Type.h
+		Source\Include\Util\Includes\Macros\Type\TypeBase.h = Source\Include\Util\Includes\Macros\Type\TypeBase.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{4FAA7D93-045F-4B8E-A301-E0C23FE1B089}"
