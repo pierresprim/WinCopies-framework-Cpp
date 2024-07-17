@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\Delegates.h = Source\Include\Util\Delegates.h
 		Source\Include\Util\Exception.h = Source\Include\Util\Exception.h
+		Source\Include\Util\Interface.h = Source\Include\Util\Interface.h
 		Source\Include\Util\Math.h = Source\Include\Util\Math.h
 		Source\Include\Util\Misc.h = Source\Include\Util\Misc.h
 		Source\Include\Util\Nullable.h = Source\Include\Util\Nullable.h
