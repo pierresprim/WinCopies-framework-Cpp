@@ -57,6 +57,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Enum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Typing.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Usings.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Interface.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Math.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Misc.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Nullable.h" />

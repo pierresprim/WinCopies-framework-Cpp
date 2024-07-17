@@ -104,6 +104,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 		Source\Include\Util\Includes\Macros\Type\Templates\Enum.h = Source\Include\Util\Includes\Macros\Type\Templates\Enum.h
 		Source\Include\Util\Includes\Macros\Type\Templates\Interface.h = Source\Include\Util\Includes\Macros\Type\Templates\Interface.h
 		Source\Include\Util\Includes\Macros\Type\Templates\Struct.h = Source\Include\Util\Includes\Macros\Type\Templates\Struct.h
+		Source\Include\Util\Includes\Macros\Type\Templates\Template.h = Source\Include\Util\Includes\Macros\Type\Templates\Template.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{9B4B76DA-1F60-4A57-95D7-8ACFF190F7EF}"
