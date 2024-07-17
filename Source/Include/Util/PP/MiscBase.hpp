@@ -6,6 +6,8 @@
 #define CONCATENATE(value, ...) value##__VA_ARGS__
 #define SINGLE_ARG(...) __VA_ARGS__
 
+#define EXPAND(...) CONCATENATE(SINGLE_ARG, __VA_ARGS__)
+
 #define IF_B(value, ifTrue, ...) CONCATENATE(IF, value)(ifTrue, __VA_ARGS__)
 #define IF0(value, ...) __VA_ARGS__
 #define IF1(value, ...) value

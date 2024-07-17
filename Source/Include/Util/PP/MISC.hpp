@@ -9,8 +9,13 @@
 #include "Math/DECREMENT.h"
 
 #define _SURROUND(x, y) CONCATENATE(x, y)
+
+#define PREFIX(prefix, value, ...) prefix##value
 #define SURROUND(prefix, value, ...) _SURROUND(CONCATENATE(prefix, value), __VA_ARGS__)
+#define SUFFIX(prefix, value, ...) value##__VA_ARGS__
+
 #define ARGS_TRANSCRIPTION(value, ...) value __VA_ARGS__
+
 #define TRANSCRIBE_ARGS(prefix, value, ...) prefix value __VA_ARGS__
 #define TRANSCRIBE_ARGS_CS(prefix, value, ...) TRANSCRIBE_ARGS(COMMA prefix, value, __VA_ARGS__)
 #define TRANSCRIBE_ARGS_CE(prefix, value, ...) TRANSCRIBE_ARGS(prefix, value, __VA_ARGS__ COMMA)
