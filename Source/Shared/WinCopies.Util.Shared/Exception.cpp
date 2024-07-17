@@ -151,8 +151,8 @@ namespace WinCopies
 
 		SystemErrorCode errorCode = GetErrorCode();
 		SystemErrorCode msgErrorCode = SystemErrorCode::Error;
-
-		if (*errorMessage = (STDSTRING*)malloc(sizeof(STDSTRING)))
+		
+		if (*errorMessage = MALLOC(STDSTRING))
 		{
 #ifdef _WIN32
 #pragma push_macro("FormatMessage")
