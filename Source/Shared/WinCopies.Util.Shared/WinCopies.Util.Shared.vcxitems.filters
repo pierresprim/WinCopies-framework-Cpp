@@ -258,6 +258,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\TypeBase.h">
       <Filter>Header Files\Includes\Macros\Type</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Template.h">
+      <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp">
@@ -274,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Types\Usings.cpp">
       <Filter>Source Files\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Interface.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

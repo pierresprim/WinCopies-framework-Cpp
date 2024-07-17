@@ -19,6 +19,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)System.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Types\Usings.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Util.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegates.h" />
@@ -40,6 +41,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Enum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Interface.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Struct.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Template.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Type.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\TypeBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Main.h" />
