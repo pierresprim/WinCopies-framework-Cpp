@@ -32,8 +32,4 @@
 #define TRANSCRIBE_REPEATED_ARG(count, value) FFOR_EACH_C(count, TRANSCRIBE_ARGS, , , REPEAT_ARG(count, value))
 #define TRANSCRIBE_REPEATED_FOR_EACH(value, ...) TRANSCRIBE_REPEATED_ARG(COUNT_ARGS(__VA_ARGS__), value)
 
-#define TYPE_TEMPLATE_N(n, kind, ...) template<FFOR(n, SURROUND, kind T, SINGLE_ARG) VA_OPT(COMMA)  TRANSCRIBE_ARGS_WITH(kind, , __VA_ARGS__)>
-#define TEMPLATE_NE(n, ...) TYPE_TEMPLATE_N(n, class, __VA_ARGS__)
-#define TEMPLATE_TYPES(n) FFOR(n, SURROUND, T, SINGLE_ARG)
-
 #endif // WINCOPIES_UTIL_HPP
