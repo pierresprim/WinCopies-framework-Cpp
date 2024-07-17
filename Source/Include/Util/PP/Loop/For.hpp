@@ -4,6 +4,7 @@
 #define WINCOPIES_FOR_HPP
 
 #include "META_FOR.hpp"
+#include "../Conditional/If.hpp"
 
 #define FOR0(concatenator, prefix, macro, ...)
 #define FOR1(concatenator, prefix, macro, ...) _FOR(1, concatenator, prefix, macro, __VA_ARGS__)

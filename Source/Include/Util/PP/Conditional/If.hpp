@@ -7,9 +7,12 @@
 #include "Tables.h"
 
 #define IF(value, ifTrue, ...) IF_B(BOOL(value), ifTrue, __VA_ARGS__)
+#define IF_FALSE(value, ...) IF(NOT(value), , __VA_ARGS__)
 
 #define IF_ZERO(value, ifTrue, ...) IF(NOT(value), ifTrue, __VA_ARGS__)
 #define IF_ONE(value, ifTrue, ...) IF(IS_ONE(value), ifTrue, __VA_ARGS__)
+
+#define IF_NOT(value, ...) IF_B(NOT(value), , __VA_ARGS__)
 
 #define IF_VALUES(_operator, x, y) SURROUND(_operator, x, y)
 
