@@ -64,7 +64,7 @@
 #define __FFOR(n, concatenator, prefix, macro, suffix) FOR##n(concatenator, prefix, macro, suffix)
 #define _FFOR(n, concatenator, prefix, macro, suffix) __FFOR(n, concatenator, prefix, macro, suffix)
 
-#define FOR(n, concatenator, prefix, macro, suffix) _FFOR(CONCATENATE(DECREMENT, n), concatenator, prefix, macro, suffix)__FOR(n, concatenator, prefix, macro, suffix)
+#define FOR(n, concatenator, prefix, macro, suffix) _FFOR(CONCATENATE(DECREMENT, n), concatenator, prefix, macro, suffix)IF_NOT(n, __FOR(n, concatenator, prefix, macro, )suffix)
 #define FFOR(n, concatenator, prefix, macro) FOR(n, concatenator, prefix, macro, )
 #define FOR_C(n, constant) FFOR(n, SURROUND, constant, DISCARD)
 #define FOR_M(n, macro) FFOR(n, SURROUND, , macro)
