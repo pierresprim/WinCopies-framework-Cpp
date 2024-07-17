@@ -14,10 +14,10 @@
 #define ___COUNT_ARGS(macro, ...) ____COUNT_ARGS(macro, _COUNT_ARGS(__VA_ARGS__), __VA_ARGS__)
 #define COUNT_ARGS(...) ___COUNT_ARGS(INCREMENT, __VA_ARGS__)
 #else
-#define VA_ARGS_EMPTY(...) _HAS_VA_OPT(__VA_ARGS__)
-#define VA_ARGS_FILLED(...) NOT(VA_ARGS_EMPTY(__VA_ARGS__))
+#define VA_ARGS_FILLED(...) IS_ONE(__VA_OPT__(1))
+#define VA_ARGS_EMPTY(...) COMPL(VA_ARGS_FILLED(__VA_ARGS__))
 
-#define ___COUNT_ARGS(...) IF(_HAS_VA_OPT(__VA_ARGS__), INCREMENT(__VA_ARGS__), 0)
+#define ___COUNT_ARGS(...) IF(VA_ARGS_FILLED(__VA_ARGS__), INCREMENT(__VA_ARGS__), 0)
 #define COUNT_ARGS(...) ___COUNT_ARGS(__VA_OPT__(_COUNT_ARGS(__VA_ARGS__)))
 #endif
 
