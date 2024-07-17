@@ -50,5 +50,6 @@
 #include "Templates/Struct.h"
 #include "Templates/Interface.h"
 #include "Templates/Class.h"
+#include "Templates/Template.h"
 
 #endif
