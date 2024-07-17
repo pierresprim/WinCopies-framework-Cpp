@@ -48,5 +48,4 @@ namespace WinCopies
 		return result;
 	}
 }
-
 #endif

@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include "Math.h"
 #include "Misc.h"
+#include "../../Include/Util/PP/Enum/Arithmetic.hpp"
+#include "../../Include/Util/PP/Enum/Comparison.hpp"
 
 namespace WinCopies
 {
@@ -64,7 +66,7 @@ namespace WinCopies
 
 	TEMPLATE INLINE_METHOD_RETURN(0, INLINE_METHOD, MemoryReset, *ptr = T{}, T* ptr)
 	
-		TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUniquePtr<T>* const ptr)
+	TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUniquePtr<T>* const ptr)
 	{
 		if (*ptr == NULL)
 		{

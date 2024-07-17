@@ -3,8 +3,6 @@
 #ifndef WINCOPIES_MATH_H
 #define WINCOPIES_MATH_H
 
-#define _CRT_USE_C_TGMATH_H
-
 #include <math.h>
 #include <bit>
 
@@ -84,5 +82,4 @@ namespace WinCopies
 		DLLEXPORT inline bool IsOdd(auto value);
 	}
 }
-
 #endif
