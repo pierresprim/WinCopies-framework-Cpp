@@ -4,7 +4,7 @@
 #define WINCOPIES_UTIL_DELEGATE_USINGS_H
 
 #include "../../Framework.h"
-#include "../../../PP/Util.hpp"
+#include "../../../PP/Variadic/Util.hpp"
 #include "../../../PP/Loop/Loop.hpp"
 
 #define TEMPLATE_METHOD_MAX_ARGS 16
