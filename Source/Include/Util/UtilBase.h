@@ -17,7 +17,7 @@ namespace WinCopies
 		True = 1
 	};
 
-	_MAKE_ENUM(1, 1, 0, ByteSelector, BYTE, First, Second, Third, Fourth, Fifth, Sixth, Seventh, Eighth)
+	MAKE_NULLABLE_BITWISE_ENUM(ByteSelector, BYTE, First, Second, Third, Fourth, Fifth, Sixth, Seventh, Eighth)
 
 	TEMPLATE INLINE_METHOD Swap(T* const x, T* const y)
 	{
