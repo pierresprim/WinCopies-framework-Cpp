@@ -24,7 +24,9 @@
 #define BASE_TEMPLATE(name) _BASE_TEMPLATE(name, T)
 #define BASE_TEMPLATE_N(count, name) _BASE_TEMPLATE(name, TEMPLATE_TYPES(count))
 
-#define STATIC_CLASS(name) INTERFACE_TYPE(name) final { STATIC_CLASS_C_D_TOR(name)
+#define _STATIC_CLASS(local, name) IF(local, class name ABSTRACT, INTERFACE_TYPE(name)) final { STATIC_CLASS_C_D_TOR(name)
+#define STATIC_CLASS(name) _STATIC_CLASS(0, name)
+#define LOCAL_STATIC_CLASS(name) _STATIC_CLASS(1, name)
 
 #define _INTERFACE_CLASS(addCtorAndDtor, name, ...) INTERFACE_TYPE(name) : BASE_INTERFACE ::WinCopies::Interface VA_OPT(COMMA, __VA_ARGS__) __VA_ARGS__ IF(addCtorAndDtor, { INTERFACE_CONSTRUCTOR(name))
 #define INTERFACE_CLASS(name, ...) _INTERFACE_CLASS(1, name, __VA_ARGS__)
