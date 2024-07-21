@@ -1,23 +1,22 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_HPP
-#define WINCOPIES_UTIL_HPP
+#ifndef WINCOPIES_VA_UTIL_BASE_HPP
+#define WINCOPIES_VA_UTIL_BASE_HPP
 
 #include "../Loop/For.hpp"
 #include "../Loop/ForEach.hpp"
 
-#define SELECT_ARGS_FROM(i, ...) SELECT(i, 1, SURROUND, , DISCARD, , __VA_ARGS__)
-#define GET_ARGS_FROM(i, ...) SELECT_ARGS_FROM(i, __VA_ARGS__)
+#define GET_ARGS_FROM(i, ...) SELECT(i, 1, SURROUND, , DISCARD, , __VA_ARGS__)
+#define _GET_ARGS_FROM(i, ...) GET_ARGS_FROM(i, __VA_ARGS__)
 
-#define _SELECT_ARGS(length, ...) FIRST_ARG(__VA_ARGS__) SELECT(DECREMENT(length), 0, TRANSCRIBE_ARGS_CS, , SINGLE_ARG, , ALL_BUT_FIRST_ARG(__VA_ARGS__))
-#define SELECT_ARGS(start, length, ...) _SELECT_ARGS(length, GET_ARGS_FROM(start, __VA_ARGS__))
-#define GET_ARGS(start, length, ...) SELECT_ARGS(start, length, __VA_ARGS__)
+#define ___GET_ARGS(length, ...) FIRST_ARG(__VA_ARGS__) SELECT(DECREMENT(length), 0, TRANSCRIBE_ARGS_CS, , SINGLE_ARG, , ALL_BUT_FIRST_ARG(__VA_ARGS__))
+#define __GET_ARGS(start, length, ...) ___GET_ARGS(length, _GET_ARGS_FROM(start, __VA_ARGS__))
+#define _GET_ARGS(start, length, count, ...) IF(count, __GET_ARGS, DISCARD)(start, length, __VA_ARGS__)
+#define GET_ARGS(start, length, ...) _GET_ARGS(start, length, COUNT_ARGS(__VA_ARGS__), __VA_ARGS__)
 
-#define SELECT_ARG(i, ...) SELECT_ARGS(i, 1, __VA_ARGS__)
 #define GET_ARG(i, ...) GET_ARGS(i, 1, __VA_ARGS__)
 
-#define SELECT_N_ARGS(length, ...) SELECT_ARGS(0, length, __VA_ARGS__)
-#define GET_N_ARGS(length, ...) SELECT_N_ARGS(length, __VA_ARGS__)
+#define GET_N_ARGS(length, ...) GET_ARGS(0, length, __VA_ARGS__)
 
 //#define CONCATENATE_ARGS(...) 
 #define _JOIN_ARGS(separator, first, ...) first FOR_EACH_C(TRANSCRIBE_ARGS, separator, , __VA_ARGS__)
@@ -43,4 +42,4 @@
 #define TRANSCRIBE_REPEATED_ARG(count, value) FFOR_EACH_C(count, TRANSCRIBE_ARGS, , , REPEAT_ARG(count, value))
 #define TRANSCRIBE_REPEATED_FOR_EACH(value, ...) TRANSCRIBE_REPEATED_ARG(COUNT_ARGS(__VA_ARGS__), value)
 
-#endif // WINCOPIES_UTIL_HPP
+#endif WINCOPIES_VA_UTIL_BASE_HPP
