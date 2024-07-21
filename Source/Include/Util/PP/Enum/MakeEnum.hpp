@@ -33,13 +33,13 @@
 	static_assert(IS_UNSIGNED_ENUM(name), "T must be a unsigned enum."); \
 	ENABLE_ENUM_BITWISE_OPERATORS(name)
 
-#define MAKE_ENUM(name, ...) _MAKE_ENUM(0, 0, 0, name, INT, __VA_ARGS__)
-#define MAKE_NULLABLE_ENUM(name, ...) _MAKE_ENUM(1, 0, 0, name, INT, __VA_ARGS__)
+#define MAKE_ENUM(name, type, ...) _MAKE_ENUM(0, 0, 0, name, type, __VA_ARGS__)
+#define MAKE_NULLABLE_ENUM(name, type, ...) _MAKE_ENUM(1, 0, 0, name, type, __VA_ARGS__)
 
-#define MAKE_BITWISE_ENUM(name, ...) _MAKE_ENUM(0, 1, 0, name, INT, __VA_ARGS__)
-#define MAKE_NULLABLE_BITWISE_ENUM(name, ...) _MAKE_ENUM(1, 1, 0, name, INT, __VA_ARGS__)
+#define MAKE_BITWISE_ENUM(name, type, ...) _MAKE_ENUM(0, 1, 0, name, type, __VA_ARGS__)
+#define MAKE_NULLABLE_BITWISE_ENUM(name, type, ...) _MAKE_ENUM(1, 1, 0, name, type, __VA_ARGS__)
 
-#define MAKE_FLAGS_ENUM(name, ...) _MAKE_FLAGS_ENUM(0, name, UINT, __VA_ARGS__)
-#define MAKE_NULLABLE_FLAGS_ENUM(name, ...) _MAKE_FLAGS_ENUM(1, name, UINT, __VA_ARGS__)
+#define MAKE_FLAGS_ENUM(name, type, ...) _MAKE_FLAGS_ENUM(0, name, type, __VA_ARGS__)
+#define MAKE_NULLABLE_FLAGS_ENUM(name, type, ...) _MAKE_FLAGS_ENUM(1, name, type, __VA_ARGS__)
 
 #endif // WINCOPIES_UTIL_ENUM_MAKE_ENUM_HPP
