@@ -3,8 +3,8 @@
 #ifndef WINCOPIES_UTIL_HPP
 #define WINCOPIES_UTIL_HPP
 
-#include "Loop/For.hpp"
-#include "Loop/ForEach.hpp"
+#include "../Loop/For.hpp"
+#include "../Loop/ForEach.hpp"
 
 #define SELECT_ARGS_FROM(i, ...) SELECT(i, 1, SURROUND, , DISCARD, , __VA_ARGS__)
 #define GET_ARGS_FROM(i, ...) SELECT_ARGS_FROM(i, __VA_ARGS__)
