@@ -17,7 +17,10 @@
 #define VA_ARGS_FILLED(...) IS_ONE(__VA_OPT__(1))
 #define VA_ARGS_EMPTY(...) COMPL(VA_ARGS_FILLED(__VA_ARGS__))
 
-#define ___COUNT_ARGS(...) IF(VA_ARGS_FILLED(__VA_ARGS__), INCREMENT(__VA_ARGS__), 0)
+#define IF_VA_ARGS(ifTrue, ifFalse, ...) IF(VA_ARGS_FILLED(__VA_ARGS__), ifTrue, ifFalse)
+#define IF_NO_VA_ARG(ifTrue, ifFalse, ...) IF(VA_ARGS_EMPTY(__VA_ARGS__), ifTrue, ifFalse)
+
+#define ___COUNT_ARGS(...) IF_VA_ARGS(INCREMENT(__VA_ARGS__), 0, __VA_ARGS__)
 #define COUNT_ARGS(...) ___COUNT_ARGS(__VA_OPT__(_COUNT_ARGS(__VA_ARGS__)))
 #endif
 

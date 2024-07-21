@@ -8,6 +8,9 @@
 #if HAS_VA_OPT < 1
 #define VA_ARGS_FILLED(...) ___COUNT_ARGS(BOOL, __VA_ARGS__)
 #define VA_ARGS_EMPTY(...) COMPL(VA_ARGS_FILLED(__VA_ARGS__))
+
+#define IF_VA_ARGS(ifTrue, ifFalse, ...) IF(VA_ARGS_FILLED(__VA_ARGS__), ifTrue, ifFalse)
+#define IF_NO_VA_ARG(ifTrue, ifFalse, ...) IF(VA_ARGS_EMPTY(__VA_ARGS__), ifTrue, ifFalse)
 #endif
 
 #define VA_PREPEND_OR_DEFAULT(ifFilled, ifEmpty, ...) IF(VA_ARGS_EMPTY(__VA_ARGS__), ifEmpty, ifFilled, __VA_ARGS__)
@@ -35,5 +38,7 @@
 
 #define PREPEND_ARG(value, ...) VA_PREPEND_OR_DEFAULT(value, value, __VA_ARGS__)
 #define APPEND_ARG(value, ...) VA_APPEND_OR_DEFAULT(value, value, __VA_ARGS__)
+
+#define VA_ARGS_OR_IF_EMPTY(ifEmpty, ...) IF(VA_ARGS_EMPTY(__VA_ARGS__), ifEmpty, __VA_ARGS__)
 
 #endif // WINCOPIES_VARIADIC_HPP
