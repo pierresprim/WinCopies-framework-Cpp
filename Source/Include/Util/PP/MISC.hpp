@@ -22,8 +22,6 @@
 
 #define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
 
-#define CALL_VA_MACRO(macro, ...) macro(__VA_ARGS__)
-
 #define INCREMENT(n) CONCATENATE(INCREMENT, n)
 #define DECREMENT(n) CONCATENATE(DECREMENT, n)
 

@@ -6,8 +6,6 @@
 #define CONCATENATE(value, ...) value##__VA_ARGS__
 #define SINGLE_ARG(...) __VA_ARGS__
 
-#define EXPAND(...) CONCATENATE(SINGLE_ARG, __VA_ARGS__)
-
 #define IF_B(value, ifTrue, ...) CONCATENATE(IF, value)(ifTrue, __VA_ARGS__)
 #define IF0(value, ...) __VA_ARGS__
 #define IF1(value, ...) value
@@ -30,6 +28,11 @@
 #define GET_FIRST_TWO_ARGS(...) FIRST_TWO_ARGS(__VA_ARGS__)
 #define GET_FIRST_THIRD_ARGS(...) FIRST_THIRD_ARGS(__VA_ARGS__)
 #define GET_ALL_ARGS(...) ALL_ARGS(__VA_ARGS__)
+
+#define CALL_VA_MACRO(macro, ...) macro(__VA_ARGS__)
+
+#define EXPAND(_array) CONCATENATE(SINGLE_ARG, _array)
+#define EXTRACT_AND_EXPAND(...) CALL_VA_MACRO(FIRST_ARG(__VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
 
 #define _HAS_VA_OPT(...) THIRD_ARG(__VA_OPT__(,), 1, 0, )
 #define HAS_VA_OPT _HAS_VA_OPT(?)
