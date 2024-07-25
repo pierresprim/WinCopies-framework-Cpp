@@ -14,10 +14,11 @@
 #define _TEMPLATE(typeKind) __TEMPLATE(typeKind, )
 
 #define MAKE_TEMPLATE_PARAMS(count, prefix, suffix) FOR_I(count, SURROUND, prefix T##suffix, )
+#define TEMPLATE_PARAMS(count) MAKE_TEMPLATE_PARAMS(count, , )
 
 #define TEMPLATE _TEMPLATE(class)
 
-#define TEMPLATE_N(n, kind, ...) template<MAKE_TEMPLATE_PARAMS(n, kind, ) VA_OPT(IF_NOT(n, COMMA) SINGLE_ARG(__VA_ARGS__), __VA_ARGS__)>
+#define TEMPLATE_N(n, kind, ...) template<MAKE_TEMPLATE_PARAMS(n, kind, ) VA_OPT(IF_NOT(n, COMMA), __VA_ARGS__) __VA_ARGS__>
 #define TEMPLATE_NC(n, ...) TEMPLATE_N(n, class, __VA_ARGS__)
 
 #define TEMPLATE_E(kind, ...) TEMPLATE_N(0, , TRANSCRIBE_SURROUNDED(kind, , __VA_ARGS__))
