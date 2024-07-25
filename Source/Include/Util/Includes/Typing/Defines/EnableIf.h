@@ -7,18 +7,41 @@
 #include "../../../PP/Loop/ForEach.hpp"
 #include "../../../PP/Variadic/Variadic.hpp"
 
+#define ____ENABLE_IF(...) , EXTRACT_AND_CALL(__VA_ARGS__)
+#define ___ENABLE_IF(n, types) VA_ARGS_OR_IF_EMPTY(T##n, EXPAND(types))
 #define __ENABLE_IF(valuePrefix, n, prefix, suffix, ...) FOR_EACH_C(SURROUND, && ::valuePrefix::prefix, suffix<T##n>, __VA_ARGS__)
-#define _ENABLE_IF(prefix, value, n, type, extra, ...) SURROUND(::WinCopies::Typing::Enable, type, If)<::prefix::value<T##n> SINGLE_ARG(IF(VA_ARGS_FILLED(__VA_ARGS__), __ENABLE_IF, DISCARD)(prefix, n, __VA_ARGS__)) extra>
-#define ENABLE_IF(prefix, value, ...) _ENABLE_IF(prefix, value, , Bool, , __VA_ARGS__)
-#define ENABLE_TYPE_IF(prefix, value, ...) _ENABLE_IF(prefix, value, 1, , COMMA T2, __VA_ARGS__)
-#define ENABLE_WHEN(prefix, value, ...) _ENABLE_IF(prefix, value, , , COMMA T, __VA_ARGS__)
+#define _ENABLE_IF(prefix, value, n, type, extra, types, ...) SURROUND(::WinCopies::Typing::Enable, type, If)<::prefix::value<___ENABLE_IF(n, types)> SINGLE_ARG(IF_VA_ARGS(__ENABLE_IF, DISCARD, __VA_ARGS__)(prefix, n, __VA_ARGS__)) IF_VA_ARGS(____ENABLE_IF, DISCARD, EXPAND(extra))extra>
 
-#define __MAKE_ENABLE_IF(enableType, prefix, enableFor, ...) TEMPLATE using CONCATENATE(EnableIf, enableType) = ENABLE_IF(prefix, enableFor, __VA_ARGS__); \
-	TEMPLATE_NC(2) using CONCATENATE(EnableTypeIf, enableType) = ENABLE_TYPE_IF(prefix, enableFor, __VA_ARGS__); \
-	TEMPLATE using CONCATENATE(EnableWhen, enableType) = ENABLE_WHEN(prefix, enableFor, __VA_ARGS__);
-#define _MAKE_ENABLE_IF(enableType, prefix, subprefix, suffix, enableFor, ...) __MAKE_ENABLE_IF(enableType, prefix, SURROUND(subprefix, enableFor, suffix), IF(COMPL(VA_ARGS_FILLED(__VA_ARGS__)), , subprefix, suffix, __VA_ARGS__))
-#define MAKE_ENABLE_IF_STD(enableType, enableFor, ...) _MAKE_ENABLE_IF(enableType, std, is_, _v, enableFor, __VA_ARGS__)
-#define MAKE_ENABLE_IF(enableFor, ...) _MAKE_ENABLE_IF(enableFor, WinCopies::Typing, , , Is##enableFor, __VA_ARGS__)
+
+
+#define ENABLE_IF_TYPES(prefix, value, types, ...) _ENABLE_IF(prefix, value, , Bool, (), types, __VA_ARGS__)
+#define ENABLE_TYPE_IF_TYPES(prefix, value, types, ...) _ENABLE_IF(prefix, value, 1, , (CONCATENATE, T, IF_NO_VA_ARG(2, , EXPAND(types))), types, __VA_ARGS__)
+#define ENABLE_WHEN_TYPES(prefix, value, types, ...) _ENABLE_IF(prefix, value, , , (EXPAND, IF_VA_ARGS((GET_LAST_ARG(EXPAND(types))), (T), EXPAND(types))), types, __VA_ARGS__)
+
+#define ENABLE_IF(prefix, value, ...) ENABLE_IF_TYPES(prefix, value, (), __VA_ARGS__)
+#define ENABLE_TYPE_IF(prefix, value, ...) ENABLE_TYPE_IF_TYPES(prefix, value, (), __VA_ARGS__)
+#define ENABLE_WHEN(prefix, value, ...) ENABLE_WHEN_TYPES(prefix, value, (), __VA_ARGS__)
+
+
+
+#define _ENABLE_IF_TEMPLATE(...) template<TRANSCRIBE_SURROUNDED(class, , __VA_ARGS__), class T>
+#define ENABLE_IF_TEMPLATE(multi, types) EXPAND(IF_VA_ARGS((IF(multi, _ENABLE_IF_TEMPLATE, TEMPLATE_EC) types), IF(multi, (TEMPLATE_NC(2)), (TEMPLATE)), EXPAND(types)))
+
+#define ___MAKE_ENABLE_IF(enableType, prefix, enableFor, types, ...) ENABLE_IF_TEMPLATE(0, types) using CONCATENATE(EnableIf, enableType) = ENABLE_IF_TYPES(prefix, enableFor, types, __VA_ARGS__); \
+	ENABLE_IF_TEMPLATE(1, types) using CONCATENATE(EnableTypeIf, enableType) = ENABLE_TYPE_IF_TYPES(prefix, enableFor, types, __VA_ARGS__); \
+	ENABLE_IF_TEMPLATE(0, types) using CONCATENATE(EnableWhen, enableType) = ENABLE_WHEN_TYPES(prefix, enableFor, types, __VA_ARGS__);
+#define __MAKE_ENABLE_IF(enableType, prefix, subprefix, suffix, enableFor, types, ...) ___MAKE_ENABLE_IF(enableType, prefix, SURROUND(subprefix, enableFor, suffix), types, IF(VA_ARGS_EMPTY(__VA_ARGS__), , subprefix, suffix, __VA_ARGS__))
+
+#define _MAKE_ENABLE_IF_STD(enableType, enableFor, types, ...) __MAKE_ENABLE_IF(enableType, std, is_, _v, enableFor, types, __VA_ARGS__)
+#define _MAKE_ENABLE_IF(enableFor, types, ...) __MAKE_ENABLE_IF(enableFor, WinCopies::Typing, , , Is##enableFor, types, __VA_ARGS__)
+
+
+
+#define MAKE_ENABLE_IF_STD(enableType, enableFor, ...) _MAKE_ENABLE_IF_STD(enableType, enableFor, (), __VA_ARGS__)
+#define MAKE_ENABLE_IF(enableFor, ...) _MAKE_ENABLE_IF(enableFor, (), __VA_ARGS__)
+
+#define MAKE_ENABLE_IF_TYPES_STD(enableType, enableFor, types, ...) _MAKE_ENABLE_IF_STD(enableType, enableFor, types, __VA_ARGS__)
+#define MAKE_ENABLE_IF_TYPES(enableFor, types, ...) _MAKE_ENABLE_IF(enableFor, types, __VA_ARGS__)
 
 
 
