@@ -74,7 +74,7 @@
 
 
 
-#define ENABLE_TYPE_IF_SIGNED(typeIn, typeOut) _ENABLE_TYPE_IF(Signed, typeIn, typeOut)
+#define ENABLE_TYPE_IF_SIGNED(type1, type2) _ENABLE_TYPE_IF(Signed, type1, type2)
 #define ENABLE_TYPE_IF_UNSIGNED(type1, type2) _ENABLE_TYPE_IF(Unsigned, type1, type2)
 
 #define ENABLE_TYPE_IF_INTEGRAL(type1, type2) _ENABLE_TYPE_IF(Integral, type1, type2)
