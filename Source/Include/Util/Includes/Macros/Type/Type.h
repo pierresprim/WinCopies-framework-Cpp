@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_MACROS_TYPE_H
-#define WINCOPIES_UTIL_MACROS_TYPE_H
+#ifndef WINCOPIES_MACROS_TYPE_H
+#define WINCOPIES_MACROS_TYPE_H
 
 #include "../../../PP/Loop/ForEach.hpp"
 #include "../Template.h"
@@ -54,4 +54,4 @@
 #include "Templates/Class.h"
 #include "Templates/Template.h"
 
-#endif
+#endif WINCOPIES_MACROS_TYPE_H

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_LIBRARIES_H
-#define WINCOPIES_UTIL_LIBRARIES_H
+#ifndef WINCOPIES_LIBRARIES_H
+#define WINCOPIES_LIBRARIES_H
 
 /// Std
 
@@ -21,4 +21,4 @@
 
 #include <Windows.h>
 #endif
-#endif // WINCOPIES_UTIL_LIBRARIES_H
+#endif WINCOPIES_LIBRARIES_H

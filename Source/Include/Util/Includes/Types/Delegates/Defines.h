@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_DELEGATE_DEFINES_H
-#define WINCOPIES_UTIL_DELEGATE_DEFINES_H
+#ifndef WINCOPIES_DELEGATE_DEFINES_H
+#define WINCOPIES_DELEGATE_DEFINES_H
 
 #define FUNC T(*Func)()
 #define FUNC_PARAMETER T(*func)()
@@ -28,4 +28,4 @@
 
 #define NAMED_COMPARISON(comparisonName, t) BYTE(*comparisonName)(t, t)
 
-#endif
+#endif WINCOPIES_DELEGATE_DEFINES_H

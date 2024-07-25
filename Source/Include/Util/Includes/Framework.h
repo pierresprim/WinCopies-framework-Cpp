@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_FRAMEWORK_H
-#define WINCOPIES_UTIL_FRAMEWORK_H
+#ifndef WINCOPIES_FRAMEWORK_H
+#define WINCOPIES_FRAMEWORK_H
 
 #include "../PP/MiscBase.hpp"
 
@@ -22,4 +22,4 @@ namespace WinCopies
 #include "Macros/Method/Method.h"
 #include "Macros/Misc.h"
 
-#endif
+#endif WINCOPIES_FRAMEWORK_H

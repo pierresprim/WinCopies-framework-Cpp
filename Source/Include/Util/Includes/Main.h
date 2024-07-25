@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_MAIN_H
-#define WINCOPIES_UTIL_MAIN_H
+#ifndef WINCOPIES_MAIN_H
+#define WINCOPIES_MAIN_H
 
 #include "Environment.h"
 
@@ -12,4 +12,4 @@ inline auto highLevelF(Args&&... args) -> decltype(lowLevelF(std::forward<Args>(
     return lowLevelF(std::forward<Args>(args)...); \
 }
 
-#endif // WINCOPIES_UTIL_MAIN_H
+#endif WINCOPIES_MAIN_H

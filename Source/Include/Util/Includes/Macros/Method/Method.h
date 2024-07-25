@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_MACROS_METHOD_H
-#define WINCOPIES_UTIL_MACROS_METHOD_H
+#ifndef WINCOPIES_MACROS_METHOD_H
+#define WINCOPIES_MACROS_METHOD_H
 
 #define _METHOD(modifiers) DLLEXPORT modifiers void
 
@@ -32,4 +32,4 @@
 #define FINAL_METHOD(typeAndName) FINAL_ARG_METHOD(typeAndName, )
 #define FINAL_CONST(typeAndName) FINAL_ARG_CONST(typeAndName, )
 
-#endif
+#endif WINCOPIES_MACROS_METHOD_H

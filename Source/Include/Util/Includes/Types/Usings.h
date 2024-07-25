@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_USINGS_H
-#define WINCOPIES_UTIL_USINGS_H
+#ifndef WINCOPIES_USINGS_H
+#define WINCOPIES_USINGS_H
 
 #include <memory>
 #include "../Typing/Typing.h"
@@ -13,4 +13,4 @@ namespace WinCopies
 	TEMPLATE using FreeableUniquePtr = unique_ptr<T, void (*)(void*)>;
 }
 
-#endif
+#endif WINCOPIES_USINGS_H

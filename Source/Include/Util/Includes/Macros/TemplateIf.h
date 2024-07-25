@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_TEMPLATE_IF_H
-#define WINCOPIES_UTIL_TEMPLATE_IF_H
+#ifndef WINCOPIES_TEMPLATE_IF_H
+#define WINCOPIES_TEMPLATE_IF_H
 
 #include "../Typing/EnableIf.h"
 
@@ -26,4 +26,4 @@
 #define TEMPLATE_IF_FLOAT(...) _TEMPLATE_IF_T(Float, __VA_ARGS__)
 #define TEMPLATE_IF_ENUM(...) _TEMPLATE_IF_T(Enum, __VA_ARGS__)
 
-#endif
+#endif WINCOPIES_TEMPLATE_IF_H

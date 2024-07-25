@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_TYPING_ENABLE_IF_H
-#define WINCOPIES_UTIL_TYPING_ENABLE_IF_H
+#ifndef WINCOPIES_TYPING_ENABLE_IF_H
+#define WINCOPIES_TYPING_ENABLE_IF_H
 
 #include "Consts.h"
 #include "Defines/EnableIf.h"
@@ -44,4 +44,4 @@ namespace WinCopies
 	}
 }
 
-#endif // WINCOPIES_UTIL_TYPING_ENABLE_IF_H
+#endif WINCOPIES_TYPING_ENABLE_IF_H

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_TYPE_DEFS_BASE_H
-#define WINCOPIES_UTIL_TYPE_DEFS_BASE_H
+#ifndef WINCOPIES_TYPE_DEFS_BASE_H
+#define WINCOPIES_TYPE_DEFS_BASE_H
 
 #define _TYPEDEF(value) typedef value
 #define TYPEDEF_U _TYPEDEF(unsigned)
@@ -22,4 +22,4 @@ TYPEDEF_L LONG;
 TYPEDEF_U char BYTE;
 #endif
 
-#endif // WINCOPIES_UTIL_TYPE_DEFS_BASE_H
+#endif WINCOPIES_TYPE_DEFS_BASE_H

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_TYPING_DEFINES_ENABLE_IF_H
-#define WINCOPIES_UTIL_TYPING_DEFINES_ENABLE_IF_H
+#ifndef WINCOPIES_TYPING_DEFINES_ENABLE_IF_H
+#define WINCOPIES_TYPING_DEFINES_ENABLE_IF_H
 
 #include "../../Macros/Template.h"
 #include "../../../PP/Loop/ForEach.hpp"
@@ -104,4 +104,4 @@
 
 #define ENABLE_WHEN_BASE_OF(base, derived) _ENABLE_WHEN(BaseOf, base, derived)
 
-#endif // WINCOPIES_UTIL_TYPING_DEFINES_ENABLE_IF_H
+#endif WINCOPIES_TYPING_DEFINES_ENABLE_IF_H
