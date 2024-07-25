@@ -29,10 +29,10 @@
 #define GET_FIRST_THIRD_ARGS(...) FIRST_THIRD_ARGS(__VA_ARGS__)
 #define GET_ALL_ARGS(...) ALL_ARGS(__VA_ARGS__)
 
-#define CALL_VA_MACRO(macro, ...) macro(__VA_ARGS__)
+#define CALL_VA_MACRO(macro, ...) SINGLE_ARG(macro(__VA_ARGS__))
+#define EXTRACT_AND_CALL(...) CALL_VA_MACRO(FIRST_ARG(__VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
 
-#define EXPAND(_array) CONCATENATE(SINGLE_ARG, _array)
-#define EXTRACT_AND_EXPAND(...) CALL_VA_MACRO(FIRST_ARG(__VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
+#define EXPAND(_array) SINGLE_ARG _array
 
 #define _HAS_VA_OPT(...) THIRD_ARG(__VA_OPT__(,), 1, 0, )
 #define HAS_VA_OPT _HAS_VA_OPT(?)
