@@ -39,6 +39,8 @@ namespace WinCopies
 			MAKE_ENABLE_IF(Float)
 			MAKE_ENABLE_IF(Enum)
 			MAKE_ENABLE_IF(BitwiseEnum)
+
+			MAKE_ENABLE_IF_TYPES(BaseOf, (TBase, TDerived))
 	}
 }
 

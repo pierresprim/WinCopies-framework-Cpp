@@ -39,6 +39,8 @@ namespace WinCopies
 		 */
 		ENABLE_IF_BOOL_CONDITION IsBitwiseEnum = IsBitwiseEnumType<T>::value;
 		ENABLE_IF_BOOL_CONDITION IsUnsignedEnum = IsEnum<T> && IsUnsigned<UNDERLYING_TYPE(T)>;
+
+		_ENABLE_IF_BOOL_CONDITION(TBase, TDerived) IsBaseOf = is_base_of_v<TBase, TDerived>;
 	}
 }
 

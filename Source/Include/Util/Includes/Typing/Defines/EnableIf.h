@@ -72,6 +72,8 @@
 #define ENABLE_IF_ENUM(type) _ENABLE_IF_VALUE(Enum, type)
 #define ENABLE_IF_BITWISE_ENUM(type) _ENABLE_IF_VALUE(BitwiseEnum, type)
 
+#define ENABLE_IF_BASE_OF(base, derived) _ENABLE_IF_VALUE(BaseOf, base, derived)
+
 
 
 #define ENABLE_TYPE_IF_SIGNED(type1, type2) _ENABLE_TYPE_IF(Signed, type1, type2)
@@ -85,6 +87,8 @@
 #define ENABLE_TYPE_IF_ENUM(type1, type2) _ENABLE_TYPE_IF(Enum, type1, type2)
 #define ENABLE_TYPE_IF_BITWISE_ENUM(type1, type2) _ENABLE_TYPE_IF(BitwiseEnum, type1, type2)
 
+#define ENABLE_TYPE_IF_BASE_OF(base, derived, type) _ENABLE_TYPE_IF(BaseOf, base, derived, type)
+
 
 
 #define ENABLE_WHEN_SIGNED(type) _ENABLE_WHEN(Signed, type)
@@ -97,5 +101,7 @@
 #define ENABLE_WHEN_FLOAT(type) _ENABLE_WHEN(Float, type)
 #define ENABLE_WHEN_ENUM(type) _ENABLE_WHEN(Enum, type)
 #define ENABLE_WHEN_BITWISE_ENUM(type) _ENABLE_WHEN(BitwiseEnum, type)
+
+#define ENABLE_WHEN_BASE_OF(base, derived) _ENABLE_WHEN(BaseOf, base, derived)
 
 #endif // WINCOPIES_UTIL_TYPING_DEFINES_ENABLE_IF_H

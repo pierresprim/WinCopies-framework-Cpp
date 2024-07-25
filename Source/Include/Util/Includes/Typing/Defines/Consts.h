@@ -18,4 +18,6 @@
 #define IS_BITWISE_ENUM(type) IS_TYPE(BitwiseEnum, type)
 #define IS_UNSIGNED_ENUM(type) IS_TYPE(UnsignedEnum, type)
 
+#define IS_BASE_OF(base, derived) IS_TYPE(BaseOf, base, derived)
+
 #endif // WINCOPIES_UTIL_TYPING_DEFINES_CONSTS_H
