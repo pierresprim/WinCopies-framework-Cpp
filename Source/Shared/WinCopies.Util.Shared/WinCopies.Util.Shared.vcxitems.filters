@@ -153,9 +153,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Misc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Util.hpp">
-      <Filter>Header Files\PP</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\MiscBase.hpp">
       <Filter>Header Files\PP</Filter>
     </ClInclude>
@@ -262,6 +259,30 @@
       <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Variadic\Util.hpp">
+      <Filter>Header Files\PP\Variadic</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\MulBase.hpp">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Variadic\UtilBase.hpp">
+      <Filter>Header Files\PP\Variadic</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\Base.hpp">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\Div.hpp">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\Mul.hpp">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\MUL.inc.hpp">
+      <Filter>Header Files\PP\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Typing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
