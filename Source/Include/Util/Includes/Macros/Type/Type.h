@@ -22,7 +22,7 @@
 #define _BASE_TEMPLATE(name, ...) BASE_INTERFACE name<__VA_ARGS__>
 
 #define BASE_TEMPLATE(name) _BASE_TEMPLATE(name, T)
-#define BASE_TEMPLATE_N(count, name) _BASE_TEMPLATE(name, TEMPLATE_TYPES(count))
+#define BASE_TEMPLATE_N(count, name) _BASE_TEMPLATE(name, TEMPLATE_PARAMS(count))
 
 #define _STATIC_CLASS(local, name) IF(local, class name ABSTRACT, INTERFACE_TYPE(name)) final { STATIC_CLASS_C_D_TOR(name)
 #define STATIC_CLASS(name) _STATIC_CLASS(0, name)
