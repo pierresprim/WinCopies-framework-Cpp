@@ -1,3 +1,5 @@
+// WARNING: Concatenation of (FOR_EACH, n) is required for MSVC.
+
 #pragma once
 
 #ifndef WINCOPIES_FOR_EACH_HPP
@@ -10,22 +12,22 @@
 #define _FOR_EACH_INCREMENTATION(bi) IF(bi, INCREMENT(bi), 0)
 
 #define FOR_EACH0(bi, printExtra, concatenator, prefix, macro, suffix, ...) IF_B(printExtra, SINGLE_ARG, DISCARD)(__VA_ARGS__)
-#define FOR_EACH1(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH0(bi, printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH2(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH1(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH3(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH2(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH4(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH3(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH5(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH4(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH6(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH5(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH7(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH6(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH8(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH7(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH9(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH8(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH10(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH9(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH11(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH10(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH12(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH11(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH13(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH12(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH14(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH13(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH15(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH14(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH16(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) FOR_EACH15(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH1(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 0)(bi, printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH2(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 1)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH3(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 2)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH4(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 3)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH5(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 4)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH6(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 5)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH7(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 6)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH8(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 7)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH9(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 8)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH10(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 9)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH11(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 10)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH12(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 11)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH13(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 12)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH14(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 13)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH15(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 14)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH16(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) CONCATENATE(FOR_EACH, 15)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 
 #define SELECT_I(bi, n, printExtra, concatenator, prefix, macro, suffix, ...) CONCATENATE(FOR_EACH, n)(bi, printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define SELECT(n, printExtra, concatenator, prefix, macro, suffix, ...) SELECT_I(0, n, printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
