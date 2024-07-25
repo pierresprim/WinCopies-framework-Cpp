@@ -28,7 +28,7 @@
 
 #define TRANSCRIBE_ARGS_WITH(prefix, suffix, ...) CONCATENATE_WITH(TRANSCRIBE_ARGS, prefix, suffix, __VA_ARGS__)
 
-#define TRANSCRIBE_SURROUNDED(prefix, suffix, ...) prefix FIRST_ARG(__VA_ARGS__) suffix FOR_EACH_C(TRANSCRIBE_ARGS_CS, prefix, suffix, ALL_BUT_FIRST_ARG(__VA_ARGS__))
+#define TRANSCRIBE_SURROUNDED(prefix, suffix, ...) prefix SINGLE_ARG(FIRST_ARG(__VA_ARGS__)) suffix FOR_EACH_C(TRANSCRIBE_ARGS_CS, prefix, suffix, ALL_BUT_FIRST_ARG(__VA_ARGS__))
 #define TRANSCRIBE_PREFIXED(prefix, ...) TRANSCRIBE_SURROUNDED(prefix, , __VA_ARGS__)
 #define TRANSCRIBE_SUFFIXED(suffix, ...) TRANSCRIBE_SURROUNDED(, suffix, __VA_ARGS__)
 

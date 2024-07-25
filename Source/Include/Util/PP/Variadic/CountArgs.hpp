@@ -10,7 +10,15 @@
 #define _COUNT_ARGS(...) SINGLE_ARG(__COUNT_ARGS(__VA_ARGS__ 100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0))
 
 #if HAS_VA_OPT < 1
-#define ____COUNT_ARGS(macro, n, a, ...) IF(n, macro(n), BOOL(0##a))
+#define _VA_OPT_CHECK(...) ,
+
+#define _VA_OPT_BOOL(x, y, z) COMPL(_COUNT_ARGS(CALL_VA_MACRO(CONCATENATE, SURROUND(_VA_OPT_BOOL_001, x, y), z)))
+#define _VA_OPT_BOOL_001 ,
+
+#define VA_OPT_BOOL(...) _VA_OPT_BOOL(_COUNT_ARGS(_VA_OPT_CHECK __VA_ARGS__), \
+          _COUNT_ARGS(__VA_ARGS__()), \
+          _COUNT_ARGS(_VA_OPT_CHECK __VA_ARGS__()))
+#define ____COUNT_ARGS(macro, n, a, ...) IF(n, macro(n), VA_OPT_BOOL(a))
 #define ___COUNT_ARGS(macro, ...) ____COUNT_ARGS(macro, _COUNT_ARGS(__VA_ARGS__), __VA_ARGS__)
 #define COUNT_ARGS(...) ___COUNT_ARGS(INCREMENT, __VA_ARGS__)
 #else
