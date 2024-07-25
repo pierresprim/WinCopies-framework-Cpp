@@ -143,8 +143,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-9
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\PP\Math\Base.hpp = Source\Include\Util\PP\Math\Base.hpp
 		Source\Include\Util\PP\Math\DECREMENT.h = Source\Include\Util\PP\Math\DECREMENT.h
+		Source\Include\Util\PP\Math\Div.hpp = Source\Include\Util\PP\Math\Div.hpp
 		Source\Include\Util\PP\Math\INCREMENT.h = Source\Include\Util\PP\Math\INCREMENT.h
 		Source\Include\Util\PP\Math\Math.hpp = Source\Include\Util\PP\Math\Math.hpp
+		Source\Include\Util\PP\Math\Mul.hpp = Source\Include\Util\PP\Math\Mul.hpp
+		Source\Include\Util\PP\Math\MUL.inc.hpp = Source\Include\Util\PP\Math\MUL.inc.hpp
+		Source\Include\Util\PP\Math\MulBase.hpp = Source\Include\Util\PP\Math\MulBase.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"
@@ -165,6 +169,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Variadic", "Variadic", "{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\PP\Variadic\CountArgs.hpp = Source\Include\Util\PP\Variadic\CountArgs.hpp
+		Source\Include\Util\PP\Variadic\Util.hpp = Source\Include\Util\PP\Variadic\Util.hpp
+		Source\Include\Util\PP\Variadic\UtilBase.hpp = Source\Include\Util\PP\Variadic\UtilBase.hpp
 		Source\Include\Util\PP\Variadic\Variadic.hpp = Source\Include\Util\PP\Variadic\Variadic.hpp
 	EndProjectSection
 EndProject
@@ -180,6 +186,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enumeration", "Enumeration"
 		Source\Include\Collections\Enumeration\EnumeratorBase.h = Source\Include\Collections\Enumeration\EnumeratorBase.h
 		Source\Include\Collections\Enumeration\IEnumerable.h = Source\Include\Collections\Enumeration\IEnumerable.h
 		Source\Include\Collections\Enumeration\IEnumerator.h = Source\Include\Collections\Enumeration\IEnumerator.h
+		Source\Include\Collections\Enumeration\Util.h = Source\Include\Collections\Enumeration\Util.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinkedList", "LinkedList", "{14997D21-DA87-44E5-BD17-78D324D0B2E0}"
