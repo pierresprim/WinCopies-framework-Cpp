@@ -5,7 +5,7 @@
 
 #include "UtilBase.h"
 #include "System.h"
-#include "Misc.h"
+#include "../../Include/Util/Includes/Macros/Method/Inline.h"
 
 namespace WinCopies
 {
