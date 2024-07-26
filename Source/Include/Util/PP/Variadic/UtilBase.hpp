@@ -22,19 +22,42 @@
 #define _JOIN_ARGS(separator, first, ...) first FOR_EACH_C(TRANSCRIBE_ARGS, separator, , __VA_ARGS__)
 #define JOIN_ARGS(separator, ...) _JOIN_ARGS(separator, __VA_ARGS__)
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
-#define PREFIX_ARGS(prefix, ...) CONCATENATE_WITH(PREFIX, prefix, , __VA_ARGS__)
-#define SURROUND_ARGS(prefix, suffix, ...) CONCATENATE_WITH(SURROUND, prefix, suffix, __VA_ARGS__)
-#define SUFFIX_ARGS(suffix, ...) CONCATENATE_WITH(SUFFIX, , suffix, __VA_ARGS__)
+
+#define RENDER_PREFIXED(prefix, ...) CONCATENATE_WITH(PREFIX, prefix, , __VA_ARGS__)
+#define RENDER_SURROUNDED(prefix, suffix, ...) CONCATENATE_WITH(SURROUND, prefix, suffix, __VA_ARGS__)
+#define RENDER_SUFFIXED(suffix, ...) CONCATENATE_WITH(SUFFIX, , suffix, __VA_ARGS__)
 
 #define TRANSCRIBE_ARGS_WITH(prefix, suffix, ...) CONCATENATE_WITH(TRANSCRIBE_ARGS, prefix, suffix, __VA_ARGS__)
 
-#define TRANSCRIBE_SURROUNDED(prefix, suffix, ...) prefix SINGLE_ARG(FIRST_ARG(__VA_ARGS__)) suffix FOR_EACH_C(TRANSCRIBE_ARGS_CS, prefix, suffix, ALL_BUT_FIRST_ARG(__VA_ARGS__))
+
+
+#define __TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, ...) firstTranscriber(firstPrefix, macro(FIRST_ARG(__VA_ARGS__)), suffix) FOR_EACH_C(transcriber, prefix, suffix, ALL_BUT_FIRST_ARG(__VA_ARGS__))
+
+
+
+#define _SURROUND_ARGS(prefix, suffix, macro, ...) __TRANSCRIBE_SURROUNDED(prefix, prefix, suffix, SINGLE_ARG, SURROUND, macro, __VA_ARGS__)
+
+#define PREFIX_ARGS(prefix, ...) _SURROUND_ARGS(prefix, , PREFIX_CS, __VA_ARGS__)
+#define SURROUND_ARGS(prefix, suffix, ...) _SURROUND_ARGS(prefix, suffix, SURROUND_CS, __VA_ARGS__)
+#define SUFFIX_ARGS(suffix, ...) _SURROUND_ARGS(, suffix, SUFFIX_CS, __VA_ARGS__)
+
+#define _TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, ...) __TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, TRANSCRIBE_ARGS, TRANSCRIBE_ARGS_CS, __VA_ARGS__)
+
+#define TRANSCRIBE_SURROUNDED(prefix, suffix, ...) _TRANSCRIBE_SURROUNDED(prefix, prefix, suffix, SINGLE_ARG, __VA_ARGS__)
 #define TRANSCRIBE_PREFIXED(prefix, ...) TRANSCRIBE_SURROUNDED(prefix, , __VA_ARGS__)
 #define TRANSCRIBE_SUFFIXED(suffix, ...) TRANSCRIBE_SURROUNDED(, suffix, __VA_ARGS__)
 
-#define TRANSCRIBE_TOKENS_SURROUNDED(prefix, suffix, ...) TRANSCRIBE_SURROUNDED(prefix SINGLE_ARG, suffix, __VA_ARGS__)
-#define TRANSCRIBE_TOKENS_PREFIXED(prefix, ...) TRANSCRIBE_PREFIXED(prefix SINGLE_ARG, __VA_ARGS__)
-#define TRANSCRIBE_TOKENS_SUFFIXED(suffix, ...) TRANSCRIBE_TOKENS_SURROUNDED(, suffix, __VA_ARGS__)
+#define TRANSCRIBE_ARRAY_SURROUNDED(prefix, suffix, ...) _TRANSCRIBE_SURROUNDED(prefix, prefix SINGLE_ARG, suffix, EXPAND, __VA_ARGS__)
+#define TRANSCRIBE_ARRAY_PREFIXED(prefix, ...) TRANSCRIBE_ARRAY_SURROUNDED(prefix, , __VA_ARGS__)
+#define TRANSCRIBE_ARRAY_SUFFIXED(suffix, ...) TRANSCRIBE_ARRAY_SURROUNDED(, suffix, __VA_ARGS__)
+
+#define _SURROUND_ARRAY(...) TRANSCRIBE_ARRAY_SURROUNDED(, , __VA_ARGS__)
+
+#define PREFIX_ARRAY(prefix, ...) PREFIX_ARGS(prefix, _SURROUND_ARRAY(__VA_ARGS__))
+#define SURROUND_ARRAY(prefix, ...) SURROUND_ARGS(prefix, _SURROUND_ARRAY(__VA_ARGS__))
+#define SUFFIX_ARRAY(prefix, ...) SUFFIX_ARGS(prefix, _SURROUND_ARRAY(__VA_ARGS__))
+
+
 
 #define REPEAT_ARG(count, value) FOR_I(count, FIRST_ARG, value, )
 #define REPEAT_FOR_EACH(value, ...) REPEAT_ARG(COUNT_ARGS(__VA_ARGS__), value)
