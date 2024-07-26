@@ -11,7 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F
 		Source\Include\Util\Exception.h = Source\Include\Util\Exception.h
 		Source\Include\Util\Interface.h = Source\Include\Util\Interface.h
 		Source\Include\Util\Math.h = Source\Include\Util\Math.h
-		Source\Include\Util\Misc.h = Source\Include\Util\Misc.h
 		Source\Include\Util\Nullable.h = Source\Include\Util\Nullable.h
 		Source\Include\Util\System.h = Source\Include\Util\System.h
 		Source\Include\Util\Typing.h = Source\Include\Util\Typing.h
@@ -82,7 +81,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{5B4C381B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Method", "Method", "{AA4541B8-3389-4373-95A7-558B73F51A09}"
 	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Includes\Macros\Method\Abstract.h = Source\Include\Util\Includes\Macros\Method\Abstract.h
+		Source\Include\Util\Includes\Macros\Method\Base.h = Source\Include\Util\Includes\Macros\Method\Base.h
+		Source\Include\Util\Includes\Macros\Method\Inline.h = Source\Include\Util\Includes\Macros\Method\Inline.h
 		Source\Include\Util\Includes\Macros\Method\Method.h = Source\Include\Util\Includes\Macros\Method\Method.h
+		Source\Include\Util\Includes\Macros\Method\Templates.h = Source\Include\Util\Includes\Macros\Method\Templates.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Type", "Type", "{FD892CCF-A7A6-4756-83A4-A16589FEB168}"
