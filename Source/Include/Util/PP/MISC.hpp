@@ -8,6 +8,17 @@
 #include "Math/INCREMENT.h"
 #include "Math/DECREMENT.h"
 
+#define INCREMENT(n) CONCATENATE(INCREMENT, n)
+#define DECREMENT(n) CONCATENATE(DECREMENT, n)
+
+#define DISCARD(...)
+
+#define COMMA ,
+#define GET_COMMA() ,
+
+#define PAR_O (
+#define PAR_C )
+
 #define _SURROUND(x, y) CONCATENATE(x, y)
 
 #define PREFIX(prefix, value, ...) prefix##value
@@ -21,15 +32,4 @@
 #define TRANSCRIBE_ARGS_CE(prefix, value, ...) TRANSCRIBE_ARGS(prefix, value, __VA_ARGS__ COMMA)
 
 #define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
-
-#define INCREMENT(n) CONCATENATE(INCREMENT, n)
-#define DECREMENT(n) CONCATENATE(DECREMENT, n)
-
-#define DISCARD(...)
-
-#define COMMA ,
-#define GET_COMMA() ,
-
-#define PAR_O (
-#define PAR_C )
 #endif // WINCOPIES_MISC_HPP
