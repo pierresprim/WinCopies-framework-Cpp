@@ -29,7 +29,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Environment.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Framework.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Libraries.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Abstract.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Base.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Inline.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Method.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Func.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Function.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Inline.h" />
@@ -59,7 +63,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Usings.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Interface.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Math.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Misc.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Nullable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\Bool.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Conditional\Conditional.hpp" />

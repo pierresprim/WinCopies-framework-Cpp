@@ -150,9 +150,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Struct.h">
       <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Misc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\MiscBase.hpp">
       <Filter>Header Files\PP</Filter>
     </ClInclude>
@@ -284,6 +281,18 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Typing.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Abstract.h">
+      <Filter>Header Files\Includes\Macros\Method</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Inline.h">
+      <Filter>Header Files\Includes\Macros\Method</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Base.h">
+      <Filter>Header Files\Includes\Macros\Method</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates.h">
+      <Filter>Header Files\Includes\Macros\Method</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
