@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_MISC_H
-#define WINCOPIES_UTIL_MISC_H
+#ifndef WINCOPIES_MACROS_METHOD_INLINE_H
+#define WINCOPIES_MACROS_METHOD_INLINE_H
 
-#include "PP/Conditional/Conditional.hpp"
+#include "../../../PP/Conditional/Conditional.hpp"
 
 #define _INLINE_METHOD_ACTION(isConst, returnType, methodName, action, ...) returnType methodName(__VA_ARGS__) IF(isConst, const) { action; }
 #define INLINE_METHOD_ACTION(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(isConst, void, methodName, action, __VA_ARGS__)
@@ -22,4 +22,4 @@
 
 #define GET_FIELD_IF_ELSE(returnType, methodName, paramType, paramName, condition, valueIfTrue, ifFalse, valueIfFalse) returnType methodName(paramType* paramName) { RETURN_BRANCH(condition, *##paramName = _##paramName, valueIfTrue, *##paramName = ifFalse, valueIfFalse) }
 
-#endif // WINCOPIES_UTIL_MISC_H
+#endif WINCOPIES_MACROS_METHOD_INLINE_H
