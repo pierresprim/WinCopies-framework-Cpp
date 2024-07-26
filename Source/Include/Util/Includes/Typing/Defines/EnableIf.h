@@ -24,7 +24,7 @@
 
 
 
-#define _ENABLE_IF_TEMPLATE(...) template<TRANSCRIBE_SURROUNDED(class, , __VA_ARGS__), class T>
+#define _ENABLE_IF_TEMPLATE(...) template<TRANSCRIBE_PREFIXED(class, __VA_ARGS__), class T>
 #define ENABLE_IF_TEMPLATE(multi, types) EXPAND(IF_VA_ARGS((IF(multi, _ENABLE_IF_TEMPLATE, TEMPLATE_EC) types), IF(multi, (TEMPLATE_NC(2)), (TEMPLATE)), EXPAND(types)))
 
 #define ___MAKE_ENABLE_IF(enableType, prefix, enableFor, types, ...) ENABLE_IF_TEMPLATE(0, types) using CONCATENATE(EnableIf, enableType) = ENABLE_IF_TYPES(prefix, enableFor, types, __VA_ARGS__); \
