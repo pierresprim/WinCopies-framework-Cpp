@@ -5,10 +5,7 @@
 
 #include "Base.h"
 
-#include "Templates/Method.h"
-#include "Templates/Inline.h"
-#include "Templates/Func.h"
-#include "Templates/Function.h"
+#include "Templates.h"
 
 #include "Abstract.h"
 
