@@ -7,7 +7,7 @@
 #include "../Template.h"
 #include "../../Environment.h"
 #include "../TemplateIf.h"
-#include "TypeBase.h"
+#include "../../../Interface.h"
 
 #define BASE_INTERFACE public virtual
 
@@ -28,7 +28,7 @@
 #define STATIC_CLASS(name) _STATIC_CLASS(0, name)
 #define LOCAL_STATIC_CLASS(name) _STATIC_CLASS(1, name)
 
-#define _INTERFACE_CLASS(addCtorAndDtor, name, ...) INTERFACE_TYPE(name) : BASE_INTERFACE ::WinCopies::Interface VA_OPT(COMMA, __VA_ARGS__) __VA_ARGS__ IF(addCtorAndDtor, { INTERFACE_CONSTRUCTOR(name))
+#define _INTERFACE_CLASS(addCtorAndDtor, name, ...) INTERFACE_TYPE(name) : BASE_INTERFACE ::WinCopies::Interface VA_OPT(COMMA, __VA_ARGS__) __VA_ARGS__ IF(addCtorAndDtor, { INTERFACE_C_D_TOR(name))
 #define INTERFACE_CLASS(name, ...) _INTERFACE_CLASS(1, name, __VA_ARGS__)
 #define STRUCT struct DLLEXPORT
 #define ENUM enum CLASS
