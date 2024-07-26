@@ -21,10 +21,10 @@
 #define TEMPLATE_N(n, kind, ...) template<MAKE_TEMPLATE_PARAMS(n, kind, ) VA_OPT(IF_NOT(n, COMMA), __VA_ARGS__) __VA_ARGS__>
 #define TEMPLATE_NC(n, ...) TEMPLATE_N(n, class, __VA_ARGS__)
 
-#define TEMPLATE_E(kind, ...) TEMPLATE_N(0, , TRANSCRIBE_SURROUNDED(kind, , __VA_ARGS__))
+#define TEMPLATE_E(kind, ...) TEMPLATE_N(0, , TRANSCRIBE_PREFIXED(kind, __VA_ARGS__))
 #define TEMPLATE_EC(...) TEMPLATE_E(class, __VA_ARGS__)
 
-#define TEMPLATE_NE(n, kind, ...) TEMPLATE_N(n, kind, TRANSCRIBE_SURROUNDED(kind, , __VA_ARGS__))
+#define TEMPLATE_NE(n, kind, ...) TEMPLATE_N(n, kind, TRANSCRIBE_PREFIXED(kind, __VA_ARGS__))
 #define TEMPLATE_NEC(n, ...) TEMPLATE_NE(n, class, __VA_ARGS__)
 
 #define MULTI_TEMPLATE _TEMPLATE(class...)
