@@ -40,4 +40,4 @@
 #define TRANSCRIBE_ARGS_CE(prefix, value, ...) TRANSCRIBE_ARGS(prefix, value, __VA_ARGS__) COMMA
 
 #define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
-#endif // WINCOPIES_MISC_HPP
+#endif WINCOPIES_MISC_HPP
