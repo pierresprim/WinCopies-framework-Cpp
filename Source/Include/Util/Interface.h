@@ -10,10 +10,8 @@
 namespace WinCopies
 {
 	BASE_INTERFACE_CLASS(Interface)
-
-	Interface::~Interface() { /* Left empty. */ }
 }
 
 #undef BASE_INTERFACE_CLASS
 
-#endif // WINCOPIES_INTERFACE
+#endif WINCOPIES_INTERFACE
