@@ -136,7 +136,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D
 		Source\Include\Util\PP\Loop\For.hpp = Source\Include\Util\PP\Loop\For.hpp
 		Source\Include\Util\PP\Loop\ForEach.hpp = Source\Include\Util\PP\Loop\ForEach.hpp
 		Source\Include\Util\PP\Loop\Loop.hpp = Source\Include\Util\PP\Loop\Loop.hpp
-		Source\Include\Util\PP\Loop\META_FOR.hpp = Source\Include\Util\PP\Loop\META_FOR.hpp
 		Source\Include\Util\PP\Loop\Repeat.hpp = Source\Include\Util\PP\Loop\Repeat.hpp
 		Source\Include\Util\PP\Loop\While.hpp = Source\Include\Util\PP\Loop\While.hpp
 	EndProjectSection
@@ -182,7 +181,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections", "So
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enumeration", "Enumeration", "{44BC91E9-3EE6-407D-BFDD-47E9EB9123C6}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Collections\Enumeration\Enumerable.h = Source\Include\Collections\Enumeration\Enumerable.h
+				Source\Include\Collections\Enumeration\Enumerable.h = Source\Include\Collections\Enumeration\Enumerable.h
 		Source\Include\Collections\Enumeration\EnumerableBase.h = Source\Include\Collections\Enumeration\EnumerableBase.h
 		Source\Include\Collections\Enumeration\EnumerableExtensions.h = Source\Include\Collections\Enumeration\EnumerableExtensions.h
 		Source\Include\Collections\Enumeration\EnumeratorBase.h = Source\Include\Collections\Enumeration\EnumeratorBase.h
@@ -205,6 +204,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinkedList", "LinkedList", 
 		Source\Include\Collections\LinkedList\SimpleLinkedList.h = Source\Include\Collections\LinkedList\SimpleLinkedList.h
 		Source\Include\Collections\LinkedList\SimpleLinkedListNode.h = Source\Include\Collections\LinkedList\SimpleLinkedListNode.h
 		Source\Include\Collections\LinkedList\Stack.h = Source\Include\Collections\LinkedList\Stack.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{3FD98BC3-FD77-43DF-AAF7-3732C577F82F}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\PP\Loop\Include\FOR.hpp = Source\Include\Util\PP\Loop\Include\FOR.hpp
+		Source\Include\Util\PP\Loop\Include\WHILE.hpp = Source\Include\Util\PP\Loop\Include\WHILE.hpp
 	EndProjectSection
 EndProject
 Global
@@ -273,6 +278,9 @@ Global
 		{B8631384-D958-4DF3-861A-1386C643C7EC} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
 		{44BC91E9-3EE6-407D-BFDD-47E9EB9123C6} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
 		{14997D21-DA87-44E5-BD17-78D324D0B2E0} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
+		{473CB6BB-DD13-49CF-9C5B-98426DD6E4F6} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
+		{BB6BDCD1-42D8-40C9-B044-4CAB8DFEFE67} = {473CB6BB-DD13-49CF-9C5B-98426DD6E4F6}
+		{3FD98BC3-FD77-43DF-AAF7-3732C577F82F} = {4220B618-D1C3-45C5-9EB1-1F26ABECF20A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}
