@@ -18,7 +18,7 @@
 
 #define TEMPLATE _TEMPLATE(class)
 
-#define TEMPLATE_N(n, kind, ...) template<MAKE_TEMPLATE_PARAMS(n, kind, ) VA_OPT(IF_NOT(n, COMMA), __VA_ARGS__) __VA_ARGS__>
+#define TEMPLATE_N(n, kind, ...) template<MAKE_TEMPLATE_PARAMS(n, kind, ) VA_OPT(IF_TRUE(n, COMMA), __VA_ARGS__) __VA_ARGS__>
 #define TEMPLATE_NC(n, ...) TEMPLATE_N(n, class, __VA_ARGS__)
 
 #define TEMPLATE_E(kind, ...) TEMPLATE_N(0, , TRANSCRIBE_PREFIXED(kind, __VA_ARGS__))
@@ -43,8 +43,10 @@
 #define NAMED_TEMPLATE_N(templateType, ...) template<TRANSCRIBE_ARGS_WITH(templateType, , __VA_ARGS__)>
 #define NAMED_TEMPLATE_NC(...) NAMED_TEMPLATE_N(class, __VA_ARGS__)
 
-#define TEMPLATE_SPECIALIZATION(isTemplate, type, prefix, name) IF(isTemplate, TEMPLATE) using SURROUND(I, prefix, name) = I##name<IF_NOT(isTemplate, T,) type>
-#define COLLECTION_TEMPLATE_SPECIALIZATION(isTemplate, name) TEMPLATE_SPECIALIZATION(isTemplate, UINT, UInt, name); TEMPLATE_SPECIALIZATION(isTemplate, ULONGLONG, ULong, name);
-#define LIST_TEMPLATE_SPECIALIZATION(name) COLLECTION_TEMPLATE_SPECIALIZATION(1, name##R) COLLECTION_TEMPLATE_SPECIALIZATION(1, name##W) COLLECTION_TEMPLATE_SPECIALIZATION(1, name)
+#define TEMPLATE_SPECIALIZATION(isTemplate, type, prefix, name) IF(isTemplate, TEMPLATE) using SURROUND(I, prefix, name) = I##name<IF_TRUE(isTemplate, T,) type>
+#define _COLLECTION_TEMPLATE_SPECIALIZATION(isTemplate, name) TEMPLATE_SPECIALIZATION(isTemplate, UINT, UInt, name); TEMPLATE_SPECIALIZATION(isTemplate, ULONGLONG, ULong, name);
+
+#define COLLECTION_TEMPLATE_SPECIALIZATION(name) _COLLECTION_TEMPLATE_SPECIALIZATION(0, name)
+#define LIST_TEMPLATE_SPECIALIZATION(name) _COLLECTION_TEMPLATE_SPECIALIZATION(1, name##R) _COLLECTION_TEMPLATE_SPECIALIZATION(1, name##W) _COLLECTION_TEMPLATE_SPECIALIZATION(1, name)
 
 #endif WINCOPIES_TEMPLATE_H
