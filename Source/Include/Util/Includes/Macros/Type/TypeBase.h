@@ -17,7 +17,7 @@
 
 #define ___ABSTRACT_METHOD_IMPLEMENTATIONS(expand, type, method, ...) _ABSTRACT_METHOD_IMPLEMENTATION(IF(expand, FIRST_ARG method) type, IF(expand, SECOND_ARG) method, __VA_ARGS__)
 #define __ABSTRACT_METHOD_IMPLEMENTATIONS(type, method, ...) ___ABSTRACT_METHOD_IMPLEMENTATIONS(FIRST_ARG type, SECOND_ARG type, method, __VA_ARGS__)
-#define ABSTRACT_METHOD_IMPLEMENTATIONS(isConst, expand, type, methods, ...) FOR_EACH_C(__ABSTRACT_METHOD_IMPLEMENTATIONS, (expand, SURROUND(IF_NOT(expand, _), GET_TYPE_FULL_NAME)(type, __VA_ARGS__)), IF(isConst, const), EXPAND(methods))
+#define ABSTRACT_METHOD_IMPLEMENTATIONS(isConst, expand, type, methods, ...) FOR_EACH_C(__ABSTRACT_METHOD_IMPLEMENTATIONS, (expand, SURROUND(IF_FALSE(expand, _), GET_TYPE_FULL_NAME)(type, __VA_ARGS__)), IF(isConst, const), EXPAND(methods))
 
 #define DEFAULT_C_D_TOR(name, modifier, implementation, ...) modifier name() __VA_ARGS__ implementation;
 
