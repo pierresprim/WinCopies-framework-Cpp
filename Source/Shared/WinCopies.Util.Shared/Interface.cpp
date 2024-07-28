@@ -2,4 +2,4 @@
 
 #include "../../Include/Util/Interface.h"
 
-WinCopies::Interface::~Interface() { /* Left empty. */ }
+ABSTRACT_DESTRUCTOR(Interface, WinCopies)
