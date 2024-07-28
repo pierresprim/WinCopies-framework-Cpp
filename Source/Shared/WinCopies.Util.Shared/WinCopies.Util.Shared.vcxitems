@@ -75,8 +75,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Enum\Operators.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\For.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\ForEach.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Include\FOR.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Include\WHILE.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Loop.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\META_FOR.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Repeat.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\While.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Math\Base.hpp" />

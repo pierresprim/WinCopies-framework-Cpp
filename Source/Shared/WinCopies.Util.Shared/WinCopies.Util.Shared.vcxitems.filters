@@ -61,6 +61,9 @@
     <Filter Include="Header Files\PP\Variadic">
       <UniqueIdentifier>{38f6bab0-4996-4fff-b74e-3ef999929d02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PP\Loop\Include">
+      <UniqueIdentifier>{d5cb16e6-ef16-46db-a6a4-3fb085bb752c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h">
@@ -198,9 +201,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Loop.hpp">
       <Filter>Header Files\PP\Loop</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\META_FOR.hpp">
-      <Filter>Header Files\PP\Loop</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Repeat.hpp">
       <Filter>Header Files\PP\Loop</Filter>
     </ClInclude>
@@ -293,6 +293,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates.h">
       <Filter>Header Files\Includes\Macros\Method</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Include\FOR.hpp">
+      <Filter>Header Files\PP\Loop\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Include\WHILE.hpp">
+      <Filter>Header Files\PP\Loop\Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
