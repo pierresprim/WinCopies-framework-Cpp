@@ -50,4 +50,4 @@
 #define LOOP(start, length, macro) IF_ZERO(start, LOOP0, _LOOP)(start, length, macro)
 #define LOOP_TO(start, end, macro) LOOP(start, SUB(end, DECREMENT(start)), macro)
 
-#endif // WINCOPIES_LOOP_HPP
+#endif WINCOPIES_LOOP_HPP
