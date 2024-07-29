@@ -82,9 +82,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Method", "Method", "{AA4541B8-3389-4373-95A7-558B73F51A09}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\Includes\Macros\Method\Abstract.h = Source\Include\Util\Includes\Macros\Method\Abstract.h
+		Source\Include\Util\Includes\Macros\Method\AbstractBase.h = Source\Include\Util\Includes\Macros\Method\AbstractBase.h
 		Source\Include\Util\Includes\Macros\Method\Base.h = Source\Include\Util\Includes\Macros\Method\Base.h
 		Source\Include\Util\Includes\Macros\Method\Inline.h = Source\Include\Util\Includes\Macros\Method\Inline.h
 		Source\Include\Util\Includes\Macros\Method\Method.h = Source\Include\Util\Includes\Macros\Method\Method.h
+		Source\Include\Util\Includes\Macros\Method\Property.h = Source\Include\Util\Includes\Macros\Method\Property.h
 		Source\Include\Util\Includes\Macros\Method\Templates.h = Source\Include\Util\Includes\Macros\Method\Templates.h
 	EndProjectSection
 EndProject
@@ -181,7 +183,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections", "So
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enumeration", "Enumeration", "{44BC91E9-3EE6-407D-BFDD-47E9EB9123C6}"
 	ProjectSection(SolutionItems) = preProject
-				Source\Include\Collections\Enumeration\Enumerable.h = Source\Include\Collections\Enumeration\Enumerable.h
+		Source\Include\Collections\Enumeration\Enumerable.h = Source\Include\Collections\Enumeration\Enumerable.h
 		Source\Include\Collections\Enumeration\EnumerableBase.h = Source\Include\Collections\Enumeration\EnumerableBase.h
 		Source\Include\Collections\Enumeration\EnumerableExtensions.h = Source\Include\Collections\Enumeration\EnumerableExtensions.h
 		Source\Include\Collections\Enumeration\EnumeratorBase.h = Source\Include\Collections\Enumeration\EnumeratorBase.h

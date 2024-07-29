@@ -300,6 +300,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\PP\Loop\Include\WHILE.hpp">
       <Filter>Header Files\PP\Loop\Include</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\AbstractBase.h">
+      <Filter>Header Files\Includes\Macros\Method</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Property.h">
+      <Filter>Header Files\Includes\Macros\Method</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp">
