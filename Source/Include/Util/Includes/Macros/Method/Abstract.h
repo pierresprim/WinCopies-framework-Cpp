@@ -3,6 +3,9 @@
 #ifndef WINCOPIES_MACROS_METHOD_ABSTRACT_H
 #define WINCOPIES_MACROS_METHOD_ABSTRACT_H
 
+#include "AbstractBase.h"
+#include "Base.h"
+
 #define _ABSTRACT_ARG_METHOD(typeAndName, constKeyword, virtualityType, ...) virtual typeAndName(__VA_ARGS__) constKeyword virtualityType
 
 #define ABSTRACT_ARG_METHOD(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, , = 0, __VA_ARGS__)
@@ -19,5 +22,9 @@
 #define FINAL_ARG_CONST(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, CONST, final, __VA_ARGS__)
 #define FINAL_METHOD(typeAndName) FINAL_ARG_METHOD(typeAndName, )
 #define FINAL_CONST(typeAndName) FINAL_ARG_CONST(typeAndName, )
+
+#define __ABSTRACT_METHOD_IMPLEMENTATIONS(expand, type, method, ...) _ABSTRACT_METHOD_IMPLEMENTATION(IF(expand, FIRST_ARG method) type, IF(expand, SECOND_ARG) method, __VA_ARGS__)
+#define _ABSTRACT_METHOD_IMPLEMENTATIONS(type, method, ...) __ABSTRACT_METHOD_IMPLEMENTATIONS(FIRST_ARG type, SECOND_ARG type, method, __VA_ARGS__)
+#define ABSTRACT_METHOD_IMPLEMENTATIONS(isConst, expand, type, methods, ...) FOR_EACH_C(_ABSTRACT_METHOD_IMPLEMENTATIONS, (expand, SURROUND(IF_FALSE(expand, _), GET_TYPE_FULL_NAME)(type, __VA_ARGS__)), IF(isConst, const), EXPAND(methods))
 
 #endif WINCOPIES_MACROS_METHOD_ABSTRACT_H
