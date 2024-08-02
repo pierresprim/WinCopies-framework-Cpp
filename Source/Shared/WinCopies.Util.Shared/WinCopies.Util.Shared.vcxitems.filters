@@ -40,9 +40,6 @@
     <Filter Include="Header Files\Includes\Typing">
       <UniqueIdentifier>{858fc747-3cf6-4e7d-bc72-01f01ce4bf0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Types">
-      <UniqueIdentifier>{b7d9d416-6150-41e5-891f-cd28171b3fad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Includes\Typing\Defines">
       <UniqueIdentifier>{9392a46b-f69f-44ec-927a-8641cb6532dd}</UniqueIdentifier>
     </Filter>
@@ -170,12 +167,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Defines\EnableIf.h">
       <Filter>Header Files\Includes\Typing\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Usings.h">
-      <Filter>Header Files\Includes\Typing</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Usings.h">
-      <Filter>Header Files\Includes\Types</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Enum.h">
       <Filter>Header Files\Includes\Typing</Filter>
@@ -306,6 +297,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Property.h">
       <Filter>Header Files\Includes\Macros\Method</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp">
@@ -320,10 +314,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Types\Usings.cpp">
-      <Filter>Source Files\Types</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Delegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Include\Util\UtilBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
