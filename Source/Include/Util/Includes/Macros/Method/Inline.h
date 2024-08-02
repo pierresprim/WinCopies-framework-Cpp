@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_MACROS_METHOD_INLINE_H
 #define WINCOPIES_MACROS_METHOD_INLINE_H
 
-#include "../../../PP/Conditional/Conditional.hpp"
+#include "../../../PP/Variadic/Variadic.hpp"
 
 #define _INLINE_METHOD_ACTION(isInline, isConst, returnType, methodName, action, ...) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) { action; }
 
