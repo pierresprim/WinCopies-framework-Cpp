@@ -14,7 +14,7 @@
 #define DISCARD(...)
 
 #define COMMA ,
-#define GET_COMMA() ,
+#define GET_COMMA() COMMA
 
 #define PAR_O (
 #define PAR_C )
