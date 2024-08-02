@@ -20,7 +20,7 @@ namespace WinCopies
 
 		IINLINE_FIELD_RETURN(bool, HasValue, hasValue)
 
-		GET_FIELD_IF_ELSE(ErrorCode, TryGetValue, T, value, _hasValue, ErrorCode::Success, default, ErrorCode::EmptyObject)
+		GET_FIELD_IF_ELSE(ErrorCode, TryGetValue, T, value, _hasValue, ErrorCode::Success, default(T), ErrorCode::EmptyObject)
 	};
 }
 
