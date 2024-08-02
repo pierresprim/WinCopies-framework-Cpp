@@ -51,26 +51,9 @@
 #define _CREATE_DELEGATE_FUNCTIONS(macro) __CREATE_DELEGATE_ACTIONS(_FUNCTION, macro)
 #define CREATE_DELEGATE_ACTIONS(macro) _CREATE_DELEGATE_ACTIONS(macro) _CREATE_DELEGATE_FUNCTIONS(macro)
 
-typedef void(*ActionVoid)();
-typedef std::function<void()> ActionFunctionVoid;
-
-TEMPLATE using Function = T(*)();
-TEMPLATE using FunctionFunction = std::function<T()>;
-
-CREATE_DELEGATE_ACTION(0, _DELEGATE_ACTION)
-CREATE_DELEGATE_ACTION(1, _INSTANCE_ACTION)
-CREATE_DELEGATE_ACTION(0, _STD_ACTION)
-
-CREATE_DELEGATE_ACTIONS(DELEGATE)
-CREATE_DELEGATE_ACTIONS(INSTANCE)
-CREATE_DELEGATE_ACTIONS(ACTION)
-
 #define _CREATE_SELECTOR_DELEGATE(name, prefix, suffix, TOut, appendTObj, ...) template<APPEND_TOBJ(appendTObj) class T> using prefix##name##suffix = prefix##Selector##suffix<_APPEND_TOBJ(appendTObj, 0) __VA_ARGS__, TOut>;
 #define CREATE_SELECTOR_DELEGATE(name, prefix, suffix, TOut, appendTObj) _CREATE_SELECTOR_DELEGATE(name, prefix, suffix, TOut, appendTObj, T)
 #define CREATE_SELECTOR_DELEGATES(name, TOut) CREATE_SELECTOR_DELEGATE(name, , , TOut, 0) CREATE_SELECTOR_DELEGATE(name, Instance, , TOut, 1) CREATE_SELECTOR_DELEGATE(name, , Function, TOut, 0)
-
-CREATE_SELECTOR_DELEGATES(Converter, T)
-CREATE_SELECTOR_DELEGATES(Predicate, bool)
 
 #define CREATE_SELECTOR_TEMPLATE(count, prefix, appendTObj) template<APPEND_TOBJ(appendTObj) MAKE_TEMPLATE_PARAMS(count, prefix, )>
 #define CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) _APPEND_TOBJ(appendTObj, 0) MAKE_TEMPLATE_PARAMS(count, , )
@@ -84,15 +67,8 @@ CREATE_SELECTOR_DELEGATES(Predicate, bool)
 
 #define CREATE_SELECTORS(macro) LOOP_TO(2, TEMPLATE_METHOD_MAX_ARGS, CREATE##macro)
 
-CREATE_SELECTORS(PREDICATE)
-CREATE_SELECTORS(COMPARISON)
-CREATE_SELECTORS(EQUALITY_COMPARISON)
-
 #define _CREATE_COMPARISON_DELEGATES(prefix, suffix, appendTObj) template<APPEND_TOBJ(appendTObj) class T> using SURROUND(prefix, Comparison, suffix) = SURROUND(prefix, Comparison, suffix##2)<_APPEND_TOBJ(appendTObj, 0) T, T>;
 
 #define CREATE_COMPARISON_DELEGATES(prefix) _CREATE_COMPARISON_DELEGATES(prefix, , 0) _CREATE_COMPARISON_DELEGATES(Instance##prefix, , 1) _CREATE_COMPARISON_DELEGATES(prefix, Function, 0)
-
-CREATE_COMPARISON_DELEGATES()
-CREATE_COMPARISON_DELEGATES(Equality)
 
 #endif WINCOPIES_DELEGATE_USINGS_H
