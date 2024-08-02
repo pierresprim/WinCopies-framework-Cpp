@@ -47,5 +47,8 @@ namespace WinCopies
 
 		return result;
 	}
+
+	INLINE_FUNCTION bool CheckSuccess(ErrorCode value);
+	INLINE_FUNCTION bool CheckFail(ErrorCode value);
 }
 #endif
