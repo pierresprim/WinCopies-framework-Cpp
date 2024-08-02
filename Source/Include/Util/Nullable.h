@@ -11,16 +11,17 @@ namespace WinCopies
 	TEMPLATE STRUCT Nullable
 	{
 	private:
-		T _value;
 		bool _hasValue;
+		T _value;
 
 	public:
+		Nullable() = default;
 		INLINE_FIELD_SET(Nullable, T& const, value)
 
 		IINLINE_FIELD_RETURN(bool, HasValue, hasValue)
 
-		GET_FIELD_IF_ELSE(ErrorCode, GetValue, T, value, _hasValue, ErrorCode::Success, default, ErrorCode::EmptyObject)
+		GET_FIELD_IF_ELSE(ErrorCode, TryGetValue, T, value, _hasValue, ErrorCode::Success, default, ErrorCode::EmptyObject)
 	};
 }
 
-#endif // NULLABLE_H
+#endif NULLABLE_H
