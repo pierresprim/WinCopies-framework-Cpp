@@ -3,8 +3,8 @@
 #ifndef WINCOPIES_NULLABLE_H
 #define WINCOPIES_NULLABLE_H
 
-#include "Exception.h"
-#include "Misc.h"
+#include "../../Include/Util/Includes/Macros/Method/Inline.h"
+#include "UtilBase.h"
 
 namespace WinCopies
 {
@@ -21,6 +21,9 @@ namespace WinCopies
 		IINLINE_FIELD_RETURN(bool, HasValue, hasValue)
 
 		GET_FIELD_IF_ELSE(ErrorCode, TryGetValue, T, value, _hasValue, ErrorCode::Success, default(T), ErrorCode::EmptyObject)
+
+		INLINE_METHOD_RETURN(1, T, GetValueOrDefault, _hasValue ? _value : default(T))
+		INLINE_METHOD_RETURN(1, T, GetValueOrCustom, _hasValue ? _value : custom, T custom)
 	};
 }
 
