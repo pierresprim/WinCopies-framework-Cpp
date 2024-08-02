@@ -1,7 +1,6 @@
 #include "pch.h"
 
 
-#include "../../Include/Util/System.h"
 #include "../../Include/Util/Exception.h"
 
 using namespace WinCopies;
@@ -43,28 +42,13 @@ namespace System
 		{
 			return x == y ? (GetLastError() == systemErrorCode ? Bool::True : Bool::False) : Bool::None;
 		}
-		bool CheckMessage2(const ErrorCode& x, const ErrorCode& y, const SystemErrorCode& systemErrorCode)
-		{
-			return CheckMessage(x, y, systemErrorCode) == Bool::True;
-		}
+		INLINE_METHOD_RETURN(0, bool, CheckMessage2, CheckMessage(x, y, systemErrorCode) == Bool::True, const ErrorCode& x, const ErrorCode& y, const SystemErrorCode& systemErrorCode)
 
-		Bool CheckNotification(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
-		{
-			return CheckMessage(ErrorCode::SystemNotification, errorCode, systemErrorCode);
-		}
-		Bool CheckError(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
-		{
-			return CheckMessage(ErrorCode::SystemException, errorCode, systemErrorCode);
-		}
-
-		bool CheckNotification2(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
-		{
-			return CheckMessage2(ErrorCode::SystemNotification, errorCode, systemErrorCode);
-		}
-		bool CheckError2(const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
-		{
-			return CheckMessage2(ErrorCode::SystemException, errorCode, systemErrorCode);
-		}
+		INLINE_METHOD_RETURN(0, Bool, CheckNotification, CheckMessage(ErrorCode::SystemNotification, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
+		INLINE_METHOD_RETURN(0, Bool, CheckError, CheckMessage(ErrorCode::SystemException, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
+			
+		INLINE_METHOD_RETURN(0, bool, CheckNotification2, CheckMessage2(ErrorCode::SystemNotification, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
+		INLINE_METHOD_RETURN(0, bool, CheckError2, CheckMessage2(ErrorCode::SystemException, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
 #ifdef _WIN32
 #pragma push_macro("FormatMessage")
 #undef FormatMessage
