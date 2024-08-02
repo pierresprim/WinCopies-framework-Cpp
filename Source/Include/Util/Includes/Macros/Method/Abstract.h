@@ -13,6 +13,11 @@
 #define ABSTRACT_METHOD(typeAndName) ABSTRACT_ARG_METHOD(typeAndName, )
 #define ABSTRACT_CONST(typeAndName) ABSTRACT_ARG_CONST(typeAndName, )
 
+#define VIRTUAL_ARG_METHOD(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, , , __VA_ARGS__)
+#define VIRTUAL_ARG_CONST(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, CONST, , __VA_ARGS__)
+#define VIRTUAL_METHOD(typeAndName) VIRTUAL_ARG_METHOD(typeAndName, )
+#define VIRTUAL_CONST(typeAndName) VIRTUAL_ARG_CONST(typeAndName, )
+
 #define OVERRIDE_ARG_METHOD(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, , override, __VA_ARGS__)
 #define OVERRIDE_ARG_CONST(typeAndName, ...) _ABSTRACT_ARG_METHOD(typeAndName, CONST, override, __VA_ARGS__)
 #define OVERRIDE_METHOD(typeAndName) OVERRIDE_ARG_METHOD(typeAndName, )
