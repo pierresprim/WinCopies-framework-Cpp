@@ -43,12 +43,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Tests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{B7CC362B-A327-41EB-96A6-1F141F4C16CA}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\Enum\Arithmetic.hpp = Source\Include\Util\PP\Enum\Arithmetic.hpp
-		Source\Include\Util\PP\Enum\Bitwise.hpp = Source\Include\Util\PP\Enum\Bitwise.hpp
-		Source\Include\Util\PP\Enum\Comparison.hpp = Source\Include\Util\PP\Enum\Comparison.hpp
-		Source\Include\Util\PP\Enum\Flags.hpp = Source\Include\Util\PP\Enum\Flags.hpp
-		Source\Include\Util\PP\Enum\MakeEnum.hpp = Source\Include\Util\PP\Enum\MakeEnum.hpp
-		Source\Include\Util\PP\Enum\Operators.hpp = Source\Include\Util\PP\Enum\Operators.hpp
+		Source\Include\PP\Enum\Arithmetic.hpp = Source\Include\PP\Enum\Arithmetic.hpp
+		Source\Include\PP\Enum\Bitwise.hpp = Source\Include\PP\Enum\Bitwise.hpp
+		Source\Include\PP\Enum\Comparison.hpp = Source\Include\PP\Enum\Comparison.hpp
+		Source\Include\PP\Enum\Flags.hpp = Source\Include\PP\Enum\Flags.hpp
+		Source\Include\PP\Enum\MakeEnum.hpp = Source\Include\PP\Enum\MakeEnum.hpp
+		Source\Include\PP\Enum\Operators.hpp = Source\Include\PP\Enum\Operators.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enums", "Enums", "{1EAE9819-A0C4-4B34-BB02-62BB1A0F49F7}"
@@ -120,37 +120,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PP", "PP", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\MISC.hpp = Source\Include\Util\PP\MISC.hpp
-		Source\Include\Util\PP\MiscBase.hpp = Source\Include\Util\PP\MiscBase.hpp
+		Source\Include\PP\MISC.hpp = Source\Include\PP\MISC.hpp
+		Source\Include\PP\MiscBase.hpp = Source\Include\PP\MiscBase.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conditional", "Conditional", "{B9D054DC-F7D0-404D-8E53-B928725DB2DB}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\Conditional\Bool.hpp = Source\Include\Util\PP\Conditional\Bool.hpp
-		Source\Include\Util\PP\Conditional\Conditional.hpp = Source\Include\Util\PP\Conditional\Conditional.hpp
-		Source\Include\Util\PP\Conditional\If.hpp = Source\Include\Util\PP\Conditional\If.hpp
-		Source\Include\Util\PP\Conditional\Tables.h = Source\Include\Util\PP\Conditional\Tables.h
+		Source\Include\PP\Conditional\Bool.hpp = Source\Include\PP\Conditional\Bool.hpp
+		Source\Include\PP\Conditional\Conditional.hpp = Source\Include\PP\Conditional\Conditional.hpp
+		Source\Include\PP\Conditional\If.hpp = Source\Include\PP\Conditional\If.hpp
+		Source\Include\PP\Conditional\Tables.h = Source\Include\PP\Conditional\Tables.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D1C3-45C5-9EB1-1F26ABECF20A}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\Loop\For.hpp = Source\Include\Util\PP\Loop\For.hpp
-		Source\Include\Util\PP\Loop\ForEach.hpp = Source\Include\Util\PP\Loop\ForEach.hpp
-		Source\Include\Util\PP\Loop\Loop.hpp = Source\Include\Util\PP\Loop\Loop.hpp
-		Source\Include\Util\PP\Loop\Repeat.hpp = Source\Include\Util\PP\Loop\Repeat.hpp
-		Source\Include\Util\PP\Loop\While.hpp = Source\Include\Util\PP\Loop\While.hpp
+		Source\Include\PP\Loop\For.hpp = Source\Include\PP\Loop\For.hpp
+		Source\Include\PP\Loop\ForEach.hpp = Source\Include\PP\Loop\ForEach.hpp
+		Source\Include\PP\Loop\Loop.hpp = Source\Include\PP\Loop\Loop.hpp
+		Source\Include\PP\Loop\Repeat.hpp = Source\Include\PP\Loop\Repeat.hpp
+		Source\Include\PP\Loop\While.hpp = Source\Include\PP\Loop\While.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-98D3-434E-BDF9-35454434D2CF}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\Math\Base.hpp = Source\Include\Util\PP\Math\Base.hpp
-		Source\Include\Util\PP\Math\DECREMENT.h = Source\Include\Util\PP\Math\DECREMENT.h
-		Source\Include\Util\PP\Math\Div.hpp = Source\Include\Util\PP\Math\Div.hpp
-		Source\Include\Util\PP\Math\INCREMENT.h = Source\Include\Util\PP\Math\INCREMENT.h
-		Source\Include\Util\PP\Math\Math.hpp = Source\Include\Util\PP\Math\Math.hpp
-		Source\Include\Util\PP\Math\Mul.hpp = Source\Include\Util\PP\Math\Mul.hpp
-		Source\Include\Util\PP\Math\MUL.inc.hpp = Source\Include\Util\PP\Math\MUL.inc.hpp
-		Source\Include\Util\PP\Math\MulBase.hpp = Source\Include\Util\PP\Math\MulBase.hpp
+		Source\Include\PP\Math\Base.hpp = Source\Include\PP\Math\Base.hpp
+		Source\Include\PP\Math\DECREMENT.h = Source\Include\PP\Math\DECREMENT.h
+		Source\Include\PP\Math\Div.hpp = Source\Include\PP\Math\Div.hpp
+		Source\Include\PP\Math\INCREMENT.h = Source\Include\PP\Math\INCREMENT.h
+		Source\Include\PP\Math\Math.hpp = Source\Include\PP\Math\Math.hpp
+		Source\Include\PP\Math\Mul.hpp = Source\Include\PP\Math\Mul.hpp
+		Source\Include\PP\Math\MUL.inc.hpp = Source\Include\PP\Math\MUL.inc.hpp
+		Source\Include\PP\Math\MulBase.hpp = Source\Include\PP\Math\MulBase.hpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"
@@ -169,10 +169,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Defines", "Defines", "{219B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Variadic", "Variadic", "{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\Variadic\CountArgs.hpp = Source\Include\Util\PP\Variadic\CountArgs.hpp
-		Source\Include\Util\PP\Variadic\Util.hpp = Source\Include\Util\PP\Variadic\Util.hpp
-		Source\Include\Util\PP\Variadic\UtilBase.hpp = Source\Include\Util\PP\Variadic\UtilBase.hpp
-		Source\Include\Util\PP\Variadic\Variadic.hpp = Source\Include\Util\PP\Variadic\Variadic.hpp
+		Source\Include\PP\Variadic\CountArgs.hpp = Source\Include\PP\Variadic\CountArgs.hpp
+		Source\Include\PP\Variadic\Util.hpp = Source\Include\PP\Variadic\Util.hpp
+		Source\Include\PP\Variadic\UtilBase.hpp = Source\Include\PP\Variadic\UtilBase.hpp
+		Source\Include\PP\Variadic\Variadic.hpp = Source\Include\PP\Variadic\Variadic.hpp
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Shared", "Source\Shared\WinCopies.Collections.Shared\WinCopies.Collections.Shared.vcxitems", "{CE304143-BD6F-4D55-A3DC-001CB662BE20}"
@@ -208,8 +208,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinkedList", "LinkedList", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{3FD98BC3-FD77-43DF-AAF7-3732C577F82F}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\PP\Loop\Include\FOR.hpp = Source\Include\Util\PP\Loop\Include\FOR.hpp
-		Source\Include\Util\PP\Loop\Include\WHILE.hpp = Source\Include\Util\PP\Loop\Include\WHILE.hpp
+		Source\Include\PP\Loop\Include\FOR.hpp = Source\Include\PP\Loop\Include\FOR.hpp
+		Source\Include\PP\Loop\Include\WHILE.hpp = Source\Include\PP\Loop\Include\WHILE.hpp
 	EndProjectSection
 EndProject
 Global
@@ -267,7 +267,7 @@ Global
 		{4FAA7D93-045F-4B8E-A301-E0C23FE1B089} = {AA4541B8-3389-4373-95A7-558B73F51A09}
 		{F28AAB9C-1061-4B29-9DF0-6F53C911CF50} = {FD892CCF-A7A6-4756-83A4-A16589FEB168}
 		{9B4B76DA-1F60-4A57-95D7-8ACFF190F7EF} = {5B4C381B-667E-46B0-AF41-04760F5E3859}
-		{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
+		{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
 		{B9D054DC-F7D0-404D-8E53-B928725DB2DB} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{4220B618-D1C3-45C5-9EB1-1F26ABECF20A} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{1ACF941A-98D3-434E-BDF9-35454434D2CF} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
