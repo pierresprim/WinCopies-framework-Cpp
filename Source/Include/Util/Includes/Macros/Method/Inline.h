@@ -11,7 +11,12 @@
 #define INLINE_CONSTRUCTOR(isConst, _namespace, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, , VA_OPT(_namespace::, _namespace)methodName::methodName, action, __VA_ARGS__)
 #define INLINE_METHOD_RETURN(isConst, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, returnType, methodName, return value, __VA_ARGS__)
 
-#define INLINE_FIELD_SET(className, param, field) className(param field) { _##field = field; }
+#define _INLINE_FIELD_SET(className, paramType, field, value) className(paramType value) { _##field = value; }
+#define _INLINE_FIELD_UPDATE(methodName, paramType, field, value) _INLINE_FIELD_SET(void methodName, paramType, field, value)
+
+#define INLINE_FIELD_SET(className, paramType, value) _INLINE_FIELD_SET(className, paramType, value, value)
+#define INLINE_FIELD_UPDATE(methodName, paramType, value) _INLINE_FIELD_UPDATE(methodName, paramType, value, value)
+
 #define IINLINE_FIELD_RETURN(returnType, methodName, field) INLINE_METHOD_RETURN(1, returnType, methodName, _##field)
 #define INLINE_FIELD_RETURN(returnType, methodName, field) IINLINE_FIELD_RETURN(returnType, Get##methodName, field)
 
