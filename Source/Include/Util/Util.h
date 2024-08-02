@@ -4,10 +4,16 @@
 #define WINCOPIES_UTIL_H
 
 #include <cstdlib>
-#include "Math.h"
+
 #include "../../Include/Util/Includes/Macros/Method/Inline.h"
 #include "../../Include/Util/PP/Enum/Arithmetic.hpp"
 #include "../../Include/Util/PP/Enum/Comparison.hpp"
+
+#include "Math.h"
+#include "Delegate.h"
+#include "Nullable.h"
+
+using namespace WinCopies::Delegate;
 
 namespace WinCopies
 {
