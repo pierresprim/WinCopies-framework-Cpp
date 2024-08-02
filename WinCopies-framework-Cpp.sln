@@ -76,7 +76,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{5B4C381B
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Util\Includes\Types\Defs.h = Source\Include\Util\Includes\Types\Defs.h
 		Source\Include\Util\Includes\Types\DefsBase.h = Source\Include\Util\Includes\Types\DefsBase.h
-		Source\Include\Util\Includes\Types\Usings.h = Source\Include\Util\Includes\Types\Usings.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Method", "Method", "{AA4541B8-3389-4373-95A7-558B73F51A09}"
@@ -160,7 +159,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6
 		Source\Include\Util\Includes\Typing\EnableIf.h = Source\Include\Util\Includes\Typing\EnableIf.h
 		Source\Include\Util\Includes\Typing\Enum.h = Source\Include\Util\Includes\Typing\Enum.h
 		Source\Include\Util\Includes\Typing\Typing.h = Source\Include\Util\Includes\Typing\Typing.h
-		Source\Include\Util\Includes\Typing\Usings.h = Source\Include\Util\Includes\Typing\Usings.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Defines", "Defines", "{219B4B48-FA64-487B-9808-85C395CF0421}"
@@ -280,8 +278,6 @@ Global
 		{B8631384-D958-4DF3-861A-1386C643C7EC} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
 		{44BC91E9-3EE6-407D-BFDD-47E9EB9123C6} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
 		{14997D21-DA87-44E5-BD17-78D324D0B2E0} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
-		{473CB6BB-DD13-49CF-9C5B-98426DD6E4F6} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
-		{BB6BDCD1-42D8-40C9-B044-4CAB8DFEFE67} = {473CB6BB-DD13-49CF-9C5B-98426DD6E4F6}
 		{3FD98BC3-FD77-43DF-AAF7-3732C577F82F} = {4220B618-D1C3-45C5-9EB1-1F26ABECF20A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
