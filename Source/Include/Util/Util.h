@@ -21,7 +21,7 @@ namespace WinCopies
 		MAKE_ACTION_PAIR(Void, Void)
 		TEMPLATE MAKE_ACTION_PAIR(, <T>)
 
-	namespace
+		namespace
 	{
 		TEMPLATE_IF_SIGNED() struct SetOffsetStruct
 		{
@@ -65,7 +65,7 @@ namespace WinCopies
 	}
 
 	TEMPLATE INLINE_METHOD_RETURN(0, INLINE_METHOD, MemoryReset, *ptr = T{}, T* ptr)
-	
+
 	TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUniquePtr<T>* const ptr)
 	{
 		if (*ptr == NULL)
@@ -150,5 +150,41 @@ namespace WinCopies
 
 		return errorCode;
 	}
+
+	TEMPLATE ErrorCode TrySetValue(T* value, bool test, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+	{
+		if (test)
+		{
+			*value = provider();
+
+			return ErrorCode::Success;
+		}
+
+		*value = NULL;
+
+		return onError;
+	}
+	TEMPLATE INLINE_METHOD_RETURN(0, ErrorCode, TrySetValue, TrySetValue(value, func(), provider, onError), T* value, FunctionFunction<bool> func, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+
+	TEMPLATE ErrorCode TrySetValueOrDefault(T* value, bool test, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+	{
+		if (test)
+		{
+			*value = provider();
+
+			return ErrorCode::Success;
+		}
+
+		*value = default(T);
+
+		return onError;
+	}
+	TEMPLATE INLINE_METHOD_RETURN(0, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, func(), provider, onError), T* value, FunctionFunction<bool> func, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+
+	TEMPLATE INLINE_METHOD_RETURN(0, ErrorCode, TrySetValue, TrySetValue(value, CheckSuccess(test), provider, onError.GetValueOrCustom(test)), T* value, ErrorCode test, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
+	TEMPLATE INLINE_METHOD_RETURN(0, ErrorCode, TrySetValue, TrySetValue(value, CheckSuccess(func()), provider, onError), T* value, FunctionFunction<ErrorCode> func, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
+
+	TEMPLATE INLINE_METHOD_RETURN(0, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(test), provider, onError.GetValueOrCustom(test)), T* value, ErrorCode test, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
+	TEMPLATE INLINE_METHOD_RETURN(0, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(func()), provider, onError), T* value, FunctionFunction<ErrorCode> func, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
 }
 #endif
