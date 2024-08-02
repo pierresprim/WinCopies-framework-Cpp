@@ -72,8 +72,6 @@ CREATE_DELEGATE_ACTIONS(ACTION)
 CREATE_SELECTOR_DELEGATES(Converter, T)
 CREATE_SELECTOR_DELEGATES(Predicate, bool)
 
-MAKE_DELEGATE_ACTION(2, 0, Action, In, 0, _DELEGATE_ACTION)
-
 #define CREATE_SELECTOR_TEMPLATE(count, prefix, appendTObj) template<APPEND_TOBJ(appendTObj) MAKE_TEMPLATE_PARAMS(count, prefix, )>
 #define CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) _APPEND_TOBJ(appendTObj, 0) MAKE_TEMPLATE_PARAMS(count, , )
 #define __CREATE_SELECTOR(count, kind, name, prefix, suffix, templatePrefix, appendTObj, ...) CREATE_SELECTOR_TEMPLATE(count, templatePrefix, appendTObj) using CONCATENATE(prefix##name##suffix, count) = CONCATENATE(prefix##kind##suffix, count)<CREATE_SELECTOR_TEMPLATE_ARGS(count, appendTObj) VA_PREPEND(, __VA_ARGS__)>;
