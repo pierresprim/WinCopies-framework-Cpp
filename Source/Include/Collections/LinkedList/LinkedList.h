@@ -269,7 +269,7 @@ namespace WinCopies
 						return _value;
 					}
 
-					INLINE_CONSTRUCTOR(0, LinkedListNode, _value = value, const T value)
+					INLINE_CONSTRUCTOR(0, , LinkedListNode, _value = value, const T value)
 				};
 
 				virtual ~LinkedList() override = default;

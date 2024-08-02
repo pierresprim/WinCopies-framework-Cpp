@@ -38,7 +38,7 @@ namespace WinCopies
 				}
 
 			public:
-				INLINE_CONSTRUCTOR(0, SimpleLinkedListNode, _value = value, const T value)
+				INLINE_CONSTRUCTOR(0, , SimpleLinkedListNode, _value = value, const T value)
 
 					INLINE_METHOD_RETURN(0, bool, GetIsCleared, _isCleared)
 
@@ -82,7 +82,7 @@ namespace WinCopies
 					_isCleared = true;
 				}
 
-				INLINE_CONSTRUCTOR(0, ~SimpleLinkedListNode, Clear())
+				INLINE_CONSTRUCTOR(0, , ~SimpleLinkedListNode, Clear())
 			};
 		}
 	}

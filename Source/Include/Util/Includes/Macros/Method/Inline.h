@@ -5,10 +5,11 @@
 
 #include "../../../PP/Conditional/Conditional.hpp"
 
-#define _INLINE_METHOD_ACTION(isConst, returnType, methodName, action, ...) inline returnType methodName(__VA_ARGS__) IF(isConst, const) { action; }
-#define INLINE_METHOD_ACTION(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(isConst, void, methodName, action, __VA_ARGS__)
-#define INLINE_CONSTRUCTOR(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(isConst, , methodName, action, __VA_ARGS__)
-#define INLINE_METHOD_RETURN(isConst, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(isConst, returnType, methodName, return value, __VA_ARGS__)
+#define _INLINE_METHOD_ACTION(isInline, isConst, returnType, methodName, action, ...) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) { action; }
+
+#define INLINE_METHOD_ACTION(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(1, isConst, void, methodName, action, __VA_ARGS__)
+#define INLINE_CONSTRUCTOR(isConst, _namespace, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, , VA_OPT(_namespace::, _namespace)methodName::methodName, action, __VA_ARGS__)
+#define INLINE_METHOD_RETURN(isConst, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, returnType, methodName, return value, __VA_ARGS__)
 
 #define INLINE_FIELD_SET(className, param, field) className(param field) { _##field = field; }
 #define IINLINE_FIELD_RETURN(returnType, methodName, field) INLINE_METHOD_RETURN(1, returnType, methodName, _##field)
