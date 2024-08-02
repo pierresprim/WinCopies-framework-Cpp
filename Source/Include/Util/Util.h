@@ -22,7 +22,7 @@ namespace WinCopies
 	TEMPLATE_NC(2) MAKE_KEY_VALUE_PAIR(KeyValuePair, T1, Key, T2, Value)
 
 #define _MAKE_ACTION_PAIR(structNameSuffix, fieldType) MAKE_KEY_VALUE_PAIR(CONCATENATE(ActionPair, structNameSuffix), fieldType, PreProcess, fieldType, PostProcess)
-#define MAKE_ACTION_PAIR(structNameSuffix, fieldTypeSuffix) _MAKE_ACTION_PAIR(CONCATENATE(ActionPair, structNameSuffix), CONCATENATE(ActionFunction, fieldTypeSuffix))
+#define MAKE_ACTION_PAIR(structNameSuffix, fieldTypeSuffix) _MAKE_ACTION_PAIR(structNameSuffix, CONCATENATE(ActionFunction, fieldTypeSuffix))
 
 		MAKE_ACTION_PAIR(Void, Void)
 		TEMPLATE MAKE_ACTION_PAIR(, <T>)
@@ -70,7 +70,7 @@ namespace WinCopies
 		}
 	}
 
-	TEMPLATE INLINE_METHOD_RETURN(0, INLINE_METHOD, MemoryReset, *ptr = T{}, T* ptr)
+	TEMPLATE INLINE_METHOD_RETURN(0, void, MemoryReset, *ptr = T{}, T* ptr)
 
 	TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUniquePtr<T>* const ptr)
 	{
