@@ -14,6 +14,9 @@ namespace WinCopies
 
 		TEMPLATE using Function = T(*)();
 		TEMPLATE using FunctionFunction = std::function<T()>;
+
+		TEMPLATE_EC(TObj) using InstanceActionVoid = INSTANCE_DELEGATE(TObj, void);
+		TEMPLATE_EC(TObj, T) using InstanceFunction = INSTANCE_DELEGATE(TObj, T);
 		
 		CREATE_DELEGATE_ACTION(0, _DELEGATE_ACTION)
 		CREATE_DELEGATE_ACTION(1, _INSTANCE_ACTION)
