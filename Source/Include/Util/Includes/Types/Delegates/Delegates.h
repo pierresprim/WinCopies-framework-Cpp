@@ -7,6 +7,8 @@
 #include "../../../PP/Variadic/Util.hpp"
 #include "../../../PP/Loop/Loop.hpp"
 
+#define INSTANCE_DELEGATE(typeName, returnType, ...) returnType(typeName::*)(__VA_ARGS__)
+
 #define TEMPLATE_METHOD_MAX_ARGS 16
 
 #define ___DELEGATE_ACTION(delegateKind, typeName, namePrefix, name, returnType, functionPrefix, functionSuffix, ...) using namePrefix##delegateKind##name = functionPrefix returnType typeName(__VA_ARGS__) functionSuffix;
