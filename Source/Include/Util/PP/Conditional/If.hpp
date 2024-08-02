@@ -6,7 +6,7 @@
 #include "../MISC.hpp"
 #include "Tables.h"
 
-#define IF(value, ifTrue, ...) IF_B(BOOL(value), ifTrue, __VA_ARGS__)
+#define IF(value, ifTrue, ...) IF_B(PP_BOOL(value), ifTrue, __VA_ARGS__)
 #define IF_NOT(value, ifFalse, ...) IF_B(NOT(value), ifFalse, __VA_ARGS__)
 
 #define IF_TRUE(value, ...) IF_NOT(value, , __VA_ARGS__)
@@ -20,7 +20,7 @@
 #define AND_B(x, y) IF_VALUES(AND, x, y)
 #define OR_B(x, y) IF_VALUES(OR, x, y)
 
-#define AND(x, y) AND_B(BOOL(x), BOOL(y))
-#define OR(x, y) OR_B(BOOL(x), BOOL(y))
+#define AND(x, y) AND_B(PP_BOOL(x), PP_BOOL(y))
+#define OR(x, y) OR_B(PP_BOOL(x), PP_BOOL(y))
 
 #endif // WINCOPIES_IF_HPP

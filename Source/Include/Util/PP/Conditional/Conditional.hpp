@@ -5,7 +5,7 @@
 
 #include "../Math/Base.hpp"
 
-#define LESS(x, y) IF(x, BOOL(SUB(y, x)), BOOL(y))
+#define LESS(x, y) IF(x, PP_BOOL(SUB(y, x)), PP_BOOL(y))
 
 #define _EQUAL_OR_GREATER(x, y, macro) IF_B(LESS(x, y), 0, macro(LESS(y, x)))
 

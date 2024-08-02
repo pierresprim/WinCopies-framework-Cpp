@@ -26,6 +26,6 @@
 #define IS_ZERO(value) NOT(value)
 #define IS_ONE(value) CHECK(IS_ONE, value)
 
-#define BOOL(value) CHECK_BOOL(value)
+#define PP_BOOL(value) CHECK_BOOL(value)
 
 #endif // WINCOPIES_BOOL_HPP

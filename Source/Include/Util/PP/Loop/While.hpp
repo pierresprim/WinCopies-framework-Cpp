@@ -17,6 +17,6 @@
 #define WHILE3(predicate, macro, ...) _WHILE4(predicate, macro, macro(__VA_ARGS__))
 #define WHILE2(predicate, macro, ...) _WHILE3(predicate, macro, macro(__VA_ARGS__))
 #define WHILE1(predicate, macro, ...) _WHILE2(predicate, macro, macro(__VA_ARGS__))
-#define WHILE(predicate, macro, ...) ___WHILE(BOOL(predicate(__VA_ARGS__)), predicate, macro, __VA_ARGS__)
+#define WHILE(predicate, macro, ...) ___WHILE(PP_BOOL(predicate(__VA_ARGS__)), predicate, macro, __VA_ARGS__)
 
 #endif // WINCOPIES_WHILE_HPP
