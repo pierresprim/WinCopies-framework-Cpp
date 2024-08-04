@@ -3,9 +3,9 @@
 #ifndef WINCOPIES_MACROS_METHOD_TEMPLATES_H
 #define WINCOPIES_MACROS_METHOD_TEMPLATES_H
 
-#include "Templates/Method.h"
-#include "Templates/Inline.h"
-#include "Templates/Func.h"
-#include "Templates/Function.h"
+#include "Templates/Method.hxx"
+#include "Templates/Inline.hxx"
+#include "Templates/Func.hxx"
+#include "Templates/Function.hxx"
 
 #endif WINCOPIES_MACROS_METHOD_TEMPLATES_H

@@ -6,7 +6,7 @@
 #include <utility>
 
 #include "../Main.h"
-#include "../Macros/Type/Type.h"
+#include "../Macros/Type/Type.hxx"
 #include "Usings.h"
 
 using namespace std;

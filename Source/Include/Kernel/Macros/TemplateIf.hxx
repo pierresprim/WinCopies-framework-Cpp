@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_TEMPLATE_IF_H
 #define WINCOPIES_TEMPLATE_IF_H
 
-#include "../Typing/EnableIf.h"
+#include "../Typing/EnableIf.hxx"
 
 #define ___TEMPLATE_IF(typeKind, ...) __TEMPLATE(typeKind, SINGLE_ARG(, __VA_ARGS__ = true))
 #define __TEMPLATE_IF(typeKind, condition, ...) ___TEMPLATE_IF(typeKind, VA_APPEND(, __VA_ARGS__) ::WinCopies::Typing::EnableIf##condition<T>)

@@ -4,10 +4,10 @@
 #define WINCOPIES_TYPING_CONSTS_H
 
 #include <type_traits>
-#include "../Macros/Template.h"
-#include "../Macros/Type/TypeBase.h"
-#include "Defines/Consts.h"
-#include "Enum.h"
+#include "../Macros/Template.hxx"
+#include "../Macros/Type/TypeBase.hxx"
+#include "Defines/Consts.hxx"
+#include "Enum.hxx"
 
 using namespace std;
 

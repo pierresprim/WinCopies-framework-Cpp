@@ -7,7 +7,7 @@
 
 #include "Libraries.h"
 #include "Types/Usings.h"
-#include "Macros/Type/Type.h"
+#include "Macros/Type/Type.hxx"
 #include "Types/Defs.h"
 
 namespace WinCopies
@@ -17,9 +17,9 @@ namespace WinCopies
 	ENUM SystemErrorCode : ULONG;
 }
 
-#include "Types/Delegates/Delegates.h"
-#include "Types/Delegates/Defines.h"
+#include "Types/Delegates/Delegates.hxx"
+#include "Types/Delegates/Defines.hxx"
 #include "Macros/Method/Method.h"
-#include "Macros/Misc.h"
+#include "Macros/Misc.hxx"
 
 #endif WINCOPIES_FRAMEWORK_H

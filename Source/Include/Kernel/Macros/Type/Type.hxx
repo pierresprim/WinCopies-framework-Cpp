@@ -6,8 +6,8 @@
 #include "../../../PP/Loop/ForEach.hpp"
 #include "../Template.h"
 #include "../../Environment.h"
-#include "../TemplateIf.h"
-#include "../../../Interface.h"
+#include "../TemplateIf.hxx"
+#include "../../../Interface.hxx"
 
 #define BASE_INTERFACE public virtual
 
@@ -48,10 +48,10 @@
 
 #define ENUM_HEADER(name, type) ENUM name : type
 
-#include "Templates/Enum.h"
-#include "Templates/Struct.h"
-#include "Templates/Interface.h"
-#include "Templates/Class.h"
-#include "Templates/Template.h"
+#include "Templates/Enum.hxx"
+#include "Templates/Struct.hxx"
+#include "Templates/Interface.hxx"
+#include "Templates/Class.hxx"
+#include "Templates/Template.hxx"
 
 #endif WINCOPIES_MACROS_TYPE_H

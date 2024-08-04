@@ -3,8 +3,8 @@
 #ifndef WINCOPIES_MACROS_METHOD_ABSTRACT_H
 #define WINCOPIES_MACROS_METHOD_ABSTRACT_H
 
-#include "AbstractBase.h"
-#include "Base.h"
+#include "AbstractBase.hxx"
+#include "Base.hxx"
 
 #define _ABSTRACT_ARG_METHOD(typeAndName, constKeyword, virtualityType, ...) virtual typeAndName(__VA_ARGS__) constKeyword virtualityType
 
