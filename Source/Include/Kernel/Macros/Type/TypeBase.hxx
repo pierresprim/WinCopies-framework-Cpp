@@ -4,7 +4,7 @@
 #define WINCOPIES_MACROS_TYPE_BASE_H
 
 #include "../../Environment.h"
-#include "../Method/AbstractBase.hxx"
+#include "../Method/AbstractBase.h"
 
 #define CONST_EXPR DLLEXPORT constexpr
 

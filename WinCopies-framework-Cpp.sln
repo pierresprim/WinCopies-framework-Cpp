@@ -74,8 +74,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Macros", "Macros", "{80187E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{5B4C381B-667E-46B0-AF41-04760F5E3859}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Kernel\Types\Defs.h = Source\Include\Kernel\Types\Defs.h
-		Source\Include\Kernel\Types\DefsBase.h = Source\Include\Kernel\Types\DefsBase.h
+		Source\Include\Kernel\Types\Defs.hxx = Source\Include\Kernel\Types\Defs.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Method", "Method", "{AA4541B8-3389-4373-95A7-558B73F51A09}"
@@ -155,9 +154,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Kernel\Typing\Consts.h = Source\Include\Kernel\Typing\Consts.h
-		Source\Include\Kernel\Typing\EnableIf.h = Source\Include\Kernel\Typing\EnableIf.h
-		Source\Include\Kernel\Typing\Enum.h = Source\Include\Kernel\Typing\Enum.h
+		Source\Include\Kernel\Typing\Consts.hxx = Source\Include\Kernel\Typing\Consts.hxx
+		Source\Include\Kernel\Typing\Enum.hxx = Source\Include\Kernel\Typing\Enum.hxx
 		Source\Include\Kernel\Typing\Typing.h = Source\Include\Kernel\Typing\Typing.h
 	EndProjectSection
 EndProject
@@ -210,6 +208,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{3FD9
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\PP\Loop\Include\FOR.hpp = Source\Include\PP\Loop\Include\FOR.hpp
 		Source\Include\PP\Loop\Include\WHILE.hpp = Source\Include\PP\Loop\Include\WHILE.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{488FA285-20C8-4E66-B302-85577033768C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{AFDA37D3-C219-4F68-8AEB-5F149FD20F38}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Core\Types\Defs.h = Source\Include\Core\Types\Defs.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{0DE618B7-999C-4178-9576-B3EE6C44522A}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Core\Typing\Consts.h = Source\Include\Core\Typing\Consts.h
+		Source\Include\Core\Typing\EnableIf.h = Source\Include\Core\Typing\EnableIf.h
 	EndProjectSection
 EndProject
 Global
@@ -279,6 +290,9 @@ Global
 		{44BC91E9-3EE6-407D-BFDD-47E9EB9123C6} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
 		{14997D21-DA87-44E5-BD17-78D324D0B2E0} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
 		{3FD98BC3-FD77-43DF-AAF7-3732C577F82F} = {4220B618-D1C3-45C5-9EB1-1F26ABECF20A}
+		{488FA285-20C8-4E66-B302-85577033768C} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
+		{AFDA37D3-C219-4F68-8AEB-5F149FD20F38} = {488FA285-20C8-4E66-B302-85577033768C}
+		{0DE618B7-999C-4178-9576-B3EE6C44522A} = {488FA285-20C8-4E66-B302-85577033768C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}

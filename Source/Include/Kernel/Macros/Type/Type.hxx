@@ -4,10 +4,10 @@
 #define WINCOPIES_MACROS_TYPE_H
 
 #include "../../../PP/Loop/ForEach.hpp"
-#include "../Template.h"
+#include "../Template.hxx"
 #include "../../Environment.h"
 #include "../TemplateIf.hxx"
-#include "../../../Interface.hxx"
+#include "TypeBase.hxx"
 
 #define BASE_INTERFACE public virtual
 

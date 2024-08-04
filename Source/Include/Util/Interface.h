@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_INTERFACE
 #define WINCOPIES_INTERFACE
 
-#include "../../Include/Util/Includes/Macros/Type/TypeBase.h"
+#include "../../Include/Kernel/Macros/Type/Type.hxx"
 
 #define BASE_INTERFACE_CLASS(name) INTERFACE_TYPE(name) SCOPED_INTERFACE_C_D_TOR(name)
 

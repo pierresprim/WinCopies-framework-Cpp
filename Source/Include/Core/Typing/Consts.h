@@ -3,17 +3,9 @@
 #ifndef WINCOPIES_TYPING_CONSTS_H
 #define WINCOPIES_TYPING_CONSTS_H
 
-#include <type_traits>
-#include "../Macros/Template.hxx"
-#include "../Macros/Type/TypeBase.hxx"
-#include "Defines/Consts.hxx"
-#include "Enum.hxx"
+#include "../../Kernel/Typing/Consts.h"
 
 using namespace std;
-
-#define __ENABLE_IF_BOOL_CONDITION inline CONST_EXPR bool
-#define _ENABLE_IF_BOOL_CONDITION(...) TEMPLATE_EC(__VA_ARGS__) __ENABLE_IF_BOOL_CONDITION
-#define ENABLE_IF_BOOL_CONDITION TEMPLATE __ENABLE_IF_BOOL_CONDITION
 
 namespace WinCopies
 {

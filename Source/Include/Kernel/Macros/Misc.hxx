@@ -3,6 +3,8 @@
 #ifndef WINCOPIES_MACROS_MISC_H
 #define WINCOPIES_MACROS_MISC_H
 
+// Misc
+
 #define OUTPOINTER OutPointer<T>*
 
 #define __MALLOC(type, prefix, _operator, suffix) (type*)malloc(prefix sizeof(type) _operator suffix)
