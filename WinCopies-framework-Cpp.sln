@@ -57,65 +57,65 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enums", "Enums", "{1EAE9819
 		Source\Include\Util\Enums\SystemErrorCode.h = Source\Include\Util\Enums\SystemErrorCode.h
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{9935193F-5EBE-4D77-89F2-17E3B65774AA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kernel", "Kernel", "{9935193F-5EBE-4D77-89F2-17E3B65774AA}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Environment.h = Source\Include\Util\Includes\Environment.h
-		Source\Include\Util\Includes\Framework.h = Source\Include\Util\Includes\Framework.h
-		Source\Include\Util\Includes\Libraries.h = Source\Include\Util\Includes\Libraries.h
-		Source\Include\Util\Includes\Main.h = Source\Include\Util\Includes\Main.h
+		Source\Include\Kernel\Environment.h = Source\Include\Kernel\Environment.h
+		Source\Include\Kernel\Framework.h = Source\Include\Kernel\Framework.h
+		Source\Include\Kernel\Libraries.h = Source\Include\Kernel\Libraries.h
+		Source\Include\Kernel\Main.h = Source\Include\Kernel\Main.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Macros", "Macros", "{80187EF8-648A-4C74-AABF-1431E6DBAE5A}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Macros\Misc.h = Source\Include\Util\Includes\Macros\Misc.h
-		Source\Include\Util\Includes\Macros\Template.h = Source\Include\Util\Includes\Macros\Template.h
-		Source\Include\Util\Includes\Macros\TemplateIf.h = Source\Include\Util\Includes\Macros\TemplateIf.h
+		Source\Include\Kernel\Macros\Misc.hxx = Source\Include\Kernel\Macros\Misc.hxx
+		Source\Include\Kernel\Macros\Template.hxx = Source\Include\Kernel\Macros\Template.hxx
+		Source\Include\Kernel\Macros\TemplateIf.hxx = Source\Include\Kernel\Macros\TemplateIf.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{5B4C381B-667E-46B0-AF41-04760F5E3859}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Types\Defs.h = Source\Include\Util\Includes\Types\Defs.h
-		Source\Include\Util\Includes\Types\DefsBase.h = Source\Include\Util\Includes\Types\DefsBase.h
+		Source\Include\Kernel\Types\Defs.h = Source\Include\Kernel\Types\Defs.h
+		Source\Include\Kernel\Types\DefsBase.h = Source\Include\Kernel\Types\DefsBase.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Method", "Method", "{AA4541B8-3389-4373-95A7-558B73F51A09}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Macros\Method\Abstract.h = Source\Include\Util\Includes\Macros\Method\Abstract.h
-		Source\Include\Util\Includes\Macros\Method\AbstractBase.h = Source\Include\Util\Includes\Macros\Method\AbstractBase.h
-		Source\Include\Util\Includes\Macros\Method\Base.h = Source\Include\Util\Includes\Macros\Method\Base.h
-		Source\Include\Util\Includes\Macros\Method\Inline.h = Source\Include\Util\Includes\Macros\Method\Inline.h
-		Source\Include\Util\Includes\Macros\Method\Method.h = Source\Include\Util\Includes\Macros\Method\Method.h
-		Source\Include\Util\Includes\Macros\Method\Property.h = Source\Include\Util\Includes\Macros\Method\Property.h
-		Source\Include\Util\Includes\Macros\Method\Templates.h = Source\Include\Util\Includes\Macros\Method\Templates.h
+		Source\Include\Kernel\Macros\Method\Abstract.hxx = Source\Include\Kernel\Macros\Method\Abstract.hxx
+		Source\Include\Kernel\Macros\Method\AbstractBase.hxx = Source\Include\Kernel\Macros\Method\AbstractBase.hxx
+		Source\Include\Kernel\Macros\Method\Base.hxx = Source\Include\Kernel\Macros\Method\Base.hxx
+		Source\Include\Kernel\Macros\Method\Inline.hxx = Source\Include\Kernel\Macros\Method\Inline.hxx
+		Source\Include\Kernel\Macros\Method\Method.h = Source\Include\Kernel\Macros\Method\Method.h
+		Source\Include\Kernel\Macros\Method\Property.hxx = Source\Include\Kernel\Macros\Method\Property.hxx
+		Source\Include\Kernel\Macros\Method\Templates.h = Source\Include\Kernel\Macros\Method\Templates.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Type", "Type", "{FD892CCF-A7A6-4756-83A4-A16589FEB168}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Macros\Type\Type.h = Source\Include\Util\Includes\Macros\Type\Type.h
-		Source\Include\Util\Includes\Macros\Type\TypeBase.h = Source\Include\Util\Includes\Macros\Type\TypeBase.h
+		Source\Include\Kernel\Macros\Type\Type.hxx = Source\Include\Kernel\Macros\Type\Type.hxx
+		Source\Include\Kernel\Macros\Type\TypeBase.hxx = Source\Include\Kernel\Macros\Type\TypeBase.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{4FAA7D93-045F-4B8E-A301-E0C23FE1B089}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Macros\Method\Templates\Func.h = Source\Include\Util\Includes\Macros\Method\Templates\Func.h
-		Source\Include\Util\Includes\Macros\Method\Templates\Function.h = Source\Include\Util\Includes\Macros\Method\Templates\Function.h
-		Source\Include\Util\Includes\Macros\Method\Templates\Inline.h = Source\Include\Util\Includes\Macros\Method\Templates\Inline.h
-		Source\Include\Util\Includes\Macros\Method\Templates\Method.h = Source\Include\Util\Includes\Macros\Method\Templates\Method.h
+		Source\Include\Kernel\Macros\Method\Templates\Func.hxx = Source\Include\Kernel\Macros\Method\Templates\Func.hxx
+		Source\Include\Kernel\Macros\Method\Templates\Function.hxx = Source\Include\Kernel\Macros\Method\Templates\Function.hxx
+		Source\Include\Kernel\Macros\Method\Templates\Inline.hxx = Source\Include\Kernel\Macros\Method\Templates\Inline.hxx
+		Source\Include\Kernel\Macros\Method\Templates\Method.hxx = Source\Include\Kernel\Macros\Method\Templates\Method.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{F28AAB9C-1061-4B29-9DF0-6F53C911CF50}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Macros\Type\Templates\Class.h = Source\Include\Util\Includes\Macros\Type\Templates\Class.h
-		Source\Include\Util\Includes\Macros\Type\Templates\Enum.h = Source\Include\Util\Includes\Macros\Type\Templates\Enum.h
-		Source\Include\Util\Includes\Macros\Type\Templates\Interface.h = Source\Include\Util\Includes\Macros\Type\Templates\Interface.h
-		Source\Include\Util\Includes\Macros\Type\Templates\Struct.h = Source\Include\Util\Includes\Macros\Type\Templates\Struct.h
-		Source\Include\Util\Includes\Macros\Type\Templates\Template.h = Source\Include\Util\Includes\Macros\Type\Templates\Template.h
+		Source\Include\Kernel\Macros\Type\Templates\Class.hxx = Source\Include\Kernel\Macros\Type\Templates\Class.hxx
+		Source\Include\Kernel\Macros\Type\Templates\Enum.hxx = Source\Include\Kernel\Macros\Type\Templates\Enum.hxx
+		Source\Include\Kernel\Macros\Type\Templates\Interface.hxx = Source\Include\Kernel\Macros\Type\Templates\Interface.hxx
+		Source\Include\Kernel\Macros\Type\Templates\Struct.hxx = Source\Include\Kernel\Macros\Type\Templates\Struct.hxx
+		Source\Include\Kernel\Macros\Type\Templates\Template.hxx = Source\Include\Kernel\Macros\Type\Templates\Template.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{9B4B76DA-1F60-4A57-95D7-8ACFF190F7EF}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Types\Delegates\Defines.h = Source\Include\Util\Includes\Types\Delegates\Defines.h
-		Source\Include\Util\Includes\Types\Delegates\Delegates.h = Source\Include\Util\Includes\Types\Delegates\Delegates.h
+		Source\Include\Kernel\Types\Delegates\Defines.hxx = Source\Include\Kernel\Types\Delegates\Defines.hxx
+		Source\Include\Kernel\Types\Delegates\Delegates.hxx = Source\Include\Kernel\Types\Delegates\Delegates.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PP", "PP", "{F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}"
@@ -155,16 +155,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Math", "Math", "{1ACF941A-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Typing\Consts.h = Source\Include\Util\Includes\Typing\Consts.h
-		Source\Include\Util\Includes\Typing\EnableIf.h = Source\Include\Util\Includes\Typing\EnableIf.h
-		Source\Include\Util\Includes\Typing\Enum.h = Source\Include\Util\Includes\Typing\Enum.h
-		Source\Include\Util\Includes\Typing\Typing.h = Source\Include\Util\Includes\Typing\Typing.h
+		Source\Include\Kernel\Typing\Consts.h = Source\Include\Kernel\Typing\Consts.h
+		Source\Include\Kernel\Typing\EnableIf.h = Source\Include\Kernel\Typing\EnableIf.h
+		Source\Include\Kernel\Typing\Enum.h = Source\Include\Kernel\Typing\Enum.h
+		Source\Include\Kernel\Typing\Typing.h = Source\Include\Kernel\Typing\Typing.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Defines", "Defines", "{219B4B48-FA64-487B-9808-85C395CF0421}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Includes\Typing\Defines\Consts.h = Source\Include\Util\Includes\Typing\Defines\Consts.h
-		Source\Include\Util\Includes\Typing\Defines\EnableIf.h = Source\Include\Util\Includes\Typing\Defines\EnableIf.h
+		Source\Include\Kernel\Typing\Defines\Consts.hxx = Source\Include\Kernel\Typing\Defines\Consts.hxx
+		Source\Include\Kernel\Typing\Defines\EnableIf.hxx = Source\Include\Kernel\Typing\Defines\EnableIf.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Variadic", "Variadic", "{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7}"
@@ -259,7 +259,7 @@ Global
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD} = {5944965A-C6BC-448C-898B-C4AA45517A4E}
 		{B7CC362B-A327-41EB-96A6-1F141F4C16CA} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{1EAE9819-A0C4-4B34-BB02-62BB1A0F49F7} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
-		{9935193F-5EBE-4D77-89F2-17E3B65774AA} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
+		{9935193F-5EBE-4D77-89F2-17E3B65774AA} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
 		{80187EF8-648A-4C74-AABF-1431E6DBAE5A} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
 		{5B4C381B-667E-46B0-AF41-04760F5E3859} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
 		{AA4541B8-3389-4373-95A7-558B73F51A09} = {80187EF8-648A-4C74-AABF-1431E6DBAE5A}

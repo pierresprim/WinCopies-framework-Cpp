@@ -7,38 +7,8 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{9b7ca014-1523-4759-acee-a08f2a591faf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Includes">
-      <UniqueIdentifier>{a341325e-b1c5-4b84-8680-4cffd27e1c4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Enums">
       <UniqueIdentifier>{ae1a2449-6054-42a0-ae7a-7302a8077ad7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Types">
-      <UniqueIdentifier>{6fea0f4b-39a3-427d-b4f9-f334d711548f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Types\Delegates">
-      <UniqueIdentifier>{7ca66c4a-8d0d-4519-bff8-f9ebedf72fd6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Macros">
-      <UniqueIdentifier>{573778c0-ba26-49f8-a1ad-7744f7e079a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Macros\Method">
-      <UniqueIdentifier>{c35243a1-54c3-4c19-9eae-e8f95c643ccd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Macros\Method\Templates">
-      <UniqueIdentifier>{30b6865f-120d-4c9a-862d-e6fb70136c6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Macros\Type">
-      <UniqueIdentifier>{5a45c4f8-0fcb-4d4e-bd46-dc305e6c0b2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Macros\Type\Templates">
-      <UniqueIdentifier>{b440287a-4bc1-44e3-a82e-43563ec98f90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Typing">
-      <UniqueIdentifier>{858fc747-3cf6-4e7d-bc72-01f01ce4bf0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Includes\Typing\Defines">
-      <UniqueIdentifier>{9392a46b-f69f-44ec-927a-8641cb6532dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,12 +30,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Framework.h">
-      <Filter>Header Files\Includes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Libraries.h">
-      <Filter>Header Files\Includes</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\ErrorCode.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
@@ -81,110 +45,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\UtilBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Defs.h">
-      <Filter>Header Files\Includes\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Defines.h">
-      <Filter>Header Files\Includes\Types\Delegates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\Delegates\Delegates.h">
-      <Filter>Header Files\Includes\Types\Delegates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Misc.h">
-      <Filter>Header Files\Includes\Macros</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Template.h">
-      <Filter>Header Files\Includes\Macros</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\TemplateIf.h">
-      <Filter>Header Files\Includes\Macros</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Method.h">
-      <Filter>Header Files\Includes\Macros\Method</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Function.h">
-      <Filter>Header Files\Includes\Macros\Method\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Inline.h">
-      <Filter>Header Files\Includes\Macros\Method\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Method.h">
-      <Filter>Header Files\Includes\Macros\Method\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates\Func.h">
-      <Filter>Header Files\Includes\Macros\Method\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Type.h">
-      <Filter>Header Files\Includes\Macros\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Class.h">
-      <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Enum.h">
-      <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Interface.h">
-      <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Struct.h">
-      <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Main.h">
-      <Filter>Header Files\Includes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Typing.h">
-      <Filter>Header Files\Includes\Typing</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Defines\Consts.h">
-      <Filter>Header Files\Includes\Typing\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Defines\EnableIf.h">
-      <Filter>Header Files\Includes\Typing\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Enum.h">
-      <Filter>Header Files\Includes\Typing</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Environment.h">
-      <Filter>Header Files\Includes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\Consts.h">
-      <Filter>Header Files\Includes\Typing</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Typing\EnableIf.h">
-      <Filter>Header Files\Includes\Typing</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Types\DefsBase.h">
-      <Filter>Header Files\Includes\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\TypeBase.h">
-      <Filter>Header Files\Includes\Macros\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Type\Templates\Template.h">
-      <Filter>Header Files\Includes\Macros\Type\Templates</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Typing.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Abstract.h">
-      <Filter>Header Files\Includes\Macros\Method</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Inline.h">
-      <Filter>Header Files\Includes\Macros\Method</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Base.h">
-      <Filter>Header Files\Includes\Macros\Method</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Templates.h">
-      <Filter>Header Files\Includes\Macros\Method</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\AbstractBase.h">
-      <Filter>Header Files\Includes\Macros\Method</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Includes\Macros\Method\Property.h">
-      <Filter>Header Files\Includes\Macros\Method</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegate.h">
       <Filter>Header Files</Filter>
