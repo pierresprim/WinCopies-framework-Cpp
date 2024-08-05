@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef WINCOPIES_TEMPLATE_IF_H
-#define WINCOPIES_TEMPLATE_IF_H
+#ifndef WINCOPIES_TEMPLATE_IF_HXX
+#define WINCOPIES_TEMPLATE_IF_HXX
 
-#include "../Typing/EnableIf.h"
+#include "Template.hxx"
 
 #define ___TEMPLATE_IF(typeKind, ...) __TEMPLATE(typeKind, SINGLE_ARG(, __VA_ARGS__ = true))
 #define __TEMPLATE_IF(typeKind, condition, ...) ___TEMPLATE_IF(typeKind, VA_APPEND(, __VA_ARGS__) ::WinCopies::Typing::EnableIf##condition<T>)
@@ -26,4 +26,4 @@
 #define TEMPLATE_IF_FLOAT(...) _TEMPLATE_IF_T(Float, __VA_ARGS__)
 #define TEMPLATE_IF_ENUM(...) _TEMPLATE_IF_T(Enum, __VA_ARGS__)
 
-#endif WINCOPIES_TEMPLATE_IF_H
+#endif WINCOPIES_TEMPLATE_IF_HXX

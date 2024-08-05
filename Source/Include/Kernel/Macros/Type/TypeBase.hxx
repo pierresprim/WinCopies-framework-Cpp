@@ -1,10 +1,10 @@
 #pragma once
 
-#ifndef WINCOPIES_MACROS_TYPE_BASE_H
-#define WINCOPIES_MACROS_TYPE_BASE_H
+#ifndef WINCOPIES_MACROS_TYPE_BASE_HXX
+#define WINCOPIES_MACROS_TYPE_BASE_HXX
 
 #include "../../Environment.h"
-#include "../Method/AbstractBase.h"
+#include "../Method/AbstractBase.hxx"
 
 #define CONST_EXPR DLLEXPORT constexpr
 
@@ -36,4 +36,4 @@
 #define CLASS class DLLEXPORT
 #define INTERFACE_TYPE(name) CLASS name ABSTRACT
 
-#endif WINCOPIES_MACROS_TYPE_BASE_H
+#endif WINCOPIES_MACROS_TYPE_BASE_HXX

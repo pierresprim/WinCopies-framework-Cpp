@@ -1,10 +1,10 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_ENUM_OPERATORS_HPP
-#define WINCOPIES_UTIL_ENUM_OPERATORS_HPP
+#ifndef WINCOPIES_UTIL_ENUM_OPERATORS_HXX
+#define WINCOPIES_UTIL_ENUM_OPERATORS_HXX
 
-#include "../../Includes/Framework.h"
-#include "../../Includes/Typing/EnableIf.h"
+#include "../Framework.h"
+#include "../Typing/EnableIf.hxx"
 
 #define ENUM_OPERATOR(operatorSymbol, condition) CEA_OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \
 	-> typename ENABLE_IF_VALUE(condition<T>, T) \
@@ -40,10 +40,4 @@
 	-> typename ENABLE_WHEN_ENUM(T1) \
 	{ return lhs = lhs operatorSymbol rhs; }
 
-ENUM_COMPARISON_OPERATOR(== )
-ENUM_COMPARISON_OPERATOR2(== )
-
-ENUM_COMPARISON_OPERATOR(!= )
-ENUM_COMPARISON_OPERATOR2(!= )
-
-#endif // WINCOPIES_UTIL_ENUM_OPERATORS_HPP
+#endif WINCOPIES_UTIL_ENUM_OPERATORS_HXX

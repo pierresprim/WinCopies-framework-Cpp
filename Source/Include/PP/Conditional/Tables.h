@@ -13,4 +13,4 @@
 #define OR10 1
 #define OR11 1
 
-#endif // WINCOPIES_TRUTH_TABLES_HPP
+#endif WINCOPIES_TRUTH_TABLES_HPP

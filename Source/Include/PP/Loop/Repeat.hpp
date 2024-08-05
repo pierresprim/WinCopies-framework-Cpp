@@ -68,4 +68,4 @@
 
 #define REPEAT(n, macro, ...) REPEAT##n(macro, __VA_ARGS__)
 
-#endif // WINCOPIES_REPEAT_HPP
+#endif WINCOPIES_REPEAT_HPP

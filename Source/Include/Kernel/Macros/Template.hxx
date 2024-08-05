@@ -1,14 +1,16 @@
 #pragma once
 
-#ifndef WINCOPIES_TEMPLATE_H
-#define WINCOPIES_TEMPLATE_H
+#ifndef WINCOPIES_TEMPLATE_HXX
+#define WINCOPIES_TEMPLATE_HXX
 
 #include "../../PP/Loop/For.hpp"
 #include "../../PP/Loop/ForEach.hpp"
 #include "../../PP/Variadic/Util.hpp"
 #include "../../PP/Variadic/Variadic.hpp"
+
 #include "../Main.h"
-#include "../Types/DefsBase.h"
+#include "../Types/Defs.hxx"
+#include "../../Core/Types/Defs.h"
 
 #define __TEMPLATE(typeKind, extraParameters) template<typeKind T extraParameters>
 #define _TEMPLATE(typeKind) __TEMPLATE(typeKind, )
@@ -49,4 +51,4 @@
 #define COLLECTION_TEMPLATE_SPECIALIZATION(name) _COLLECTION_TEMPLATE_SPECIALIZATION(0, name)
 #define LIST_TEMPLATE_SPECIALIZATION(name) _COLLECTION_TEMPLATE_SPECIALIZATION(1, name##R) _COLLECTION_TEMPLATE_SPECIALIZATION(1, name##W) _COLLECTION_TEMPLATE_SPECIALIZATION(1, name)
 
-#endif WINCOPIES_TEMPLATE_H
+#endif WINCOPIES_TEMPLATE_HXX

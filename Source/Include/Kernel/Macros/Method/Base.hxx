@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_MACROS_METHOD_BASE_H
-#define WINCOPIES_MACROS_METHOD_BASE_H
+#ifndef WINCOPIES_MACROS_METHOD_BASE_HXX
+#define WINCOPIES_MACROS_METHOD_BASE_HXX
 
 #include "../../../PP/Variadic/UtilBase.hpp"
 #include "../../Environment.h"
@@ -19,4 +19,4 @@
 #define RENDER_METHODS_TYPE_PREFIXED(type, renderer, ...) _RENDER_METHODS(TRANSCRIBE_PREFIXED, renderer, type, __VA_ARGS__)
 #define RENDER_METHODS_PREFIXED(prefix, renderer, ...) _RENDER_METHODS(PREFIX_ARGS, renderer, prefix, __VA_ARGS__)
 
-#endif WINCOPIES_MACROS_METHOD_BASE_H
+#endif WINCOPIES_MACROS_METHOD_BASE_HXX

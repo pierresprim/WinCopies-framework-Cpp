@@ -1,14 +1,15 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_ENUM_MAKE_ENUM_HPP
-#define WINCOPIES_UTIL_ENUM_MAKE_ENUM_HPP
+#ifndef WINCOPIES_UTIL_ENUM_MAKE_ENUM_HXX
+#define WINCOPIES_UTIL_ENUM_MAKE_ENUM_HXX
 
-#include "../MISC.hpp"
-#include "../Loop/ForEach.hpp"
-#include "../../Includes/Macros/Type/Type.h"
-#include "../Math/Math.hpp"
-#include "Flags.hpp"
-#include "Bitwise.hpp"
+#include "../../PP/MISC.hpp"
+#include "../../PP/Loop/ForEach.hpp"
+#include "../../PP/Math/Math.hpp"
+
+#include "../Macros/Type/Type.hxx"
+#include "Flags.hxx"
+#include "Bitwise.hxx"
 
 #define TRANSCRIBE_ENUM_ARG(i, value) value = i
 #define TRANSCRIBE_NEGATIVE_ENUM_ARG(i, value) TRANSCRIBE_ENUM_ARG(- i, value)
@@ -42,4 +43,4 @@
 #define MAKE_FLAGS_ENUM(name, type, ...) _MAKE_FLAGS_ENUM(0, name, type, __VA_ARGS__)
 #define MAKE_NULLABLE_FLAGS_ENUM(name, type, ...) _MAKE_FLAGS_ENUM(1, name, type, __VA_ARGS__)
 
-#endif // WINCOPIES_UTIL_ENUM_MAKE_ENUM_HPP
+#endif WINCOPIES_UTIL_ENUM_MAKE_ENUM_HXX

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_MACROS_METHOD_INLINE_H
-#define WINCOPIES_MACROS_METHOD_INLINE_H
+#ifndef WINCOPIES_MACROS_METHOD_INLINE_HXX
+#define WINCOPIES_MACROS_METHOD_INLINE_HXX
 
 #include "../../../PP/Variadic/Variadic.hpp"
 
@@ -28,4 +28,4 @@
 
 #define GET_FIELD_IF_ELSE(returnType, methodName, paramType, paramName, condition, valueIfTrue, ifFalse, valueIfFalse) returnType methodName(paramType* paramName) { RETURN_BRANCH(condition, *##paramName = _##paramName, valueIfTrue, *##paramName = ifFalse, valueIfFalse) }
 
-#endif WINCOPIES_MACROS_METHOD_INLINE_H
+#endif WINCOPIES_MACROS_METHOD_INLINE_HXX

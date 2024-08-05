@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef WINCOPIES_MACROS_MISC_H
-#define WINCOPIES_MACROS_MISC_H
+#ifndef WINCOPIES_MACROS_MISC_HXX
+#define WINCOPIES_MACROS_MISC_HXX
 
-// Misc
+#include "../../Environment.h"
 
 #define OUTPOINTER OutPointer<T>*
 
@@ -21,8 +21,5 @@
 #define HAS_ITEMS GetCount() != 0;
 
 #define GET_OR_THROW_IF_NULL_PTR(value, valueName) value == nullptr ? throw new NullPtrValueException(valueName) : value
-#ifdef WINDOWS
-#define ERROR_OUT_OF_MEMORY ERROR_OUTOFMEMORY
-#endif
 
-#endif WINCOPIES_MACROS_MISC_H
+#endif WINCOPIES_MACROS_MISC_HXX
