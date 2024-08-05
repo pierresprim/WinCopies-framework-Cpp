@@ -5,9 +5,9 @@
 
 #include <cstdlib>
 
-#include "../../Include/Util/Includes/Macros/Method/Inline.h"
-#include "../../Include/Util/PP/Enum/Arithmetic.hpp"
-#include "../../Include/Util/PP/Enum/Comparison.hpp"
+#include "../Kernel/Macros/Method/Inline.hxx"
+#include "../PP/Enum/Arithmetic.hpp"
+#include "../PP/Enum/Comparison.hpp"
 
 #include "Math.h"
 #include "Delegate.h"

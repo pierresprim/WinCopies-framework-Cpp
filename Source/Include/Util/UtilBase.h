@@ -3,10 +3,10 @@
 #ifndef WINCOPIES_UTIL_BASE_H
 #define WINCOPIES_UTIL_BASE_H
 
-#include "PP/Enum/Bitwise.hpp"
-#include "Enums/ErrorCode.h"
-#include "Enums/SystemErrorCode.h"
-#include "PP/Enum/MakeEnum.hpp"
+#include "../PP/Enum/Bitwise.hpp"
+#include "../Core/Enums/ErrorCode.h"
+#include "../Core/Enums/SystemErrorCode.h"
+#include "../PP/Enum/MakeEnum.hpp"
 
 namespace WinCopies
 {
