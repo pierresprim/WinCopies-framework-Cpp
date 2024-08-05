@@ -1,11 +1,12 @@
 #pragma once
 
-#ifndef WINCOPIES_TYPING_DEFINES_ENABLE_IF_H
-#define WINCOPIES_TYPING_DEFINES_ENABLE_IF_H
+#ifndef WINCOPIES_TYPING_ENABLE_IF_HXX
+#define WINCOPIES_TYPING_ENABLE_IF_HXX
 
-#include "../../Macros/Template.h"
-#include "../../../PP/Loop/ForEach.hpp"
-#include "../../../PP/Variadic/Variadic.hpp"
+#include "../../PP/Loop/ForEach.hpp"
+#include "../../PP/Variadic/Variadic.hpp"
+
+#include "../Macros/Template.hxx"
 
 #define ____ENABLE_IF(...) , EXTRACT_AND_CALL(__VA_ARGS__)
 #define ___ENABLE_IF(n, types) VA_ARGS_OR_IF_EMPTY(T##n, EXPAND(types))
@@ -104,4 +105,4 @@
 
 #define ENABLE_WHEN_BASE_OF(base, derived) _ENABLE_WHEN(BaseOf, base, derived)
 
-#endif WINCOPIES_TYPING_DEFINES_ENABLE_IF_H
+#endif WINCOPIES_TYPING_ENABLE_IF_HXX

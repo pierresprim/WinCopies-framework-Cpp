@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_TYPING_ENUM_H
-#define WINCOPIES_TYPING_ENUM_H
+#ifndef WINCOPIES_TYPING_ENUM_HXX
+#define WINCOPIES_TYPING_ENUM_HXX
 
 #include <utility>
 
@@ -31,4 +31,4 @@ namespace WinCopies
 	}
 }
 
-#endif WINCOPIES_TYPING_ENUM_H
+#endif WINCOPIES_TYPING_ENUM_HXX

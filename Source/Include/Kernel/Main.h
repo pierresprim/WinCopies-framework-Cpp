@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_MAIN_H
 #define WINCOPIES_MAIN_H
 
-#include "Environment.h"
+#include "../Environment.h"
 
 #define USING_TEMPLATE_FUNCTION(highLevelF, lowLevelF) \
 template<typename... Args> \

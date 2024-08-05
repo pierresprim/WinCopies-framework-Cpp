@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_TYPING_DEFINES_CONSTS_H
-#define WINCOPIES_TYPING_DEFINES_CONSTS_H
+#ifndef WINCOPIES_TYPING_CONSTS_INC_HXX
+#define WINCOPIES_TYPING_CONSTS_INC_HXX
 
 #define IS_TYPE(condition, ...) ::WinCopies::Typing::Is##condition<__VA_ARGS__>
 
@@ -20,4 +20,4 @@
 
 #define IS_BASE_OF(base, derived) IS_TYPE(BaseOf, base, derived)
 
-#endif WINCOPIES_TYPING_DEFINES_CONSTS_H
+#endif WINCOPIES_TYPING_CONSTS_INC_HXX

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef WINCOPIES_DELEGATE_USINGS_H
-#define WINCOPIES_DELEGATE_USINGS_H
+#ifndef WINCOPIES_TYPES_DELEGATES_HXX
+#define WINCOPIES_TYPES_DELEGATES_HXX
 
 #include "../../Framework.h"
 #include "../../../PP/Variadic/Util.hpp"
@@ -71,4 +71,4 @@
 
 #define CREATE_COMPARISON_DELEGATES(prefix) _CREATE_COMPARISON_DELEGATES(prefix, , 0) _CREATE_COMPARISON_DELEGATES(Instance##prefix, , 1) _CREATE_COMPARISON_DELEGATES(prefix, Function, 0)
 
-#endif WINCOPIES_DELEGATE_USINGS_H
+#endif WINCOPIES_TYPES_DELEGATES_HXX
