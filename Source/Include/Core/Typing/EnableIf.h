@@ -4,7 +4,7 @@
 #define WINCOPIES_TYPING_ENABLE_IF_H
 
 #include "Consts.h"
-#include "Defines/EnableIf.hxx"
+#include "../../Kernel/Typing/EnableIf.hxx"
 
 namespace WinCopies
 {

@@ -3,6 +3,9 @@
 #ifndef WINCOPIES_TYPE_DEFS_H
 #define WINCOPIES_TYPE_DEFS_H
 
+#include "../../Environment.h"
+#include "../../Libraries.h"
+
 #include "../../Kernel/Types/Defs.hxx"
 
 typedef char SBYTE;

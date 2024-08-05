@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_UTIL_ERROR_CODE_H
 #define WINCOPIES_UTIL_ERROR_CODE_H
 
-#include "../PP/Enum/MakeEnum.hpp"
+#include "../../Kernel/Enum/MakeEnum.hxx"
 
 namespace WinCopies
 {

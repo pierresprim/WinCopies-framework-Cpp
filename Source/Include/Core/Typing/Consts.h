@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_TYPING_CONSTS_H
 #define WINCOPIES_TYPING_CONSTS_H
 
-#include "../../Kernel/Typing/Consts.h"
+#include "../../Kernel/Typing/Consts.hxx"
 
 using namespace std;
 

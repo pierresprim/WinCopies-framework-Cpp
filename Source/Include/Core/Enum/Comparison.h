@@ -3,7 +3,9 @@
 #ifndef WINCOPIES_UTIL_ENUM_COMPARISON_HPP
 #define WINCOPIES_UTIL_ENUM_COMPARISON_HPP
 
-#include "Operators.hpp"
+#include "../../Kernel/Enum/Arithmetic.hxx"
+
+#include "Operators.h"
 
 ENUM_COMPARISON_OPERATOR(< )
 ENUM_COMPARISON_OPERATOR2(< )
