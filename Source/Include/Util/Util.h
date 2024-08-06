@@ -6,12 +6,14 @@
 #include <cstdlib>
 
 #include "../Kernel/Macros/Method/Inline.hxx"
-#include "../PP/Enum/Arithmetic.hpp"
-#include "../PP/Enum/Comparison.hpp"
+#include "../Kernel/Enum/Arithmetic.hxx"
+
+#include "../Core/Enum/Comparison.h"
 
 #include "Math.h"
 #include "Delegate.h"
 #include "Nullable.h"
+#include "Interface.h"
 
 using namespace WinCopies::Delegate;
 
