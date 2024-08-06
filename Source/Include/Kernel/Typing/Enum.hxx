@@ -7,21 +7,20 @@
 
 #include "../Main.h"
 #include "../Macros/Type/Type.hxx"
-#include "Usings.h"
 
-using namespace std;
+#include "../../Core/Typing/Typing.h"
+
+#define UNDERLYING_TYPE(enumType) ::WinCopies::Typing::UnderlyingType<enumType>
+#define ENUM_CAST(enumType, enumValue) static_cast<UNDERLYING_TYPE(enumType)>(enumValue)
 
 namespace WinCopies
 {
 	namespace Typing
 	{
-#define UNDERLYING_TYPE(enumType) ::WinCopies::Typing::UnderlyingType<enumType>
-#define ENUM_CAST(enumType, enumValue) static_cast<UNDERLYING_TYPE(enumType)>(enumValue)
-
 #if HAS_CPP23
-		USING_TEMPLATE_FUNCTION(ToUnderlyingType, std::to_underlying)
+		USING_TEMPLATE_FUNCTION(ToUnderlyingType, ::std::to_underlying)
 #else
-		TEMPLATE inline CONST_EXPR ::WinCopies::Typing::UnderlyingType<T> ToUnderlyingType(T value) noexcept
+		TEMPLATE inline CONST_EXPR UNDERLYING_TYPE(T) ToUnderlyingType(T value) noexcept
 		{
 			return ENUM_CAST(T, value);
 		}
