@@ -3,7 +3,8 @@
 #ifndef WINCOPIES_MACROS_TYPE_BASE_HXX
 #define WINCOPIES_MACROS_TYPE_BASE_HXX
 
-#include "../../Environment.h"
+#include "../../../Environment.h"
+
 #include "../Method/AbstractBase.hxx"
 
 #define CONST_EXPR DLLEXPORT constexpr

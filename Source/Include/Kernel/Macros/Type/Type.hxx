@@ -3,9 +3,10 @@
 #ifndef WINCOPIES_MACROS_TYPE_HXX
 #define WINCOPIES_MACROS_TYPE_HXX
 
+#include "../../../Environment.h"
+
 #include "../../../PP/Loop/ForEach.hpp"
-#include "../Template.hxx"
-#include "../../Environment.h"
+
 #include "../TemplateIf.hxx"
 #include "TypeBase.hxx"
 
