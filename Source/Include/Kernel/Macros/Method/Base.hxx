@@ -4,7 +4,8 @@
 #define WINCOPIES_MACROS_METHOD_BASE_HXX
 
 #include "../../../PP/Variadic/UtilBase.hpp"
-#include "../../Environment.h"
+
+#include "../../../Environment.h"
 
 #define _METHOD(modifiers) DLLEXPORT modifiers void
 
