@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Environment.h = Source\Include\Environment.h
+		Source\Include\Framework.h = Source\Include\Framework.h
+		Source\Include\Libraries.h = Source\Include\Libraries.h
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}"
 	ProjectSection(SolutionItems) = preProject
@@ -41,27 +46,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5944965A
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Tests", "Tests\WinCopies.Collections.Tests\WinCopies.Collections.Tests.vcxproj", "{54616CF4-B4E5-49B4-BF13-C8B342F008DD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{B7CC362B-A327-41EB-96A6-1F141F4C16CA}"
-	ProjectSection(SolutionItems) = preProject
-		Source\Include\PP\Enum\Arithmetic.hpp = Source\Include\PP\Enum\Arithmetic.hpp
-		Source\Include\PP\Enum\Bitwise.hpp = Source\Include\PP\Enum\Bitwise.hpp
-		Source\Include\PP\Enum\Comparison.hpp = Source\Include\PP\Enum\Comparison.hpp
-		Source\Include\PP\Enum\Flags.hpp = Source\Include\PP\Enum\Flags.hpp
-		Source\Include\PP\Enum\MakeEnum.hpp = Source\Include\PP\Enum\MakeEnum.hpp
-		Source\Include\PP\Enum\Operators.hpp = Source\Include\PP\Enum\Operators.hpp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enums", "Enums", "{1EAE9819-A0C4-4B34-BB02-62BB1A0F49F7}"
-	ProjectSection(SolutionItems) = preProject
-		Source\Include\Util\Enums\ErrorCode.h = Source\Include\Util\Enums\ErrorCode.h
-		Source\Include\Util\Enums\SystemErrorCode.h = Source\Include\Util\Enums\SystemErrorCode.h
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kernel", "Kernel", "{9935193F-5EBE-4D77-89F2-17E3B65774AA}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Include\Kernel\Environment.h = Source\Include\Kernel\Environment.h
-		Source\Include\Kernel\Framework.h = Source\Include\Kernel\Framework.h
-		Source\Include\Kernel\Libraries.h = Source\Include\Kernel\Libraries.h
 		Source\Include\Kernel\Main.h = Source\Include\Kernel\Main.h
 	EndProjectSection
 EndProject
@@ -155,14 +141,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{21D6F6E5-FB17-4B6E-AB77-30C359F231E5}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Kernel\Typing\Consts.hxx = Source\Include\Kernel\Typing\Consts.hxx
+		Source\Include\Kernel\Typing\Consts.inc.hxx = Source\Include\Kernel\Typing\Consts.inc.hxx
+		Source\Include\Kernel\Typing\EnableIf.hxx = Source\Include\Kernel\Typing\EnableIf.hxx
 		Source\Include\Kernel\Typing\Enum.hxx = Source\Include\Kernel\Typing\Enum.hxx
 		Source\Include\Kernel\Typing\Typing.h = Source\Include\Kernel\Typing\Typing.h
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Defines", "Defines", "{219B4B48-FA64-487B-9808-85C395CF0421}"
-	ProjectSection(SolutionItems) = preProject
-		Source\Include\Kernel\Typing\Defines\Consts.hxx = Source\Include\Kernel\Typing\Defines\Consts.hxx
-		Source\Include\Kernel\Typing\Defines\EnableIf.hxx = Source\Include\Kernel\Typing\Defines\EnableIf.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Variadic", "Variadic", "{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7}"
@@ -215,12 +197,38 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{AFDA37D3-C219-4F68-8AEB-5F149FD20F38}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Core\Types\Defs.h = Source\Include\Core\Types\Defs.h
+		Source\Include\Core\Types\Delegate.h = Source\Include\Core\Types\Delegate.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Typing", "Typing", "{0DE618B7-999C-4178-9576-B3EE6C44522A}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Core\Typing\Consts.h = Source\Include\Core\Typing\Consts.h
 		Source\Include\Core\Typing\EnableIf.h = Source\Include\Core\Typing\EnableIf.h
+		Source\Include\Core\Typing\Typing.h = Source\Include\Core\Typing\Typing.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enums", "Enums", "{08FE520B-0138-405E-8688-548FD51245AB}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Core\Enums\ErrorCode.h = Source\Include\Core\Enums\ErrorCode.h
+		Source\Include\Core\Enums\SystemErrorCode.h = Source\Include\Core\Enums\SystemErrorCode.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{52C7F91C-124C-4955-B7A0-3FD948B8C526}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Kernel\Enum\Arithmetic.hxx = Source\Include\Kernel\Enum\Arithmetic.hxx
+		Source\Include\Kernel\Enum\Bitwise.hxx = Source\Include\Kernel\Enum\Bitwise.hxx
+		Source\Include\Kernel\Enum\Flags.hxx = Source\Include\Kernel\Enum\Flags.hxx
+		Source\Include\Kernel\Enum\MakeEnum.hxx = Source\Include\Kernel\Enum\MakeEnum.hxx
+		Source\Include\Kernel\Enum\Operators.hxx = Source\Include\Kernel\Enum\Operators.hxx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{A8AFE334-F90A-4576-9052-87349E1C0F91}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Core\Enum\Arithmetic.h = Source\Include\Core\Enum\Arithmetic.h
+		Source\Include\Core\Enum\Bitwise.h = Source\Include\Core\Enum\Bitwise.h
+		Source\Include\Core\Enum\Comparison.h = Source\Include\Core\Enum\Comparison.h
+		Source\Include\Core\Enum\Flags.h = Source\Include\Core\Enum\Flags.h
+		Source\Include\Core\Enum\Operators.h = Source\Include\Core\Enum\Operators.h
 	EndProjectSection
 EndProject
 Global
@@ -268,8 +276,6 @@ Global
 		{85892C8A-687D-40E9-B05F-38B0937D4C16} = {FCA4B167-AB35-4C40-BA5A-4871D89B331C}
 		{10ACD228-5E39-46A2-8F61-894381A0E427} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
 		{54616CF4-B4E5-49B4-BF13-C8B342F008DD} = {5944965A-C6BC-448C-898B-C4AA45517A4E}
-		{B7CC362B-A327-41EB-96A6-1F141F4C16CA} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
-		{1EAE9819-A0C4-4B34-BB02-62BB1A0F49F7} = {F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}
 		{9935193F-5EBE-4D77-89F2-17E3B65774AA} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
 		{80187EF8-648A-4C74-AABF-1431E6DBAE5A} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
 		{5B4C381B-667E-46B0-AF41-04760F5E3859} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
@@ -283,7 +289,6 @@ Global
 		{4220B618-D1C3-45C5-9EB1-1F26ABECF20A} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{1ACF941A-98D3-434E-BDF9-35454434D2CF} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{21D6F6E5-FB17-4B6E-AB77-30C359F231E5} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
-		{219B4B48-FA64-487B-9808-85C395CF0421} = {21D6F6E5-FB17-4B6E-AB77-30C359F231E5}
 		{C3F7778A-80F1-4BCA-ACB2-BA837C45DFD7} = {F7DA70F5-61FD-46AC-97C5-B5CD3B59A4EC}
 		{CE304143-BD6F-4D55-A3DC-001CB662BE20} = {F1A40941-BE4E-451F-A9AD-F5F14CAC6DC9}
 		{B8631384-D958-4DF3-861A-1386C643C7EC} = {85892C8A-687D-40E9-B05F-38B0937D4C16}
@@ -293,6 +298,9 @@ Global
 		{488FA285-20C8-4E66-B302-85577033768C} = {8E2E9AC9-9091-4338-A2D8-B1EC68CF452C}
 		{AFDA37D3-C219-4F68-8AEB-5F149FD20F38} = {488FA285-20C8-4E66-B302-85577033768C}
 		{0DE618B7-999C-4178-9576-B3EE6C44522A} = {488FA285-20C8-4E66-B302-85577033768C}
+		{08FE520B-0138-405E-8688-548FD51245AB} = {488FA285-20C8-4E66-B302-85577033768C}
+		{52C7F91C-124C-4955-B7A0-3FD948B8C526} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
+		{A8AFE334-F90A-4576-9052-87349E1C0F91} = {488FA285-20C8-4E66-B302-85577033768C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}

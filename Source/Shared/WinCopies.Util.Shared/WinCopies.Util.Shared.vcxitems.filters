@@ -62,9 +62,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,7 +71,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Delegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Include\Util\UtilBase.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

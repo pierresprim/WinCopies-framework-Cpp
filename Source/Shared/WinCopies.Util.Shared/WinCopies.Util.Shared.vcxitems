@@ -14,13 +14,13 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\Include\Util\UtilBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Delegate.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Exception.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Math.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)System.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Util.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Interface.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Util.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegate.h" />
