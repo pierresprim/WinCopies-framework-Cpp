@@ -3,7 +3,10 @@
 #ifndef SYSTEM_API_H
 #define SYSTEM_API_H
 
-#include "PP/Enum/Bitwise.hpp"
+#include "../Kernel/Enum/Bitwise.hxx"
+
+#include "../Core/Enums/ErrorCode.h"
+#include "../Core/Enums/SystemErrorCode.h"
 
 using namespace WinCopies;
 

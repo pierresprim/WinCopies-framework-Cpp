@@ -3,9 +3,10 @@
 #ifndef WINCOPIES_EXCEPTION_H
 #define WINCOPIES_EXCEPTION_H
 
+#include "../../Include/Kernel/Macros/Method/Inline.hxx"
+
 #include "UtilBase.h"
 #include "System.h"
-#include "../../Include/Util/Includes/Macros/Method/Inline.h"
 
 namespace WinCopies
 {

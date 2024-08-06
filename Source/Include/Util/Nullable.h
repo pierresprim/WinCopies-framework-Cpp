@@ -3,7 +3,8 @@
 #ifndef WINCOPIES_NULLABLE_H
 #define WINCOPIES_NULLABLE_H
 
-#include "../../Include/Util/Includes/Macros/Method/Inline.h"
+#include "../Kernel/Macros/Method/Inline.hxx"
+
 #include "UtilBase.h"
 
 namespace WinCopies
