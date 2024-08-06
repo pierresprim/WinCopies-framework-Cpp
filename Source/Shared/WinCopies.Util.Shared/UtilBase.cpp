@@ -1,6 +1,7 @@
 #include "pch.h"
-#include "../../Include/Util/Includes/Macros/Method/Inline.h"
-#include "UtilBase.h"
+
+#include "../../Include/Kernel/Macros/Method/Inline.hxx"
+#include "../../Include/Util/UtilBase.h"
 
 using namespace WinCopies;
 

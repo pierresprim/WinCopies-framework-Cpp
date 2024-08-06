@@ -1,6 +1,5 @@
 #include "pch.h"
 
-
 #include "../../Include/Util/Exception.h"
 
 using namespace WinCopies;
