@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_TYPES_DELEGATES_HXX
 #define WINCOPIES_TYPES_DELEGATES_HXX
 
-#include "../../Framework.h"
+#include "../../../Framework.h"
 #include "../../../PP/Variadic/Util.hpp"
 #include "../../../PP/Loop/Loop.hpp"
 

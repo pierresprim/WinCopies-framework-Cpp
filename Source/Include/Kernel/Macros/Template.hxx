@@ -9,7 +9,7 @@
 #include "../../PP/Variadic/Variadic.hpp"
 
 #include "../Main.h"
-#include "../Types/Defs.hxx"
+
 #include "../../Core/Types/Defs.h"
 
 #define __TEMPLATE(typeKind, extraParameters) template<typeKind T extraParameters>
