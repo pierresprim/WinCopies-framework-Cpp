@@ -77,6 +77,9 @@
 
 #include "Operators.hxx"
 
+#include "../Macros/Type/Type.hxx"
+#include "../Typing/Consts.inc.hxx"
+
 #define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, ::WinCopies::Typing::IsBitwiseEnum)
 
 #define BITWISE_ENUM_ASSIGNMENT_OPERATOR(operatorSymbol, operatorAssignmentSymbol) TEMPLATE constexpr auto operator operatorAssignmentSymbol(T& lhs, const T& rhs) \

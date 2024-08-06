@@ -3,7 +3,8 @@
 #ifndef WINCOPIES_UTIL_ENUM_OPERATORS_HXX
 #define WINCOPIES_UTIL_ENUM_OPERATORS_HXX
 
-#include "../Framework.h"
+#include "../../Framework.h"
+
 #include "../Typing/EnableIf.hxx"
 
 #define ENUM_OPERATOR(operatorSymbol, condition) CEA_OPERATOR_TEMPLATE operatorSymbol(const T& lhs, const T& rhs) \

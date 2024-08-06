@@ -3,7 +3,8 @@
 #ifndef WINCOPIES_UTIL_ENUM_FLAGS_HXX
 #define WINCOPIES_UTIL_ENUM_FLAGS_HXX
 
-#include "../Environment.h"
+#include "../../Environment.h"
+
 #include "../../PP/MISC.hpp"
 
 #define ENUM_FLAG_NONE 0

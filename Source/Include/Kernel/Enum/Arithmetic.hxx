@@ -4,6 +4,7 @@
 #define WINCOPIES_UTIL_ENUM_ARITHMETIC_HXX
 
 #include "Operators.hxx"
+#include "../Typing/Consts.inc.hxx"
 
 #define _ARITHMETIC_ENUM_UNARY_OPERATOR(operatorSymbol, dummyParameter, referenceOperator) CEA_OPERATOR_TEMPLATE operatorSymbol(T& val dummyParameter) \
 	-> typename enable_if_t<IS_ENUM(T), T referenceOperator>
