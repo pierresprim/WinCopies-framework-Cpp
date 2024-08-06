@@ -30,17 +30,17 @@ namespace WinCopies
 		_TEMPLATE(bool) using EnableBoolIf = EnableIf<T, bool>;
 
 		MAKE_ENABLE_IF(Signed)
-			MAKE_ENABLE_IF(Unsigned)
+		MAKE_ENABLE_IF(Unsigned)
 
-			MAKE_ENABLE_IF(Integral)
-			MAKE_ENABLE_IF(SignedIntegral)
-			MAKE_ENABLE_IF(UnsignedIntegral)
+		MAKE_ENABLE_IF(Integral)
+		MAKE_ENABLE_IF(SignedIntegral)
+		MAKE_ENABLE_IF(UnsignedIntegral)
 
-			MAKE_ENABLE_IF(Float)
-			MAKE_ENABLE_IF(Enum)
-			MAKE_ENABLE_IF(BitwiseEnum)
+		MAKE_ENABLE_IF(Float)
+		MAKE_ENABLE_IF(Enum)
+		MAKE_ENABLE_IF(BitwiseEnum)
 
-			MAKE_ENABLE_IF_TYPES(BaseOf, (TBase, TDerived))
+		MAKE_ENABLE_IF_TYPES(BaseOf, (TBase, TDerived))
 	}
 }
 

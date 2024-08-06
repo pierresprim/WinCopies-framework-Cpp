@@ -3,12 +3,12 @@
 #ifndef WINCOPIES_FRAMEWORK_H
 #define WINCOPIES_FRAMEWORK_H
 
-#include "../PP/MiscBase.hpp"
-
 #include "Libraries.h"
-#include "Types/Usings.h"
-#include "Macros/Type/Type.h"
-#include "Types/Defs.h"
+
+#include "PP/MiscBase.hpp"
+
+#include "Kernel/Macros/Type/Type.hxx"
+#include "Kernel/Types/Defs.hxx"
 
 namespace WinCopies
 {
@@ -17,9 +17,9 @@ namespace WinCopies
 	ENUM SystemErrorCode : ULONG;
 }
 
-#include "Types/Delegates/Delegates.h"
-#include "Types/Delegates/Defines.h"
-#include "Macros/Method/Method.h"
-#include "Macros/Misc.h"
+#include "Kernel/Types/Delegates/Delegates.hxx"
+#include "Kernel/Types/Delegates/Defines.hxx"
+#include "Kernel/Macros/Method/Method.h"
+#include "Kernel/Macros/Misc.hxx"
 
 #endif WINCOPIES_FRAMEWORK_H
