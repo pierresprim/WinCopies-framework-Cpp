@@ -72,13 +72,15 @@
 
 #pragma once
 
-#ifndef WINCOPIES_UTIL_ENUM_BITWISE_HXX
-#define WINCOPIES_UTIL_ENUM_BITWISE_HXX
-
-#include "Operators.hxx"
+#ifndef WINCOPIES_ENUM_BITWISE_HXX
+#define WINCOPIES_ENUM_BITWISE_HXX
 
 #include "../Macros/Type/Type.hxx"
 #include "../Typing/Consts.inc.hxx"
+
+#include "Operators.hxx"
+
+#include "../../Core/Typing/Consts.h"
 
 #define BITWISE_ENUM_OPERATOR(operatorSymbol) ENUM_OPERATOR(operatorSymbol, ::WinCopies::Typing::IsBitwiseEnum)
 
@@ -129,4 +131,4 @@
 #define TOGGLE_FLAG(enumValue, flag) enumValue ^ flag
 #define UPDATE_FLAG(enumValue, flag) enumValue ^= flag
 
-#endif WINCOPIES_UTIL_ENUM_BITWISE_HXX
+#endif WINCOPIES_ENUM_BITWISE_HXX
