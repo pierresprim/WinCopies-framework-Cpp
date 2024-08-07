@@ -3,7 +3,6 @@
 #ifndef WINCOPIES_UTIL_SYSTEM_ERROR_CODE_H
 #define WINCOPIES_UTIL_SYSTEM_ERROR_CODE_H
 
-#include "../../Environment.h"
 #include "../../Libraries.h"
 
 #ifdef WINDOWS
