@@ -111,11 +111,10 @@
 	 */
 #define ENABLE_ENUM_BITWISE_OPERATORS(T, ...) _ENABLE_ENUM_BITWISE_OPERATORS(VA_OPT(JOIN_ARGS(::, __VA_ARGS__)::, __VA_ARGS__), T)
 
-#define __BITWISE_ENUM(open, namespaces, T, ...) IF(NOT(open), , namespaces) ENUM T; TRANSCRIBE_REPEATED_FOR_EACH(}, __VA_ARGS__) \
+#define _BITWISE_ENUM(T, namespaces, ...) SINGLE_ARG namespaces ENUM T; TRANSCRIBE_REPEATED_FOR_EACH(}, __VA_ARGS__) \
     ENABLE_ENUM_BITWISE_OPERATORS(T, __VA_ARGS__) \
-    namespaces enum class T
-#define _BITWISE_ENUM(open, T, ...) __BITWISE_ENUM(open, TRANSCRIBE_ARGS_WITH(namespace, {, __VA_ARGS__), T, __VA_ARGS__)
-#define BITWISE_ENUM(T, ...) _BITWISE_ENUM(0, T, __VA_ARGS__)
+    SINGLE_ARG namespaces enum class T
+#define BITWISE_ENUM(T, ...) _BITWISE_ENUM(T, (TRANSCRIBE_ARGS_WITH(namespace, {, __VA_ARGS__)), __VA_ARGS__)
 
 #define FLAG_CHECK(enumValue, flag, bitwiseOperator) (enumValue & flag) bitwiseOperator 0
 
