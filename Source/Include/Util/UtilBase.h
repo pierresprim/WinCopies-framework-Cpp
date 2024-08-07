@@ -3,13 +3,10 @@
 #ifndef WINCOPIES_UTIL_BASE_H
 #define WINCOPIES_UTIL_BASE_H
 
-#include "../Kernel/Enum/Bitwise.hxx"
 #include "../Kernel/Enum/MakeEnum.hxx"
 #include "../Kernel/Macros/Method/Base.hxx"
 
-#include "../Core/Typing/Consts.h"
-#include "../Core/Enums/ErrorCode.h"
-#include "../Core/Enums/SystemErrorCode.h"
+#include "../Framework.h"
 
 namespace WinCopies
 {
