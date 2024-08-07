@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef SYSTEM_API_H
-#define SYSTEM_API_H
+#ifndef WINCOPIES_SYSTEM_H
+#define WINCOPIES_SYSTEM_H
 
 #include "../Kernel/Enum/Bitwise.hxx"
 
@@ -11,7 +11,7 @@
 using namespace WinCopies;
 
 #ifdef WINDOWS
-_BITWISE_ENUM(1, FormatMessageFlags, System)
+BITWISE_ENUM(FormatMessageFlags, System)
 {
 	MaxWidthMask = FORMAT_MESSAGE_MAX_WIDTH_MASK,
 	AllocateBuffer = FORMAT_MESSAGE_ALLOCATE_BUFFER,
@@ -59,4 +59,4 @@ namespace System
 #pragma pop_macro("FormatMessage")
 #endif
 }
-#endif
+#endif WINCOPIES_SYSTEM_H
