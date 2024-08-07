@@ -48,6 +48,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCopies.Collections.Tests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kernel", "Kernel", "{9935193F-5EBE-4D77-89F2-17E3B65774AA}"
 	ProjectSection(SolutionItems) = preProject
+		Source\Include\Kernel\Framework.h = Source\Include\Kernel\Framework.h
 		Source\Include\Kernel\Main.h = Source\Include\Kernel\Main.h
 	EndProjectSection
 EndProject
