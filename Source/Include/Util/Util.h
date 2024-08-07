@@ -16,6 +16,7 @@
 #include "Interface.h"
 
 using namespace WinCopies::Delegate;
+using namespace WinCopies::Typing;
 
 namespace WinCopies
 {
