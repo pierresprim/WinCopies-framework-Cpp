@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef WINCOPIES_UTIL_ENUM_OPERATORS_HXX
-#define WINCOPIES_UTIL_ENUM_OPERATORS_HXX
+#ifndef WINCOPIES_ENUM_OPERATORS_HXX
+#define WINCOPIES_ENUM_OPERATORS_HXX
 
-#include "../../Framework.h"
+#include "../Framework.h"
 
 #include "../Typing/EnableIf.hxx"
 
@@ -41,4 +41,4 @@
 	-> typename ENABLE_WHEN_ENUM(T1) \
 	{ return lhs = lhs operatorSymbol rhs; }
 
-#endif WINCOPIES_UTIL_ENUM_OPERATORS_HXX
+#endif WINCOPIES_ENUM_OPERATORS_HXX
