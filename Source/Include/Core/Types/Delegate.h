@@ -33,6 +33,11 @@ namespace WinCopies
 
 		CREATE_COMPARISON_DELEGATES()
 		CREATE_COMPARISON_DELEGATES(Equality)
+
+#define CREATE_DUAL_PREDICATE(prefix) TEMPLATE using prefix##DualPredicate = PredicateFunction2<T, prefix##ErrorCode>;
+		CREATE_DUAL_PREDICATE()
+		CREATE_DUAL_PREDICATE(System)
+#undef CREATE_DUAL_PREDICATE
 	}
 }
 #endif WINCOPIES_TYPES_DELEGATE_H

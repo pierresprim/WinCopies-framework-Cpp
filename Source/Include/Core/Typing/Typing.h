@@ -5,10 +5,7 @@
 
 #include "../../Kernel/Typing/Typing.h"
 
-#include "../Types/Delegate.h"
-
 using namespace ::std;
-using namespace ::WinCopies;
 
 namespace WinCopies
 {
@@ -16,12 +13,6 @@ namespace WinCopies
 	{
 		TEMPLATE using FreeableUniquePtr = unique_ptr<T, void (*)(void*)>;
 		TEMPLATE using UnderlyingType = underlying_type_t<T>;
-	}
-
-	namespace Delegate
-	{
-		TEMPLATE using DualPredicate = PredicateFunction2<T, ErrorCode>;
-		TEMPLATE using SystemDualPredicate = PredicateFunction2<T, SystemErrorCode>;
 	}
 }
 
