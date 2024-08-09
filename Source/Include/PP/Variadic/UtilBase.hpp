@@ -4,6 +4,7 @@
 #define WINCOPIES_VA_UTIL_BASE_HPP
 
 #include "../Loop/For.hpp"
+#include "../Loop/ForAll.hpp"
 #include "../Loop/ForEach.hpp"
 
 #define GET_ARGS_FROM(i, ...) SELECT(i, 1, SURROUND, , DISCARD, , __VA_ARGS__)
@@ -21,6 +22,9 @@
 #define _JOIN_RENDERED_ARGS(renderer, separator, first, ...) renderer(first)FOR_EACH(SURROUND_SPACED, separator, renderer, , __VA_ARGS__)
 #define JOIN_RENDERED_ARGS(renderer, separator, ...) _JOIN_RENDERED_ARGS(renderer, separator, __VA_ARGS__)
 #define JOIN_ARGS(separator, ...) JOIN_RENDERED_ARGS(SINGLE_ARG, separator, __VA_ARGS__)
+
+#define _ZIP_ARGS(_array, ...) ((FIRST_ARG _array, FIRST_ARG(__VA_ARGS__))), (ALL_BUT_FIRST_ARG _array)
+#define ZIP_ARGS(_array, ...) FOR_ALL(_ZIP_ARGS, _array, __VA_ARGS__)
 
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_ARGS(...) CONCATENATE_WITH(SURROUND, , , __VA_ARGS__)
