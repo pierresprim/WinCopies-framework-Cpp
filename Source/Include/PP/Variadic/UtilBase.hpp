@@ -25,14 +25,14 @@
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_ARGS(...) CONCATENATE_WITH(SURROUND, , , __VA_ARGS__)
 
-#define __RENDER_ARGS(prefix, renderer, suffix, first, ...) SURROUND_SPACED(prefix, first, suffix)FOR_EACH(TRANSCRIBE_ARGS_CS, prefix, renderer, suffix, __VA_ARGS__)
-#define _RENDER_ARGS(prefix, renderer, suffix, first, ...) __RENDER_ARGS(prefix, renderer, suffix, renderer(first), __VA_ARGS__)
+#define __RENDER_ARGS(concatenator, prefix, renderer, suffix, first, ...) SURROUND_SPACED(prefix, first, suffix)FOR_EACH(concatenator, prefix, renderer, suffix, __VA_ARGS__)
+#define _RENDER_ARGS(concatenator, prefix, renderer, suffix, first, ...) __RENDER_ARGS(concatenator, prefix, renderer, suffix, renderer(first), __VA_ARGS__)
 
-#define RENDER_ARGS(renderer, ...) _RENDER_ARGS(, renderer, , __VA_ARGS__)
+#define RENDER_ARGS(concatenator, renderer, ...) _RENDER_ARGS(concatenator, , renderer, , __VA_ARGS__)
 
-#define RENDER_PREFIXED(prefix, renderer, ...) _RENDER_ARGS(prefix, renderer, , __VA_ARGS__)
-#define RENDER_SURROUNDED(prefix, renderer, suffix, ...) _RENDER_ARGS(prefix, renderer, suffix, __VA_ARGS__)
-#define RENDER_SUFFIXED(suffix, renderer, ...) _RENDER_ARGS(, renderer, suffix, __VA_ARGS__)
+#define RENDER_PREFIXED(concatenator, prefix, renderer, ...) _RENDER_ARGS(concatenator, prefix, renderer, , __VA_ARGS__)
+#define RENDER_SURROUNDED(concatenator, prefix, renderer, suffix, ...) _RENDER_ARGS(concatenator, prefix, renderer, suffix, __VA_ARGS__)
+#define RENDER_SUFFIXED(concatenator, suffix, renderer, ...) _RENDER_ARGS(concatenator, , renderer, suffix, __VA_ARGS__)
 
 #define CONCATENATE_PREFIXED(prefix, ...) CONCATENATE_WITH(PREFIX, prefix, , __VA_ARGS__)
 #define CONCATENATE_SURROUNDED(prefix, suffix, ...) CONCATENATE_WITH(SURROUND, prefix, suffix, __VA_ARGS__)
