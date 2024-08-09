@@ -31,8 +31,8 @@
 #define INLINE_FIELD_SET(className, paramType, value) _INLINE_FIELD_SET(className, paramType, value, value)
 #define INLINE_FIELD_UPDATE(methodName, paramType, value) _INLINE_FIELD_UPDATE(methodName, paramType, value, value)
 
-#define IINLINE_FIELD_RETURN(returnType, methodName, field) INLINE_METHOD_RETURN(1, returnType, methodName, _##field)
-#define INLINE_FIELD_RETURN(returnType, methodName, field) IINLINE_FIELD_RETURN(returnType, Get##methodName, field)
+#define IINLINE_FIELD_RETURN(virtuality, returnType, methodName, field) INLINE_METHOD_RETURN(1, virtuality, returnType, methodName, _##field)
+#define INLINE_FIELD_RETURN(virtuality, returnType, methodName, field) IINLINE_FIELD_RETURN(virtuality, returnType, Get##methodName, field)
 
 #define INLINE_OBJECT_RETURN(returnType, methodName, params, ...) INLINE_METHOD_RETURN(returnType*, methodName, new returnType PAR_O __VA_ARGS__ PAR_C, params)
 
