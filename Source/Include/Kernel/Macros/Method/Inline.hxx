@@ -8,7 +8,9 @@
 #define _INLINE_METHOD_ACTION(isInline, isConst, returnType, methodName, action, ...) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) { action; }
 
 #define INLINE_METHOD_ACTION(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(1, isConst, void, methodName, action, __VA_ARGS__)
-#define INLINE_CONSTRUCTOR(isConst, _namespace, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, , VA_OPT(_namespace::, _namespace)methodName::methodName, action, __VA_ARGS__)
+#define _INLINE_C_DTOR(isConst, _namespace, className, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, , VA_OPT(_namespace::, _namespace)className::methodName, action, __VA_ARGS__)
+#define INLINE_CONSTRUCTOR(isConst, _namespace, className, action, ...) _INLINE_C_DTOR(isConst, _namespace, className, className, action, __VA_ARGS__)
+#define INLINE_DESTRUCTOR(_namespace, className, action) _INLINE_C_DTOR(0, _namespace, className, ~className, action)
 #define INLINE_METHOD_RETURN(isConst, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, returnType, methodName, return value, __VA_ARGS__)
 
 #define _INLINE_FIELD_SET(className, paramType, field, value) className(paramType value) { _##field = value; }
