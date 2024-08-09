@@ -3,6 +3,8 @@
 #ifndef WINCOPIES_MACROS_METHOD_ABSTRACT_HXX
 #define WINCOPIES_MACROS_METHOD_ABSTRACT_HXX
 
+#include "../../../Libraries.h"
+
 #include "AbstractBase.hxx"
 #include "Base.hxx"
 
