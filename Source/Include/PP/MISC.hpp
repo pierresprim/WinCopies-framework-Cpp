@@ -41,8 +41,8 @@
 
 #define ARGS_TRANSCRIPTION(value, ...) value __VA_ARGS__
 
-#define TRANSCRIBE_ARGS_CS(prefix, value, ...) COMMA SURROUND_SPACED(prefix, value, __VA_ARGS__)
-#define TRANSCRIBE_ARGS_CE(prefix, value, ...) SURROUND_SPACED(prefix, value, __VA_ARGS__) COMMA
+#define TRANSCRIBE_ARGS_CS(prefix, value, ...) COMMA prefix value __VA_ARGS__
+#define TRANSCRIBE_ARGS_CE(prefix, value, ...) prefix value __VA_ARGS__ COMMA
 
 #define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
 #endif WINCOPIES_MISC_HPP
