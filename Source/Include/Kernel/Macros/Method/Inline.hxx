@@ -5,13 +5,19 @@
 
 #include "../../../PP/Variadic/Variadic.hpp"
 
-#define _INLINE_METHOD_ACTION(isInline, isConst, returnType, methodName, action, ...) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) { action; }
+#define _INLINE_METHOD_ACTION_ABSTRACT(action) IF_VA_ARGS(; static_assert(true, L"Abstract method can not be implemented."), , action);
+#define _INLINE_METHOD_ACTION_IMPLEMENTATION(action) { action; }
 
-#define INLINE_METHOD_ACTION(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(1, isConst, void, methodName, action, __VA_ARGS__)
-#define _INLINE_C_DTOR(isConst, _namespace, className, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, , VA_OPT(_namespace::, _namespace)className::methodName, action, __VA_ARGS__)
-#define INLINE_CONSTRUCTOR(isConst, _namespace, className, action, ...) _INLINE_C_DTOR(isConst, _namespace, className, className, action, __VA_ARGS__)
-#define INLINE_DESTRUCTOR(_namespace, className, action) _INLINE_C_DTOR(0, _namespace, className, ~className, action)
-#define INLINE_METHOD_RETURN(isConst, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, returnType, methodName, return value, __VA_ARGS__)
+#define __INLINE_METHOD_ACTION(macro, action) CONCATENATE(_INLINE_METHOD_ACTION, macro)(action)
+#define _INLINE_METHOD_ACTION(isInline, isConst, virtuality, returnType, methodName, action, ...) IF_GREATER(virtuality, 0, virtual) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) METHOD_VIRTUALITY(virtuality) __INLINE_METHOD_ACTION(EQUALS(virtuality, METHOD_VIRTUALITY_ABSTRACT, _ABSTRACT, _IMPLEMENTATION), action)
+
+#define INLINE_METHOD_ACTION(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(1, isConst, 0, void, methodName, action, __VA_ARGS__)
+#define _INLINE_C_DTOR(isConst, virtuality, _namespace, className, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, virtuality, , VA_OPT(_namespace::, _namespace)IF_VA_ARGS(className::, , className)methodName, action, __VA_ARGS__)
+
+#define INLINE_CONSTRUCTOR(isConst, _namespace, className, action, ...) _INLINE_C_DTOR(isConst, 0, _namespace, className, className, action, __VA_ARGS__)
+#define INLINE_DESTRUCTOR(virtuality, _namespace, className, action) _INLINE_C_DTOR(0, virtuality, _namespace, className, ~className, action)
+
+#define INLINE_METHOD_RETURN(isConst, virtuality, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, virtuality, returnType, methodName, return value, __VA_ARGS__)
 
 #define _INLINE_FIELD_SET(className, paramType, field, value) className(paramType value) { _##field = value; }
 #define _INLINE_FIELD_UPDATE(methodName, paramType, field, value) _INLINE_FIELD_SET(void methodName, paramType, field, value)
