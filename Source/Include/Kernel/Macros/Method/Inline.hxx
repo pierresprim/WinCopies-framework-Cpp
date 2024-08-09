@@ -22,7 +22,10 @@
 
 #define INLINE_METHOD_RETURN(isConst, virtuality, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, virtuality, returnType, methodName, return value, __VA_ARGS__)
 
-#define _INLINE_FIELD_SET(className, paramType, field, value) className(paramType value) { _##field = value; }
+#define FIELD_SET(field, value) _##field = value;
+#define FIELD_UPDATE(value) FIELD_SET(value, value)
+
+#define _INLINE_FIELD_SET(className, paramType, field, value) className(paramType value) { FIELD_SET(field, value) }
 #define _INLINE_FIELD_UPDATE(methodName, paramType, field, value) _INLINE_FIELD_SET(void methodName, paramType, field, value)
 
 #define INLINE_FIELD_SET(className, paramType, value) _INLINE_FIELD_SET(className, paramType, value, value)
