@@ -20,6 +20,8 @@ namespace WinCopies
 #include "Types/Delegates/Delegates.hxx"
 #include "Types/Delegates/Defines.hxx"
 #include "Macros/Method/Method.h"
+#include "Macros/Method/Implementation.hxx"
+#include "Reflection/Reflection.h"
 #include "Macros/Misc.hxx"
 
 #endif WINCOPIES_KERNEL_FRAMEWORK_H
