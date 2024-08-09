@@ -5,8 +5,6 @@
 
 #include "../Core/Types/Delegate.h"
 
-#include "UtilBase.h"
-
 namespace WinCopies
 {
 	namespace Delegate
