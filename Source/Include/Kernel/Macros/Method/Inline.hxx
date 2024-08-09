@@ -6,6 +6,8 @@
 #include "../../../PP/Variadic/Variadic.hpp"
 #include "../../../PP/Variadic/UtilBase.hpp"
 
+#include "../../Reflection/Reflection.h"
+
 #define _INLINE_METHOD_ACTION_ABSTRACT(action) IF_VA_ARGS(; static_assert(true, L"Abstract method can not be implemented."), , action);
 #define _INLINE_METHOD_ACTION_IMPLEMENTATION(action) { action; }
 
