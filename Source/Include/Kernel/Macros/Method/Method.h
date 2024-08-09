@@ -6,4 +6,6 @@
 #include "Templates.h"
 #include "Abstract.hxx"
 
+#include "MethodBase.hxx"
+
 #endif WINCOPIES_MACROS_METHOD_H
