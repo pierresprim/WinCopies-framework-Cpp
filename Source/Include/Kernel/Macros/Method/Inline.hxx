@@ -4,6 +4,7 @@
 #define WINCOPIES_MACROS_METHOD_INLINE_HXX
 
 #include "../../../PP/Variadic/Variadic.hpp"
+#include "../../../PP/Variadic/UtilBase.hpp"
 
 #define _INLINE_METHOD_ACTION_ABSTRACT(action) IF_VA_ARGS(; static_assert(true, L"Abstract method can not be implemented."), , action);
 #define _INLINE_METHOD_ACTION_IMPLEMENTATION(action) { action; }
@@ -41,5 +42,7 @@
 #define RETURN_BRANCH(condition, ifTrue, valueIfTrue, ifFalse, valueIfFalse) _GENERIC_BRANCH(0, condition, ifTrue; return valueIfTrue, ifFalse; return valueIfFalse)
 
 #define GET_FIELD_IF_ELSE(returnType, methodName, paramType, paramName, condition, valueIfTrue, ifFalse, valueIfFalse) returnType methodName(paramType* paramName) { RETURN_BRANCH(condition, *##paramName = _##paramName, valueIfTrue, *##paramName = ifFalse, valueIfFalse) }
+
+#define FIELDS_INITIALIZER(name, ...) name(PREFIX_ARGS(ARGS_TRANSCRIPTION, __VA_ARGS__)) { RENDER_ARGS(SURROUND_SPACED, FIELD_UPDATE, PREFIX_ARGS(SECOND_ARG, __VA_ARGS__)) }
 
 #endif WINCOPIES_MACROS_METHOD_INLINE_HXX
