@@ -3,7 +3,7 @@
 #ifndef WINCOPIES_META_FOR_ALL_HPP
 #define WINCOPIES_META_FOR_ALL_HPP
 
-#include "../Conditional/If.hpp"
+#include "../../Conditional/If.hpp"
 
 #define _FOR_ALL1(macro, ...) CONCATENATE(FOR_ALL, 1)(macro, __VA_ARGS__)
 #define _FOR_ALL2(macro, ...) CONCATENATE(FOR_ALL, 2)(macro, __VA_ARGS__)
