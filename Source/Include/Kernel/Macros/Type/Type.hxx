@@ -49,6 +49,9 @@
 
 #define ENUM_HEADER(name, type) ENUM name : type
 
+#define INTERFACE_DESTRUCTORS(...) FOR_EACH(SURROUND_SPACED, TEMPLATE, ABSTRACT_DESTRUCTOR, , __VA_ARGS__)
+#define TEMPLATE_DESTRUCTORS(...) INTERFACE_DESTRUCTORS(SUFFIX_ARGS(<T>, __VA_ARGS__))
+
 #include "Templates/Enum.hxx"
 #include "Templates/Struct.hxx"
 #include "Templates/Interface.hxx"
