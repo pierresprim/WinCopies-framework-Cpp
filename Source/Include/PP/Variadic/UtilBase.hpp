@@ -38,6 +38,12 @@
 #define RRENDER_SURROUNDED(concatenator, prefix, renderer, suffix, ...) _RENDER_ARGS(concatenator, prefix, renderer, suffix, __VA_ARGS__)
 #define RRENDER_SUFFIXED(concatenator, suffix, renderer, ...) _RENDER_ARGS(concatenator, , renderer, suffix, __VA_ARGS__)
 
+#define RENDER_ARGS(renderer, ...) RRENDER_ARGS(TRANSCRIBE_ARGS_CS, renderer, __VA_ARGS__)
+
+#define RENDER_PREFIXED(prefix, renderer, ...) RRENDER_PREFIXED(SURROUND_SPACED, prefix, renderer, __VA_ARGS__)
+#define RENDER_SURROUNDED(prefix, renderer, suffix, ...) RRENDER_SURROUNDED(SURROUND_SPACED, prefix, renderer, suffix, __VA_ARGS__)
+#define RENDER_SUFFIXED(suffix, renderer, ...) RRENDER_SUFFIXED(SURROUND_SPACED, suffix, renderer, __VA_ARGS__)
+
 #define CONCATENATE_PREFIXED(prefix, ...) CONCATENATE_WITH(PREFIX, prefix, , __VA_ARGS__)
 #define CONCATENATE_SURROUNDED(prefix, suffix, ...) CONCATENATE_WITH(SURROUND, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_SUFFIXED(suffix, ...) CONCATENATE_WITH(SUFFIX, , suffix, __VA_ARGS__)
