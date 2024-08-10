@@ -5,7 +5,7 @@
 
 using namespace WinCopies;
 
-#define CREATE_CHECK_FUNCTIONS(name, _operator) INLINE_METHOD_RETURN(0, bool, WinCopies::Check##name, value _operator ErrorCode::Success, ErrorCode value)
+#define CREATE_CHECK_FUNCTIONS(name, _operator) INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, bool, WinCopies::Check##name, value _operator ErrorCode::Success, ErrorCode value)
 
 CREATE_CHECK_FUNCTIONS(Success, >=)
 CREATE_CHECK_FUNCTIONS(Fail, <)
