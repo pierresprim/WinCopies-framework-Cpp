@@ -14,6 +14,7 @@
 #include "../Core/Typing/Typing.h"
 
 #include "Delegate.h"
+#include "UtilBase.h"
 
 using namespace WinCopies::Delegate;
 
@@ -44,6 +45,15 @@ namespace WinCopies
 			return AsFromType(result, &ptr, func);
 		}
 #undef WINCOPIES_AS_FROM_TYPE_HEADER
+
+		TEMPLATE inline ErrorCodePredicate<T> AsErrorCodePredicate(shared_ptr<PredicateFunction<T>> predicate, ErrorCode errorValue = ErrorCode::UnknownException)
+		{
+			return [predicate, errorValue](T value) { return predicate(value) ? ErrorCode::Success : errorValue; };
+		}
+		TEMPLATE inline PredicateFunction<T> AsPredicate(shared_ptr<ErrorCodePredicate<T>> predicate)
+		{
+			return [predicate](T value) { return CheckSuccess(predicate(value)); };
+		}
 	}
 }
 #endif WINCOPIES_UTIL_TYPING_H
