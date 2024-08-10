@@ -8,13 +8,14 @@
 
 #include "../../Reflection/Reflection.h"
 
-#define _INLINE_METHOD_ACTION_ABSTRACT(action) IF_VA_ARGS(; static_assert(true, L"Abstract method can not be implemented."), , action);
+#define _INLINE_METHOD_ACTION_ABSTRACT(action) IF_VA_ARGS(; static_assert(false, L"Abstract method can not be implemented."), , action);
 #define _INLINE_METHOD_ACTION_IMPLEMENTATION(action) { action; }
 
 #define __INLINE_METHOD_ACTION(macro, action) CONCATENATE(_INLINE_METHOD_ACTION, macro)(action)
 #define _INLINE_METHOD_ACTION(isInline, isConst, virtuality, returnType, methodName, action, ...) IF_GREATER(virtuality, 0, virtual) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) METHOD_VIRTUALITY(virtuality) __INLINE_METHOD_ACTION(EQUALS(virtuality, METHOD_VIRTUALITY_ABSTRACT, _ABSTRACT, _IMPLEMENTATION), action)
 
 #define INLINE_METHOD_ACTION(isConst, methodName, action, ...) _INLINE_METHOD_ACTION(1, isConst, 0, void, methodName, action, __VA_ARGS__)
+
 #define _INLINE_C_DTOR(isConst, virtuality, _namespace, className, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, virtuality, , VA_OPT(_namespace::, _namespace)IF_VA_ARGS(className::, , className)methodName, action, __VA_ARGS__)
 
 #define INLINE_CONSTRUCTOR(isConst, _namespace, className, action, ...) _INLINE_C_DTOR(isConst, 0, _namespace, className, className, action, __VA_ARGS__)
