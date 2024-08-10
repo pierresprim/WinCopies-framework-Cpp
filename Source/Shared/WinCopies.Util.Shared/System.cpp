@@ -41,13 +41,13 @@ namespace System
 		{
 			return x == y ? (GetLastError() == systemErrorCode ? Bool::True : Bool::False) : Bool::None;
 		}
-		INLINE_METHOD_RETURN(0, bool, CheckMessage2, CheckMessage(x, y, systemErrorCode) == Bool::True, const ErrorCode& x, const ErrorCode& y, const SystemErrorCode& systemErrorCode)
+		INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, bool, CheckMessage2, CheckMessage(x, y, systemErrorCode) == Bool::True, const ErrorCode& x, const ErrorCode& y, const SystemErrorCode& systemErrorCode)
 
-		INLINE_METHOD_RETURN(0, Bool, CheckNotification, CheckMessage(ErrorCode::SystemNotification, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
-		INLINE_METHOD_RETURN(0, Bool, CheckError, CheckMessage(ErrorCode::SystemException, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
+		INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, Bool, CheckNotification, CheckMessage(ErrorCode::SystemNotification, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
+		INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, Bool, CheckError, CheckMessage(ErrorCode::SystemException, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
 			
-		INLINE_METHOD_RETURN(0, bool, CheckNotification2, CheckMessage2(ErrorCode::SystemNotification, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
-		INLINE_METHOD_RETURN(0, bool, CheckError2, CheckMessage2(ErrorCode::SystemException, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
+		INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, bool, CheckNotification2, CheckMessage2(ErrorCode::SystemNotification, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
+		INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, bool, CheckError2, CheckMessage2(ErrorCode::SystemException, errorCode, systemErrorCode), const ErrorCode& errorCode, const SystemErrorCode& systemErrorCode)
 #ifdef _WIN32
 #pragma push_macro("FormatMessage")
 #undef FormatMessage
