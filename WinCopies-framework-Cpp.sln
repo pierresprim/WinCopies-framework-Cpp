@@ -69,8 +69,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Method", "Method", "{AA4541
 		Source\Include\Kernel\Macros\Method\Abstract.hxx = Source\Include\Kernel\Macros\Method\Abstract.hxx
 		Source\Include\Kernel\Macros\Method\AbstractBase.hxx = Source\Include\Kernel\Macros\Method\AbstractBase.hxx
 		Source\Include\Kernel\Macros\Method\Base.hxx = Source\Include\Kernel\Macros\Method\Base.hxx
+		Source\Include\Kernel\Macros\Method\Implementation.hxx = Source\Include\Kernel\Macros\Method\Implementation.hxx
 		Source\Include\Kernel\Macros\Method\Inline.hxx = Source\Include\Kernel\Macros\Method\Inline.hxx
 		Source\Include\Kernel\Macros\Method\Method.h = Source\Include\Kernel\Macros\Method\Method.h
+		Source\Include\Kernel\Macros\Method\MethodBase.hxx = Source\Include\Kernel\Macros\Method\MethodBase.hxx
 		Source\Include\Kernel\Macros\Method\Property.hxx = Source\Include\Kernel\Macros\Method\Property.hxx
 		Source\Include\Kernel\Macros\Method\Templates.h = Source\Include\Kernel\Macros\Method\Templates.h
 	EndProjectSection
@@ -121,6 +123,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{4220B618-D1C3-45C5-9EB1-1F26ABECF20A}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\PP\Loop\For.hpp = Source\Include\PP\Loop\For.hpp
+		Source\Include\PP\Loop\ForAll.hpp = Source\Include\PP\Loop\ForAll.hpp
 		Source\Include\PP\Loop\ForEach.hpp = Source\Include\PP\Loop\ForEach.hpp
 		Source\Include\PP\Loop\Loop.hpp = Source\Include\PP\Loop\Loop.hpp
 		Source\Include\PP\Loop\Repeat.hpp = Source\Include\PP\Loop\Repeat.hpp
@@ -168,7 +171,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enumeration", "Enumeration"
 		Source\Include\Collections\Enumeration\EnumeratorBase.h = Source\Include\Collections\Enumeration\EnumeratorBase.h
 		Source\Include\Collections\Enumeration\IEnumerable.h = Source\Include\Collections\Enumeration\IEnumerable.h
 		Source\Include\Collections\Enumeration\IEnumerator.h = Source\Include\Collections\Enumeration\IEnumerator.h
-		Source\Include\Collections\Enumeration\Util.h = Source\Include\Collections\Enumeration\Util.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinkedList", "LinkedList", "{14997D21-DA87-44E5-BD17-78D324D0B2E0}"
@@ -190,6 +192,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{3FD98BC3-FD77-43DF-AAF7-3732C577F82F}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\PP\Loop\Include\FOR.hpp = Source\Include\PP\Loop\Include\FOR.hpp
+		Source\Include\PP\Loop\Include\FOR_ALL.hpp = Source\Include\PP\Loop\Include\FOR_ALL.hpp
 		Source\Include\PP\Loop\Include\WHILE.hpp = Source\Include\PP\Loop\Include\WHILE.hpp
 	EndProjectSection
 EndProject
@@ -230,6 +233,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{A8AFE334-F
 		Source\Include\Core\Enum\Comparison.h = Source\Include\Core\Enum\Comparison.h
 		Source\Include\Core\Enum\Flags.h = Source\Include\Core\Enum\Flags.h
 		Source\Include\Core\Enum\Operators.h = Source\Include\Core\Enum\Operators.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reflection", "Reflection", "{F7C8F79B-415D-4D0D-9127-43F3EA847822}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Include\Kernel\Reflection\Enums.h = Source\Include\Kernel\Reflection\Enums.h
+		Source\Include\Kernel\Reflection\Macros.h = Source\Include\Kernel\Reflection\Macros.h
+		Source\Include\Kernel\Reflection\Reflection.h = Source\Include\Kernel\Reflection\Reflection.h
 	EndProjectSection
 EndProject
 Global
@@ -302,6 +312,9 @@ Global
 		{08FE520B-0138-405E-8688-548FD51245AB} = {488FA285-20C8-4E66-B302-85577033768C}
 		{52C7F91C-124C-4955-B7A0-3FD948B8C526} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
 		{A8AFE334-F90A-4576-9052-87349E1C0F91} = {488FA285-20C8-4E66-B302-85577033768C}
+		{AF4DB5DE-0FD3-4520-AB89-0289B2C50E15} = {CAE43DBB-BBD8-48A3-810D-870B988FCCA6}
+		{84B016B0-8D1E-4382-BB6D-5DAB4FF69190} = {AF4DB5DE-0FD3-4520-AB89-0289B2C50E15}
+		{F7C8F79B-415D-4D0D-9127-43F3EA847822} = {9935193F-5EBE-4D77-89F2-17E3B65774AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8BA2E0-AE4A-47E2-AA3D-0344C4BF2A64}
