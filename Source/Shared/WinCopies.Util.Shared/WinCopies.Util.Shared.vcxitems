@@ -25,8 +25,6 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegate.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegates.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\ErrorCode.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\SystemErrorCode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Exception.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Interface.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Math.h" />

@@ -7,9 +7,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{9b7ca014-1523-4759-acee-a08f2a591faf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enums">
-      <UniqueIdentifier>{ae1a2449-6054-42a0-ae7a-7302a8077ad7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h">
@@ -29,12 +26,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\System.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\ErrorCode.h">
-      <Filter>Header Files\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Enums\SystemErrorCode.h">
-      <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\Include\Util\Delegates.h">
       <Filter>Header Files</Filter>
