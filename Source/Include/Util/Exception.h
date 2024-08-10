@@ -22,7 +22,7 @@ namespace WinCopies
 			_errorCode = errorCode;
 		}
 
-		INLINE_FIELD_RETURN(T, ErrorCode, errorCode)
+		INLINE_FIELD_RETURN(VIRTUALITY_NONE, T, ErrorCode, errorCode)
 	};
 
 	CLASS Exception : public ExceptionBase<ErrorCode>
