@@ -93,4 +93,17 @@
 #define TRANSCRIBE_REPEATED_ARG(count, value) FFOR_EACH_C(count, SURROUND_SPACED, , , REPEAT_ARG(count, value))
 #define TRANSCRIBE_REPEATED_FOR_EACH(value, ...) TRANSCRIBE_REPEATED_ARG(COUNT_ARGS(__VA_ARGS__), value)
 
+#define PREFIX_VA_ARGS(prefix, ...) IF_TRUE(VA_ARGS_FILLED(__VA_ARGS__), prefix __VA_ARGS__)
+#define SURROUND_VA_ARGS(prefix, suffix, ...) IF_TRUE(VA_ARGS_FILLED(__VA_ARGS__), prefix __VA_ARGS__ suffix)
+#define SUFFIX_VA_ARGS(suffix, ...) IF_TRUE(VA_ARGS_FILLED(__VA_ARGS__), __VA_ARGS__ suffix)
+
+#define EXPAND_PREFIXED(prefix, _array) PREFIX_VA_ARGS(prefix, EXPAND(_array))
+#define EXPAND_SURROUNDED(prefix, suffix, _array) SURROUND_VA_ARGS(prefix, suffix, EXPAND(_array))
+#define EXPAND_SUFFIXED(suffix, _array) SUFFIX_VA_ARGS(suffix, EXPAND(_array))
+
+#define TRANSCRIBE_ARG_PAIRS(...) PREFIX_ARGS(ARGS_TRANSCRIPTION, __VA_ARGS__)
+
+#define GET_ARG_PAIRS_KEY(...) PREFIX_ARGS(FIRST_ARG, __VA_ARGS__)
+#define GET_ARG_PAIRS_VALUE(...) PREFIX_ARGS(SECOND_ARG, __VA_ARGS__)
+
 #endif WINCOPIES_VA_UTIL_BASE_HPP
