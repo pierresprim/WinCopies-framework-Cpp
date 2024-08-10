@@ -6,6 +6,7 @@
 #include "../../../Environment.h"
 
 #include "../Method/AbstractBase.hxx"
+#include "../Method/Inline.hxx"
 
 #define CONST_EXPR DLLEXPORT constexpr
 
@@ -36,5 +37,9 @@
 
 #define CLASS class DLLEXPORT
 #define INTERFACE_TYPE(name) CLASS name ABSTRACT
+
+#define __TYPE_INITIALIZATION(name, baseTypeName, base, ...) FFIELDS_INITIALIZER(name, (), (), (baseTypeName, EXPAND(base)), __VA_ARGS__)
+#define _TYPE_INITIALIZATION(name, baseTypeName, ...) __TYPE_INITIALIZATION(name, baseTypeName, FIRST_ARG(__VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
+#define TYPE_INITIALIZATION(name, baseTypeName, ptrType, _namespace, genericTypeArgument, _array, ...) _TYPE_INITIALIZATION(name, baseTypeName, MMAKE_PARAMETERS(ptrType, _namespace, genericTypeArgument, _array, __VA_ARGS__))
 
 #endif WINCOPIES_MACROS_TYPE_BASE_HXX
