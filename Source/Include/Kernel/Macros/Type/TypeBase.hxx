@@ -8,6 +8,7 @@
 #include "../Method/AbstractBase.hxx"
 #include "../Method/Inline.hxx"
 #include "../Method/MethodBase.hxx"
+#include "../Template.hxx"
 
 #define CONST_EXPR DLLEXPORT constexpr
 
@@ -23,7 +24,11 @@
 #define _INTERFACE_DESTRUCTOR(name, _override, ...) public: DEFAULT_DESTRUCTOR(name, IF(_override, override) = 0, __VA_ARGS__)
 #define INTERFACE_DESTRUCTOR(name, ...) _INTERFACE_DESTRUCTOR(name, 1, __VA_ARGS__)
 
-#define ABSTRACT_DESTRUCTOR(name, ...) ABSTRACT_METHOD_IMPLEMENTATION(0, name, ~name, __VA_ARGS__)
+#define _ABSTRACT_DESTRUCTOR(isTemplate, name, ...) ABSTRACT_METHOD_IMPLEMENTATION(0, name IF(isTemplate, <T>), ~name, __VA_ARGS__)
+
+#define ABSTRACT_DESTRUCTOR(name, ...) _ABSTRACT_DESTRUCTOR(0, name, __VA_ARGS__)
+#define ABSTRACT_TEMPLATE_DESTRUCTOR(name, ...) _ABSTRACT_DESTRUCTOR(1, name, __VA_ARGS__)
+#define ABSTRACT_SELECTOR_DESTRUCTOR(name, ...) ABSTRACT_TEMPLATE_METHOD_IMPLEMENTATION(0, (SELECTOR_TEMPLATE_ARGS), name, ~name, __VA_ARGS__)
 
 #define INTERFACE_C_D_TOR(name, ...) INTERFACE_CONSTRUCTOR(name) INTERFACE_DESTRUCTOR(name, __VA_ARGS__)
 
