@@ -15,6 +15,12 @@
 #define IF_ZERO IF_NOT
 #define IF_ONE(value, ifTrue, ...) IF_B(IS_ONE(value), ifTrue, __VA_ARGS__)
 
+#define CALL_IF_B(condition, macro) IF_B(condition, macro, DISCARD)
+#define CALL_IF(condition, macro) CALL_IF_B(PP_BOOL(condition), macro)
+
+#define CALL_WHEN_B(condition, macro, ...) CALL_IF_B(condition, macro)(__VA_ARGS__)
+#define CALL_WHEN(condition, macro, ...) CALL_WHEN_B(PP_BOOL(condition), macro, __VA_ARGS__)
+
 #define IF_VALUES(_operator, x, y) SURROUND(_operator, x, y)
 
 #define AND_B(x, y) IF_VALUES(AND, x, y)
