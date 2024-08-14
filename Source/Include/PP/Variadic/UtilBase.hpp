@@ -7,12 +7,25 @@
 #include "../Loop/ForAll.hpp"
 #include "../Loop/ForEach.hpp"
 
+#if !HAS_VA_OPT
+#include "Variadic.hpp"
+#endif
+
+#define _PP_PARSE_ARRAY_CONCATENATOR(macro, _array, ...) (macro _array)
+#define PP_PARSE_ARRAY(macro, ...) FOR_EACH_C(_PP_PARSE_ARRAY_CONCATENATOR, macro, , __VA_ARGS__)
+
+#define _PP_PPARSE_ARRAY_CONCATENATOR(macro, _array, params) (macro(EXPAND(params), EXPAND(_array)))
+#define PP_PPARSE_ARRAY(macro, params, ...) FOR_EACH_C(_PP_PPARSE_ARRAY_CONCATENATOR, macro, params, __VA_ARGS__)
+
+#define CALL_IF_VA_ARGS(macro, ...) CALL_IF(VA_ARGS_FILLED(__VA_ARGS__), macro)
+#define CALL_WHEN_VA_ARGS(macro, ...) CALL_WHEN(VA_ARGS_FILLED(__VA_ARGS__), macro, __VA_ARGS__)
+
 #define GET_ARGS_FROM(i, ...) SELECT(i, 1, SURROUND, , DISCARD, , __VA_ARGS__)
 #define _GET_ARGS_FROM(i, ...) GET_ARGS_FROM(i, __VA_ARGS__)
 
 #define ___GET_ARGS(length, ...) FIRST_ARG(__VA_ARGS__) SELECT(DECREMENT(length), 0, TRANSCRIBE_ARGS_CS, , SINGLE_ARG, , ALL_BUT_FIRST_ARG(__VA_ARGS__))
 #define __GET_ARGS(start, length, ...) ___GET_ARGS(length, _GET_ARGS_FROM(start, __VA_ARGS__))
-#define _GET_ARGS(start, length, count, ...) IF(count, __GET_ARGS, DISCARD)(start, length, __VA_ARGS__)
+#define _GET_ARGS(start, length, count, ...) CALL_IF(count, __GET_ARGS)(start, length, __VA_ARGS__)
 #define GET_ARGS(start, length, ...) _GET_ARGS(start, length, COUNT_ARGS(__VA_ARGS__), __VA_ARGS__)
 
 #define GET_ARG(i, ...) GET_ARGS(i, 1, __VA_ARGS__)
