@@ -7,11 +7,11 @@
 
 #include "../Variadic/CountArgs.hpp"
 
-#define __FOR_EACH(concatenator, prefix, value, suffix) concatenator(prefix, value, suffix)
-#define _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) __FOR_EACH(concatenator, prefix, CALL_VA_MACRO(macro, SINGLE_ARG(IF(NOT(bi), , bi COMMA) value)), suffix)
+#define __FOR_EACH(concatenator, prefix, value, suffix) concatenator(prefix, SINGLE_ARG(value), suffix)
+#define _FOR_EACH(bi, concatenator, prefix, macro, suffix, value) __FOR_EACH(concatenator, prefix, CALL_VA_MACRO(macro, SINGLE_ARG(IF_TRUE(bi, bi COMMA) value)), suffix)
 #define _FOR_EACH_INCREMENTATION(bi) IF(bi, INCREMENT(bi), 0)
 
-#define FOR_EACH0(bi, printExtra, concatenator, prefix, macro, suffix, ...) IF_B(printExtra, SINGLE_ARG, DISCARD)(__VA_ARGS__)
+#define FOR_EACH0(bi, printExtra, concatenator, prefix, macro, suffix, ...) CALL_IF_B(printExtra, SINGLE_ARG)(__VA_ARGS__)
 #define FOR_EACH1(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value)CONCATENATE(FOR_EACH, 0)(bi, printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define FOR_EACH2(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value)CONCATENATE(FOR_EACH, 1)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define FOR_EACH3(bi, printExtra, concatenator, prefix, macro, suffix, value, ...) _FOR_EACH(bi, concatenator, prefix, macro, suffix, value)CONCATENATE(FOR_EACH, 2)(_FOR_EACH_INCREMENTATION(bi), printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
