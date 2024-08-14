@@ -11,6 +11,9 @@ namespace WinCopies
 	{
 		typedef void(*ActionVoid)();
 		typedef std::function<void()> ActionFunctionVoid;
+		
+		typedef Function<bool> BoolFunc;
+		typedef FunctionFunction<bool> BoolFunction;
 	}
 }
 #endif WINCOPIES_DELEGATE_H
