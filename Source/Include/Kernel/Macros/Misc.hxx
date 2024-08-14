@@ -22,7 +22,9 @@
 
 #define MAKE_SHARED(type, ...) ::std::make_shared<type>(__VA_ARGS__)
 
-#define SHARED_PTR(type, name, ptr) ::WinCopies::Typing::Shared<type> name(ptr)
+#define SHARED_PTR_TYPE(type) ::WinCopies::Typing::Shared<type>
+
+#define SHARED_PTR(type, name, ptr) SHARED_PTR_TYPE(type) name(ptr)
 #define MAKE_SHARED_PTR(type, name, ...) SHARED_PTR(type, name, MAKE_SHARED(type, __VA_ARGS__))
 
 #define HAS_ITEMS GetCount() != 0;
