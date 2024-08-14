@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{8E2E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{F98DDBCD-F5C2-470A-8EC3-341D1FD229C3}"
 	ProjectSection(SolutionItems) = preProject
+		Source\Include\Util\Delegate.h = Source\Include\Util\Delegate.h
 		Source\Include\Util\Delegates.h = Source\Include\Util\Delegates.h
 		Source\Include\Util\Exception.h = Source\Include\Util\Exception.h
 		Source\Include\Util\Interface.h = Source\Include\Util\Interface.h
@@ -81,6 +82,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Type", "Type", "{FD892CCF-A
 	ProjectSection(SolutionItems) = preProject
 		Source\Include\Kernel\Macros\Type\Type.hxx = Source\Include\Kernel\Macros\Type\Type.hxx
 		Source\Include\Kernel\Macros\Type\TypeBase.hxx = Source\Include\Kernel\Macros\Type\TypeBase.hxx
+		Source\Include\Kernel\Macros\Type\TypeBase.inc.hxx = Source\Include\Kernel\Macros\Type\TypeBase.inc.hxx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{4FAA7D93-045F-4B8E-A301-E0C23FE1B089}"
