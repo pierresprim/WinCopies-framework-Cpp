@@ -5,6 +5,8 @@
 
 #include "../../Libraries.h"
 
+#include "../../Kernel/Macros/Template.hxx"
+
 using namespace std;
 
 namespace WinCopies
