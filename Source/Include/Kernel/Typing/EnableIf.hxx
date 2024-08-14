@@ -11,7 +11,7 @@
 #define ____ENABLE_IF(...) , EXTRACT_AND_CALL(__VA_ARGS__)
 #define ___ENABLE_IF(n, types) VA_ARGS_OR_IF_EMPTY(T##n, EXPAND(types))
 #define __ENABLE_IF(valuePrefix, n, prefix, suffix, ...) FOR_EACH_C(SURROUND, && ::valuePrefix::prefix, suffix<T##n>, __VA_ARGS__)
-#define _ENABLE_IF(prefix, value, n, type, extra, types, ...) SURROUND(::WinCopies::Typing::Enable, type, If)<::prefix::value<___ENABLE_IF(n, types)> SINGLE_ARG(IF_VA_ARGS(__ENABLE_IF, DISCARD, __VA_ARGS__)(prefix, n, __VA_ARGS__)) IF_VA_ARGS(____ENABLE_IF, DISCARD, EXPAND(extra))extra>
+#define _ENABLE_IF(prefix, value, n, type, extra, types, ...) SURROUND(::WinCopies::Typing::Enable, type, If)<::prefix::value<___ENABLE_IF(n, types)> SINGLE_ARG(CALL_IF_VA_ARGS(__ENABLE_IF, __VA_ARGS__)(prefix, n, __VA_ARGS__)) CALL_IF_VA_ARGS(____ENABLE_IF, EXPAND(extra))extra>
 
 
 
