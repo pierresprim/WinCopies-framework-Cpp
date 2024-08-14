@@ -3,15 +3,17 @@
 #ifndef WINCOPIES_TYPING_TYPING_H
 #define WINCOPIES_TYPING_TYPING_H
 
-#include "../../Kernel/Typing/Typing.h"
+#include "../../Libraries.h"
 
-using namespace ::std;
+using namespace std;
 
 namespace WinCopies
 {
 	namespace Typing
 	{
-		TEMPLATE using FreeableUniquePtr = unique_ptr<T, void (*)(void*)>;
+		TEMPLATE using FreeableUnique = unique_ptr<T, void (*)(void*)>;
+		TEMPLATE using Shared = shared_ptr<T>;
+
 		TEMPLATE using UnderlyingType = underlying_type_t<T>;
 	}
 }

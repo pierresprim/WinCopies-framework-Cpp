@@ -7,6 +7,7 @@
 
 #include "../Method/AbstractBase.hxx"
 #include "../Method/Inline.hxx"
+#include "../Method/MethodBase.hxx"
 
 #define CONST_EXPR DLLEXPORT constexpr
 
