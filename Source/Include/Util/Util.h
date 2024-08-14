@@ -9,6 +9,7 @@
 #include "../Kernel/Enum/Arithmetic.hxx"
 
 #include "../Core/Enum/Comparison.h"
+#include "../Core/Typing/Typing.h"
 
 #include "Math.h"
 #include "Delegate.h"
@@ -58,7 +59,7 @@ namespace WinCopies
 			}
 		};
 
-		TEMPLATE static SystemErrorCode _MemoryAlloc(FreeableUniquePtr<T>* const ptr, T* const _ptr)
+		TEMPLATE static SystemErrorCode _MemoryAlloc(FreeableUnique<T>* const ptr, T* const _ptr)
 		{
 			if (_ptr == NULL)
 			{
@@ -75,7 +76,7 @@ namespace WinCopies
 
 	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, void, MemoryReset, *ptr = T{}, T* ptr)
 
-	TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUniquePtr<T>* const ptr)
+	TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUnique<T>* const ptr)
 	{
 		if (*ptr == NULL)
 		{
@@ -91,7 +92,7 @@ namespace WinCopies
 		return SystemErrorCode::Success;
 	}
 
-	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocShift(FreeableUniquePtr<T>* const ptr, T2* const count)
+	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocShift(FreeableUnique<T>* const ptr, T2* const count)
 	{
 		if (*ptr == NULL)
 		{
@@ -107,7 +108,7 @@ namespace WinCopies
 		return SystemErrorCode::Success;
 	}
 
-	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocMult(FreeableUniquePtr<T>* const ptr, T2* const count)
+	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocMult(FreeableUnique<T>* const ptr, T2* const count)
 	{
 		if (*ptr == NULL)
 		{
@@ -160,7 +161,7 @@ namespace WinCopies
 		return errorCode;
 	}
 
-	TEMPLATE ErrorCode TrySetValue(T* value, bool test, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+	TEMPLATE ErrorCode TrySetValue(T* const value, bool const test, const FunctionFunction<T>& provider, ErrorCode const onError = ErrorCode::InvalidOperation)
 	{
 		if (test)
 		{
@@ -173,9 +174,9 @@ namespace WinCopies
 
 		return onError;
 	}
-	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValue, TrySetValue(value, func(), provider, onError), T* value, FunctionFunction<bool> func, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValue, TrySetValue(value, func(), provider, onError), T* const value, const FunctionFunction<bool>& func, const FunctionFunction<T>& provider, ErrorCode const onError = ErrorCode::InvalidOperation)
 
-	TEMPLATE ErrorCode TrySetValueOrDefault(T* value, bool test, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+	TEMPLATE ErrorCode TrySetValueOrDefault(T* const value, bool const test, const FunctionFunction<T>& provider, ErrorCode const onError = ErrorCode::InvalidOperation)
 	{
 		if (test)
 		{
@@ -188,12 +189,12 @@ namespace WinCopies
 
 		return onError;
 	}
-	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, func(), provider, onError), T* value, FunctionFunction<bool> func, FunctionFunction<T> provider, ErrorCode onError = ErrorCode::InvalidOperation)
+	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, func(), provider, onError), T* const value, const FunctionFunction<bool>& func, const FunctionFunction<T>& provider, ErrorCode const onError = ErrorCode::InvalidOperation)
 
-	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValue, TrySetValue(value, CheckSuccess(test), provider, onError.GetValueOrCustom(test)), T* value, ErrorCode test, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
-	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValue, TrySetValue(value, CheckSuccess(func()), provider, onError), T* value, FunctionFunction<ErrorCode> func, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
+	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValue, TrySetValue(value, CheckSuccess(test), provider, onError.GetValueOrCustom(test)), T* const value, ErrorCode const test, const FunctionFunction<T>& provider, Nullable<ErrorCode> const onError)
+	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValue, TrySetValue(value, CheckSuccess(func()), provider, onError), T* const value, const FunctionFunction<ErrorCode>& func, const FunctionFunction<T>& provider, Nullable<ErrorCode> const onError)
 
-	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(test), provider, onError.GetValueOrCustom(test)), T* value, ErrorCode test, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
-	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(func()), provider, onError), T* value, FunctionFunction<ErrorCode> func, FunctionFunction<T> provider, Nullable<ErrorCode> onError)
+	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(test), provider, onError.GetValueOrCustom(test)), T* const value, ErrorCode const test, const FunctionFunction<T>& provider, Nullable<ErrorCode> const onError)
+	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(func()), provider, onError), T* const value, const FunctionFunction<ErrorCode>& func, const FunctionFunction<T>& provider, Nullable<ErrorCode> const onError)
 }
 #endif
