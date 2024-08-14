@@ -46,15 +46,17 @@
 
 #define GET_FIELD_IF_ELSE(returnType, methodName, paramType, paramName, condition, valueIfTrue, ifFalse, valueIfFalse) returnType methodName(paramType* paramName) { RETURN_BRANCH(condition, *##paramName = _##paramName, valueIfTrue, *##paramName = ifFalse, valueIfFalse) }
 
-#define __BASE_FIELDS_INITIALIZER(baseTypeName, ...) : baseTypeName(GET_ARG_PAIRS_VALUE(__VA_ARGS__))
-#define _BASE_FIELDS_INITIALIZER(hasBaseArgs, ...) IF_B(hasBaseArgs, __BASE_FIELDS_INITIALIZER, DISCARD)(__VA_ARGS__)
+#define __BASE_FIELDS_INITIALIZER(baseType, ...) : EXPAND(baseType)(GET_ARG_PAIRS_VALUE(__VA_ARGS__))
+#define _BASE_FIELDS_INITIALIZER(hasBaseArgs, ...) CALL_IF_B(hasBaseArgs, __BASE_FIELDS_INITIALIZER)(__VA_ARGS__)
 
-#define __FIELDS_INITIALIZER(addComma, ...) TRANSCRIBE_ARG_PAIRS(ALL_BUT_FIRST_ARG(__VA_ARGS__)) IF_TRUE(addComma, COMMA)
-#define _FIELDS_INITIALIZER(hasBaseArgs, addComma, ...) IF_B(hasBaseArgs, __FIELDS_INITIALIZER, DISCARD)(addComma, __VA_ARGS__)
+#define __FIELDS_INITIALIZER(renderer, addComma, ...) renderer(EXPAND_ARG_PAIRS(ALL_BUT_FIRST_ARG(__VA_ARGS__))) IF_TRUE(addComma, COMMA)
+#define _FIELDS_INITIALIZER(renderer, hasBaseArgs, addComma, ...) CALL_IF_B(hasBaseArgs, __FIELDS_INITIALIZER)(renderer, addComma, __VA_ARGS__)
 
-#define _FIELDS_INITIALIZATION(hasBaseArgs, name, preInit, postInit, base, ...) name(_FIELDS_INITIALIZER(hasBaseArgs, VA_ARGS_FILLED(__VA_ARGS__), EXPAND(base)) TRANSCRIBE_ARG_PAIRS(__VA_ARGS__)) _BASE_FIELDS_INITIALIZER(hasBaseArgs, EXPAND(base)) { EXPAND_SUFFIXED(;, preInit) RRENDER_ARGS(SURROUND_SPACED, FIELD_UPDATE, GET_ARG_PAIRS_VALUE(__VA_ARGS__)) EXPAND_SUFFIXED(;, postInit) }
+#define _FIELDS_INITIALIZATION(renderer, hasBaseArgs, name, preInit, postInit, base, ...) name(_FIELDS_INITIALIZER(renderer, hasBaseArgs, VA_ARGS_FILLED(__VA_ARGS__), EXPAND(base)) renderer(EXPAND_ARG_PAIRS(__VA_ARGS__))) _BASE_FIELDS_INITIALIZER(hasBaseArgs, EXPAND(base)) { EXPAND_SUFFIXED(;, preInit) RRENDER_ARGS(SURROUND_SPACED, FIELD_UPDATE, GET_ARG_PAIRS_VALUE(__VA_ARGS__)) EXPAND_SUFFIXED(;, postInit) }
 
-#define FFIELDS_INITIALIZER(name, preInit, postInit, base, ...) _FIELDS_INITIALIZATION(VA_ARGS_FILLED base, name, preInit, postInit, base, __VA_ARGS__)
+#define _FFIELDS_INITIALIZER(expand, name, preInit, postInit, base, ...) _FIELDS_INITIALIZATION(IF(expand, EXPAND, SINGLE_ARG), VA_ARGS_FILLED base, name, preInit, postInit, base, __VA_ARGS__)
+
+#define FFIELDS_INITIALIZER(name, preInit, postInit, base, ...) _FFIELDS_INITIALIZER(0, name, preInit, postInit, base, __VA_ARGS__)
 #define FIELDS_INITIALIZER(name, ...) FFIELDS_INITIALIZER(name, (), (), (), __VA_ARGS__)
 
 #endif WINCOPIES_MACROS_METHOD_INLINE_HXX
