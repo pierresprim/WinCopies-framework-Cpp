@@ -76,7 +76,8 @@
 
 
 
-#define _SURROUND_ARGS(prefix, suffix, macro, ...) __TRANSCRIBE_SURROUNDED(prefix, prefix, suffix, SINGLE_ARG, SURROUND, macro, __VA_ARGS__)
+#define __SURROUND_ARGS(prefix, suffix, firstTranscriber, transcriber, ...) __TRANSCRIBE_SURROUNDED(prefix, prefix, suffix, SINGLE_ARG, firstTranscriber, transcriber, __VA_ARGS__)
+#define _SURROUND_ARGS(prefix, suffix, macro, ...) __SURROUND_ARGS(prefix, suffix, SURROUND, macro, __VA_ARGS__)
 
 #define PREFIX_ARGS(prefix, ...) _SURROUND_ARGS(prefix, , PREFIX_CS, __VA_ARGS__)
 #define SURROUND_ARGS(prefix, suffix, ...) _SURROUND_ARGS(prefix, suffix, SURROUND_CS, __VA_ARGS__)
