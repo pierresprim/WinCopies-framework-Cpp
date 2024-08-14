@@ -8,6 +8,8 @@
 #include "../../PP/Variadic/Util.hpp"
 #include "../../PP/Variadic/Variadic.hpp"
 
+#include "Type/TypeBase.inc.hxx"
+
 #include "../Main.h"
 
 #include "../../Core/Types/Defs.h"
@@ -32,6 +34,10 @@
 #define MULTI_TEMPLATE _TEMPLATE(class...)
 
 #define METHOD_TEMPLATE template<class F>
+
+#define SELECTOR_TEMPLATE_ARGS TIn, TOut
+
+#define SELECTOR_TEMPLATE TEMPLATE_EC(SELECTOR_TEMPLATE_ARGS)
 
 #define CEA_OPERATOR constexpr auto operator
 
