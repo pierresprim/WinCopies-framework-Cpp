@@ -3,19 +3,21 @@
 #ifndef WINCOPIES_MACROS_METHOD_DEFINITION_HXX
 #define WINCOPIES_MACROS_METHOD_DEFINITION_HXX
 
-#define _METHOD_DEFINITION(name, implementation, ...) name(__VA_ARGS__) = implementation;
+#include "../../../PP/MiscBase.hpp"
+
+#define _METHOD_DEFINITION(name, implementation, modifiers, ...) name(__VA_ARGS__) EXPAND(modifiers) = implementation;
 
 
 
-#define _ABSTRACT_METHOD_DEFINITION(name, ...) _METHOD_DEFINITION(name, 0, __VA_ARGS__)
-#define ABSTRACT_METHOD_DEFINITION(name, ...) virtual _ABSTRACT_METHOD_DEFINITION(name, __VA_ARGS__)
+#define _ABSTRACT_METHOD_DEFINITION(name, modifiers, ...) _METHOD_DEFINITION(name, 0, modifiers, __VA_ARGS__)
+#define ABSTRACT_METHOD_DEFINITION(name, modifiers, ...) virtual _ABSTRACT_METHOD_DEFINITION(name, modifiers, __VA_ARGS__)
 
-#define DEFAULT_METHOD_DEFINITION(name, ...) _METHOD_DEFINITION(name, default, __VA_ARGS__)
-#define REMOVED_METHOD_DEFINITION(name, ...) _METHOD_DEFINITION(name, delete, __VA_ARGS__)
+#define DEFAULT_METHOD_DEFINITION(name, modifiers, ...) _METHOD_DEFINITION(name, default, modifiers, __VA_ARGS__)
+#define REMOVED_METHOD_DEFINITION(name, ...) _METHOD_DEFINITION(name, delete, (), __VA_ARGS__)
 
 
 
-#define __DESTRUCTOR_DEFINITION(name, macro) virtual macro(~name) 
+#define __DESTRUCTOR_DEFINITION(name, macro) virtual macro(~name, (override))
 #define _DESTRUCTOR_DEFINITION(name, macro) __DESTRUCTOR_DEFINITION(name, CONCATENATE(macro, METHOD_DEFINITION))
 
 #define ABSTRACT_DESTRUCTOR_DEFINITION(name) _DESTRUCTOR_DEFINITION(name, _ABSTRACT_)
