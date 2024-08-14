@@ -22,7 +22,7 @@
 #define DIV1_Y(x, y) EQUALS(y, 1, FIRST_ARG, DIV1_X)(x, y)
 #define DIV0_X(x, y) IF(x, DIV1_Y, MUL0)(x, y)
 
-#define DIV(x, y) IF(y, DIV0_X, DISCARD)(x, y)
+#define DIV(x, y) CALL_IF(y, DIV0_X)(x, y)
 
 #define IDIV(x, y) FIRST_ARG(DIV(x,y))
 #define MODULO(x, y) GET_SECOND_ARG(DIV(x,y))
