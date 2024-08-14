@@ -44,8 +44,10 @@
 #define CLASS class DLLEXPORT
 #define INTERFACE_TYPE(name) CLASS name ABSTRACT
 
-#define __TYPE_INITIALIZATION(name, baseTypeName, base, ...) FFIELDS_INITIALIZER(name, (), (), (baseTypeName, EXPAND(base)), __VA_ARGS__)
-#define _TYPE_INITIALIZATION(name, baseTypeName, ...) __TYPE_INITIALIZATION(name, baseTypeName, FIRST_ARG(__VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
-#define TYPE_INITIALIZATION(name, baseTypeName, ptrType, _namespace, genericTypeArgument, _array, ...) _TYPE_INITIALIZATION(name, baseTypeName, MMAKE_PARAMETERS(ptrType, _namespace, genericTypeArgument, _array, __VA_ARGS__))
+#define __TYPE_INITIALIZATION(name, baseType, base, ...) _FFIELDS_INITIALIZER(1, name, (), (), (baseType, EXPAND(base)), __VA_ARGS__)
+#define _TYPE_INITIALIZATION(name, baseType, ...) __TYPE_INITIALIZATION(name, baseType, FIRST_ARG(__VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
+
+#define TTYPE_INITIALIZATION(name, baseType, ptrType, _namespace, baseTypeArguments, ...) _TYPE_INITIALIZATION(name, baseType, MMAKE_PARAMETERS(ptrType, _namespace, (), baseTypeArguments, __VA_ARGS__))
+#define TYPE_INITIALIZATION(name, baseType, ptrType, _namespace, genericTypeArguments, baseTypeArguments, ...) _TYPE_INITIALIZATION(name, baseType, MMAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, baseTypeArguments, __VA_ARGS__))
 
 #endif WINCOPIES_MACROS_TYPE_BASE_HXX
