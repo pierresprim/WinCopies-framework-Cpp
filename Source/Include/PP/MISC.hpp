@@ -19,7 +19,7 @@
 #define PAR_O (
 #define PAR_C )
 
-#define _SURROUND(x, y) CONCATENATE(x, y)
+#define _SURROUND(x, ...) CONCATENATE(x, __VA_ARGS__)
 
 #define PREFIX(prefix, value, ...) prefix##value
 #define PREFIX_CS(prefix, value, ...) COMMA PREFIX(prefix, value)
