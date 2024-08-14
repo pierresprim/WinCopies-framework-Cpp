@@ -5,7 +5,7 @@
 
 #include "../Conditional/Conditional.hpp"
 
-#define _LOOP_IF(c, macro) IF(c, macro, DISCARD)
+#define _LOOP_IF(c, macro) CALL_IF(c, macro)
 #define LOOP_IF(c, i) _LOOP_IF(c, LOOP##i)
 
 #define LOOP1(c, macro) macro(1)
@@ -44,8 +44,10 @@
 #define LOOP34(c, macro) LOOP_IF(c, 33)(DECREMENT(c), macro) macro(34)
 #define LOOP35(c, macro) LOOP_IF(c, 34)(DECREMENT(c), macro) macro(35)
 
-#define __LOOP(length, n, macro) CONCATENATE(LOOP, n)(length, macro)
-#define _LOOP(start, length, macro) __LOOP(DECREMENT(length), ADD(start, DECREMENT(length)), macro)
+#define ___LOOP(length, n, macro) CONCATENATE(LOOP, n)(length, macro)
+#define __LOOP(start, length, macro) ___LOOP(DECREMENT(length), ADD(start, DECREMENT(length)), macro)
+#define LOOP1(start, length, macro) macro(start)
+#define _LOOP(start, length, macro) IF_ONE(length, LOOP1, __LOOP)(start, length, macro)
 #define LOOP0(start, length, macro) macro(0) _LOOP(1, length, macro)
 #define LOOP(start, length, macro) IF_ZERO(start, LOOP0, _LOOP)(start, length, macro)
 #define LOOP_TO(start, end, macro) LOOP(start, SUB(end, DECREMENT(start)), macro)
