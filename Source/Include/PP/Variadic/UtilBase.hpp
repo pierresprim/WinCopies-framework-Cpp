@@ -33,7 +33,7 @@
 #define GET_N_ARGS(length, ...) GET_ARGS(0, length, __VA_ARGS__)
 
 #define _JOIN_RENDERED_ARGS(renderer, separator, first, ...) renderer(first)FOR_EACH(SURROUND_SPACED, separator, renderer, , __VA_ARGS__)
-#define JOIN_RENDERED_ARGS(renderer, separator, ...) _JOIN_RENDERED_ARGS(renderer, separator, __VA_ARGS__)
+#define JOIN_RENDERED_ARGS(renderer, separator, ...) CALL_IF_VA_ARGS(_JOIN_RENDERED_ARGS, __VA_ARGS__)(renderer, separator, __VA_ARGS__)
 #define JOIN_ARGS(separator, ...) JOIN_RENDERED_ARGS(SINGLE_ARG, separator, __VA_ARGS__)
 
 #define _ZIP_ARGS(_array, ...) ((FIRST_ARG _array, FIRST_ARG(__VA_ARGS__))), (ALL_BUT_FIRST_ARG _array)
@@ -72,7 +72,7 @@
 #define TRANSCRIBE_ARGS_WITH(prefix, suffix, ...) CONCATENATE_WITH(SURROUND_SPACED, prefix, suffix, __VA_ARGS__)
 
 #define ___TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, first, ...) firstTranscriber(firstPrefix, macro(first), suffix) FOR_EACH_C(transcriber, prefix, suffix, __VA_ARGS__)
-#define __TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, ...) ___TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, __VA_ARGS__)
+#define __TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, ...) CALL_IF_VA_ARGS(___TRANSCRIBE_SURROUNDED, __VA_ARGS__)(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, __VA_ARGS__)
 
 
 
