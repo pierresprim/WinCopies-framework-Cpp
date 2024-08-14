@@ -5,6 +5,8 @@
 
 #include "../../Environment.h"
 
+#include "../../Core/Typing/Typing.h"
+
 #define OUTPOINTER OutPointer<T>*
 
 #define __MALLOC(type, prefix, _operator, suffix) (type*)malloc(prefix sizeof(type) _operator suffix)
@@ -17,6 +19,11 @@
 #define FREEABLE_UNIQUE_PTR_BASE(var, type, ptr) var = ::std::make_unique<type>(ptr, free)
 #define FREEABLE_UNIQUE_PTR(var, type) FREEABLE_UNIQUE_PTR_BASE(var, type, MALLOC(type))
 #define FREEABLE_UNIQUE_VOID_PTR(var, size) FREEABLE_UNIQUE_PTR_BASE(var, void*, malloc(size))
+
+#define MAKE_SHARED(type, ...) ::std::make_shared<type>(__VA_ARGS__)
+
+#define SHARED_PTR(type, name, ptr) ::WinCopies::Typing::Shared<type> name(ptr)
+#define MAKE_SHARED_PTR(type, name, ...) SHARED_PTR(type, name, MAKE_SHARED(type, __VA_ARGS__))
 
 #define HAS_ITEMS GetCount() != 0;
 
