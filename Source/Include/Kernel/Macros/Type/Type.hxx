@@ -32,12 +32,13 @@
 #define STRUCT struct DLLEXPORT
 #define ENUM enum CLASS
 
-#define SHARED_TYPE(typeKind, typeName, type) typeKind typeName : public ::std::enable_shared_from_this<typeName type>
-#define _SHARED_CLASS(className, type) SHARED_TYPE(CLASS, className, type)
+#define SHARED_TYPE(type) ::WinCopies::Typing::SharedType<type>
+#define SHARED_FROM_THIS(type) public SHARED_TYPE(type)
+#define SHARED_TYPE_HEADER(typeKind, typeName, ...) typeKind typeName : SHARED_FROM_THIS(typeName IF_TRUE(VA_ARGS_FILLED(__VA_ARGS__), <__VA_ARGS__>))
 
-#define SHARED_CLASS(className) _SHARED_CLASS(className, )
-#define SHARED_TEMPLATE(className) TEMPLATE _SHARED_CLASS(className, <T>)
-#define SHARED_TEMPLATE_CLASS(className) TEMPLATE SHARED_TYPE(class, className, <T>)
+#define SHARED_CLASS(className, ...) SHARED_TYPE_HEADER(CLASS, className, __VA_ARGS__)
+#define SHARED_TEMPLATE(className) TEMPLATE SHARED_CLASS(className, T)
+#define SHARED_TEMPLATE_CLASS(className) TEMPLATE SHARED_TYPE_HEADER(class, className, T)
 
 #define ENUM_HEADER(name, type) ENUM name : type
 
