@@ -16,7 +16,7 @@ namespace WinCopies
 
 	TEMPLATE INLINE_FUNCTION_RETURN(T, GetValue, *(ptr + index), T* const ptr, size_t const index)
 
-	TEMPLATE INLINE_METHOD_ACTION(0, SetValue, *(ptr + index) = value, T* const ptr, size_t const index, T const value)
+	TEMPLATE INLINE_FUNCTION_ACTION(SetValue, *(ptr + index) = value, T* const ptr, size_t const index, T const value)
 
 	TEMPLATE INLINE_METHOD Swap(T* const x, T* const y)
 	{
