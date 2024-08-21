@@ -23,7 +23,7 @@
 #define DEFAULT_CONSTRUCTOR_DEFINITION(name) DEFAULT_CONSTRUCTOR(name, = default)
 
 #define INTERFACE_CONSTRUCTOR(name) protected: explicit DEFAULT_CONSTRUCTOR_DEFINITION(name)
-#define _INTERFACE_DESTRUCTOR(name, _override, ...) public: DEFAULT_DESTRUCTOR(name, IF(_override, override) = 0, __VA_ARGS__)
+#define _INTERFACE_DESTRUCTOR(name, _override, ...) public: DEFAULT_DESTRUCTOR(name, IF(_override, override) = 0 { }, __VA_ARGS__)
 #define INTERFACE_DESTRUCTOR(name, ...) _INTERFACE_DESTRUCTOR(name, 1, __VA_ARGS__)
 
 #define _ABSTRACT_DESTRUCTOR(isTemplate, name, ...) ABSTRACT_METHOD_IMPLEMENTATION(0, name IF(isTemplate, <T>), ~name, __VA_ARGS__)
