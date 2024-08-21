@@ -29,16 +29,8 @@
 #define STATIC_CLASS(name) _STATIC_CLASS(0, name)
 #define LOCAL_STATIC_CLASS(name) _STATIC_CLASS(1, name)
 
-#define _INTERFACE_CLASS(addCtorAndDtor, name, ...) INTERFACE_TYPE(name) : BASE_INTERFACE ::WinCopies::Interface VA_OPT(COMMA, __VA_ARGS__) __VA_ARGS__ IF(addCtorAndDtor, { INTERFACE_C_D_TOR(name))
-#define INTERFACE_CLASS(name, ...) _INTERFACE_CLASS(1, name, __VA_ARGS__)
 #define STRUCT struct DLLEXPORT
 #define ENUM enum CLASS
-
-#define TEMPLATE_INTERFACE(name, macro, ...) macro() INTERFACE_CLASS(name, __VA_ARGS__)
-#define TEMPLATE_INTERFACE_NC(name, n, ...) TEMPLATE_NC(n) INTERFACE_CLASS(name, __VA_ARGS__)
-#define TEMPLATE_INTERFACE_C(name, ...) TEMPLATE INTERFACE_CLASS(name, __VA_ARGS__)
-
-#define CONSTRAINED_INTERFACE_NC(name, n, ...) TEMPLATE_NC(n, __VA_ARGS__) INTERFACE_CLASS(name)
 
 #define SHARED_TYPE(typeKind, typeName, type) typeKind typeName : public ::std::enable_shared_from_this<typeName type>
 #define _SHARED_CLASS(className, type) SHARED_TYPE(CLASS, className, type)
