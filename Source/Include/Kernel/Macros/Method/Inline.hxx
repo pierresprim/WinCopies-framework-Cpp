@@ -18,10 +18,10 @@
 
 #define _INLINE_C_DTOR(isConst, virtuality, _namespace, className, methodName, action, ...) _INLINE_METHOD_ACTION(0, isConst, virtuality, , VA_OPT(_namespace::, _namespace)IF_VA_ARGS(className::, , className)methodName, action, __VA_ARGS__)
 
-#define INLINE_CONSTRUCTOR(isConst, _namespace, className, action, ...) _INLINE_C_DTOR(isConst, 0, _namespace, className, className, action, __VA_ARGS__)
+#define INLINE_CONSTRUCTOR(_namespace, className, action, ...) _INLINE_C_DTOR(0, 0, _namespace, className, className, action, __VA_ARGS__)
 #define INLINE_DESTRUCTOR(virtuality, _namespace, className, action) _INLINE_C_DTOR(0, virtuality, _namespace, className, ~className, action)
 
-#define INLINE_CONSTRUCTOR_DEFINITION(isConst, _namespace, className, action, ...) _INLINE_C_DTOR(isConst, 0, _namespace, , className, action, __VA_ARGS__)
+#define INLINE_CONSTRUCTOR_DEFINITION(_namespace, className, action, ...) _INLINE_C_DTOR(0, 0, _namespace, , className, action, __VA_ARGS__)
 #define INLINE_DESTRUCTOR_DEFINITION(virtuality, _namespace, className, action) _INLINE_C_DTOR(0, virtuality, _namespace, , ~className, action)
 
 #define INLINE_METHOD_RETURN(isConst, virtuality, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, virtuality, returnType, methodName, return value, __VA_ARGS__)
