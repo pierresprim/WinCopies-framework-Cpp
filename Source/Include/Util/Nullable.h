@@ -26,7 +26,7 @@ namespace WinCopies
 		INLINE_METHOD_RETURN(1, VIRTUALITY_NONE, T, GetValueOrDefault, _hasValue ? _value : default(T))
 		INLINE_METHOD_RETURN(1, VIRTUALITY_NONE, T, GetValueOrCustom, _hasValue ? _value : custom, T custom)
 
-		DEFAULT_DESTRUCTOR_DEFINITION(Nullable);
+		STRUCT_DESTRUCTOR_DEFINITION(Nullable);
 	};
 }
 
