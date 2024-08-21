@@ -6,12 +6,10 @@
 #include <memory>
 #include <type_traits>
 
-#include "../Kernel/Macros/Template.hxx"
 #include "../Kernel/Macros/Method/Inline.hxx"
 #include "../Kernel/Macros/Type/Shared.hxx"
 
 #include "../Core/Typing/EnableIf.h"
-#include "../Core/Typing/Typing.h"
 
 #include "Delegate.h"
 #include "UtilBase.h"
@@ -22,6 +20,14 @@ namespace WinCopies
 {
 	namespace Typing
 	{
+		template<Action<void*> freer> STRUCT Freer
+		{
+			void operator()(void* ptr) const noexcept { freer(ptr); };
+		};
+
+		template<class T, Action<void*> freer> using FreeableUnique = unique_ptr<T, Freer<freer>>;
+		TEMPLATE using FreeableUniqueStd = FreeableUnique<T, free>;
+
 #define WINCOPIES_AS_FROM_TYPE_HEADER(tOut) TEMPLATE_NC(2, IF_NOT(tOut, , class TOut COMMA) ENABLE_IF_BASE_OF(T1, T2) = true)
 #define WINCOPIES_AS_FROM_TYPE(modifier) WINCOPIES_AS_FROM_TYPE_HEADER(0) INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, T1##modifier, AsFromType, value, T2##modifier value)
 
