@@ -20,6 +20,8 @@
 #define CALL_IF_VA_ARGS(macro, ...) CALL_IF(VA_ARGS_FILLED(__VA_ARGS__), macro)
 #define CALL_WHEN_VA_ARGS(macro, ...) CALL_WHEN(VA_ARGS_FILLED(__VA_ARGS__), macro, __VA_ARGS__)
 
+#define RENDER_WHEN_VA_ARGS(renderer, macro, ...) CALL_IF_VA_ARGS(renderer, __VA_ARGS__)(macro, __VA_ARGS__)
+
 #define GET_ARGS_FROM(i, ...) SELECT(i, 1, SURROUND, , DISCARD, , __VA_ARGS__)
 #define _GET_ARGS_FROM(i, ...) GET_ARGS_FROM(i, __VA_ARGS__)
 
