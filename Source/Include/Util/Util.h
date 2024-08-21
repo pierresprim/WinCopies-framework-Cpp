@@ -14,7 +14,7 @@
 #include "Math.h"
 #include "Delegate.h"
 #include "Nullable.h"
-#include "Interface.h"
+#include "../Kernel/Macros/Type/Interface.hxx"
 
 using namespace WinCopies::Delegate;
 using namespace WinCopies::Typing;
@@ -58,71 +58,77 @@ namespace WinCopies
 				return false;
 			}
 		};
+	}
 
-		TEMPLATE static SystemErrorCode _MemoryAlloc(FreeableUnique<T>* const ptr, T* const _ptr)
+	TEMPLATE inline SystemErrorCode MemoryReset(T* ptr)
+	{
+		if (ptr)
 		{
-			if (_ptr == NULL)
-			{
-				*ptr = NULL;
-
-				return SystemErrorCode::OutOfMemory;
-			}
-
-			FREEABLE_UNIQUE_PTR_BASE(*ptr, T, _ptr);
+			*ptr = T{};
 
 			return SystemErrorCode::Success;
 		}
+
+		return SystemErrorCode::BadArguments;
 	}
 
-	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, void, MemoryReset, *ptr = T{}, T* ptr)
+	DLLEXPORT SystemErrorCode MemoryAlloc(size_t const length, void** const result);
 
-	TEMPLATE DLLEXPORT SystemErrorCode MemoryAlloc(FreeableUnique<T>* const ptr)
-	{
-		if (*ptr == NULL)
-		{
-			SystemErrorCode errorCode = _MemoryAlloc(ptr, MALLOC(T));
-
-			if (errorCode != SystemErrorCode::Success)
-
-				return errorCode;
-		}
-
-		MemoryReset(ptr->get());
-
-		return SystemErrorCode::Success;
+#define _MEMORY_ALLOC_FUNC_HEADER(allocKind, nameSuffix, ...) TEMPLATE DLLEXPORT SystemErrorCode Memory##allocKind##nameSuffix
+#define MEMORY_ALLOC_FUNC_HEADER(nameSuffix, ...) _MEMORY_ALLOC_FUNC_HEADER(Alloc, nameSuffix, )(VA_OPT(__VA_ARGS__ COMMA, __VA_ARGS__) T** const result)
+#define CREATE_MEMORY_ALLOC_FUNC(nameSuffix, prefix, suffix, ...) MEMORY_ALLOC_FUNC_HEADER(nameSuffix, __VA_ARGS__) \
+	{ \
+		void* _result = 0; \
+\
+		SystemErrorCode errorCode = MemoryAlloc(sizeof(T), &_result); \
+\
+		if (CheckSuccess(errorCode)) \
+		{ \
+			*result = (T*)_result; \
+\
+			return SystemErrorCode::Success; \
+		} \
+\
+		return errorCode; \
+	}
+#define CREATE_MEMORY_ALLOC_FUNCS(nameSuffix, prefix, suffix) CREATE_MEMORY_ALLOC_FUNC(nameSuffix, prefix, suffix, size_t* const count) MEMORY_ALLOC_FUNC_HEADER(nameSuffix, size_t count) \
+	{ \
+		MemoryAlloc##nameSuffix(&count, result); \
 	}
 
-	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocShift(FreeableUnique<T>* const ptr, T2* const count)
-	{
-		if (*ptr == NULL)
-		{
-			SystemErrorCode errorCode = _MemoryAlloc(ptr, MALLOC_SHIFT(T, *count));
+	CREATE_MEMORY_ALLOC_FUNC(, , , )
+	CREATE_MEMORY_ALLOC_FUNCS(, *count *=, )
+	CREATE_MEMORY_ALLOC_FUNCS(Shift, *count = , << *count)
+#undef CREATE_MEMORY_ALLOC_FUNCS
+#undef CREATE_MEMORY_ALLOC_FUNC
+#undef MEMORY_ALLOC_FUNC_HEADER
 
-			if (errorCode != SystemErrorCode::Success)
-
-				return errorCode;
-		}
-
-		MemoryReset(ptr->get());
-
-		return SystemErrorCode::Success;
+#define MEMORY_INIT_FUNC_HEADER(nameSuffix, ...) _MEMORY_ALLOC_FUNC_HEADER(Init, nameSuffix)(RENDER_WHEN_VA_ARGS(RENDER_CE, TRANSCRIBE_ARGS, __VA_ARGS__) T** const result)
+#define CREATE_MEMORY_INIT_FUNC(nameSuffix, ...) MEMORY_INIT_FUNC_HEADER(nameSuffix, __VA_ARGS__) \
+	{ \
+		SystemErrorCode errorCode = MemoryAlloc##nameSuffix(CALL_IF_VA_ARGS(RENDER_CE, __VA_ARGS__)(GET_ARG, 1, __VA_ARGS__) result); \
+\
+		if (CheckSuccess(errorCode)) \
+		{ \
+			MemoryReset(*result); \
+\
+			return SystemErrorCode::Success; \
+		} \
+\
+		return errorCode; \
+	}
+#define CREATE_MEMORY_INIT_FUNCS(nameSuffix) CREATE_MEMORY_INIT_FUNC(nameSuffix, size_t* const, count) MEMORY_INIT_FUNC_HEADER(nameSuffix, size_t, count) \
+	{ \
+		MemoryInit##nameSuffix(&count, result); \
 	}
 
-	UNSIGNED_INTEGRAL_FUNC(class T2) SystemErrorCode MemoryAllocMult(FreeableUnique<T>* const ptr, T2* const count)
-	{
-		if (*ptr == NULL)
-		{
-			SystemErrorCode errorCode = _MemoryAlloc(ptr, MALLOC_MULT(T, *count));
-
-			if (errorCode != SystemErrorCode::Success)
-
-				return errorCode;
-		}
-
-		MemoryReset(ptr->get());
-
-		return SystemErrorCode::Success;
-	}
+	CREATE_MEMORY_INIT_FUNC(, )
+	CREATE_MEMORY_INIT_FUNCS()
+	CREATE_MEMORY_INIT_FUNCS(Shift)
+#undef CREATE_MEMORY_INIT_FUNCS
+#undef CREATE_MEMORY_INIT_FUNC
+#undef MEMORY_INIT_FUNC_HEADER
+#undef _MEMORY_ALLOC_FUNC_HEADER
 
 	SIGNED_FUNC() ErrorCode SetOffset(T inStart, T* const outStart, const T length)
 	{
