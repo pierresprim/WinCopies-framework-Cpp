@@ -17,6 +17,8 @@ namespace WinCopies
 		TEMPLATE using Shared = shared_ptr<T>;
 
 		TEMPLATE using UnderlyingType = underlying_type_t<T>;
+
+		TEMPLATE using SharedType = enable_shared_from_this<T>;
 	}
 }
 
