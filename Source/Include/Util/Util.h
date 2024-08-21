@@ -5,6 +5,7 @@
 
 #include <cstdlib>
 
+#include "../Kernel/Macros/Type/Interface.hxx"
 #include "../Kernel/Macros/Method/Inline.hxx"
 #include "../Kernel/Enum/Arithmetic.hxx"
 
@@ -14,7 +15,6 @@
 #include "Math.h"
 #include "Delegate.h"
 #include "Nullable.h"
-#include "../Kernel/Macros/Type/Interface.hxx"
 
 using namespace WinCopies::Delegate;
 using namespace WinCopies::Typing;
@@ -82,7 +82,7 @@ namespace WinCopies
 \
 		SystemErrorCode errorCode = MemoryAlloc(sizeof(T), &_result); \
 \
-		if (CheckSuccess(errorCode)) \
+		if (errorCode == SystemErrorCode::Success) \
 		{ \
 			*result = (T*)_result; \
 \
@@ -108,7 +108,7 @@ namespace WinCopies
 	{ \
 		SystemErrorCode errorCode = MemoryAlloc##nameSuffix(CALL_IF_VA_ARGS(RENDER_CE, __VA_ARGS__)(GET_ARG, 1, __VA_ARGS__) result); \
 \
-		if (CheckSuccess(errorCode)) \
+		if (errorCode == SystemErrorCode::Success) \
 		{ \
 			MemoryReset(*result); \
 \
@@ -119,7 +119,7 @@ namespace WinCopies
 	}
 #define CREATE_MEMORY_INIT_FUNCS(nameSuffix) CREATE_MEMORY_INIT_FUNC(nameSuffix, size_t* const, count) MEMORY_INIT_FUNC_HEADER(nameSuffix, size_t, count) \
 	{ \
-		MemoryInit##nameSuffix(&count, result); \
+		return MemoryInit##nameSuffix(&count, result); \
 	}
 
 	CREATE_MEMORY_INIT_FUNC(, )
