@@ -8,8 +8,10 @@
 
 #include "../Kernel/Macros/Template.hxx"
 #include "../Kernel/Macros/Method/Inline.hxx"
+#include "../Kernel/Macros/Type/Shared.hxx"
 
 #include "../Core/Typing/EnableIf.h"
+#include "../Core/Typing/Typing.h"
 
 #include "Delegate.h"
 #include "UtilBase.h"
