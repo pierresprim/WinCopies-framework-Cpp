@@ -48,7 +48,7 @@
 // Named templates
 
 #define NAMED_TEMPLATE(typeName) template<class typeName>
-#define NAMED_TEMPLATE_N(templateType, ...) template<TRANSCRIBE_ARGS_WITH(templateType, , __VA_ARGS__)>
+#define NAMED_TEMPLATE_N(templateType, ...) template<TRANSCRIBE_ARGS_PREFIXED(templateType, __VA_ARGS__)>
 #define NAMED_TEMPLATE_NC(...) NAMED_TEMPLATE_N(class, __VA_ARGS__)
 
 #define TEMPLATE_SPECIALIZATION(isTemplate, type, prefix, name) IF(isTemplate, TEMPLATE) using SURROUND(I, prefix, name) = I##name<IF_TRUE(isTemplate, T,) type>
