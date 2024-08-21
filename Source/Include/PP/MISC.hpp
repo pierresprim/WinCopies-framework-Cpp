@@ -45,4 +45,8 @@
 #define TRANSCRIBE_ARGS_CE(prefix, value, ...) prefix value __VA_ARGS__ COMMA
 
 #define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
+
+#define RENDER_COMMA(renderer, ...) , renderer(__VA_ARGS__),
+#define RENDER_CS(renderer, ...) , renderer(__VA_ARGS__)
+#define RENDER_CE(renderer, ...) renderer(__VA_ARGS__),
 #endif WINCOPIES_MISC_HPP
