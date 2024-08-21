@@ -49,8 +49,5 @@ namespace WinCopies
 
 	INLINE_FUNCTION bool CheckSuccess(ErrorCode value);
 	INLINE_FUNCTION bool CheckFail(ErrorCode value);
-
-	INLINE_FUNCTION bool CheckSuccess(SystemErrorCode value);
-	INLINE_FUNCTION bool CheckFail(SystemErrorCode value);
 }
 #endif
