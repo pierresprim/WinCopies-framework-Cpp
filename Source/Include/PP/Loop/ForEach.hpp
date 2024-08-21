@@ -32,14 +32,10 @@
 #define SELECT_I(bi, n, printExtra, concatenator, prefix, macro, suffix, ...) CONCATENATE(FOR_EACH, n)(bi, printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define SELECT(n, printExtra, concatenator, prefix, macro, suffix, ...) SELECT_I(0, n, printExtra, concatenator, prefix, macro, suffix, __VA_ARGS__)
 
-#define FFOR_EACH_I(bi, count, concatenator, prefix, macro, suffix, ...) SELECT_I(bi, count, 0, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FFOR_EACH(count, concatenator, prefix, macro, suffix, ...) FFOR_EACH_I(0, count, concatenator, prefix, macro, suffix, __VA_ARGS__)
-#define FOR_EACH_I(bi, concatenator, prefix, macro, suffix, ...) FFOR_EACH_I(bi, COUNT_ARGS(__VA_ARGS__), concatenator, prefix, macro, suffix, __VA_ARGS__)
+#define FOR_EACH_I(bi, concatenator, prefix, macro, suffix, ...) SELECT_I(bi, COUNT_ARGS(__VA_ARGS__), 0, concatenator, prefix, macro, suffix, __VA_ARGS__)
 #define FOR_EACH(concatenator, prefix, macro, suffix, ...) FOR_EACH_I(0, concatenator, prefix, macro, suffix, __VA_ARGS__)
 
-#define FFOR_EACH_CI(bi, count, concatenator, prefix, suffix, ...) FFOR_EACH_I(bi, count, concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
-#define FFOR_EACH_C(count, concatenator, prefix, suffix, ...) FFOR_EACH_CI(0, count, concatenator, prefix, suffix, __VA_ARGS__)
-#define FOR_EACH_CI(bi, concatenator, prefix, suffix, ...) FFOR_EACH_CI(bi, COUNT_ARGS(__VA_ARGS__), concatenator, prefix, suffix, __VA_ARGS__)
+#define FOR_EACH_CI(bi, concatenator, prefix, suffix, ...) FOR_EACH_I(bi, concatenator, prefix, SINGLE_ARG, suffix, __VA_ARGS__)
 #define FOR_EACH_C(concatenator, prefix, suffix, ...) FOR_EACH_CI(0, concatenator, prefix, suffix, __VA_ARGS__)
 
-#endif // WINCOPIES_FOR_EACH_HPP
+#endif WINCOPIES_FOR_EACH_HPP
