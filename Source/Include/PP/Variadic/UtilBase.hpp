@@ -63,6 +63,8 @@
 #define PRINT_RENDERED_SURROUNDED(prefix, renderer, suffix, ...) RRENDER_SURROUNDED(SURROUND_SPACED, prefix, renderer, suffix, __VA_ARGS__)
 #define PRINT_RENDERED_SUFFIXED(suffix, renderer, ...) RRENDER_SUFFIXED(SURROUND_SPACED, suffix, renderer, __VA_ARGS__)
 
+#define PRINT_ARGS_RENDERED(renderer, ...) RRENDER_ARGS(SURROUND_SPACED, renderer, __VA_ARGS__)
+
 #define CONCATENATE_PREFIXED(prefix, ...) CONCATENATE_WITH(PREFIX, prefix, , __VA_ARGS__)
 #define CONCATENATE_SURROUNDED(prefix, suffix, ...) CONCATENATE_WITH(SURROUND, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_SUFFIXED(suffix, ...) CONCATENATE_WITH(SUFFIX, , suffix, __VA_ARGS__)
@@ -123,6 +125,12 @@
 #define EXPAND_PREFIXED(prefix, _array) PREFIX_VA_ARGS(prefix, EXPAND(_array))
 #define EXPAND_SURROUNDED(prefix, suffix, _array) SURROUND_VA_ARGS(prefix, suffix, EXPAND(_array))
 #define EXPAND_SUFFIXED(suffix, _array) SUFFIX_VA_ARGS(suffix, EXPAND(_array))
+
+#define RENDERED_ARRAY_TRANSCRIBER(prefix, value, ...) SECOND_ARG prefix, (FIRST_ARG prefix(value)), __VA_ARGS__
+#define RENDERED_ARRAY_TRANSCRIBER_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER(prefix, value, __VA_ARGS__)
+
+#define _PRINT_RENDERED_ARGS_AS_ARRAY(prefix, suffix, first, ...) TRANSCRIBE_ARGS_PREFIXED(SINGLE_ARG, RENDERED_ARRAY_TRANSCRIBER(prefix, first, suffix) FOR_EACH_C(RENDERED_ARRAY_TRANSCRIBER_CS, prefix, suffix, __VA_ARGS__))
+#define PRINT_RENDERED_ARGS_AS_ARRAY(prefix, macro, suffix, ...) CALL_IF_VA_ARGS(_PRINT_RENDERED_ARGS_AS_ARRAY, __VA_ARGS__)((macro, prefix), suffix, __VA_ARGS__)
 
 #define _TRANSCRIBE_ARG_PAIRS(prefix, ...) PREFIX_ARGS(prefix ARGS_TRANSCRIPTION, __VA_ARGS__)
 
