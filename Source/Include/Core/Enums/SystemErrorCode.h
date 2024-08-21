@@ -14,6 +14,7 @@ namespace WinCopies
 	ENUM SystemErrorCode : ULONG
 	{
 		Success = 0,
+
 		OutOfMemory = ERROR_OUT_OF_MEMORY,
 		NoMoreFiles = ERROR_NO_MORE_FILES,
 		BadArguments = ERROR_BAD_ARGUMENTS,
