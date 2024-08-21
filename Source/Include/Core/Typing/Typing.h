@@ -13,7 +13,7 @@ namespace WinCopies
 {
 	namespace Typing
 	{
-		TEMPLATE using FreeableUnique = unique_ptr<T, void (*)(void*)>;
+		TEMPLATE using Unique = unique_ptr<T>;
 		TEMPLATE using Shared = shared_ptr<T>;
 
 		TEMPLATE using UnderlyingType = underlying_type_t<T>;
