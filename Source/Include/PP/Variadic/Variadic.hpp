@@ -6,7 +6,7 @@
 #include "../Conditional/Conditional.hpp"
 
 #if HAS_VA_OPT < 1
-#define VA_ARGS_FILLED(...) ___COUNT_ARGS(BOOL, __VA_ARGS__)
+#define VA_ARGS_FILLED(...) ___COUNT_ARGS(PP_BOOL, __VA_ARGS__)
 #define VA_ARGS_EMPTY(...) COMPL(VA_ARGS_FILLED(__VA_ARGS__))
 
 #define IF_VA_ARGS(ifTrue, ifFalse, ...) IF(VA_ARGS_FILLED(__VA_ARGS__), ifTrue, ifFalse)
