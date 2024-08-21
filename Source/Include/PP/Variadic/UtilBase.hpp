@@ -71,7 +71,7 @@
 
 #define PRINT_ARGS(...) PRINT_ARGS_PREFIXED(, __VA_ARGS__)
 
-#define TRANSCRIBE_ARGS_WITH(prefix, suffix, ...) CONCATENATE_WITH(SURROUND_SPACED, prefix, suffix, __VA_ARGS__)
+#define TRANSCRIBE_ARGS_SURROUNDED(prefix, suffix, ...) CONCATENATE_WITH(SURROUND_SPACED, prefix, suffix, __VA_ARGS__)
 
 #define ___TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, first, ...) firstTranscriber(firstPrefix, macro(first), suffix) FOR_EACH_C(transcriber, prefix, suffix, __VA_ARGS__)
 #define __TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, ...) CALL_IF_VA_ARGS(___TRANSCRIBE_SURROUNDED, __VA_ARGS__)(firstPrefix, prefix, suffix, macro, firstTranscriber, transcriber, __VA_ARGS__)
