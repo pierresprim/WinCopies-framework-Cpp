@@ -3,8 +3,6 @@
 #ifndef WINCOPIES_MACROS_METHOD_ABSTRACT_BASE_HXX
 #define WINCOPIES_MACROS_METHOD_ABSTRACT_BASE_HXX
 
-#include "../../../PP/Variadic/UtilBase.hpp"
-
 #include "../Type/TypeBase.inc.hxx"
 
 #define __ABSTRACT_METHOD_IMPLEMENTATION(type, method, ...) type::method() __VA_ARGS__ { /* Left empty. */ }
