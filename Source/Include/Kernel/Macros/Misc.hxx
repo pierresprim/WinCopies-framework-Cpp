@@ -20,9 +20,9 @@
 #define FREEABLE_UNIQUE_PTR(var, type) FREEABLE_UNIQUE_PTR_BASE(var, type, MALLOC(type))
 #define FREEABLE_UNIQUE_VOID_PTR(var, size) FREEABLE_UNIQUE_PTR_BASE(var, void*, malloc(size))
 
-#define MAKE_SHARED(type, ...) ::std::make_shared<type>(__VA_ARGS__)
+#define MAKE_SHARED(type, ...) ::std::make_shared<EXPAND(type)>(__VA_ARGS__)
 
-#define SHARED_PTR_TYPE(type) ::WinCopies::Typing::Shared<type>
+#define SHARED_PTR_TYPE(type) ::WinCopies::Typing::Shared<EXPAND(type)>
 
 #define SHARED_PTR(type, name, ptr) SHARED_PTR_TYPE(type) name(ptr)
 #define MAKE_SHARED_PTR(type, name, ...) SHARED_PTR(type, name, MAKE_SHARED(type, __VA_ARGS__))
