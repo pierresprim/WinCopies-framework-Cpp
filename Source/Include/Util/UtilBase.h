@@ -3,13 +3,21 @@
 #ifndef WINCOPIES_UTIL_BASE_H
 #define WINCOPIES_UTIL_BASE_H
 
-#include "../Kernel/Enum/MakeEnum.hxx"
 #include "../Kernel/Macros/Method/Base.hxx"
 
 #include "../Framework.h"
 
+#include "Enums.h"
+
 namespace WinCopies
 {
+	UNSIGNED_FUNC() INLINE_FUNCTION_RETURN(bool, ValidateIndex, index < count , T const index, T const count)
+	UNSIGNED_FUNC() INLINE_FUNCTION_RETURN(ErrorCode, ValidateIndexE, ValidateIndex(index, count) ? ErrorCode::Success : ErrorCode::ArgumentOutOfRange, T const index, T const count)
+
+	TEMPLATE INLINE_FUNCTION_RETURN(T, GetValue, *(ptr + index), T* const ptr, size_t const index)
+
+	TEMPLATE INLINE_METHOD_ACTION(0, SetValue, *(ptr + index) = value, T* const ptr, size_t const index, T const value)
+
 	TEMPLATE INLINE_METHOD Swap(T* const x, T* const y)
 	{
 		T tmp = *x;
@@ -41,5 +49,8 @@ namespace WinCopies
 
 	INLINE_FUNCTION bool CheckSuccess(ErrorCode value);
 	INLINE_FUNCTION bool CheckFail(ErrorCode value);
+
+	INLINE_FUNCTION bool CheckSuccess(SystemErrorCode value);
+	INLINE_FUNCTION bool CheckFail(SystemErrorCode value);
 }
 #endif
