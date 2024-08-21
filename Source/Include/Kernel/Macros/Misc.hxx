@@ -16,8 +16,8 @@
 #define MALLOC_SHIFT(type, count) _MALLOC(type, count, <<)
 #define MALLOC_MULT(type, count) _MALLOC(type, count, *)
 
-#define FREEABLE_UNIQUE_PTR_BASE(var, type, ptr) var = ::std::make_unique<type>(ptr, free)
-#define FREEABLE_UNIQUE_PTR(var, type) FREEABLE_UNIQUE_PTR_BASE(var, type, MALLOC(type))
+#define FREEABLE_UNIQUE_PTR(var, type, ptr) var = ::std::make_unique<type>(ptr, free)
+#define FREEABLE_UNIQUE_PTR_ALLOC(var, type) FREEABLE_UNIQUE_PTR_BASE(var, type, MALLOC(type))
 #define FREEABLE_UNIQUE_VOID_PTR(var, size) FREEABLE_UNIQUE_PTR_BASE(var, void*, malloc(size))
 
 #define MAKE_SHARED(type, ...) ::std::make_shared<EXPAND(type)>(__VA_ARGS__)
