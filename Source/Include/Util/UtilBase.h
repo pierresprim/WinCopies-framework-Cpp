@@ -10,15 +10,6 @@
 
 namespace WinCopies
 {
-	ENUM Bool : SBYTE
-	{
-		None = -1,
-		False = 0,
-		True = 1
-	};
-
-	MAKE_NULLABLE_BITWISE_ENUM(ByteSelector, BYTE, First, Second, Third, Fourth, Fifth, Sixth, Seventh, Eighth)
-
 	TEMPLATE INLINE_METHOD Swap(T* const x, T* const y)
 	{
 		T tmp = *x;
