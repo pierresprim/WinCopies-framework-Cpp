@@ -5,7 +5,7 @@
 
 #include "../../../PP/MiscBase.hpp"
 
-#define _METHOD_DEFINITION(name, implementation, modifiers, ...) name(__VA_ARGS__) EXPAND(modifiers) = implementation;
+#define _METHOD_DEFINITION(name, implementation, modifiers, ...) name(__VA_ARGS__) EXPAND(modifiers) = implementation
 
 
 
@@ -17,11 +17,12 @@
 
 
 
-#define __DESTRUCTOR_DEFINITION(name, macro) virtual macro(~name, (override))
-#define _DESTRUCTOR_DEFINITION(name, macro) __DESTRUCTOR_DEFINITION(name, CONCATENATE(macro, METHOD_DEFINITION))
+#define __DESTRUCTOR_DEFINITION(_override, name, macro) virtual macro(~name, (IF(_override, override)))
+#define _DESTRUCTOR_DEFINITION(_override, name, macro) __DESTRUCTOR_DEFINITION(_override, name, CONCATENATE(macro, METHOD_DEFINITION))
 
-#define ABSTRACT_DESTRUCTOR_DEFINITION(name) _DESTRUCTOR_DEFINITION(name, _ABSTRACT_)
+#define ABSTRACT_DESTRUCTOR_DEFINITION(name) _DESTRUCTOR_DEFINITION(0, name, _ABSTRACT_)
+#define VIRTUAL_DESTRUCTOR_DEFINITION(name) _DESTRUCTOR_DEFINITION(1, name, _ABSTRACT_)
 
-#define DEFAULT_DESTRUCTOR_DEFINITION(name) _DESTRUCTOR_DEFINITION(name, DEFAULT_)
+#define DEFAULT_DESTRUCTOR_DEFINITION(name) _DESTRUCTOR_DEFINITION(1, name, DEFAULT_)
 
 #endif WINCOPIES_MACROS_METHOD_DEFINITION_HXX
