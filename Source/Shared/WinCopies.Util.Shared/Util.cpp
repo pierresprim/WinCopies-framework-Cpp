@@ -1,6 +1,15 @@
 #include "pch.h"
 #include "../../Include/Util/Util.h"
 
+using namespace WinCopies;
+
+SystemErrorCode MemoryAlloc(size_t const length, void** const result)
+{
+	*result = malloc(sizeof(length));
+
+	return result ? SystemErrorCode::Success : SystemErrorCode::OutOfMemory;
+}
+
 /*
 
 bool CheckOverflow(in int totalLength, ref int length, int offset)
