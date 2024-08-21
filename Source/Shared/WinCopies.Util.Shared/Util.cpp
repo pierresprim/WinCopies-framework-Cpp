@@ -3,7 +3,7 @@
 
 using namespace WinCopies;
 
-SystemErrorCode MemoryAlloc(size_t const length, void** const result)
+SystemErrorCode WinCopies::MemoryAlloc(size_t const length, void** const result)
 {
 	*result = malloc(sizeof(length));
 
