@@ -8,16 +8,16 @@
 #include "../../Kernel/Types/Defs.hxx"
 
 typedef char SBYTE;
-TYPEDEF_U short USHORT;
-TYPEDEF_U int UINT;
-TYPEDEF_UL ULONG;
-TYPEDEF_UL long ULONGLONG;
 
 #ifdef WINDOWS
 #include <Windows.h>
 #else
-TYPEDEF_L LONG;
 TYPEDEF_U char BYTE;
+TYPEDEF_L LONG;
+TYPEDEF_U int UINT;
+TYPEDEF_U short USHORT;
+TYPEDEF_UL ULONG;
+TYPEDEF_UL long ULONGLONG;
 #endif
 
 typedef char* STRING;
