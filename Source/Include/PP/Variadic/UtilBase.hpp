@@ -110,8 +110,7 @@
 #define REPEAT_ARG(count, value) FOR_I(count, FIRST_ARG, value, )
 #define REPEAT_FOR_EACH(value, ...) REPEAT_ARG(COUNT_ARGS(__VA_ARGS__), value)
 
-#define TRANSCRIBE_REPEATED_ARG(count, value) FFOR_EACH_C(count, SURROUND_SPACED, , , REPEAT_ARG(count, value))
-#define TRANSCRIBE_REPEATED_FOR_EACH(value, ...) TRANSCRIBE_REPEATED_ARG(COUNT_ARGS(__VA_ARGS__), value)
+#define TRANSCRIBE_REPEATED_FOR_EACH(value, ...) FOR_EACH_C(SURROUND_SPACED, , , REPEAT_ARG(COUNT_ARGS(__VA_ARGS__), value))
 
 #define PREFIX_VA_ARGS(prefix, ...) IF_TRUE(VA_ARGS_FILLED(__VA_ARGS__), prefix __VA_ARGS__)
 #define SURROUND_VA_ARGS(prefix, suffix, ...) IF_TRUE(VA_ARGS_FILLED(__VA_ARGS__), prefix __VA_ARGS__ suffix)
