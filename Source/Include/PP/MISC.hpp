@@ -53,7 +53,36 @@
 #define __RENDERED_ARRAY_TRANSCRIBER(macro, ...) (macro(__VA_ARGS__))
 #define _RENDERED_ARRAY_TRANSCRIBER(expander, prefix, value) __RENDERED_ARRAY_TRANSCRIBER(FIRST_ARG prefix, expander(value))
 
+#define _RENDERED_ARRAY_TRANSCRIBER_P(expander, prefix, value, ...) SECOND_ARG prefix, _RENDERED_ARRAY_TRANSCRIBER(expander, prefix, value)
+#define _RENDERED_ARRAY_TRANSCRIBER_S(expander, prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER(expander, prefix, value), __VA_ARGS__
+#define _RENDERED_ARRAY_TRANSCRIBER_P_S(expander, prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER_P(expander, prefix, value), __VA_ARGS__
+
+
+
+#define RENDERED_AS_ARRAY_TRANSCRIBER(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER(SINGLE_ARG, prefix, value)
+#define RENDERED_AS_ARRAY_TRANSCRIBER_CS(prefix, value, ...) COMMA RENDERED_AS_ARRAY_TRANSCRIBER(prefix, value)
+
+#define RENDERED_AS_ARRAY_TRANSCRIBER_P(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER_P(SINGLE_ARG, prefix, value)
+#define RENDERED_AS_ARRAY_TRANSCRIBER_P_CS(prefix, value, ...) COMMA RENDERED_AS_ARRAY_TRANSCRIBER_P(prefix, value)
+
+#define RENDERED_AS_ARRAY_TRANSCRIBER_S(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER_S(SINGLE_ARG, prefix, value, __VA_ARGS__)
+#define RENDERED_AS_ARRAY_TRANSCRIBER_S_CS(prefix, value, ...) COMMA RENDERED_AS_ARRAY_TRANSCRIBER_S(prefix, value, __VA_ARGS__)
+
+#define RENDERED_AS_ARRAY_TRANSCRIBER_P_S(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER_P_S(SINGLE_ARG, prefix, value, __VA_ARGS__)
+#define RENDERED_AS_ARRAY_TRANSCRIBER_P_S_CS(prefix, value, ...) COMMA RENDERED_AS_ARRAY_TRANSCRIBER_P_S(prefix, value, __VA_ARGS__)
+
+
+
 #define RENDERED_ARRAY_TRANSCRIBER(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER(EXPAND, prefix, value)
 #define RENDERED_ARRAY_TRANSCRIBER_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER(prefix, value)
+
+#define RENDERED_ARRAY_TRANSCRIBER_P(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER_P(EXPAND, prefix, value)
+#define RENDERED_ARRAY_TRANSCRIBER_P_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER_P(prefix, value)
+
+#define RENDERED_ARRAY_TRANSCRIBER_S(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER_S(EXPAND, prefix, value, __VA_ARGS__)
+#define RENDERED_ARRAY_TRANSCRIBER_S_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER_S(prefix, value, __VA_ARGS__)
+
+#define RENDERED_ARRAY_TRANSCRIBER_P_S(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER_P_S(EXPAND, prefix, value, __VA_ARGS__)
+#define RENDERED_ARRAY_TRANSCRIBER_P_S_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER_P_S(prefix, value, __VA_ARGS__)
 
 #endif WINCOPIES_MISC_HPP
