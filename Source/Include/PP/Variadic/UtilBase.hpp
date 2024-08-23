@@ -38,13 +38,38 @@
 #define JOIN_RENDERED_ARGS(renderer, separator, ...) CALL_IF_VA_ARGS(_JOIN_RENDERED_ARGS, __VA_ARGS__)(renderer, separator, __VA_ARGS__)
 #define JOIN_ARGS(separator, ...) JOIN_RENDERED_ARGS(SINGLE_ARG, separator, __VA_ARGS__)
 
-#define __ZIP_ARGS(renderer, _array, ...) ((FIRST_ARG _array, renderer(FIRST_ARG(__VA_ARGS__)))), (ALL_BUT_FIRST_ARG _array)
+#define ___ZIP_ARGS(renderer, argsExpander, arrayPreexpander, arrayPostexpander, _array, ...) ((renderer(arrayPreexpander _array, argsExpander(FIRST_ARG(__VA_ARGS__))))), (arrayPostexpander _array)
+#define __ZIP_ARGS(expander, _array, ...) ___ZIP_ARGS(SINGLE_ARG, expander, FIRST_ARG, ALL_BUT_FIRST_ARG, _array, __VA_ARGS__)
 
 #define _ZIP_ARGS(_array, ...) __ZIP_ARGS(SINGLE_ARG, _array, __VA_ARGS__)
 #define ZIP_ARGS(_array, ...) FOR_ALL(_ZIP_ARGS, _array, __VA_ARGS__)
 
 #define _PREPEND_ARG_ARRAY(_array, ...) __ZIP_ARGS(EXPAND, _array, __VA_ARGS__)
 #define PREPEND_ARG_ARRAY(_array, ...) FOR_ALL(_PREPEND_ARG_ARRAY, _array, __VA_ARGS__)
+
+#define _ADD_TO_VA_ARGS(renderer, expander, _array, ...) ___ZIP_ARGS(renderer, expander, SINGLE_ARG, SINGLE_ARG, _array, __VA_ARGS__)
+
+#define __PREPEND_TO_VA_ARGS(expander, _array, ...) _ADD_TO_VA_ARGS(SINGLE_ARG, expander, _array, __VA_ARGS__)
+
+#define _PREPEND_TO_VA_ARGS(_array, ...) __PREPEND_TO_VA_ARGS(SINGLE_ARG, _array, __VA_ARGS__)
+#define PREPEND_TO_VA_ARGS(_array, ...) FOR_ALL(_PREPEND_TO_VA_ARGS, _array, __VA_ARGS__)
+
+#define _PREPEND_TO_ARG_ARRAY(_array, ...) __PREPEND_TO_VA_ARGS(EXPAND, _array, __VA_ARGS__)
+#define PREPEND_TO_ARG_ARRAY(_array, ...) FOR_ALL(_PREPEND_TO_ARG_ARRAY, _array, __VA_ARGS__)
+
+#define PREPEND_TO_REVERSED_VA_ARGS(_array, ...) FOR_ALL_REVERSED(_PREPEND_TO_VA_ARGS, _array, __VA_ARGS__)
+#define PREPEND_TO_REVERSED_ARG_ARRAY(_array, ...) FOR_ALL_REVERSED(_PREPEND_TO_ARG_ARRAY, _array, __VA_ARGS__)
+
+#define __APPEND_TO_VA_ARGS(expander, _array, ...) _ADD_TO_VA_ARGS(REVERSE_FIRST_TWO_ARGS, expander, _array, __VA_ARGS__)
+
+#define _APPEND_TO_VA_ARGS(_array, ...) __APPEND_TO_VA_ARGS(SINGLE_ARG, _array, __VA_ARGS__)
+#define APPEND_TO_VA_ARGS(_array, ...) FOR_ALL(_APPEND_TO_VA_ARGS, _array, __VA_ARGS__)
+
+#define _APPEND_TO_ARG_ARRAY(_array, ...) __APPEND_TO_VA_ARGS(EXPAND, _array, __VA_ARGS__)
+#define APPEND_TO_ARG_ARRAY(_array, ...) FOR_ALL(_APPEND_TO_ARG_ARRAY, _array, __VA_ARGS__)
+
+#define APPEND_TO_REVERSED_VA_ARGS(_array, ...) FOR_ALL_REVERSED(_APPEND_TO_VA_ARGS, _array, __VA_ARGS__)
+#define APPEND_TO_REVERSED_ARG_ARRAY(_array, ...) FOR_ALL_REVERSED(_APPEND_TO_ARG_ARRAY, _array, __VA_ARGS__)
 
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_ARGS(...) CONCATENATE_WITH(SURROUND, , , __VA_ARGS__)
