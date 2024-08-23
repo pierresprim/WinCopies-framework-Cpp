@@ -5,12 +5,12 @@
 
 #include "Include/FOR_ALL.hpp"
 
-#define FOR_ALL1(macro, first, _array, ...) EXPAND(first)
-#define FOR_ALL2(macro, first, _array, ...) ___FOR_ALL(1, macro, first, _array, __VA_ARGS__)
-#define FOR_ALL3(macro, first, _array, ...) EXPAND(first), _FOR_ALL2(macro, macro(_array, __VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
-#define FOR_ALL4(macro, first, _array, ...) EXPAND(first), _FOR_ALL3(macro, macro(_array, __VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
-#define FOR_ALL5(macro, first, _array, ...) EXPAND(first), _FOR_ALL4(macro, macro(_array, __VA_ARGS__), ALL_BUT_FIRST_ARG(__VA_ARGS__))
+#define FOR_ALL1(renderer, macro, first, _array, ...) EXPAND(first)
+#define FOR_ALL2(renderer, macro, first, _array, ...) renderer(EXPAND(first), _FOR_ALL1(renderer, macro, ___FOR_ALL(macro, _array, __VA_ARGS__)))
+#define FOR_ALL3(renderer, macro, first, _array, ...) renderer(EXPAND(first), _FOR_ALL2(renderer, macro, ___FOR_ALL(macro, _array, __VA_ARGS__)))
+#define FOR_ALL4(renderer, macro, first, _array, ...) renderer(EXPAND(first), _FOR_ALL3(renderer, macro, ___FOR_ALL(macro, _array, __VA_ARGS__)))
+#define FOR_ALL5(renderer, macro, first, _array, ...) renderer(EXPAND(first), _FOR_ALL4(renderer, macro, ___FOR_ALL(macro, _array, __VA_ARGS__)))
 
-#define FOR_ALL(macro, _array, ...) _FOR_ALL(COUNT_ARGS(__VA_ARGS__), macro, _array, __VA_ARGS__)
+#define FOR_ALL(macro, _array, ...) _FOR_ALL(COUNT_ARGS(__VA_ARGS__), renderer, macro, _array, __VA_ARGS__)
 
 #endif WINCOPIES_FOR_ALL_HPP
