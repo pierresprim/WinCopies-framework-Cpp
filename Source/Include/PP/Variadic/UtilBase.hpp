@@ -126,9 +126,6 @@
 #define EXPAND_SURROUNDED(prefix, suffix, _array) SURROUND_VA_ARGS(prefix, suffix, EXPAND(_array))
 #define EXPAND_SUFFIXED(suffix, _array) SUFFIX_VA_ARGS(suffix, EXPAND(_array))
 
-#define RENDERED_ARRAY_TRANSCRIBER(prefix, value, ...) SECOND_ARG prefix, (FIRST_ARG prefix(value)), __VA_ARGS__
-#define RENDERED_ARRAY_TRANSCRIBER_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER(prefix, value, __VA_ARGS__)
-
 #define _PRINT_RENDERED_ARGS_AS_ARRAY(prefix, suffix, first, ...) TRANSCRIBE_ARGS_PREFIXED(SINGLE_ARG, RENDERED_ARRAY_TRANSCRIBER(prefix, first, suffix) FOR_EACH_C(RENDERED_ARRAY_TRANSCRIBER_CS, prefix, suffix, __VA_ARGS__))
 #define PRINT_RENDERED_ARGS_AS_ARRAY(prefix, macro, suffix, ...) CALL_IF_VA_ARGS(_PRINT_RENDERED_ARGS_AS_ARRAY, __VA_ARGS__)((macro, prefix), suffix, __VA_ARGS__)
 

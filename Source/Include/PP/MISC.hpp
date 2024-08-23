@@ -49,4 +49,8 @@
 #define RENDER_COMMA(renderer, ...) , renderer(__VA_ARGS__),
 #define RENDER_CS(renderer, ...) , renderer(__VA_ARGS__)
 #define RENDER_CE(renderer, ...) renderer(__VA_ARGS__),
+
+#define RENDERED_ARRAY_TRANSCRIBER(prefix, value, ...) SECOND_ARG prefix, (FIRST_ARG prefix(value)), __VA_ARGS__
+#define RENDERED_ARRAY_TRANSCRIBER_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER(prefix, value, __VA_ARGS__)
+
 #endif WINCOPIES_MISC_HPP
