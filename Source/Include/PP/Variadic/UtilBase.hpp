@@ -38,8 +38,13 @@
 #define JOIN_RENDERED_ARGS(renderer, separator, ...) CALL_IF_VA_ARGS(_JOIN_RENDERED_ARGS, __VA_ARGS__)(renderer, separator, __VA_ARGS__)
 #define JOIN_ARGS(separator, ...) JOIN_RENDERED_ARGS(SINGLE_ARG, separator, __VA_ARGS__)
 
-#define _ZIP_ARGS(_array, ...) ((FIRST_ARG _array, FIRST_ARG(__VA_ARGS__))), (ALL_BUT_FIRST_ARG _array)
+#define __ZIP_ARGS(renderer, _array, ...) ((FIRST_ARG _array, renderer(FIRST_ARG(__VA_ARGS__)))), (ALL_BUT_FIRST_ARG _array)
+
+#define _ZIP_ARGS(_array, ...) __ZIP_ARGS(SINGLE_ARG, _array, __VA_ARGS__)
 #define ZIP_ARGS(_array, ...) FOR_ALL(_ZIP_ARGS, _array, __VA_ARGS__)
+
+#define _PREPEND_ARG_ARRAY(_array, ...) __ZIP_ARGS(EXPAND, _array, __VA_ARGS__)
+#define PREPEND_ARG_ARRAY(_array, ...) FOR_ALL(_PREPEND_ARG_ARRAY, _array, __VA_ARGS__)
 
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_ARGS(...) CONCATENATE_WITH(SURROUND, , , __VA_ARGS__)
@@ -126,6 +131,8 @@
 #define EXPAND_SURROUNDED(prefix, suffix, _array) SURROUND_VA_ARGS(prefix, suffix, EXPAND(_array))
 #define EXPAND_SUFFIXED(suffix, _array) SUFFIX_VA_ARGS(suffix, EXPAND(_array))
 
+#define RENDER_SELECTED(prefix, suffix, transcriber, selector, renderer, ...) FOR_EACH(transcriber, prefix, renderer, suffix, selector(__VA_ARGS__))
+
 #define ___PROCESS_ARG_ARRAY_RENDERING(processor, prefix, suffix, first, ...) processor(prefix, first, suffix) FOR_EACH_C(CONCATENATE(processor, _CS), prefix, suffix, __VA_ARGS__)
 #define __PROCESS_ARG_ARRAY_RENDERING(processor, prefix, macro, suffix, ...) ___PROCESS_ARG_ARRAY_RENDERING(SURROUND(processor, IF_VA_ARGS(_P, , EXPAND(prefix)), IF_VA_ARGS(_S, , EXPAND(suffix))), (macro, prefix), suffix, __VA_ARGS__)
 #define _PROCESS_ARG_ARRAY_RENDERING(processor, prefix, macro, suffix, ...) CALL_IF_VA_ARGS(__PROCESS_ARG_ARRAY_RENDERING, __VA_ARGS__)(SURROUND(RENDERED_, processor, ARRAY_TRANSCRIBER), prefix, macro, suffix, __VA_ARGS__)
@@ -145,5 +152,7 @@
 
 #define GET_ARG_PAIRS_KEY(...) PREFIX_ARGS(FIRST_ARG, __VA_ARGS__)
 #define GET_ARG_PAIRS_VALUE(...) PREFIX_ARGS(SECOND_ARG, __VA_ARGS__)
+
+#define REMOVE_FIRST_VALUE(...) RENDER_ARG_ARRAY((), ALL_BUT_FIRST_ARG, (), __VA_ARGS__)
 
 #endif WINCOPIES_VA_UTIL_BASE_HPP
