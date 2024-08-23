@@ -15,7 +15,7 @@
 #define INLINE_FUNCTION DLLEXPORT inline
 
 #define ____RENDER_ARG_METHODS(renderer, ...) PRINT_RENDERED_ARG_ARRAY((), renderer, (;), __VA_ARGS__)
-#define ___RENDER_ARG_METHODS(prefix, preRenderer, postRenderer, _array, ...) ____RENDER_ARG_METHODS(postRenderer, PREPEND_ARG_ARRAY((preRenderer(prefix, SINGLE_ARG _array)), REMOVE_FIRST_VALUE(__VA_ARGS__)))
+#define ___RENDER_ARG_METHODS(prefix, preRenderer, postRenderer, _array, ...) ____RENDER_ARG_METHODS(postRenderer, ZIP_ARG_ARRAY((preRenderer(prefix, SINGLE_ARG _array)), REMOVE_FIRST_VALUE(__VA_ARGS__)))
 #define __RENDER_ARG_METHODS(prefix, midRendererArg, preRenderer, midRenderer, postRenderer, ...) ___RENDER_ARG_METHODS(prefix, preRenderer, postRenderer, (midRenderer(midRendererArg, GET_ARG_PAIRS_KEY(__VA_ARGS__))), __VA_ARGS__)
 #define _RENDER_ARG_METHODS(prefix, preRenderer, postRenderer, ...) __RENDER_ARG_METHODS(prefix, , preRenderer, ALL_BUT_FIRST_ARG, postRenderer, __VA_ARGS__)
 

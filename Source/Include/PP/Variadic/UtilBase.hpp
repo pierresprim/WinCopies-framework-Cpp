@@ -44,8 +44,8 @@
 #define _ZIP_ARGS(_array, ...) __ZIP_ARGS(SINGLE_ARG, _array, __VA_ARGS__)
 #define ZIP_ARGS(_array, ...) FOR_ALL(_ZIP_ARGS, _array, __VA_ARGS__)
 
-#define _PREPEND_ARG_ARRAY(_array, ...) __ZIP_ARGS(EXPAND, _array, __VA_ARGS__)
-#define PREPEND_ARG_ARRAY(_array, ...) FOR_ALL(_PREPEND_ARG_ARRAY, _array, __VA_ARGS__)
+#define _ZIP_ARG_ARRAY(_array, ...) __ZIP_ARGS(EXPAND, _array, __VA_ARGS__)
+#define ZIP_ARG_ARRAY(_array, ...) FOR_ALL(_ZIP_ARG_ARRAY, _array, __VA_ARGS__)
 
 #define _ADD_TO_VA_ARGS(renderer, expander, _array, ...) ___ZIP_ARGS(renderer, expander, SINGLE_ARG, SINGLE_ARG, _array, __VA_ARGS__)
 
