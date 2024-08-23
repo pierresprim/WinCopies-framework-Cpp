@@ -36,6 +36,8 @@
 
 #define PRINT_FIRST_TWO_ARGS(...) FIRST_ARG(__VA_ARGS__) SECOND_ARG(__VA_ARGS__)
 
+#define REVERSE_FIRST_TWO_ARGS(x, y, ...) y, x
+
 #define EXPAND(_array) SINGLE_ARG _array
 
 #define _HAS_VA_OPT(...) THIRD_ARG(__VA_OPT__(,), 1, 0, )
