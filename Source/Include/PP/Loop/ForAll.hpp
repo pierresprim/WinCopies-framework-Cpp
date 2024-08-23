@@ -11,6 +11,9 @@
 #define FOR_ALL4(renderer, macro, first, _array, ...) renderer(EXPAND(first), _FOR_ALL3(renderer, macro, ___FOR_ALL(macro, _array, __VA_ARGS__)))
 #define FOR_ALL5(renderer, macro, first, _array, ...) renderer(EXPAND(first), _FOR_ALL4(renderer, macro, ___FOR_ALL(macro, _array, __VA_ARGS__)))
 
-#define FOR_ALL(macro, _array, ...) _FOR_ALL(COUNT_ARGS(__VA_ARGS__), renderer, macro, _array, __VA_ARGS__)
+#define FFOR_ALL(renderer, macro, _array, ...) _FOR_ALL(COUNT_ARGS(__VA_ARGS__), renderer, macro, _array, __VA_ARGS__)
+
+#define FOR_ALL(macro, _array, ...) FFOR_ALL(SINGLE_ARG, macro, _array, __VA_ARGS__)
+#define FOR_ALL_REVERSED(macro, _array, ...) FFOR_ALL(REVERSE_FIRST_TWO_ARGS, macro, _array, __VA_ARGS__)
 
 #endif WINCOPIES_FOR_ALL_HPP
