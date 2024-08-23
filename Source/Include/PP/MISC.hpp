@@ -50,7 +50,10 @@
 #define RENDER_CS(renderer, ...) , renderer(__VA_ARGS__)
 #define RENDER_CE(renderer, ...) renderer(__VA_ARGS__),
 
-#define RENDERED_ARRAY_TRANSCRIBER(prefix, value, ...) SECOND_ARG prefix, (FIRST_ARG prefix(value)), __VA_ARGS__
-#define RENDERED_ARRAY_TRANSCRIBER_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER(prefix, value, __VA_ARGS__)
+#define __RENDERED_ARRAY_TRANSCRIBER(macro, ...) (macro(__VA_ARGS__))
+#define _RENDERED_ARRAY_TRANSCRIBER(expander, prefix, value) __RENDERED_ARRAY_TRANSCRIBER(FIRST_ARG prefix, expander(value))
+
+#define RENDERED_ARRAY_TRANSCRIBER(prefix, value, ...) _RENDERED_ARRAY_TRANSCRIBER(EXPAND, prefix, value)
+#define RENDERED_ARRAY_TRANSCRIBER_CS(prefix, value, ...) COMMA RENDERED_ARRAY_TRANSCRIBER(prefix, value)
 
 #endif WINCOPIES_MISC_HPP
