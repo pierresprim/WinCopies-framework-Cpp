@@ -126,8 +126,17 @@
 #define EXPAND_SURROUNDED(prefix, suffix, _array) SURROUND_VA_ARGS(prefix, suffix, EXPAND(_array))
 #define EXPAND_SUFFIXED(suffix, _array) SUFFIX_VA_ARGS(suffix, EXPAND(_array))
 
-#define _PRINT_RENDERED_ARGS_AS_ARRAY(prefix, suffix, first, ...) TRANSCRIBE_ARGS_PREFIXED(SINGLE_ARG, RENDERED_ARRAY_TRANSCRIBER(prefix, first, suffix) FOR_EACH_C(RENDERED_ARRAY_TRANSCRIBER_CS, prefix, suffix, __VA_ARGS__))
-#define PRINT_RENDERED_ARGS_AS_ARRAY(prefix, macro, suffix, ...) CALL_IF_VA_ARGS(_PRINT_RENDERED_ARGS_AS_ARRAY, __VA_ARGS__)((macro, prefix), suffix, __VA_ARGS__)
+#define ___PROCESS_ARG_ARRAY_RENDERING(processor, prefix, suffix, first, ...) processor(prefix, first, suffix) FOR_EACH_C(CONCATENATE(processor, _CS), prefix, suffix, __VA_ARGS__)
+#define __PROCESS_ARG_ARRAY_RENDERING(processor, prefix, macro, suffix, ...) ___PROCESS_ARG_ARRAY_RENDERING(SURROUND(processor, IF_VA_ARGS(_P, , EXPAND(prefix)), IF_VA_ARGS(_S, , EXPAND(suffix))), (macro, prefix), suffix, __VA_ARGS__)
+#define _PROCESS_ARG_ARRAY_RENDERING(processor, prefix, macro, suffix, ...) CALL_IF_VA_ARGS(__PROCESS_ARG_ARRAY_RENDERING, __VA_ARGS__)(SURROUND(RENDERED_, processor, ARRAY_TRANSCRIBER), prefix, macro, suffix, __VA_ARGS__)
+
+#define RENDER_ARGS_AS_ARRAY(prefix, macro, suffix, ...) _PROCESS_ARG_ARRAY_RENDERING(AS_, prefix, macro, suffix, __VA_ARGS__)
+#define RENDER_ARG_ARRAY(prefix, macro, suffix, ...) _PROCESS_ARG_ARRAY_RENDERING(, prefix, macro, suffix, __VA_ARGS__)
+
+#define _PRINT_RENDERED_ARG_ARRAY(processor, prefix, macro, suffix, ...) TRANSCRIBE_ARGS_PREFIXED(SINGLE_ARG, SURROUND(RENDER_ARG, processor, _ARRAY)(prefix, macro, suffix, __VA_ARGS__))
+
+#define PRINT_RENDERED_ARGS_AS_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(S_AS, prefix, macro, suffix, __VA_ARGS__)
+#define PRINT_RENDERED_ARG_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(, prefix, macro, suffix, __VA_ARGS__)
 
 #define _TRANSCRIBE_ARG_PAIRS(prefix, ...) PREFIX_ARGS(prefix ARGS_TRANSCRIPTION, __VA_ARGS__)
 
