@@ -4,6 +4,7 @@
 #define WINCOPIES_FOR_ALL_HPP
 
 #include "Include/FOR_ALL.hpp"
+#include "../Variadic/CountArgs.hpp"
 
 #define FOR_ALL1(renderer, macro, first, _array, ...) EXPAND(first)
 #define FOR_ALL2(renderer, macro, first, _array, ...) renderer(EXPAND(first), _FOR_ALL1(renderer, macro, ___FOR_ALL(macro, _array, __VA_ARGS__)))
