@@ -71,6 +71,18 @@
 #define APPEND_TO_REVERSED_VA_ARGS(_array, ...) FOR_ALL_REVERSED(_APPEND_TO_VA_ARGS, _array, __VA_ARGS__)
 #define APPEND_TO_REVERSED_ARG_ARRAY(_array, ...) FOR_ALL_REVERSED(_APPEND_TO_ARG_ARRAY, _array, __VA_ARGS__)
 
+#define ___SURROUND_VA_ARGS_WITH(x, y, ...) SINGLE_ARG FIRST_ARG(x), y, SINGLE_ARG SECOND_ARG(x)
+#define __SURROUND_VA_ARGS_WITH(expander, _array, ...) _ADD_TO_VA_ARGS(___SURROUND_VA_ARGS_WITH, expander, _array, __VA_ARGS__)
+
+#define _SURROUND_VA_ARGS_WITH(_array, ...) __SURROUND_VA_ARGS_WITH(SINGLE_ARG, _array, __VA_ARGS__)
+#define SURROUND_VA_ARGS_WITH(_array, ...) FOR_ALL(_SURROUND_VA_ARGS_WITH, _array, __VA_ARGS__)
+
+#define _SURROUND_ARG_ARRAY_WITH(_array, ...) __SURROUND_VA_ARGS_WITH(EXPAND, _array, __VA_ARGS__)
+#define SURROUND_ARG_ARRAY_WITH(_array, ...) FOR_ALL(_SURROUND_ARG_ARRAY_WITH, _array, __VA_ARGS__)
+
+#define SURROUND_REVERSED_VA_ARGS(_array, ...) FOR_ALL_REVERSED(_SURROUND_VA_ARGS_WITH, _array, __VA_ARGS__)
+#define SURROUND_REVERSED_ARG_ARRAY(_array, ...) FOR_ALL_REVERSED(_SURROUND_ARG_ARRAY_WITH, _array, __VA_ARGS__)
+
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_ARGS(...) CONCATENATE_WITH(SURROUND, , , __VA_ARGS__)
 

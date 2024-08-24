@@ -32,4 +32,4 @@
 #define COUNT_ARGS(...) ___COUNT_ARGS(__VA_OPT__(_COUNT_ARGS(__VA_ARGS__)))
 #endif
 
-#endif // WINCOPIES_COUNT_ARGS_HPP
+#endif WINCOPIES_COUNT_ARGS_HPP
