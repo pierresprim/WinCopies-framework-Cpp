@@ -41,4 +41,7 @@
 
 #define VA_ARGS_OR_IF_EMPTY(ifEmpty, ...) IF(VA_ARGS_EMPTY(__VA_ARGS__), ifEmpty, __VA_ARGS__)
 
-#endif // WINCOPIES_VARIADIC_HPP
+#define ARRAY_FILLED(items) VA_ARGS_FILLED(SINGLE_ARG items)
+#define ARRAY_EMPTY(items) VA_ARGS_EMPTY(SINGLE_ARG items)
+
+#endif WINCOPIES_VARIADIC_HPP
