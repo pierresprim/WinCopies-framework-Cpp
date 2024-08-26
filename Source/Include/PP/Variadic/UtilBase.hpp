@@ -7,9 +7,7 @@
 #include "../Loop/ForAll.hpp"
 #include "../Loop/ForEach.hpp"
 
-#if !HAS_VA_OPT
 #include "Variadic.hpp"
-#endif
 
 #define _PP_PARSE_ARRAY_CONCATENATOR(macro, _array, ...) (macro _array)
 #define PP_PARSE_ARRAY(macro, ...) FOR_EACH_C(_PP_PARSE_ARRAY_CONCATENATOR, macro, , __VA_ARGS__)
@@ -184,12 +182,31 @@
 #define PRINT_RENDERED_ARGS_AS_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(S_AS, prefix, macro, suffix, __VA_ARGS__)
 #define PRINT_RENDERED_ARG_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(, prefix, macro, suffix, __VA_ARGS__)
 
-#define _RENDER_VA_ARGS(renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) renderer(overallPrefixes, macro, overallSuffixes, SURROUND_VA_ARGS_WITH(argPrefixes, argSuffixes, __VA_ARGS__))
+#define _RENDER_VA_ARGS_R0 RENDER_ARGS
+#define _RENDER_VA_ARGS_P0 PRINT_ARGS_RENDERED
 
-#define RRENDER_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(RENDER_ARG_ARRAY, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
+#define _RENDER_VA_ARGS_R1 RENDER_ARG_ARRAY
+#define _RENDER_VA_ARGS_P1 PRINT_RENDERED_ARG_ARRAY
+
+#define _RENDER_VA_ARGS11(prefixes, suffixes, ...) SURROUND_VA_ARGS_WITH(prefixes, suffixes, __VA_ARGS__)
+#define _RENDER_VA_ARGS10(prefixes, suffixes, ...) PREPEND_TO_VA_ARGS(prefixes, __VA_ARGS__)
+#define _RENDER_VA_ARGS01(prefixes, suffixes, ...) APPEND_TO_VA_ARGS(suffixes, __VA_ARGS__)
+#define _RENDER_VA_ARGS00(prefixes, suffixes, ...) TRANSCRIBE_ARGS_AS_ARRAYS(__VA_ARGS__)
+
+#define ____RENDER_VA_ARGS(bits) CONCATENATE(_RENDER_VA_ARGS, bits)
+#define _GET_ARGS_RENDERER(renderer, _bool) _RENDER_VA_ARGS_##renderer##_bool
+
+#define _RENDER_VA_ARGS1(bits, renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _GET_ARGS_RENDERER(renderer, 1)(overallPrefixes, macro, overallSuffixes, ____RENDER_VA_ARGS(CONCATENATE bits)(argPrefixes, argSuffixes, __VA_ARGS__))
+#define _RENDER_VA_ARGS0(bits, renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _GET_ARGS_RENDERER(renderer, 0)(macro, __VA_ARGS__)
+
+#define ___RENDER_VA_ARGS(_bool, bits, renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) CONCATENATE(_RENDER_VA_ARGS, _bool)(bits, renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
+#define __RENDER_VA_ARGS(bits, renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) ___RENDER_VA_ARGS(OR_B(ARRAY_FILLED(overallPrefixes), OR_B(ARRAY_FILLED(overallSuffixes), OR_B bits)), bits, renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
+#define _RENDER_VA_ARGS(renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) __RENDER_VA_ARGS((ARRAY_FILLED(argPrefixes), ARRAY_FILLED(argSuffixes)), renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
+
+#define RRENDER_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(R, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
 #define RENDER_VA_ARGS(macro, prefixes, suffixes, ...) RRENDER_VA_ARGS((), (), macro, prefixes, suffixes, __VA_ARGS__)
 
-#define PPRINT_RENDERED_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(PRINT_RENDERED_ARG_ARRAY, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
+#define PPRINT_RENDERED_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(P, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
 #define PRINT_RENDERED_VA_ARGS(macro, prefixes, suffixes, ...) PPRINT_RENDERED_VA_ARGS((), (), macro, prefixes, suffixes, __VA_ARGS__)
 
 #define _TRANSCRIBE_ARG_PAIRS(prefix, ...) PREFIX_ARGS(prefix ARGS_TRANSCRIPTION, __VA_ARGS__)
