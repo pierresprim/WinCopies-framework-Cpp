@@ -7,6 +7,7 @@
 #include "../../../PP/Variadic/UtilBase.hpp"
 
 #include "../../Reflection/Reflection.h"
+#include "Property.hxx"
 
 #define _INLINE_METHOD_ACTION_ABSTRACT(action) IF_VA_ARGS(; static_assert(false, L"Abstract method can not be implemented."), , action);
 #define _INLINE_METHOD_ACTION_IMPLEMENTATION(action) { action; }
@@ -27,6 +28,9 @@
 
 #define INLINE_METHOD_RETURN(isConst, virtuality, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, virtuality, returnType, methodName, return value, __VA_ARGS__)
 #define INLINE_FUNCTION_RETURN(returnType, methodName, value, ...) INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, returnType, methodName, value, __VA_ARGS__)
+
+#define INLINE_PROPERTY_GET(isConst, virtuality, returnType, value) CALL_VA_MACRO(INLINE_METHOD_RETURN, isConst, virtuality, _PROPERTY_GET(returnType), value)
+#define INLINE_PROPERTY_IS(isConst, virtuality, name, value) CALL_VA_MACRO(INLINE_METHOD_RETURN, isConst, virtuality, _PROPERTY_IS(name), value)
 
 #define FIELD_SET(field, value) _##field = value;
 #define FIELD_UPDATE(value) FIELD_SET(value, value)
