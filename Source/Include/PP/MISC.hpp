@@ -46,6 +46,8 @@
 
 #define TRANSCRIBE_VA_ARGS(prefix, suffix, ...) prefix, __VA_ARGS__, suffix
 
+#define TRANSCRIBE_VALUE_AS_ARRAY(...) (__VA_ARGS__)
+
 #define RENDER_COMMA(renderer, ...) , renderer(__VA_ARGS__),
 #define RENDER_CS(renderer, ...) , renderer(__VA_ARGS__)
 #define RENDER_CE(renderer, ...) renderer(__VA_ARGS__),

@@ -20,4 +20,4 @@
 #define SURROUND_IF(condition, prefix, value, ...) SURROUND_IF_ELSE(condition, prefix, value, __VA_ARGS__, value)
 #define SURROUND_ONLY_IF(condition, prefix, value, ...) SURROUND_IF_ELSE(condition, prefix, value, __VA_ARGS__, )
 
-#endif // WINCOPIES_CONDITIONAL_HPP
+#endif WINCOPIES_CONDITIONAL_HPP

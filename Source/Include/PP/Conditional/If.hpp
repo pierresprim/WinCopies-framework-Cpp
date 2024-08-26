@@ -29,4 +29,4 @@
 #define AND(x, y) AND_B(PP_BOOL(x), PP_BOOL(y))
 #define OR(x, y) OR_B(PP_BOOL(x), PP_BOOL(y))
 
-#endif // WINCOPIES_IF_HPP
+#endif WINCOPIES_IF_HPP
