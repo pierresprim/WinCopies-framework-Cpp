@@ -168,6 +168,8 @@
 #define EXPAND_SURROUNDED(prefix, suffix, _array) SURROUND_VA_ARGS(prefix, suffix, EXPAND(_array))
 #define EXPAND_SUFFIXED(suffix, _array) SUFFIX_VA_ARGS(suffix, EXPAND(_array))
 
+#define TRANSCRIBE_ARGS_AS_ARRAYS(...) RENDER_ARGS(TRANSCRIBE_VALUE_AS_ARRAY, __VA_ARGS__)
+
 #define RENDER_SELECTED(prefix, suffix, transcriber, selector, renderer, ...) FOR_EACH(transcriber, prefix, renderer, suffix, selector(__VA_ARGS__))
 
 #define ___PROCESS_ARG_ARRAY_RENDERING(processor, prefix, suffix, first, ...) processor(prefix, first, suffix) FOR_EACH_C(CONCATENATE(processor, _CS), prefix, suffix, __VA_ARGS__)
