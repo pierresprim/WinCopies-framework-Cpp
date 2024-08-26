@@ -182,6 +182,14 @@
 #define PRINT_RENDERED_ARGS_AS_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(S_AS, prefix, macro, suffix, __VA_ARGS__)
 #define PRINT_RENDERED_ARG_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(, prefix, macro, suffix, __VA_ARGS__)
 
+#define _RENDER_VA_ARGS(renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) renderer(overallPrefixes, macro, overallSuffixes, SURROUND_VA_ARGS_WITH((argPrefixes, argSuffixes), __VA_ARGS__))
+
+#define RRENDER_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(RENDER_ARG_ARRAY, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
+#define RENDER_VA_ARGS(macro, prefixes, suffixes, ...) RRENDER_VA_ARGS((), (), macro, prefixes, suffixes, __VA_ARGS__)
+
+#define PPRINT_RENDERED_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(PRINT_RENDERED_ARG_ARRAY, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
+#define PRINT_RENDERED_VA_ARGS(macro, prefixes, suffixes, ...) PPRINT_RENDERED_VA_ARGS((), (), macro, prefixes, suffixes, __VA_ARGS__)
+
 #define _TRANSCRIBE_ARG_PAIRS(prefix, ...) PREFIX_ARGS(prefix ARGS_TRANSCRIPTION, __VA_ARGS__)
 
 #define TRANSCRIBE_ARG_PAIRS(...) _TRANSCRIBE_ARG_PAIRS(, __VA_ARGS__)
