@@ -75,13 +75,13 @@
 #define __SURROUND_VA_ARGS_WITH(expander, _array, ...) _ADD_TO_VA_ARGS(___SURROUND_VA_ARGS_WITH, expander, _array, __VA_ARGS__)
 
 #define _SURROUND_VA_ARGS_WITH(_array, ...) __SURROUND_VA_ARGS_WITH(SINGLE_ARG, _array, __VA_ARGS__)
-#define SURROUND_VA_ARGS_WITH(_array, ...) FOR_ALL(_SURROUND_VA_ARGS_WITH, _array, __VA_ARGS__)
+#define SURROUND_VA_ARGS_WITH(prefixes, suffixes, ...) FOR_ALL(_SURROUND_VA_ARGS_WITH, (prefixes, suffixes), __VA_ARGS__)
 
 #define _SURROUND_ARG_ARRAY_WITH(_array, ...) __SURROUND_VA_ARGS_WITH(EXPAND, _array, __VA_ARGS__)
-#define SURROUND_ARG_ARRAY_WITH(_array, ...) FOR_ALL(_SURROUND_ARG_ARRAY_WITH, _array, __VA_ARGS__)
+#define SURROUND_ARG_ARRAY_WITH(prefixes, suffixes, ...) FOR_ALL(_SURROUND_ARG_ARRAY_WITH, (prefixes, suffixes), __VA_ARGS__)
 
-#define SURROUND_REVERSED_VA_ARGS(_array, ...) FOR_ALL_REVERSED(_SURROUND_VA_ARGS_WITH, _array, __VA_ARGS__)
-#define SURROUND_REVERSED_ARG_ARRAY(_array, ...) FOR_ALL_REVERSED(_SURROUND_ARG_ARRAY_WITH, _array, __VA_ARGS__)
+#define SURROUND_REVERSED_VA_ARGS(prefixes, suffixes, ...) FOR_ALL_REVERSED(_SURROUND_VA_ARGS_WITH, (prefixes, suffixes), __VA_ARGS__)
+#define SURROUND_REVERSED_ARG_ARRAY(prefixes, suffixes, ...) FOR_ALL_REVERSED(_SURROUND_ARG_ARRAY_WITH, (prefixes, suffixes), __VA_ARGS__)
 
 #define CONCATENATE_WITH(concatenator, prefix, suffix, ...) FOR_EACH_C(concatenator, prefix, suffix, __VA_ARGS__)
 #define CONCATENATE_ARGS(...) CONCATENATE_WITH(SURROUND, , , __VA_ARGS__)
@@ -182,7 +182,7 @@
 #define PRINT_RENDERED_ARGS_AS_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(S_AS, prefix, macro, suffix, __VA_ARGS__)
 #define PRINT_RENDERED_ARG_ARRAY(prefix, macro, suffix, ...) _PRINT_RENDERED_ARG_ARRAY(, prefix, macro, suffix, __VA_ARGS__)
 
-#define _RENDER_VA_ARGS(renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) renderer(overallPrefixes, macro, overallSuffixes, SURROUND_VA_ARGS_WITH((argPrefixes, argSuffixes), __VA_ARGS__))
+#define _RENDER_VA_ARGS(renderer, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) renderer(overallPrefixes, macro, overallSuffixes, SURROUND_VA_ARGS_WITH(argPrefixes, argSuffixes, __VA_ARGS__))
 
 #define RRENDER_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(RENDER_ARG_ARRAY, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
 #define RENDER_VA_ARGS(macro, prefixes, suffixes, ...) RRENDER_VA_ARGS((), (), macro, prefixes, suffixes, __VA_ARGS__)
