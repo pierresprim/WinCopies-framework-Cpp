@@ -35,11 +35,11 @@
 #define FIELD_SET(field, value) _##field = value;
 #define FIELD_UPDATE(value) FIELD_SET(value, value)
 
-#define _INLINE_FIELD_SET(className, paramType, field, value) className(paramType value) { FIELD_SET(field, value) }
-#define _INLINE_FIELD_UPDATE(methodName, paramType, field, value) _INLINE_FIELD_SET(void methodName, paramType, field, value)
+#define _INLINE_FIELD_SET(className, paramType, field, value) inline className(paramType value) { FIELD_SET(field, value) }
+#define IINLINE_FIELD_UPDATE(methodName, paramType, field, value) _INLINE_FIELD_SET(void methodName, paramType, field, value)
 
-#define INLINE_FIELD_SET(className, paramType, value) _INLINE_FIELD_SET(className, paramType, value, value)
-#define INLINE_FIELD_UPDATE(methodName, paramType, value) _INLINE_FIELD_UPDATE(methodName, paramType, value, value)
+#define INLINE_FIELD_SET(className, paramType, value) _INLINE_FIELD_SET(explicit className, paramType, value, value)
+#define INLINE_FIELD_UPDATE(methodName, paramType, value) IINLINE_FIELD_UPDATE(methodName, paramType, value, value)
 
 #define IINLINE_FIELD_RETURN(virtuality, returnType, methodName, field) INLINE_METHOD_RETURN(1, virtuality, returnType, methodName, _##field)
 #define INLINE_FIELD_RETURN(virtuality, returnType, methodName, field) IINLINE_FIELD_RETURN(virtuality, returnType, Get##methodName, field)
