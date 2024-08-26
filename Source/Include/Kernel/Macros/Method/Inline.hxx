@@ -29,6 +29,8 @@
 #define INLINE_METHOD_RETURN(isConst, virtuality, returnType, methodName, value, ...) _INLINE_METHOD_ACTION(1, isConst, virtuality, returnType, methodName, return value, __VA_ARGS__)
 #define INLINE_FUNCTION_RETURN(returnType, methodName, value, ...) INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, returnType, methodName, value, __VA_ARGS__)
 
+#define INLINE_STATIC_RETURN(returnType, methodName, value, ...) INLINE_FUNCTION_RETURN(static returnType, methodName, value, __VA_ARGS__)
+
 #define INLINE_PROPERTY_GET(isConst, virtuality, returnType, value) CALL_VA_MACRO(INLINE_METHOD_RETURN, isConst, virtuality, _PROPERTY_GET(returnType), value)
 #define INLINE_PROPERTY_IS(isConst, virtuality, name, value) CALL_VA_MACRO(INLINE_METHOD_RETURN, isConst, virtuality, _PROPERTY_IS(name), value)
 
@@ -41,8 +43,15 @@
 #define INLINE_FIELD_SET(className, paramType, value) _INLINE_FIELD_SET(explicit className, paramType, value, value)
 #define INLINE_FIELD_UPDATE(methodName, paramType, value) IINLINE_FIELD_UPDATE(methodName, paramType, value, value)
 
+#define IINLINE_FIELD_RESET(methodName, paramType, field, value) IINLINE_FIELD_UPDATE(Set##methodName, paramType, field, value)
+#define INLINE_FIELD_RESET(methodName, paramType, value) INLINE_FIELD_UPDATE(Set##methodName, paramType, value)
+
 #define IINLINE_FIELD_RETURN(virtuality, returnType, methodName, field) INLINE_METHOD_RETURN(1, virtuality, returnType, methodName, _##field)
 #define INLINE_FIELD_RETURN(virtuality, returnType, methodName, field) IINLINE_FIELD_RETURN(virtuality, returnType, Get##methodName, field)
+
+#define INLINE_METHOD_DELETE(virtuality, methodName, field) INLINE_METHOD_ACTION(0, virtuality, methodName, delete _##field)
+#define INLINE_FUNCTION_DELETE(methodName, field) INLINE_METHOD_DELETE(VIRTUALITY_NONE, methodName, field)
+#define INLINE_FIELD_DELETE(virtuality, typeName, field) _INLINE_METHOD_ACTION(0, 0, virtuality, , ~typeName, delete _##field)
 
 #define INLINE_OBJECT_RETURN(returnType, methodName, params, ...) INLINE_METHOD_RETURN(returnType*, methodName, new returnType PAR_O __VA_ARGS__ PAR_C, params)
 
