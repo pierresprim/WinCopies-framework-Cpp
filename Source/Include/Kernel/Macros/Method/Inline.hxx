@@ -13,7 +13,7 @@
 #define _INLINE_METHOD_ACTION_IMPLEMENTATION(action) { action; }
 
 #define __INLINE_METHOD_ACTION(macro, action) CONCATENATE(_INLINE_METHOD_ACTION, macro)(action)
-#define _INLINE_METHOD_ACTION(isInline, isConst, virtuality, returnType, methodName, action, ...) IF_GREATER(virtuality, 0, virtual) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) METHOD_VIRTUALITY(virtuality) __INLINE_METHOD_ACTION(EQUALS(virtuality, METHOD_VIRTUALITY_ABSTRACT, _ABSTRACT, _IMPLEMENTATION), action)
+#define _INLINE_METHOD_ACTION(isInline, isConst, virtuality, returnType, methodName, action, ...) IF_GREATER(virtuality, 0, virtual) IF(isInline, inline) returnType methodName(__VA_ARGS__) IF(isConst, const) METHOD_VIRTUALITY(virtuality) __INLINE_METHOD_ACTION(EQUALS(virtuality, VIRTUALITY_ABSTRACT, _ABSTRACT, _IMPLEMENTATION), action)
 
 #define INLINE_METHOD_ACTION(isConst, virtuality, methodName, action, ...) _INLINE_METHOD_ACTION(1, isConst, virtuality, void, methodName, action, __VA_ARGS__)
 #define INLINE_FUNCTION_ACTION(methodName, action, ...) INLINE_METHOD_ACTION(0, VIRTUALITY_NONE, methodName, action, __VA_ARGS__)
