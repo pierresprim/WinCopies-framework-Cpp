@@ -75,4 +75,20 @@
 #define FFIELDS_INITIALIZER(name, preInit, postInit, base, ...) _FFIELDS_INITIALIZER(0, name, preInit, postInit, base, __VA_ARGS__)
 #define FIELDS_INITIALIZER(name, ...) FFIELDS_INITIALIZER(name, (), (), (), __VA_ARGS__)
 
+
+
+#define _INLINE_METHODS_RETURN(areConst, virtuality, returnType, returnValue, ...) PRINT_RENDERED_VA_ARGS(INLINE_METHOD_RETURN, (areConst, virtuality, returnType), (returnValue), __VA_ARGS__)
+
+#define INLINE_METHODS_RETURN(areConst, virtuality, implementationType, returnType, returnValue, ...) _INLINE_METHODS_RETURN(areConst, virtuality, returnType IF(VA_ARGS_FILLED(implementationType), implementationType::), returnValue, __VA_ARGS__)
+
+
+
+#define INLINE_ABSTRACTION_RETURN(isConst, returnType, name, suffix, abstractorPtr, ...) INLINE_METHOD_RETURN(isConst, VIRTUALITY_NONE, virtual returnType, SURROUND(FIRST_ARG name, suffix, SECOND_ARG name), abstractorPtr->FIRST_ARG name(CALL_WHEN_VA_ARGS(GET_ARG_PAIRS_VALUE, __VA_ARGS__)), PREFIX_ARGS(ARGS_TRANSCRIPTION, __VA_ARGS__))
+#define INLINE_COLLECTION_ABSTRACTION_RETURN(isConst, returnType, name, abstractorPtr, ...) INLINE_ABSTRACTION_RETURN(isConst, returnType, name, Item, abstractorPtr, __VA_ARGS__)
+
+
+
+#define INLINE_ABSTRACTIONS_RETURN(isConst, returnType, suffix, abstractorPtr, ...) PARSE_ITEMS((isConst, returnType), INLINE_ABSTRACTION_RETURN, (suffix, abstractorPtr), __VA_ARGS__)
+#define INLINE_COLLECTION_ABSTRACTIONS_RETURN(isConst, returnType, abstractorPtr, ...) INLINE_ABSTRACTIONS_RETURN(isConst, returnType, Item, abstractorPtr, __VA_ARGS__)
+
 #endif WINCOPIES_MACROS_METHOD_INLINE_HXX
