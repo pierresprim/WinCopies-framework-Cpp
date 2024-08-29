@@ -74,7 +74,7 @@ namespace WinCopies
 
 	DLLEXPORT SystemErrorCode MemoryAlloc(size_t const length, void** const result);
 
-#define _MEMORY_ALLOC_FUNC_HEADER(allocKind, nameSuffix, ...) TEMPLATE DLLEXPORT SystemErrorCode Memory##allocKind##nameSuffix
+#define _MEMORY_ALLOC_FUNC_HEADER(allocKind, nameSuffix, ...) TEMPLATE SystemErrorCode Memory##allocKind##nameSuffix
 #define MEMORY_ALLOC_FUNC_HEADER(nameSuffix, ...) _MEMORY_ALLOC_FUNC_HEADER(Alloc, nameSuffix, )(VA_OPT(__VA_ARGS__ COMMA, __VA_ARGS__) T** const result)
 #define CREATE_MEMORY_ALLOC_FUNC(nameSuffix, prefix, suffix, ...) MEMORY_ALLOC_FUNC_HEADER(nameSuffix, __VA_ARGS__) \
 	{ \
