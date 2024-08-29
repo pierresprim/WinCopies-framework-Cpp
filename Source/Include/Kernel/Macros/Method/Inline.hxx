@@ -83,7 +83,7 @@
 
 
 
-#define INLINE_ABSTRACTION_RETURN(isConst, returnType, name, suffix, abstractorPtr, ...) INLINE_METHOD_RETURN(isConst, VIRTUALITY_NONE, virtual returnType, SURROUND(FIRST_ARG name, suffix, SECOND_ARG name), abstractorPtr->FIRST_ARG name(GET_ARG_PAIRS_VALUE(__VA_ARGS__)), PREFIX_ARGS(ARGS_TRANSCRIPTION, __VA_ARGS__))
+#define INLINE_ABSTRACTION_RETURN(isConst, returnType, name, suffix, abstractorPtr, ...) INLINE_METHOD_RETURN(isConst, VIRTUALITY_NONE, virtual returnType, SURROUND(FIRST_ARG name, suffix, SECOND_ARG name), abstractorPtr->FIRST_ARG name(GET_ARG_PAIRS_VALUE(__VA_ARGS__)), TRANSCRIBE_ARG_PAIRS(__VA_ARGS__))
 #define INLINE_COLLECTION_ABSTRACTION(isConst, returnType, name, abstractorPtr, ...) INLINE_ABSTRACTION_RETURN(isConst, returnType, name, Item, abstractorPtr, __VA_ARGS__)
 
 
