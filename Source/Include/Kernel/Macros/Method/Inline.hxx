@@ -49,7 +49,8 @@
 #define IINLINE_FIELD_RETURN(virtuality, returnType, methodName, field) INLINE_METHOD_RETURN(1, virtuality, returnType, methodName, _##field)
 #define INLINE_FIELD_RETURN(virtuality, returnType, methodName, field) IINLINE_FIELD_RETURN(virtuality, returnType, Get##methodName, field)
 
-#define INLINE_METHOD_DELETE(virtuality, methodName, field) INLINE_METHOD_ACTION(0, virtuality, methodName, delete _##field)
+#define _INLINE_METHOD_DELETE(virtuality, methodName, field) INLINE_METHOD_ACTION(0, virtuality, methodName, delete field; field = nullptr)
+#define INLINE_METHOD_DELETE(virtuality, methodName, field) _INLINE_METHOD_DELETE(virtuality, methodName, _##field)
 #define INLINE_FUNCTION_DELETE(methodName, field) INLINE_METHOD_DELETE(VIRTUALITY_NONE, methodName, field)
 #define INLINE_FIELD_DELETE(virtuality, typeName, field) _INLINE_METHOD_ACTION(0, 0, virtuality, , ~typeName, delete _##field)
 
