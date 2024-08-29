@@ -233,7 +233,7 @@ namespace WinCopies
 		if (value == nullptr)
 
 			return false;
-		
+
 		DeleteAndUpdatePtr(ptr, value);
 
 		return *ptr;
@@ -250,7 +250,7 @@ namespace WinCopies
 		if (value == nullptr)
 
 			return false;
-		
+
 		FreeAndUpdatePtr(ptr, value, freer);
 
 		return ptr;
