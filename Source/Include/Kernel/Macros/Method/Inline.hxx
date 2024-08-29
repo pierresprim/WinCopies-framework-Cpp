@@ -70,7 +70,7 @@
 
 #define _FIELDS_INITIALIZATION(renderer, hasBaseArgs, name, preInit, postInit, base, ...) name(_FIELDS_INITIALIZER(renderer, hasBaseArgs, VA_ARGS_FILLED(__VA_ARGS__), EXPAND(base)) renderer(EXPAND_ARG_PAIRS(__VA_ARGS__))) _BASE_FIELDS_INITIALIZER(hasBaseArgs, EXPAND(base)) { EXPAND_SUFFIXED(;, preInit) RRENDER_ARGS(SURROUND_SPACED, FIELD_UPDATE, GET_ARG_PAIRS_VALUE(__VA_ARGS__)) EXPAND_SUFFIXED(;, postInit) }
 
-#define _FFIELDS_INITIALIZER(expand, name, preInit, postInit, base, ...) _FIELDS_INITIALIZATION(IF(expand, EXPAND, SINGLE_ARG), VA_ARGS_FILLED base, name, preInit, postInit, base, __VA_ARGS__)
+#define _FFIELDS_INITIALIZER(expand, name, preInit, postInit, base, ...) _FIELDS_INITIALIZATION(IF(expand, EXPAND_ARGS, SINGLE_ARG), VA_ARGS_FILLED base, name, preInit, postInit, base, __VA_ARGS__)
 
 #define FFIELDS_INITIALIZER(name, preInit, postInit, base, ...) _FFIELDS_INITIALIZER(0, name, preInit, postInit, base, __VA_ARGS__)
 #define FIELDS_INITIALIZER(name, ...) FFIELDS_INITIALIZER(name, (), (), (), __VA_ARGS__)
@@ -83,7 +83,7 @@
 
 
 
-#define INLINE_ABSTRACTION_RETURN(isConst, returnType, name, suffix, abstractorPtr, ...) INLINE_METHOD_RETURN(isConst, VIRTUALITY_NONE, virtual returnType, SURROUND(FIRST_ARG name, suffix, SECOND_ARG name), abstractorPtr->FIRST_ARG name(CALL_WHEN_VA_ARGS(GET_ARG_PAIRS_VALUE, __VA_ARGS__)), PREFIX_ARGS(ARGS_TRANSCRIPTION, __VA_ARGS__))
+#define INLINE_ABSTRACTION_RETURN(isConst, returnType, name, suffix, abstractorPtr, ...) INLINE_METHOD_RETURN(isConst, VIRTUALITY_NONE, virtual returnType, SURROUND(FIRST_ARG name, suffix, SECOND_ARG name), abstractorPtr->FIRST_ARG name(GET_ARG_PAIRS_VALUE(__VA_ARGS__)), PREFIX_ARGS(ARGS_TRANSCRIPTION, __VA_ARGS__))
 #define INLINE_COLLECTION_ABSTRACTION_RETURN(isConst, returnType, name, abstractorPtr, ...) INLINE_ABSTRACTION_RETURN(isConst, returnType, name, Item, abstractorPtr, __VA_ARGS__)
 
 
