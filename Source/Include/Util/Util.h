@@ -202,5 +202,75 @@ namespace WinCopies
 
 	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(test), provider, onError.GetValueOrCustom(test)), T* const value, ErrorCode const test, const FunctionFunction<T>& provider, Nullable<ErrorCode> const onError)
 	TEMPLATE INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, ErrorCode, TrySetValueOrDefault, TrySetValueOrDefault(value, CheckSuccess(func()), provider, onError), T* const value, const FunctionFunction<ErrorCode>& func, const FunctionFunction<T>& provider, Nullable<ErrorCode> const onError)
+
+	TEMPLATE void DeleteAndUpdate(T* const ptr, T& const value)
+	{
+		delete ptr;
+
+		*ptr = value;
+	}
+	TEMPLATE INLINE_FUNCTION_ACTION(DeleteAndUpdatePtr, DeleteAndUpdate(*ptr, *value), T** const ptr, T* const value)
+
+	TEMPLATE void FreeAndUpdate(T* const ptr, T& const value, Action<void*> freer)
+	{
+		freer(ptr);
+
+		*ptr = value;
+	}
+	TEMPLATE INLINE_FUNCTION_ACTION(FreeAndUpdatePtr, FreeAndUpdate(*ptr, *value, freer), T** const ptr, T* const value, Action<void*> freer)
+
+	TEMPLATE INLINE_FUNCTION_ACTION(FreeAndUpdate, FreeAndUpdate(ptr, value, free), T* const ptr, T& const value)
+	TEMPLATE INLINE_FUNCTION_ACTION(FreeAndUpdatePtr, FreeAndUpdate(*ptr, *value, free), T** const ptr, T* const value)
+
+	TEMPLATE inline bool DeleteUpdateAndCheck(T* const ptr, T& const value)
+	{
+		DeleteAndUpdate(ptr, value);
+
+		return ptr;
+	}
+	TEMPLATE inline bool DeleteUpdateAndCheckPtr(T** const ptr, T* const value)
+	{
+		if (value == nullptr)
+
+			return false;
+		
+		DeleteAndUpdatePtr(ptr, value);
+
+		return *ptr;
+	}
+
+	TEMPLATE inline bool FreeUpdateAndCheck(T* const ptr, T& const value, Action<void*> freer)
+	{
+		FreeAndUpdate(ptr, value, freer);
+
+		return ptr;
+	}
+	TEMPLATE inline bool FreeUpdateAndCheckPtr(T** const ptr, T* const value, Action<void*> freer)
+	{
+		if (value == nullptr)
+
+			return false;
+		
+		FreeAndUpdatePtr(ptr, value, freer);
+
+		return ptr;
+	}
+
+	TEMPLATE inline bool FreeUpdateAndCheck(T* const ptr, T& const value)
+	{
+		FreeAndUpdate(ptr, value);
+
+		return ptr;
+	}
+	TEMPLATE inline bool FreeUpdateAndCheckPtr(T** const ptr, T* const value)
+	{
+		if (value == nullptr)
+
+			return false;
+
+		FreeAndUpdatePtr(ptr, value);
+
+		return ptr;
+	}
 }
 #endif
