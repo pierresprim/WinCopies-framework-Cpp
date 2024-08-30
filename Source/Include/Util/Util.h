@@ -15,6 +15,7 @@
 #include "Math.h"
 #include "Delegate.h"
 #include "Nullable.h"
+#include "System.h"
 
 using namespace WinCopies::Delegate;
 using namespace WinCopies::Typing;
@@ -272,5 +273,21 @@ namespace WinCopies
 
 		return ptr;
 	}
+
+	TEMPLATE inline SystemErrorCode UpdateAndValidatePtr(Unique<T>* const ptr, T* const value)
+	{
+		if (value)
+		{
+			*ptr = Unique<T>(value);
+
+			return SystemErrorCode::Success;
+		}
+
+		*ptr = nullptr;
+
+		return SystemErrorCode::OutOfMemory;
+	}
+	TEMPLATE INLINE_FUNCTION_RETURN(bool, TryUpdateAndCheckPtr, UpdateAndValidatePtr(ptr, value) == SystemErrorCode::Success, Unique<T>* const ptr, T* const value)
+	TEMPLATE INLINE_FUNCTION_RETURN(ErrorCode, UpdateAndCheckPtr, UpdateAndValidatePtr(ptr, value) ? ErrorCode::Success : System::ErrorHandling::SetSystemError(SystemErrorCode::OutOfMemory), Unique<T>* const ptr, T* const value)
 }
 #endif
