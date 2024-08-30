@@ -209,7 +209,7 @@
 #define PPRINT_RENDERED_VA_ARGS(overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, ...) _RENDER_VA_ARGS(P, overallPrefixes, overallSuffixes, macro, argPrefixes, argSuffixes, __VA_ARGS__)
 #define PRINT_RENDERED_VA_ARGS(macro, prefixes, suffixes, ...) PPRINT_RENDERED_VA_ARGS((), (), macro, prefixes, suffixes, __VA_ARGS__)
 
-#define EXPAND_ARGS(...) PREFIX_ARGS(SINGLE_ARG, __VA_ARGS__)
+#define EXPAND_ARGS(...) RENDER_ARGS(EXPAND, __VA_ARGS__)
 
 #define TRANSCRIBE_ARG_PAIRS(...) PREFIX_ARGS(ARGS_TRANSCRIPTION, __VA_ARGS__)
 #define EXPAND_ARG_PAIRS(...) EXPAND_ARGS(TRANSCRIBE_ARG_PAIRS(__VA_ARGS__))
