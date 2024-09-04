@@ -7,6 +7,7 @@
 
 #include "../Macros/Template.hxx"
 #include "../Macros/Type/TypeBase.hxx"
+
 #include "Consts.inc.hxx"
 #include "Enum.hxx"
 

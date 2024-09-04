@@ -45,15 +45,18 @@
 #define HAS_GCC 0
 #endif
 
+#if HAS_WINDOWS
+#define ABSTRACT abstract
+#else
+#define ABSTRACT
+#endif
+
 #if HAS_QT
 #define DLLEXPORT Q_DECL_EXPORT
-#define ABSTRACT
 #include "../WinCopies_Qt/WinCopies.Util/WinCopies_Util/main.h"
 #elif HAS_WINDOWS
 #define DLLEXPORT __declspec(dllexport)
 #define DLLIMPORT __declspec(dllimport)
-
-#define ABSTRACT abstract
 
 #define HAS_CPP23 _HAS_CXX23
 
