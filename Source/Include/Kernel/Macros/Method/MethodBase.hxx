@@ -17,7 +17,7 @@
 #define __MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, _array, ...) _MAKE_PARAMETER_ARRAY(ptrType, _namespace, genericTypeArguments, EXPAND(_array)) ___MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, __VA_ARGS__)
 #define _MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, _array, ...) __MAKE_PARAMETERS(ptrType, SUFFIX_VA_ARGS(::, _namespace), genericTypeArguments, _array, __VA_ARGS__)
 
-#define MMAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, _array, ...) _MAKE_PARAMETERS(IF_VA_ARGS((ptrType <, >), , ptrType), _namespace, (GET_TEMPLATE_ARGS(EXPAND(genericTypeArguments))), _array, __VA_ARGS__)
+#define MMAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, _array, ...) _MAKE_PARAMETERS(IF_VA_ARGS((ptrType <, >), (, ), ptrType), _namespace, (GET_TEMPLATE_ARGS(EXPAND(genericTypeArguments))), _array, __VA_ARGS__)
 #define MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, ...) MMAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, (), __VA_ARGS__)
 
 #endif WINCOPIES_MACROS_METHOD_METHOD_BASE_HXX
