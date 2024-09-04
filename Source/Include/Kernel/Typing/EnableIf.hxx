@@ -73,7 +73,8 @@
 #define ENABLE_IF_ENUM(type) _ENABLE_IF_VALUE(Enum, type)
 #define ENABLE_IF_BITWISE_ENUM(type) _ENABLE_IF_VALUE(BitwiseEnum, type)
 
-#define ENABLE_IF_BASE_OF(base, derived) _ENABLE_IF_VALUE(BaseOf, base, derived)
+#define EENABLE_IF_BASE_OF(base, ...) _ENABLE_IF_VALUE(BaseOf, SINGLE_ARG base, __VA_ARGS__)
+#define ENABLE_IF_BASE_OF(base, derived) EENABLE_IF_BASE_OF((base), derived)
 
 
 
