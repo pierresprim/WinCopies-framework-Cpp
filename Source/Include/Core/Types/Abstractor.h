@@ -43,8 +43,20 @@ namespace WinCopies
 	};
 }
 
-#define _ABSTRACTION_TEMPLATE(name, interfaceName, abstractedSuffix, abstractorSuffix) TEMPLATE CLASS name##abstractorSuffix : public Abstractor<interfaceName>, BASE_INTERFACE interfaceName
-#define ABSTRACTION_TEMPLATE(name, abstractedSuffix, abstractorSuffix) _ABSTRACTION_TEMPLATE(name, I##name##abstractedSuffix<T>, abstractedSuffix, abstractorSuffix)
+#define __GET_ABSTRACTION_TEMPLATE_ARG(...) <ALL_BUT_FIRST_ARG(__VA_ARGS__) T>, FIRST_ARG(__VA_ARGS__)
+#define _GET_ABSTRACTION_TEMPLATE_ARG(templateParams, name, interfaceName) name __GET_ABSTRACTION_TEMPLATE_ARG(IF_B(COMPL(FIRST_ARG templateParams), interfaceName, TAbstracted, TAbstracted, ))
 
-#define COLLECTION_ABSTRACTION_TEMPLATE(name) ABSTRACTION_TEMPLATE(name, List, Collection)
+#define __ABSTRACTION_TEMPLATE(templateParams, baseType, templateArgs, name, interfaceName, ...) ALL_BUT_FIRST_ARG templateParams CLASS name : public baseType<SINGLE_ARG templateArgs>, BASE_INTERFACE interfaceName
+#define _ABSTRACTION_TEMPLATE(templateParams, name, interfaceName, ...) CALL_VA_MACRO(__ABSTRACTION_TEMPLATE, templateParams, EXPAND(IF_VA_ARGS((__VA_ARGS__##name, (interfaceName, T)), (Abstractor, (_GET_ABSTRACTION_TEMPLATE_ARG(templateParams, name, interfaceName))), __VA_ARGS__)), name, interfaceName, __VA_ARGS__)
+
+#define _GET_ABSTRACTION_TEMPLATE_PARAM(interfaceName) 0, TEMPLATE
+#define _GET_ABSTRACTION_TEMPLATE_PARAMS(interfaceName) 1, TEMPLATE_EC_IF_TRUE(((ENABLE_IF_BASE_OF(interfaceName, TAbstracted))), TAbstracted, T)
+
+#define _AABSTRACTION_TEMPLATE(prefix, name, interfaceName, abstractorSuffix, ...) _ABSTRACTION_TEMPLATE((CALL_VA_MACRO(CONCATENATE, _GET_ABSTRACTION_TEMPLATE_PARAM, IF_VA_ARGS(S, , prefix))(interfaceName)), prefix##name##abstractorSuffix, interfaceName, __VA_ARGS__)
+
+#define AABSTRACTION_TEMPLATE(prefix, name, abstractedSuffix, abstractorSuffix, ...) _AABSTRACTION_TEMPLATE(prefix, name, I##prefix##name##abstractedSuffix<T>, abstractorSuffix, __VA_ARGS__)
+#define ABSTRACTION_TEMPLATE(name, abstractedSuffix, abstractorSuffix, ...) AABSTRACTION_TEMPLATE(, name, abstractedSuffix, abstractorSuffix, __VA_ARGS__)
+
+#define CCOLLECTION_ABSTRACTION_TEMPLATE(prefix, name, ...) AABSTRACTION_TEMPLATE(prefix, name, List, Collection, __VA_ARGS__)
+#define COLLECTION_ABSTRACTION_TEMPLATE(name, ...) CCOLLECTION_ABSTRACTION_TEMPLATE(, name, __VA_ARGS__)
 #endif WINCOPIES_TYPES_ABSTRACTOR_H
