@@ -37,6 +37,22 @@ namespace WinCopies
 #undef CREATE_BOOL_FUNC
 #undef _CREATE_BOOL_FUNC
 #undef __CREATE_BOOL_FUNC
+
+		TEMPLATE_EC(TObj, TValue) STRUCT SharedDelegate
+		{
+		private:
+			Shared<TObj> _ptr;
+			InstanceFunction<TObj, TValue> _delegate;
+
+		public:
+			explicit SharedDelegate(TObj ptr, InstanceFunction<TObj, TValue> delegate)
+			{
+				_ptr = ptr;
+				_delegate = delegate;
+			}
+
+			TValue operator()() const noexcept { return (_ptr->*_delegate)(); };
+		};
 	}
 }
 #endif WINCOPIES_DELEGATE_H
