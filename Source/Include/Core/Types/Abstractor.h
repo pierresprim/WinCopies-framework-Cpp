@@ -36,7 +36,7 @@ namespace WinCopies
 		TAbstractor** _ptr = nullptr;
 
 	protected:
-		inline explicit TYPE_INITIALIZATION(Abstractor, (AbstractorBase<TObj>), , , (((Shared<TObj>), obj)), ((TAbstractor**), ptr))
+		inline explicit CLASS_INITIALIZATION(Abstractor, (AbstractorBase<TObj>), , (((Shared<TObj>), obj)), ((TAbstractor**), ptr))
 
 		INLINE_DESTRUCTOR_DEFINITION(VIRTUALITY_OVERRIDE, Abstractor, *_ptr = nullptr)
 	};
