@@ -38,6 +38,7 @@ namespace WinCopies
 	protected:
 		inline explicit CLASS_INITIALIZATION(Abstractor, (AbstractorBase<TObj>), , (((Shared<TObj>), obj)), ((TAbstractor**), ptr))
 
+	public:
 		INLINE_DESTRUCTOR_DEFINITION(VIRTUALITY_OVERRIDE, Abstractor, *_ptr = nullptr)
 	};
 }
