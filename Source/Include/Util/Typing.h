@@ -28,15 +28,17 @@ namespace WinCopies
 		template<class T, Action<void*> freer> using FreeableUnique = unique_ptr<T, Freer<freer>>;
 		TEMPLATE using FreeableUniqueStd = FreeableUnique<T, free>;
 
-#define WINCOPIES_AS_FROM_TYPE_HEADER(tOut) TEMPLATE_NC(2, IF_NOT(tOut, , class TOut COMMA) ENABLE_IF_BASE_OF(T1, T2) = true)
-#define WINCOPIES_AS_FROM_TYPE(modifier) WINCOPIES_AS_FROM_TYPE_HEADER(0) INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, T1##modifier, AsFromType, value, T2##modifier value)
+#define _WINCOPIES_AS_FROM_TYPE_HEADER(tObj, tOut) TEMPLATE_NC(2, IF_TRUE(tObj, class TObj COMMA) IF_TRUE(tOut, class TOut COMMA) ENABLE_IF_BASE_OF(T1, T2) = true)
+
+#define WINCOPIES_AS_FROM_TYPE_HEADER _WINCOPIES_AS_FROM_TYPE_HEADER(0, 1)
+#define WINCOPIES_AS_FROM_TYPE(modifier) _WINCOPIES_AS_FROM_TYPE_HEADER(0, 0) INLINE_METHOD_RETURN(0, VIRTUALITY_NONE, T1##modifier, AsFromType, value, T2##modifier value)
 
 		WINCOPIES_AS_FROM_TYPE()
 		WINCOPIES_AS_FROM_TYPE(*)
 		WINCOPIES_AS_FROM_TYPE(&)
 #undef WINCOPIES_AS_FROM_TYPE
 
-		WINCOPIES_AS_FROM_TYPE_HEADER(1) TOut AsFromType(T1** result, T2** _result, SelectorFunction<T2**, TOut> func)
+		WINCOPIES_AS_FROM_TYPE_HEADER TOut AsFromType(T1** result, T2** _result, Selector<T2**, TOut> func)
 		{
 			TOut __result = func(_result);
 
@@ -44,7 +46,37 @@ namespace WinCopies
 
 			return __result;
 		}
-		WINCOPIES_AS_FROM_TYPE_HEADER(1) TOut AsFromType(T1** result, SelectorFunction<T2**, TOut> func)
+		WINCOPIES_AS_FROM_TYPE_HEADER TOut AsFromType(T1** result, Selector<T2**, TOut> func)
+		{
+			T2* ptr = 0;
+
+			return AsFromType(result, &ptr, func);
+		}
+
+		_WINCOPIES_AS_FROM_TYPE_HEADER(1, 1) TOut AsFromType(TObj* obj, T1** result, T2** _result, InstanceSelector<TObj, T2**, TOut> func)
+		{
+			TOut __result = (obj->*func)(_result);
+
+			*result = *_result;
+
+			return __result;
+		}
+		_WINCOPIES_AS_FROM_TYPE_HEADER(1, 1) TOut AsFromType(TObj* obj, T1** result, InstanceSelector<TObj, T2**, TOut> func)
+		{
+			T2* ptr = 0;
+
+			return AsFromType(obj, result, &ptr, func);
+		}
+
+		WINCOPIES_AS_FROM_TYPE_HEADER TOut AsFromType(T1** result, T2** _result, SelectorFunction<T2**, TOut>& func)
+		{
+			TOut __result = func(_result);
+
+			*result = *_result;
+
+			return __result;
+		}
+		WINCOPIES_AS_FROM_TYPE_HEADER TOut AsFromType(T1** result, SelectorFunction<T2**, TOut>& func)
 		{
 			T2* ptr = 0;
 
