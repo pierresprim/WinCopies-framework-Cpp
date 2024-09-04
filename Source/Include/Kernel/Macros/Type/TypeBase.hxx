@@ -54,4 +54,6 @@
 #define TTYPE_INITIALIZATION(name, baseType, ptrType, _namespace, genericTypeArguments, baseTypeArguments, ...) _TYPE_INITIALIZATION(name, baseType, MMAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, baseTypeArguments, __VA_ARGS__))
 #define TYPE_INITIALIZATION(name, baseType, ptrType, _namespace, baseTypeArguments, ...) _TYPE_INITIALIZATION(name, baseType, MMAKE_PARAMETERS(ptrType, _namespace, (), baseTypeArguments, __VA_ARGS__))
 
+#define CLASS_INITIALIZATION(name, baseType, _namespace, baseTypeArguments, ...) TYPE_INITIALIZATION(name, baseType, , _namespace, baseTypeArguments, __VA_ARGS__)
+
 #endif WINCOPIES_MACROS_TYPE_BASE_HXX
