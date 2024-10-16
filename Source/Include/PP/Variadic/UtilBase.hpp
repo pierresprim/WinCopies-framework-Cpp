@@ -128,12 +128,23 @@
 
 
 
-#define __SURROUND_ARGS(prefix, suffix, firstTranscriber, transcriber, ...) __TRANSCRIBE_SURROUNDED(prefix, prefix, suffix, SINGLE_ARG, firstTranscriber, transcriber, __VA_ARGS__)
-#define _SURROUND_ARGS(prefix, suffix, macro, ...) __SURROUND_ARGS(prefix, suffix, SURROUND, macro, __VA_ARGS__)
+#define ___SURROUND_ARGS(prefix, suffix, firstTranscriber, transcriber, ...) __TRANSCRIBE_SURROUNDED(prefix, prefix, suffix, SINGLE_ARG, firstTranscriber, transcriber, __VA_ARGS__)
+#define __SURROUND_ARGS(renderer, prefix, suffix, macro, ...) ___SURROUND_ARGS(prefix, suffix, CONCATENATE(SURROUND, renderer), macro, __VA_ARGS__)
 
-#define PREFIX_ARGS(prefix, ...) _SURROUND_ARGS(prefix, , PREFIX_CS, __VA_ARGS__)
-#define SURROUND_ARGS(prefix, suffix, ...) _SURROUND_ARGS(prefix, suffix, SURROUND_CS, __VA_ARGS__)
-#define SUFFIX_ARGS(suffix, ...) _SURROUND_ARGS(, suffix, SUFFIX_CS, __VA_ARGS__)
+#define SURROUND_ARGS_RENDERED(prefix, suffix, macro, ...) __SURROUND_ARGS(, prefix, suffix, macro, __VA_ARGS__)
+#define SURROUND_ARGS_SPACED(prefix, suffix, macro, ...) __SURROUND_ARGS(_SPACED, prefix, suffix, macro, __VA_ARGS__)
+
+#define _PREFIX_ARGS(renderer, prefix, ...) __SURROUND_ARGS(renderer, prefix, , PREFIX_CS, __VA_ARGS__)
+#define _SURROUND_ARGS(renderer, prefix, suffix, ...) __SURROUND_ARGS(renderer, prefix, suffix, SURROUND_CS, __VA_ARGS__)
+#define _SUFFIX_ARGS(renderer, suffix, ...) __SURROUND_ARGS(renderer, , suffix, SUFFIX_CS, __VA_ARGS__)
+
+#define PREFIX_ARGS(prefix, ...) _PREFIX_ARGS(, prefix, __VA_ARGS__)
+#define SURROUND_ARGS(prefix, suffix, ...) _SURROUND_ARGS(, prefix, suffix, __VA_ARGS__)
+#define SUFFIX_ARGS(suffix, ...) _SUFFIX_ARGS(, suffix, __VA_ARGS__)
+
+#define PREFIX_ARGS_SPACED(prefix, ...) _PREFIX_ARGS(_SPACED, prefix, __VA_ARGS__)
+#define SURROUND_ARGS_SPACED(prefix, suffix, ...) _SURROUND_ARGS(_SPACED, prefix, suffix, __VA_ARGS__)
+#define SUFFIX_ARGS_SPACED(suffix, ...) _SUFFIX_ARGS(_SPACED, suffix, __VA_ARGS__)
 
 #define _TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, ...) __TRANSCRIBE_SURROUNDED(firstPrefix, prefix, suffix, macro, SURROUND_SPACED, TRANSCRIBE_ARGS_CS, __VA_ARGS__)
 

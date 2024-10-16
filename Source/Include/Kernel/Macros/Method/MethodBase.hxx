@@ -8,7 +8,7 @@
 #define _MAKE_PARAMETERS_SPACED(prefix, value, ...) ((prefix FIRST_ARG value) EXPAND(__VA_ARGS__))
 #define _MAKE_PARAMETERS_CS(prefix, value, ...) COMMA _MAKE_PARAMETERS_SPACED(prefix, value, __VA_ARGS__)
 
-#define ____MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, renderer, ...) ZIP_ARGS((__SURROUND_ARGS(FIRST_ARG ptrType _namespace renderer, (EXPAND(genericTypeArguments) SECOND_ARG ptrType), _MAKE_PARAMETERS_SPACED, _MAKE_PARAMETERS_CS, __VA_ARGS__)), PREFIX_ARGS(SECOND_ARG, __VA_ARGS__))
+#define ____MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, renderer, ...) ZIP_ARGS((___SURROUND_ARGS(FIRST_ARG ptrType _namespace renderer, (EXPAND(genericTypeArguments) SECOND_ARG ptrType), _MAKE_PARAMETERS_SPACED, _MAKE_PARAMETERS_CS, __VA_ARGS__)), PREFIX_ARGS(SECOND_ARG, __VA_ARGS__))
 #define ___MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, ...) ____MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, IF(VA_ARGS_EMPTY(EXPAND(genericTypeArguments)), SINGLE_ARG), __VA_ARGS__)
 
 #define __MAKE_PARAMETER_ARRAY(ptrType, _namespace, genericTypeArguments, ...) (___MAKE_PARAMETERS(ptrType, _namespace, genericTypeArguments, __VA_ARGS__)),
