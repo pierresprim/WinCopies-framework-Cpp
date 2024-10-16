@@ -43,26 +43,17 @@ namespace WinCopies
 	};
 }
 
-#define _ABSTRACTION_TEMPLATE_CLASS(prefix, name, suffix) prefix##name##suffix
+#define ABSTRACTION_TEMPLATE_INTERFACE(prefix, name, suffix) SURROUND(I##prefix, name, suffix<T>)
+#define ABSTRACTION_TEMPLATE_CLASS(prefix, name, suffix) CLASS SURROUND(prefix, name, suffix)
 
-#define ABSTRACTION_TEMPLATE_INTERFACE(prefix, name, suffix) I##prefix##name##suffix<T>
-#define ABSTRACTION_TEMPLATE_CLASS(prefix, name, suffix) class _ABSTRACTION_TEMPLATE_CLASS(prefix, name, suffix)
+#define ___ABSTRACTION_TEMPLATE(templateParams, name, completeName) SINGLE_ARG templateParams CLASS completeName; SINGLE_ARG templateParams using SURROUND(FIRST_ARG name, SECOND_ARG name, Abstractor) = Abstractor<completeName<TAbstracted, T>, TAbstracted>;
+#define __ABSTRACTION_TEMPLATE(templateParams, aliasRenderer, baseType, name, completeName, interfaceName, ...) aliasRenderer(templateParams, name, completeName) SINGLE_ARG templateParams CLASS completeName : public baseType<TAbstracted, T>, BASE_INTERFACE interfaceName
+#define _ABSTRACTION_TEMPLATE(templateParams, name, completeName, interfaceName, ...) CALL_VA_MACRO(__ABSTRACTION_TEMPLATE, templateParams, EXPAND(IF_VA_ARGS((DISCARD, CONCATENATE(__VA_ARGS__, completeName)), (___ABSTRACTION_TEMPLATE, SURROUND(FIRST_ARG name, SECOND_ARG name, Abstractor)), __VA_ARGS__)), name, completeName, interfaceName, __VA_ARGS__)
 
-#define __GET_ABSTRACTION_TEMPLATE_ARG(...) <ALL_BUT_FIRST_ARG(__VA_ARGS__) T>, FIRST_ARG(__VA_ARGS__)
-#define _GET_ABSTRACTION_TEMPLATE_ARG(templateParams, name, interfaceName) name __GET_ABSTRACTION_TEMPLATE_ARG(IF_B(COMPL(FIRST_ARG templateParams), interfaceName, TAbstracted, TAbstracted, ))
+#define _ABSTRACTION_TEMPLATE_PARAMS(interfaceName) TEMPLATE_EC_IF_TRUE(((ENABLE_IF_BASE_OF(interfaceName, TAbstracted))), TAbstracted, T)
+#define ABSTRACTION_TEMPLATE_PARAMS(prefix, interfaceName, suffix) _ABSTRACTION_TEMPLATE_PARAMS(ABSTRACTION_TEMPLATE_INTERFACE(prefix, interfaceName, suffix))
 
-#define __ABSTRACTION_TEMPLATE(templateParams, baseType, templateArgs, name, interfaceName, ...) SINGLE_ARG templateParams using SURROUND(FIRST_ARG FIRST_ARG name, SECOND_ARG FIRST_ARG name, Abstractor) = Abstractor<SECOND_ARG name<TAbstracted, T>, interfaceName>; SINGLE_ARG templateParams CLASS SECOND_ARG name : public baseType<SINGLE_ARG templateArgs>, BASE_INTERFACE interfaceName
-#define _ABSTRACTION_TEMPLATE(templateParams, name, interfaceName, ...) CALL_VA_MACRO(__ABSTRACTION_TEMPLATE, (ALL_BUT_FIRST_ARG templateParams), EXPAND(IF_VA_ARGS((CONCATENATE(__VA_ARGS__, SECOND_ARG name), (interfaceName, T)), (Abstractor, (_GET_ABSTRACTION_TEMPLATE_ARG(templateParams, SECOND_ARG name, interfaceName))), __VA_ARGS__)), name, interfaceName, __VA_ARGS__)
-
-#define ABSTRACTION_TEMPLATE_PARAM TEMPLATE
-#define __ABSTRACTION_TEMPLATE_PARAMS(interfaceName) TEMPLATE_EC_IF_TRUE(((ENABLE_IF_BASE_OF(interfaceName, TAbstracted))), TAbstracted, T)
-
-#define _ABSTRACTION_TEMPLATE_PARAM(interfaceName) 0, ABSTRACTION_TEMPLATE_PARAM
-#define _ABSTRACTION_TEMPLATE_PARAMS(interfaceName) 1, __ABSTRACTION_TEMPLATE_PARAMS(interfaceName)
-
-#define ABSTRACTION_TEMPLATE_PARAMS(prefix, interfaceName, suffix) __ABSTRACTION_TEMPLATE_PARAMS(ABSTRACTION_TEMPLATE_INTERFACE(prefix, interfaceName, suffix))
-
-#define _AABSTRACTION_TEMPLATE(prefix, name, interfaceName, abstractorSuffix, ...) _ABSTRACTION_TEMPLATE((CALL_VA_MACRO(CONCATENATE, _ABSTRACTION_TEMPLATE_PARAM, IF_VA_ARGS(S, , prefix))(interfaceName)), ((prefix, name), _ABSTRACTION_TEMPLATE_CLASS(prefix, name, abstractorSuffix)), interfaceName, __VA_ARGS__)
+#define _AABSTRACTION_TEMPLATE(prefix, name, interfaceName, abstractorSuffix, ...) _ABSTRACTION_TEMPLATE((_ABSTRACTION_TEMPLATE_PARAMS(interfaceName)), (prefix, name), SURROUND(prefix, name, abstractorSuffix), interfaceName, __VA_ARGS__)
 
 #define AABSTRACTION_TEMPLATE(prefix, name, abstractedSuffix, abstractorSuffix, ...) _AABSTRACTION_TEMPLATE(prefix, name, ABSTRACTION_TEMPLATE_INTERFACE(prefix, name, abstractedSuffix), abstractorSuffix, __VA_ARGS__)
 #define ABSTRACTION_TEMPLATE(name, abstractedSuffix, abstractorSuffix, ...) AABSTRACTION_TEMPLATE(, name, abstractedSuffix, abstractorSuffix, __VA_ARGS__)
