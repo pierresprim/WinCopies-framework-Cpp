@@ -31,7 +31,7 @@
 #define TEMPLATE_EC(...) TEMPLATE_E(class, __VA_ARGS__)
 
 #define CONSTRAINED_TEMPLATE_EC(conditions, ...) _TEMPLATE_E(class, conditions, __VA_ARGS__)
-#define TEMPLATE_EC_IF_TRUE(conditions, ...) CONSTRAINED_TEMPLATE_EC((EXPAND_ARGS(SUFFIX_ARGS(= true, SINGLE_ARG conditions))), __VA_ARGS__)
+#define TEMPLATE_EC_IF_TRUE(conditions, ...) CONSTRAINED_TEMPLATE_EC((EXPAND_ARGS(SUFFIX_ARGS_SPACED(= true, SINGLE_ARG conditions))), __VA_ARGS__)
 
 #define TEMPLATE_NE(n, kind, ...) TEMPLATE_N(n, kind, TRANSCRIBE_PREFIXED(kind, __VA_ARGS__))
 #define TEMPLATE_NEC(n, ...) TEMPLATE_NE(n, class, __VA_ARGS__)
