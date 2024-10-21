@@ -231,10 +231,11 @@
 
 #define REMOVE_FIRST_VALUE(...) RENDER_ARG_ARRAY((), ALL_BUT_FIRST_ARG, (), __VA_ARGS__)
 
-#define ____PARSE_ITEMS(macro, ...) macro(__VA_ARGS__) // Needed for indirection.
-#define ___PARSE_ITEMS(macro, ...) ____PARSE_ITEMS(macro, __VA_ARGS__)
-#define _PARSE_ITEMS(_array, ...) (___PARSE_ITEMS(FIRST_ARG _array, SINGLE_ARG SECOND_ARG _array, FIRST_ARG FIRST_ARG(__VA_ARGS__), SINGLE_ARG THIRD_ARG _array, ALL_BUT_FIRST_ARG FIRST_ARG(__VA_ARGS__))), _array
+#define ___PARSE_ITEMS(macro, ...) macro(__VA_ARGS__) // Needed for indirection.
+#define __PARSE_ITEMS(macro, ...) ___PARSE_ITEMS(macro, __VA_ARGS__)
+#define _PARSE_ITEMS(_array, ...) (__PARSE_ITEMS(FIRST_ARG _array, SINGLE_ARG SECOND_ARG _array, FIRST_ARG FIRST_ARG(__VA_ARGS__), SINGLE_ARG THIRD_ARG _array, ALL_BUT_FIRST_ARG FIRST_ARG(__VA_ARGS__))), _array
 
-#define PARSE_ITEMS(prefixes, macro, suffixes, ...) FOR_ALL(_PARSE_ITEMS, (macro, prefixes, suffixes), __VA_ARGS__)
+#define PPARSE_ITEMS(renderer, prefixes, macro, suffixes, ...) FFOR_ALL(renderer, _PARSE_ITEMS, (macro, prefixes, suffixes), __VA_ARGS__)
+#define PARSE_ITEMS(prefixes, macro, suffixes, ...) PPARSE_ITEMS(SINGLE_ARG, prefixes, macro, suffixes, __VA_ARGS__)
 
 #endif WINCOPIES_VA_UTIL_BASE_HPP
