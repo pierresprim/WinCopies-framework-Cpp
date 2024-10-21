@@ -88,7 +88,7 @@
 
 
 
-#define INLINE_ABSTRACTIONS_RETURN(isConst, returnType, suffix, abstractorPtr, ...) PARSE_ITEMS((isConst, returnType), INLINE_ABSTRACTION_RETURN, (suffix, abstractorPtr), __VA_ARGS__)
+#define INLINE_ABSTRACTIONS_RETURN(isConst, returnType, suffix, abstractorPtr, ...) PPARSE_ITEMS(ARGS_TRANSCRIPTION, (isConst, returnType), INLINE_ABSTRACTION_RETURN, (suffix, abstractorPtr), __VA_ARGS__)
 #define INLINE_COLLECTION_ABSTRACTIONS(isConst, returnType, abstractorPtr, ...) INLINE_ABSTRACTIONS_RETURN(isConst, returnType, Item, abstractorPtr, __VA_ARGS__)
 
 #endif WINCOPIES_MACROS_METHOD_INLINE_HXX
