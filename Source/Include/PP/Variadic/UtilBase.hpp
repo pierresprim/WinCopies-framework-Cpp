@@ -185,8 +185,8 @@
 #define __PROCESS_ARG_ARRAY_RENDERING(processor, prefix, macro, suffix, ...) ___PROCESS_ARG_ARRAY_RENDERING(SURROUND(processor, IF_VA_ARGS(_P, , EXPAND(prefix)), IF_VA_ARGS(_S, , EXPAND(suffix))), (macro, prefix), suffix, __VA_ARGS__)
 #define _PROCESS_ARG_ARRAY_RENDERING(processor, prefix, macro, suffix, ...) CALL_IF_VA_ARGS(__PROCESS_ARG_ARRAY_RENDERING, __VA_ARGS__)(SURROUND(RENDERED_, processor, ARRAY_TRANSCRIBER), prefix, macro, suffix, __VA_ARGS__)
 
-#define RENDER_ARGS_AS_ARRAY(prefix, macro, suffix, ...) _PROCESS_ARG_ARRAY_RENDERING(AS_, prefix, macro, suffix, __VA_ARGS__)
-#define RENDER_ARG_ARRAY(prefix, macro, suffix, ...) _PROCESS_ARG_ARRAY_RENDERING(, prefix, macro, suffix, __VA_ARGS__)
+#define RENDER_ARGS_AS_ARRAY(prefixes, macro, suffixes, ...) _PROCESS_ARG_ARRAY_RENDERING(AS_, prefixes, macro, suffixes, __VA_ARGS__)
+#define RENDER_ARG_ARRAY(prefixes, macro, suffixes, ...) _PROCESS_ARG_ARRAY_RENDERING(, prefixes, macro, suffixes, __VA_ARGS__)
 
 #define _PRINT_RENDERED_ARG_ARRAY(processor, prefix, macro, suffix, ...) TRANSCRIBE_ARGS_PREFIXED(SINGLE_ARG, SURROUND(RENDER_ARG, processor, _ARRAY)(prefix, macro, suffix, __VA_ARGS__))
 
