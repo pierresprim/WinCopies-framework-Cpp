@@ -129,7 +129,7 @@
 
 
 #define ___SURROUND_ARGS(prefix, suffix, firstTranscriber, transcriber, ...) __TRANSCRIBE_SURROUNDED(prefix, prefix, suffix, SINGLE_ARG, firstTranscriber, transcriber, __VA_ARGS__)
-#define __SURROUND_ARGS(renderer, prefix, suffix, macro, ...) ___SURROUND_ARGS(prefix, suffix, CONCATENATE(SURROUND, renderer), macro, __VA_ARGS__)
+#define __SURROUND_ARGS(renderer, prefix, suffix, macro, ...) ___SURROUND_ARGS(prefix, suffix, CONCATENATE(SURROUND, renderer), CONCATENATE(macro, renderer), __VA_ARGS__)
 
 #define SURROUND_ARGS_RENDERED(prefix, suffix, macro, ...) __SURROUND_ARGS(, prefix, suffix, macro, __VA_ARGS__)
 #define SURROUND_ARGS_RENDERED_SPACED(prefix, suffix, macro, ...) __SURROUND_ARGS(_SPACED, prefix, suffix, macro, __VA_ARGS__)
