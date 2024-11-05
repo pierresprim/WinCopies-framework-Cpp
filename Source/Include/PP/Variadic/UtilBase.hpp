@@ -132,7 +132,7 @@
 #define __SURROUND_ARGS(renderer, prefix, suffix, macro, ...) ___SURROUND_ARGS(prefix, suffix, CONCATENATE(SURROUND, renderer), macro, __VA_ARGS__)
 
 #define SURROUND_ARGS_RENDERED(prefix, suffix, macro, ...) __SURROUND_ARGS(, prefix, suffix, macro, __VA_ARGS__)
-#define SURROUND_ARGS_SPACED(prefix, suffix, macro, ...) __SURROUND_ARGS(_SPACED, prefix, suffix, macro, __VA_ARGS__)
+#define SURROUND_ARGS_RENDERED_SPACED(prefix, suffix, macro, ...) __SURROUND_ARGS(_SPACED, prefix, suffix, macro, __VA_ARGS__)
 
 #define _PREFIX_ARGS(renderer, prefix, ...) __SURROUND_ARGS(renderer, prefix, , PREFIX_CS, __VA_ARGS__)
 #define _SURROUND_ARGS(renderer, prefix, suffix, ...) __SURROUND_ARGS(renderer, prefix, suffix, SURROUND_CS, __VA_ARGS__)
