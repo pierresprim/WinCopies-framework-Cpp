@@ -20,7 +20,7 @@ namespace WinCopies
 		protected:
 			SharedBase() = default;
 
-			template <class TDerived, ENABLE_IF_BASE_OF(T, TDerived)> INLINE_FUNCTION_RETURN(Shared<TDerived>, AsShared, std::static_pointer_cast<TDerived>(this->shared_from_this()))
+			TEMPLATE_IF_TRUE(ENABLE_IF_BASE_OF, ((T, TDerived)), TDerived) INLINE_FUNCTION_RETURN(Shared<TDerived>, AsShared, std::static_pointer_cast<TDerived>(this->shared_from_this()))
 		};
 
 		INTERFACE_CLASS(SharedInterface,
