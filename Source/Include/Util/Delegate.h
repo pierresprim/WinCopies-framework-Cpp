@@ -4,6 +4,9 @@
 #define WINCOPIES_DELEGATE_H
 
 #include "../Core/Types/Delegate.h"
+#include "../Core/Typing/Shared.h"
+
+using namespace WinCopies::Typing;
 
 namespace WinCopies
 {
@@ -25,7 +28,7 @@ namespace WinCopies
 #define CREATE_BOOL_FUNCS(prefix) _CREATE_BOOL_FUNCS(prefix##ErrorCode)
 
 		__CREATE_BOOL_FUNCS(bool, Bool)
-
+			
 		CREATE_BOOL_FUNCS()
 		CREATE_BOOL_FUNCS(System)
 
